@@ -41,7 +41,7 @@ export default {
     sendCodeFailed: 'Gửi mã xác thực thất bại',
     popup: {
       close_btn: 'Tôi hiểu',
-      wait_close_btn: 'Vui lòng đợi {seconds} giây'
+      wait_close_btn: 'Vui lòng đợi {seconds} giây',
     },
     passwordResetSuccess: 'Đặt lại mật khẩu thành công',
     passwordResetFailed: 'Đặt lại mật khẩu thất bại, vui lòng thử lại sau',
@@ -63,7 +63,7 @@ export default {
     captcha: 'Xác thực con người',
     captchaRequired: 'Vui lòng hoàn thành xác thực con người',
     verifyTokenSuccess: 'Xác thực token thành công',
-    verifyTokenFailed: 'Xác thực token thất bại, vui lòng thử lại'
+    verifyTokenFailed: 'Xác thực token thất bại, vui lòng thử lại',
   },
   validation: {
     required: '{field} không được để trống',
@@ -76,7 +76,7 @@ export default {
     passwordRequired: 'Vui lòng nhập mật khẩu',
     confirmPasswordRequired: 'Vui lòng xác nhận mật khẩu',
     passwordsDontMatch: 'Hai lần nhập mật khẩu không khớp',
-    codeRequired: 'Vui lòng nhập mã xác thực'
+    codeRequired: 'Vui lòng nhập mã xác thực',
   },
   errors: {
     networkError: 'Lỗi mạng, vui lòng kiểm tra kết nối của bạn',
@@ -87,7 +87,7 @@ export default {
     notFoundDescription: 'Xin lỗi, trang bạn truy cập không tồn tại hoặc đã bị xóa',
     backToHome: 'Về trang chủ',
     unknown: 'Xảy ra lỗi không xác định',
-    browserRestricted: 'Trình duyệt bị hạn chế truy cập'
+    browserRestricted: 'Trình duyệt bị hạn chế truy cập',
   },
   messages: {
     loginSuccess: 'Đăng nhập thành công',
@@ -99,12 +99,13 @@ export default {
     logoutSuccess: 'Đã đăng xuất thành công',
     codeSent: 'Mã xác thực đã được gửi',
     sendCodeFailed: 'Gửi mã xác thực thất bại',
-    configLoadFailed: 'Tải cấu hình thất bại, vui lòng làm mới trang và thử lại'
+    configLoadFailed: 'Tải cấu hình thất bại, vui lòng làm mới trang và thử lại',
   },
   browserRestricted: {
     title: 'Trình duyệt bị hạn chế truy cập',
     subtitle: 'Trình duyệt hiện tại không được hỗ trợ',
-    description: 'Để đảm bảo trải nghiệm duyệt web tốt nhất và bảo mật, trang web này không hỗ trợ trình duyệt bạn đang sử dụng.',
+    description:
+      'Để đảm bảo trải nghiệm duyệt web tốt nhất và bảo mật, trang web này không hỗ trợ trình duyệt bạn đang sử dụng.',
     recommendText: 'Vui lòng sử dụng các trình duyệt được khuyên dùng sau để truy cập:',
     currentBrowser: 'Bạn hiện đang sử dụng:',
     currentUrl: 'Địa chỉ đăng nhập:',
@@ -113,7 +114,8 @@ export default {
     downloadSafari: 'Tải trình duyệt Safari',
     openWithRecommended: 'Sử dụng trình duyệt được khuyên dùng để mở trang hiện tại',
     whyRestricted: 'Tại sao hạn chế một số trình duyệt?',
-    whyRestrictedDesc: 'Một số trình duyệt có thể tồn tại vấn đề bảo mật hoặc không hỗ trợ các tính năng cần thiết, chúng tôi hạn chế những trình duyệt này để đảm bảo bảo mật tài khoản và cung cấp trải nghiệm người dùng tốt hơn.',
+    whyRestrictedDesc:
+      'Một số trình duyệt có thể tồn tại vấn đề bảo mật hoặc không hỗ trợ các tính năng cần thiết, chúng tôi hạn chế những trình duyệt này để đảm bảo bảo mật tài khoản và cung cấp trải nghiệm người dùng tốt hơn.',
     supportedBrowsersTitle: 'Danh sách trình duyệt được hỗ trợ truy cập',
     browserNames: {
       Chrome: 'Trình duyệt Chrome',
@@ -123,20 +125,20 @@ export default {
       Opera: 'Trình duyệt Opera',
       UC: 'Trình duyệt UC',
       Maxthon: 'Trình duyệt Maxthon',
-      Unknown: 'Trình duyệt không xác định'
-    }
+      Unknown: 'Trình duyệt không xác định',
+    },
   },
   landing: {
     mainText: SITE_CONFIG.landingText['vi-VN'] || 'Khám phá khả năng vô hạn của mạng toàn cầu',
     scrollText: 'Cuộn xuống để đăng nhập',
-    exploreButton: 'Bắt đầu khám phá'
+    exploreButton: 'Bắt đầu khám phá',
   },
   contextMenu: {
     refresh: 'Làm mới trang',
     back: 'Quay lại trang trước',
     forward: 'Tiến tới trang tiếp theo',
     copy: 'Sao chép',
-    paste: 'Dán'
+    paste: 'Dán',
   },
   service: {
     title: 'Chăm sóc khách hàng trực tuyến',
@@ -148,7 +150,7 @@ export default {
     offline: 'Chăm sóc khách hàng hiện không trực tuyến',
     leaveMessage: 'Để lại tin nhắn',
     startChat: 'Bắt đầu trò chuyện',
-    back: 'Quay lại'
+    back: 'Quay lại',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -182,6 +184,6 @@ export default {
     copyFailed: 'Sao chép thất bại',
     apiChecking: 'Đang kiểm tra tính khả dụng của API...',
     checking: 'Đang kiểm tra',
-    completed: 'Hoàn thành'
-  }
+    completed: 'Hoàn thành',
+  },
 };

@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -43,7 +41,7 @@ export default {
     sendCodeFailed: '인증 코드 전송 실패',
     popup: {
       close_btn: '이해했습니다',
-      wait_close_btn: '{seconds}초 기다려주세요'
+      wait_close_btn: '{seconds}초 기다려주세요',
     },
     passwordResetSuccess: '비밀번호 재설정 성공',
     passwordResetFailed: '비밀번호 재설정 실패, 나중에 다시 시도하세요',
@@ -65,7 +63,7 @@ export default {
     captcha: 'CAPTCHA 인증',
     captchaRequired: 'CAPTCHA 인증을 완료하세요',
     verifyTokenSuccess: '토큰 인증 성공',
-    verifyTokenFailed: '토큰 인증 실패, 다시 시도하세요'
+    verifyTokenFailed: '토큰 인증 실패, 다시 시도하세요',
   },
   validation: {
     required: '{field}은(는) 비워둘 수 없습니다',
@@ -78,7 +76,7 @@ export default {
     passwordRequired: '비밀번호를 입력하세요',
     confirmPasswordRequired: '비밀번호를 확인하세요',
     passwordsDontMatch: '입력한 비밀번호가 일치하지 않습니다',
-    codeRequired: '인증 코드를 입력하세요'
+    codeRequired: '인증 코드를 입력하세요',
   },
   errors: {
     networkError: '네트워크 오류, 연결을 확인하세요',
@@ -89,7 +87,7 @@ export default {
     notFoundDescription: '죄송합니다, 방문하신 페이지는 존재하지 않거나 삭제되었습니다',
     backToHome: '홈으로 돌아가기',
     unknown: '알 수 없는 오류가 발생했습니다',
-    browserRestricted: '브라우저 접근이 제한되었습니다'
+    browserRestricted: '브라우저 접근이 제한되었습니다',
   },
   messages: {
     loginSuccess: '로그인 성공',
@@ -101,12 +99,13 @@ export default {
     logoutSuccess: '로그아웃 성공',
     codeSent: '인증 코드가 전송되었습니다',
     sendCodeFailed: '인증 코드 전송 실패',
-    configLoadFailed: '구성 로드 실패, 페이지를 새로고침하세요'
+    configLoadFailed: '구성 로드 실패, 페이지를 새로고침하세요',
   },
   browserRestricted: {
     title: '브라우저 접근 제한',
     subtitle: '현재 브라우저는 지원되지 않습니다',
-    description: '최적의 브라우징 경험과 보안을 보장하기 위해 이 웹사이트는 현재 사용 중인 브라우저를 지원하지 않습니다.',
+    description:
+      '최적의 브라우징 경험과 보안을 보장하기 위해 이 웹사이트는 현재 사용 중인 브라우저를 지원하지 않습니다.',
     recommendText: '아래 추천 브라우저를 사용하여 접속하세요:',
     currentBrowser: '현재 사용 중인 브라우저:',
     currentUrl: '로그인 URL:',
@@ -115,7 +114,8 @@ export default {
     downloadSafari: 'Safari 브라우저 다운로드',
     openWithRecommended: '추천 브라우저로 현재 페이지 열기',
     whyRestricted: '일부 브라우저가 제한되는 이유는 무엇인가요?',
-    whyRestrictedDesc: '일부 브라우저는 보안 문제가 있거나 필요한 기능을 지원하지 않을 수 있습니다. 이러한 브라우저를 제한하여 계정 보안과 더 나은 사용자 경험을 보장합니다.',
+    whyRestrictedDesc:
+      '일부 브라우저는 보안 문제가 있거나 필요한 기능을 지원하지 않을 수 있습니다. 이러한 브라우저를 제한하여 계정 보안과 더 나은 사용자 경험을 보장합니다.',
     supportedBrowsersTitle: '지원되는 브라우저 목록',
     browserNames: {
       Chrome: 'Chrome 브라우저',
@@ -125,20 +125,20 @@ export default {
       Opera: 'Opera 브라우저',
       UC: 'UC 브라우저',
       Maxthon: 'Maxthon 브라우저',
-      Unknown: '알 수 없는 브라우저'
-    }
+      Unknown: '알 수 없는 브라우저',
+    },
   },
   landing: {
     mainText: SITE_CONFIG.landingText['ko-KR'] || '글로벌 네트워크의 무한한 가능성을 탐험하세요',
     scrollText: '아래로 스크롤하여 로그인',
-    exploreButton: '탐험 시작'
+    exploreButton: '탐험 시작',
   },
   contextMenu: {
     refresh: '페이지 새로고침',
     back: '이전 페이지로 돌아가기',
     forward: '다음 페이지로 이동',
     copy: '복사',
-    paste: '붙여넣기'
+    paste: '붙여넣기',
   },
   service: {
     title: '온라인 지원',
@@ -150,7 +150,7 @@ export default {
     offline: '현재 지원이 오프라인입니다',
     leaveMessage: '메시지 남기기',
     startChat: '채팅 시작',
-    back: '뒤로'
+    back: '뒤로',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +184,6 @@ export default {
     copyFailed: '복사 실패',
     apiChecking: 'API 가용성 확인 중...',
     checking: '확인 중',
-    completed: '완료'
-  }
+    completed: '완료',
+  },
 };

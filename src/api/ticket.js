@@ -1,45 +1,53 @@
-﻿
-import request from './request';
+﻿import request from './request';
 
-export function fetchTicketList() {
-  return request({
-    url: '/user/ticket/fetch',
-    method: 'get'
-  });
-}
+export function fetchTicketList() {
+  return request({
+    url: '/user/ticket/fetch',
 
-export function createTicket(data) {
-  return request({
-    url: '/user/ticket/save',
-    method: 'post',
-    data
-  });
-}
+    method: 'get',
+  });
+}
 
-export function getTicketDetail(id) {
-  return request({
-    url: `/user/ticket/fetch?id=${id}`,
-    method: 'get'
-  });
-}
+export function createTicket(data) {
+  return request({
+    url: '/user/ticket/save',
 
-export function replyTicket(id, message) {
-  return request({
-    url: '/user/ticket/reply',
-    method: 'post',
-    data: {
-      id,
-      message
-    }
-  });
-}
+    method: 'post',
 
-export function closeTicket(id) {
-  return request({
-    url: '/user/ticket/close',
-    method: 'post',
-    data: {
-      id
-    }
-  });
-} 
+    data,
+  });
+}
+
+export function getTicketDetail(id) {
+  return request({
+    url: `/user/ticket/fetch?id=${id}`,
+
+    method: 'get',
+  });
+}
+
+export function replyTicket(id, message) {
+  return request({
+    url: '/user/ticket/reply',
+
+    method: 'post',
+
+    data: {
+      id,
+
+      message,
+    },
+  });
+}
+
+export function closeTicket(id) {
+  return request({
+    url: '/user/ticket/close',
+
+    method: 'post',
+
+    data: {
+      id,
+    },
+  });
+}

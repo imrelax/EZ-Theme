@@ -1,6 +1,4 @@
-﻿
-
-const pathMappings = {
+﻿const pathMappings = {
   '/guest/comm/config': '/g/conf',
   '/user/comm/config': '/c/conf',
 
@@ -46,8 +44,8 @@ const pathMappings = {
   '/user/transfer': '/comm/transfer',
 
   '/user/notice/fetch': '/notice/list',
-  
-  '/user/knowledge/fetch': '/knowledge/list'
+
+  '/user/knowledge/fetch': '/knowledge/list',
 };
 
 export function mapApiPath(originalPath) {
@@ -55,29 +53,29 @@ export function mapApiPath(originalPath) {
     if (!window.EZ_CONFIG || !window.EZ_CONFIG.API_MIDDLEWARE_ENABLED) {
       return originalPath;
     }
-    
+
     const [path, query] = originalPath.split('?');
-    
+
     if (pathMappings[path]) {
       return query ? `${pathMappings[path]}?${query}` : pathMappings[path];
     }
-    
+
     let matchedPrefix = '';
     let mappedPath = '';
-    
-    Object.keys(pathMappings).forEach(prefix => {
+
+    Object.keys(pathMappings).forEach((prefix) => {
       if (path.startsWith(prefix) && prefix.length > matchedPrefix.length) {
         matchedPrefix = prefix;
         mappedPath = pathMappings[prefix];
       }
     });
-    
+
     if (matchedPrefix) {
       const remainingPath = path.slice(matchedPrefix.length);
       const newPath = mappedPath + remainingPath;
       return query ? `${newPath}?${query}` : newPath;
     }
-    
+
     return originalPath;
   } catch (error) {
     console.error('路径映射错误:', error);
@@ -89,13 +87,13 @@ export function parseQueryParams(url) {
   try {
     const queryString = url.split('?')[1];
     if (!queryString) return {};
-    
+
     const params = {};
-    queryString.split('&').forEach(param => {
+    queryString.split('&').forEach((param) => {
       const [key, value] = param.split('=');
       params[key] = decodeURIComponent(value || '');
     });
-    
+
     return params;
   } catch (error) {
     console.error('查询参数解析错误:', error);
@@ -105,5 +103,5 @@ export function parseQueryParams(url) {
 
 export default {
   mapApiPath,
-  parseQueryParams
-}; 
+  parseQueryParams,
+};

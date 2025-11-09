@@ -1,4 +1,4 @@
-import CryptoJS from "crypto-js";
+import CryptoJS from 'crypto-js';
 
 const key = window.EZ_CONFIG.API_MIDDLEWARE_KEY;
 
@@ -10,9 +10,9 @@ export const randomIv = () => {
   } else {
     const b = new Uint8Array(8);
     crypto.getRandomValues(b);
-    const hex = Array.from(b, x => x.toString(16).padStart(2, '0')).join('');
+    const hex = Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
     localStorage.setItem('temp_iv', hex);
-    
+
     return hex;
   }
 };
@@ -55,4 +55,4 @@ export const getEncrypUrl = (url) => {
   const iv = randomIv();
   const encrypted = Encrypt(url, key, iv);
   return encrypted;
-}
+};

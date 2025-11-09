@@ -1,408 +1,303 @@
 ﻿<template>
-
   <div class="custom-landing-container">
-
     <!-- 全屏加载动画 -->
 
     <div
-
-        v-if="shouldShowPreloader"
-
-        class="preloader"
-
-        :class="{'fade-out': isLoaded}"
-
-        ref="preloader"
-
-        :style="preloaderStyle"
-
+      v-if="shouldShowPreloader"
+      class="preloader"
+      :class="{ 'fade-out': isLoaded }"
+      ref="preloader"
+      :style="preloaderStyle"
     >
-
       <div class="loader" :style="loaderStyle"></div>
-
     </div>
 
     <!-- iframe用于加载自定义landing页面 -->
 
     <iframe
-
-        v-if="customLandingPath"
-
-        :src="customLandingPath"
-
-        class="custom-landing-iframe"
-
-        ref="landingIframe"
-
-        frameborder="0"
-
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-
-        allowfullscreen
-
-        @load="handleIframeLoaded"
-
+      v-if="customLandingPath"
+      :src="customLandingPath"
+      class="custom-landing-iframe"
+      ref="landingIframe"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      @load="handleIframeLoaded"
     ></iframe>
 
     <!-- 如果没有授权码或未指定自定义landing页，显示默认landing页 -->
 
     <div v-else>
-
       <LandingPage @loaded="handleContentLoaded" />
-
     </div>
-
   </div>
-
 </template>
 
 <script>
+  import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue';
 
-import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue';
+  import { useRouter } from 'vue-router';
 
-import { useRouter } from 'vue-router';
+  import { SITE_CONFIG, THEME_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
 
-import { SITE_CONFIG, THEME_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
+  import { useTheme } from '@/composables/useTheme';
 
-import { useTheme } from '@/composables/useTheme';
+  import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
-import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
+  import LandingPage from './LandingPage.vue';
 
-import LandingPage from './LandingPage.vue';
+  export default {
+    name: 'CustomLandingPage',
 
-export default {
+    components: {
+      DomainAuthAlert,
 
-  name: 'CustomLandingPage',
+      LandingPage,
+    },
 
-  components: {
+    setup() {
+      const router = useRouter();
 
-    DomainAuthAlert,
+      const landingIframe = ref(null);
 
-    LandingPage
+      const preloader = ref(null);
 
-  },
+      const isLoaded = ref(false);
 
-  setup() {
+      const { theme, toggleTheme } = useTheme();
 
-    const router = useRouter();
+      const preloaderStyle = computed(() => {
+        const themeColors = THEME_CONFIG[theme.value];
 
-    const landingIframe = ref(null);
+        return {
+          backgroundColor: themeColors.backgroundColor,
+        };
+      });
 
-    const preloader = ref(null);
+      const loaderStyle = computed(() => {
+        const themeColors = THEME_CONFIG[theme.value];
 
-    const isLoaded = ref(false);
+        const primaryColor = themeColors.primaryColor || DEFAULT_CONFIG.primaryColor;
 
-    const { theme, toggleTheme } = useTheme();
+        const primaryRgb = themeColors.primaryColorRgb;
 
-    const preloaderStyle = computed(() => {
+        return {
+          '--loader-primary-color': primaryColor,
 
-      const themeColors = THEME_CONFIG[theme.value];
+          '--loader-primary-rgb': primaryRgb,
 
-      return {
+          '--loader-primary-light': primaryColor,
+        };
+      });
 
-        backgroundColor: themeColors.backgroundColor
-
-      };
-
-    });
-
-    const loaderStyle = computed(() => {
-
-      const themeColors = THEME_CONFIG[theme.value];
-
-      const primaryColor = themeColors.primaryColor || DEFAULT_CONFIG.primaryColor;
-
-      const primaryRgb = themeColors.primaryColorRgb;
-
-      return {
-
-        '--loader-primary-color': primaryColor,
-
-        '--loader-primary-rgb': primaryRgb,
-
-        '--loader-primary-light': primaryColor,
-      };
-
-    });
-
-    const handleIframeMessage = (event) => {
-
-      if (event.data && event.data.type === 'navigation') {
-
-        router.push('/' + event.data.route);
-
-      }
-
-      else if (event.data && event.data.type === 'themeChanged') {
-
-        if (theme.value !== event.data.theme) {
-
-          toggleTheme();
-
+      const handleIframeMessage = (event) => {
+        if (event.data && event.data.type === 'navigation') {
+          router.push('/' + event.data.route);
+        } else if (event.data && event.data.type === 'themeChanged') {
+          if (theme.value !== event.data.theme) {
+            toggleTheme();
+          }
+        } else if (event.data && event.data.type === 'getTheme') {
+          sendThemeToIframe();
         }
+      };
 
-      }
+      const sendThemeToIframe = () => {
+        if (landingIframe.value && landingIframe.value.contentWindow) {
+          landingIframe.value.contentWindow.postMessage(
+            {
+              type: 'setTheme',
 
-      else if (event.data && event.data.type === 'getTheme') {
+              theme: theme.value,
+            },
+            '*'
+          );
+        }
+      };
 
+      watch(theme, () => {
         sendThemeToIframe();
+      });
 
-      }
+      const handleIframeLoaded = () => {
+        setTimeout(() => {
+          hidePreloader();
+        }, 500);
+      };
 
-    };
-
-    const sendThemeToIframe = () => {
-
-      if (landingIframe.value && landingIframe.value.contentWindow) {
-
-        landingIframe.value.contentWindow.postMessage({
-
-          type: 'setTheme',
-
-          theme: theme.value
-
-        }, '*');
-
-      }
-
-    };
-
-    watch(theme, () => {
-
-      sendThemeToIframe();
-
-    });
-
-    const handleIframeLoaded = () => {
-
-      setTimeout(() => {
-
+      const handleContentLoaded = () => {
         hidePreloader();
+      };
 
-      }, 500);
+      const PRELOADER_KEY = 'ez_preloader_shown';
 
-    };
+      const shouldShowPreloader = ref(sessionStorage.getItem(PRELOADER_KEY) !== '1');
 
-    const handleContentLoaded = () => {
-
-      hidePreloader();
-
-    };
-
-    const PRELOADER_KEY = 'ez_preloader_shown';
-
-    const shouldShowPreloader = ref(sessionStorage.getItem(PRELOADER_KEY) !== '1');
-
-    const hidePreloader = () => {
-
-      isLoaded.value = true;
-
-      sessionStorage.setItem(PRELOADER_KEY, '1');
-
-      shouldShowPreloader.value = false;
-
-    };
-
-    onMounted(async () => {
-
-      if (sessionStorage.getItem(PRELOADER_KEY) === '1') {
-
+      const hidePreloader = () => {
         isLoaded.value = true;
 
-        if (preloader.value) preloader.value.style.display = 'none';
+        sessionStorage.setItem(PRELOADER_KEY, '1');
 
-      }
+        shouldShowPreloader.value = false;
+      };
 
-      window.addEventListener('message', handleIframeMessage);
+      onMounted(async () => {
+        if (sessionStorage.getItem(PRELOADER_KEY) === '1') {
+          isLoaded.value = true;
 
-      if (landingIframe.value) {
-
-        landingIframe.value.onload = () => {
-
-          setTimeout(() => {
-
-            sendThemeToIframe();
-
-          }, 500);
-
-        };
-
-      }
-
-      setTimeout(() => {
-
-        if (!isLoaded.value) {
-
-          hidePreloader();
-
+          if (preloader.value) preloader.value.style.display = 'none';
         }
 
-      }, 5000);
+        window.addEventListener('message', handleIframeMessage);
 
-    });
+        if (landingIframe.value) {
+          landingIframe.value.onload = () => {
+            setTimeout(() => {
+              sendThemeToIframe();
+            }, 500);
+          };
+        }
 
-    onBeforeUnmount(() => {
+        setTimeout(() => {
+          if (!isLoaded.value) {
+            hidePreloader();
+          }
+        }, 5000);
+      });
 
-      window.removeEventListener('message', handleIframeMessage);
+      onBeforeUnmount(() => {
+        window.removeEventListener('message', handleIframeMessage);
+      });
 
-    });
+      const customLandingPath = computed(() => {
+        if (!SITE_CONFIG.customLandingPage) return '';
 
-    const customLandingPath = computed(() => {
+        let path = SITE_CONFIG.customLandingPage;
 
-      if (!SITE_CONFIG.customLandingPage) return '';
+        if (!path.startsWith('/') && !path.startsWith('http://') && !path.startsWith('https://')) {
+          path = '/' + path;
+        }
 
-      let path = SITE_CONFIG.customLandingPage;
+        return path;
+      });
 
-      if (!path.startsWith('/') && !path.startsWith('http://') && !path.startsWith('https://')) {
+      return {
+        customLandingPath,
 
-        path = '/' + path;
+        landingIframe,
 
-      }
+        preloader,
 
-      return path;
+        isLoaded,
 
-    });
+        handleIframeLoaded,
 
-    return {
+        handleContentLoaded,
 
-      customLandingPath,
+        preloaderStyle,
 
-      landingIframe,
+        loaderStyle,
 
-      preloader,
-
-      isLoaded,
-
-      handleIframeLoaded,
-
-      handleContentLoaded,
-
-      preloaderStyle,
-
-      loaderStyle,
-
-      shouldShowPreloader
-
-    };
-
-  }
-
-};
-
+        shouldShowPreloader,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
-
-.custom-landing-container {
-
-  width: 100%;
-
-}
-
-.custom-landing-iframe {
-
-  width: 100%;
-
-  height: 100%;
-
-  border: none;
-
-  position: absolute;
-
-  top: 0;
-
-  left: 0;
-
-}
-
-.preloader {
-
-  position: fixed;
-
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  background-color: var(--background-color);
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  z-index: 9999;
-
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-
-}
-
-.preloader.fade-out {
-
-  opacity: 0;
-
-  visibility: hidden;
-
-}
-
-.loader {
-
-  width: 50px;
-
-  height: 50px;
-
-  border-radius: 50%;
-
-  border-top-color: var(--loader-primary-color);
-
-  animation: spin 1s ease-in-out infinite;
-
-  position: relative;
-
-}
-
-.loader::before {
-
-  content: '';
-
-  position: absolute;
-
-  top: -3px;
-
-  left: -3px;
-
-  right: -3px;
-
-  bottom: -3px;
-
-  border: 3px solid transparent;
-
-  border-bottom-color: var(--loader-primary-light);
-
-  border-radius: 50%;
-
-  animation: spin 1.5s linear infinite;
-
-}
-
-@keyframes spin {
-
-  0% {
-
-    transform: rotate(0deg);
-
+  .custom-landing-container {
+    width: 100%;
   }
 
-  100% {
+  .custom-landing-iframe {
+    width: 100%;
 
-    transform: rotate(360deg);
+    height: 100%;
 
+    border: none;
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
   }
 
-}
+  .preloader {
+    position: fixed;
 
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: var(--background-color);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 9999;
+
+    transition:
+      opacity 0.8s ease,
+      visibility 0.8s ease;
+  }
+
+  .preloader.fade-out {
+    opacity: 0;
+
+    visibility: hidden;
+  }
+
+  .loader {
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    border-top-color: var(--loader-primary-color);
+
+    animation: spin 1s ease-in-out infinite;
+
+    position: relative;
+  }
+
+  .loader::before {
+    content: '';
+
+    position: absolute;
+
+    top: -3px;
+
+    left: -3px;
+
+    right: -3px;
+
+    bottom: -3px;
+
+    border: 3px solid transparent;
+
+    border-bottom-color: var(--loader-primary-light);
+
+    border-radius: 50%;
+
+    animation: spin 1.5s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 </style>

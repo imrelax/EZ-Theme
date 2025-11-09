@@ -1,10 +1,9 @@
-﻿
-import request from './request';
+﻿import request from './request';
 
 export function getInviteData() {
   return request({
     url: '/user/invite/fetch',
-    method: 'get'
+    method: 'get',
   });
 }
 
@@ -14,22 +13,22 @@ export function getInviteDetails(current, pageSize) {
     method: 'get',
     params: {
       current,
-      page_size: pageSize
-    }
+      page_size: pageSize,
+    },
   });
 }
 
 export function getCommissionConfig() {
   return request({
     url: '/user/comm/config',
-    method: 'get'
+    method: 'get',
   });
 }
 
 export function generateInviteCode() {
   return request({
     url: '/user/invite/save',
-    method: 'get'
+    method: 'get',
   });
 }
 
@@ -38,8 +37,8 @@ export function transferCommission(amount) {
     url: '/user/transfer',
     method: 'post',
     data: {
-      transfer_amount: amount
-    }
+      transfer_amount: amount,
+    },
   });
 }
 
@@ -50,7 +49,7 @@ export function withdrawCommission(amount, account, method) {
     data: {
       withdraw_amount: amount,
       withdraw_account: account,
-      withdraw_method: method
-    }
+      withdraw_method: method,
+    },
   });
-} 
+}

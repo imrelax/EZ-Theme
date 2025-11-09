@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -39,11 +37,12 @@ export default {
     codeRequired: 'Введите код подтверждения',
     codeInvalid: 'Недействительный код подтверждения',
     codeSent: 'Код подтверждения отправлен',
-    checkSpam: 'Если вы не получили письмо в течение длительного времени, проверьте папку со спамом',
+    checkSpam:
+      'Если вы не получили письмо в течение длительного времени, проверьте папку со спамом',
     sendCodeFailed: 'Ошибка отправки кода подтверждения',
     popup: {
       close_btn: 'Понятно',
-      wait_close_btn: 'Подождите {seconds} сек.'
+      wait_close_btn: 'Подождите {seconds} сек.',
     },
     passwordResetSuccess: 'Пароль успешно сброшен',
     passwordResetFailed: 'Ошибка сброса пароля, попробуйте позже',
@@ -65,7 +64,7 @@ export default {
     captcha: 'CAPTCHA-проверка',
     captchaRequired: 'Пройдите CAPTCHA-проверку',
     verifyTokenSuccess: 'Проверка токена успешна',
-    verifyTokenFailed: 'Ошибка проверки токена, попробуйте снова'
+    verifyTokenFailed: 'Ошибка проверки токена, попробуйте снова',
   },
   validation: {
     required: '{field} не может быть пустым',
@@ -78,7 +77,7 @@ export default {
     passwordRequired: 'Введите пароль',
     confirmPasswordRequired: 'Подтвердите пароль',
     passwordsDontMatch: 'Введенные пароли не совпадают',
-    codeRequired: 'Введите код подтверждения'
+    codeRequired: 'Введите код подтверждения',
   },
   errors: {
     networkError: 'Ошибка сети, проверьте подключение',
@@ -89,7 +88,7 @@ export default {
     notFoundDescription: 'Извините, страница, которую вы посетили, не существует или была удалена',
     backToHome: 'Вернуться на главную',
     unknown: 'Произошла неизвестная ошибка',
-    browserRestricted: 'Доступ браузера ограничен'
+    browserRestricted: 'Доступ браузера ограничен',
   },
   messages: {
     loginSuccess: 'Вход выполнен успешно',
@@ -101,12 +100,13 @@ export default {
     logoutSuccess: 'Выход выполнен успешно',
     codeSent: 'Код подтверждения отправлен',
     sendCodeFailed: 'Ошибка отправки кода подтверждения',
-    configLoadFailed: 'Ошибка загрузки конфигурации, обновите страницу'
+    configLoadFailed: 'Ошибка загрузки конфигурации, обновите страницу',
   },
   browserRestricted: {
     title: 'Ограничение доступа браузера',
     subtitle: 'Текущий браузер не поддерживается',
-    description: 'Для обеспечения наилучшего опыта использования и безопасности этот веб-сайт не поддерживает используемый вами браузер.',
+    description:
+      'Для обеспечения наилучшего опыта использования и безопасности этот веб-сайт не поддерживает используемый вами браузер.',
     recommendText: 'Пожалуйста, используйте один из рекомендованных браузеров для доступа:',
     currentBrowser: 'Вы используете:',
     currentUrl: 'URL для входа:',
@@ -115,7 +115,8 @@ export default {
     downloadSafari: 'Скачать браузер Safari',
     openWithRecommended: 'Открыть текущую страницу в рекомендованном браузере',
     whyRestricted: 'Почему некоторые браузеры ограничены?',
-    whyRestrictedDesc: 'Некоторые браузеры могут иметь проблемы с безопасностью или не поддерживать необходимые функции. Мы ограничиваем эти браузеры, чтобы обеспечить безопасность вашей учетной записи и улучшить пользовательский опыт.',
+    whyRestrictedDesc:
+      'Некоторые браузеры могут иметь проблемы с безопасностью или не поддерживать необходимые функции. Мы ограничиваем эти браузеры, чтобы обеспечить безопасность вашей учетной записи и улучшить пользовательский опыт.',
     supportedBrowsersTitle: 'Список поддерживаемых браузеров',
     browserNames: {
       Chrome: 'Браузер Chrome',
@@ -125,20 +126,21 @@ export default {
       Opera: 'Браузер Opera',
       UC: 'Браузер UC',
       Maxthon: 'Браузер Maxthon',
-      Unknown: 'Неизвестный браузер'
-    }
+      Unknown: 'Неизвестный браузер',
+    },
   },
   landing: {
-    mainText: SITE_CONFIG.landingText['ru-RU'] || 'Исследуйте бесконечные возможности глобальной сети',
+    mainText:
+      SITE_CONFIG.landingText['ru-RU'] || 'Исследуйте бесконечные возможности глобальной сети',
     scrollText: 'Прокрутите вниз для входа',
-    exploreButton: 'Начать исследование'
+    exploreButton: 'Начать исследование',
   },
   contextMenu: {
     refresh: 'Обновить страницу',
     back: 'Вернуться назад',
     forward: 'Перейти вперед',
     copy: 'Копировать',
-    paste: 'Вставить'
+    paste: 'Вставить',
   },
   service: {
     title: 'Онлайн-поддержка',
@@ -150,7 +152,7 @@ export default {
     offline: 'Поддержка сейчас офлайн',
     leaveMessage: 'Оставить сообщение',
     startChat: 'Начать чат',
-    back: 'Назад'
+    back: 'Назад',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +186,6 @@ export default {
     copyFailed: 'Не удалось скопировать',
     apiChecking: 'Проверка доступности API...',
     checking: 'Проверка',
-    completed: 'Завершено'
-  }
+    completed: 'Завершено',
+  },
 };

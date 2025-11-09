@@ -1,5 +1,4 @@
-﻿
-import { SITE_CONFIG } from '../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../utils/baseConfig';
 
 export default {
   common: {
@@ -74,7 +73,7 @@ export default {
     error_occurred: 'Произошла ошибка, попробуйте позже',
     apiChecking: 'Проверка доступности API...',
     checking: 'Проверка',
-    completed: 'Завершено'
+    completed: 'Завершено',
   },
   auth: {
     loginTitle: 'Добро пожаловать',
@@ -109,7 +108,7 @@ export default {
     passwordMatchError: 'Пароли не совпадают',
     captchaSuccess: 'Капча пройдена успешно',
     captchaFailed: 'Ошибка капчи',
-    
+
     loginNow: 'Войти сейчас',
     resetNow: 'Сбросить пароль',
     alreadyHaveAccount: 'Уже есть аккаунт?',
@@ -134,7 +133,7 @@ export default {
     captchaError: 'Ошибка капчи, попробуйте снова',
     captchaLoading: 'Загрузка капчи...',
     verifyTokenSuccess: 'Проверка токена успешна',
-    verifyTokenFailed: 'Ошибка проверки токена, попробуйте снова'
+    verifyTokenFailed: 'Ошибка проверки токена, попробуйте снова',
   },
   validation: {
     required: '{field} не может быть пустым',
@@ -147,7 +146,7 @@ export default {
     passwordRequired: 'Введите пароль',
     confirmPasswordRequired: 'Подтвердите пароль',
     passwordsDontMatch: 'Пароли не совпадают',
-    codeRequired: 'Введите код подтверждения'
+    codeRequired: 'Введите код подтверждения',
   },
   errors: {
     networkError: 'Ошибка сети, проверьте подключение',
@@ -158,7 +157,7 @@ export default {
     notFoundDescription: 'Извините, страница не существует или удалена',
     backToHome: 'Вернуться на главную',
     unknown: 'Неизвестная ошибка',
-    browserRestricted: 'Доступ браузера ограничен'
+    browserRestricted: 'Доступ браузера ограничен',
   },
   messages: {
     loginSuccess: 'Вход успешен',
@@ -170,12 +169,13 @@ export default {
     logoutSuccess: 'Выход успешен',
     codeSent: 'Код отправлен',
     sendCodeFailed: 'Ошибка отправки кода',
-    configLoadFailed: 'Ошибка загрузки конфигурации, обновите страницу'
+    configLoadFailed: 'Ошибка загрузки конфигурации, обновите страницу',
   },
   landing: {
-    mainText: SITE_CONFIG.landingText['ru-RU'] || 'Исследуйте безграничные возможности глобальной сети',
+    mainText:
+      SITE_CONFIG.landingText['ru-RU'] || 'Исследуйте безграничные возможности глобальной сети',
     scrollText: 'Прокрутите вниз для входа',
-    exploreButton: 'Начать исследование'
+    exploreButton: 'Начать исследование',
   },
   dashboard: {
     welcome: 'Добро пожаловать',
@@ -198,9 +198,11 @@ export default {
     renewPlan: 'Продлить план',
     noPlanToRenew: 'Нет плана для продления',
     resetTrafficConfirm: 'Подтвердить сброс трафика',
-    resetTrafficDesc: 'Это действие сбросит использованный трафик, но не продлит срок действия плана. Продолжить?',
+    resetTrafficDesc:
+      'Это действие сбросит использованный трафик, но не продлит срок действия плана. Продолжить?',
     resetTrafficSuccess: 'Заказ на сброс трафика успешно создан',
-    resetTrafficWarning: 'Сброс влияет только на использованный трафик, не продлевает срок действия плана',
+    resetTrafficWarning:
+      'Сброс влияет только на использованный трафик, не продлевает срок действия плана',
     ticketSupport: 'Поддержка через тикеты',
     viewHelp: 'Посмотреть помощь',
     documentation: 'Документация',
@@ -212,7 +214,7 @@ export default {
     deviceLimit: 'Лимит устройств',
     unlimited: 'Без ограничений',
     nextResetTime: 'Время следующего сброса',
-    
+
     importTitle: 'Выберите способ импорта',
     copySubscription: 'Копировать адрес подписки',
     copySubscriptionDesc: 'Копировать ссылку подписки в буфер обмена',
@@ -230,13 +232,13 @@ export default {
     manualImportRequired: 'Автоматический импорт невозможен, скопируйте ссылку подписки вручную',
     noSubscription: 'Нет доступной подписки',
     noClientsAvailable: 'Для этой платформы нет быстрого импорта',
-    clientNotInstalled: 'Клиент не установлен, ссылка подписки скопирована в буфер обмена'
+    clientNotInstalled: 'Клиент не установлен, ссылка подписки скопирована в буфер обмена',
   },
   platforms: {
     ios: 'iOS',
     android: 'Android',
     windows: 'Windows',
-    macos: 'MacOS'
+    macos: 'MacOS',
   },
   menu: {
     dashboard: 'Панель управления',
@@ -251,7 +253,7 @@ export default {
     profile: 'Профиль',
     more: 'Еще',
     commission: 'Комиссия',
-    hotSale: 'Горячие продажи'
+    hotSale: 'Горячие продажи',
   },
   more: {
     title: 'Дополнительные функции',
@@ -260,7 +262,7 @@ export default {
     viewNodes: 'Посмотреть доступные серверы',
     manageOrders: 'Управление заказами',
     getTechnicalSupport: 'Получить техподдержку',
-    manageProfile: 'Управление профилем'
+    manageProfile: 'Управление профилем',
   },
   nodes: {
     title: 'Список узлов',
@@ -269,7 +271,7 @@ export default {
     copiedToClipboard: 'Скопировано в буфер обмена',
     welcome: {
       title: 'Список узлов',
-      description: 'Просмотр и использование доступных серверов'
+      description: 'Просмотр и использование доступных серверов',
     },
     type: 'Тип узла',
     rate: 'Коэффициент',
@@ -286,7 +288,7 @@ export default {
     invalidNodeData: 'Данные узла неполные, ссылка не создана',
     unsupportedNodeType: 'Неподдерживаемый тип узла',
     userInfoError: 'Ошибка получения информации пользователя',
-    viewSubscribeLink: 'Посмотреть ссылку подписки'
+    viewSubscribeLink: 'Посмотреть ссылку подписки',
   },
   orders: {
     title: 'Список заказов',
@@ -307,7 +309,7 @@ export default {
     cancelFailed: 'Ошибка отмены заказа',
     welcome: {
       title: 'Список заказов',
-      description: 'Просмотр и управление заказами'
+      description: 'Просмотр и управление заказами',
     },
     status: {
       pending: 'Ожидает оплаты',
@@ -315,7 +317,7 @@ export default {
       cancelled: 'Отменен',
       completed: 'Завершен',
       discounted: 'Списан',
-      unknown: 'Неизвестный статус'
+      unknown: 'Неизвестный статус',
     },
     confirmOrder: 'Подтвердить заказ',
     payment: 'Оплатить заказ',
@@ -323,11 +325,11 @@ export default {
   tickets: {
     title: 'Система тикетов',
     description: 'Свяжитесь с нашей службой поддержки',
-    
+
     searchPlaceholder: 'Поиск тикетов...',
     newTicket: 'Новый тикет',
     createNew: 'Создать тикет',
-    
+
     subject: 'Тема',
     subjectPlaceholder: 'Введите тему тикета',
     message: 'Сообщение',
@@ -336,52 +338,52 @@ export default {
     levelLow: 'Низкий',
     levelMedium: 'Средний',
     levelHigh: 'Высокий',
-    
+
     statusOpen: 'В обработке',
     statusClosed: 'Закрыт',
-    
+
     noTickets: 'Нет тикетов',
     selectTicket: 'Выберите тикет для просмотра деталей',
     noMessages: 'Нет сообщений',
     loadingMessages: 'Загрузка сообщений...',
     loadingTickets: 'Загрузка тикетов...',
-    
+
     formIncomplete: 'Заполните все поля тикета',
     createSuccess: 'Тикет создан успешно',
     createError: 'Ошибка создания тикета',
     fetchError: 'Ошибка получения списка тикетов',
     fetchDetailError: 'Ошибка получения деталей тикета',
-    
+
     replyPlaceholder: 'Введите текст ответа...',
     send: 'Отправить',
     replySent: 'Ответ отправлен',
     replyError: 'Ошибка отправки ответа',
-    
+
     admin: 'Служба поддержки',
     you: 'Я',
-    
+
     closeTicket: 'Закрыть тикет',
     closeConfirmTitle: 'Подтвердить закрытие тикета',
-    closeConfirmText: 'Вы уверены, что хотите закрыть тикет? После закрытия ответить будет невозможно.',
+    closeConfirmText:
+      'Вы уверены, что хотите закрыть тикет? После закрытия ответить будет невозможно.',
     closeSuccess: 'Тикет закрыт',
     closeError: 'Ошибка закрытия тикета',
     ticketClosed: 'Тикет закрыт, ответить нельзя',
     closing: 'Закрытие...',
-    
+
     createdAt: 'Дата создания',
-    
+
     smallScreenNotice: 'Обнаружен маленький экран',
     switchToMobile: 'Для лучшего опыта переключитесь на мобильный вид',
     switchToMobileView: 'Переключиться на мобильный вид',
-    
+
     largeScreenNotice: 'Обнаружен большой экран',
     switchToDesktop: 'Рекомендуется использовать настольную версию для лучшего опыта',
     switchToDesktopView: 'Переключиться на настольный вид',
     popup: {
       close_btn: 'Закрыть',
-      wait_close_btn: 'Закрыть через {seconds} с'
-    }
-    ,
+      wait_close_btn: 'Закрыть через {seconds} с',
+    },
     upPictures: 'Загрузить изображения',
     uploadingImages: 'Загрузка...',
     uploadTipText: 'Перетащите изображения сюда или нажмите для загрузки',
@@ -418,7 +420,8 @@ export default {
     subscription: 'Управление подпиской',
     resetSecurity: 'Сбросить подписку',
     resetSecurityTitle: 'Сбросить ссылку подписки',
-    resetSecurityConfirm: 'Вы уверены, что хотите сбросить подписку? После сброса старая подписка станет недействительной, потребуется импортировать новую.',
+    resetSecurityConfirm:
+      'Вы уверены, что хотите сбросить подписку? После сброса старая подписка станет недействительной, потребуется импортировать новую.',
     resetSuccess: 'Сброс успешен',
     resetError: 'Ошибка сброса',
     copySubscription: 'Копировать ссылку подписки',
@@ -462,14 +465,14 @@ export default {
     commandCopied: 'Команда скопирована в буфер обмена',
     iKnow: 'Понял',
     telegram: 'Связь через Telegram',
-    telegramError: 'Ошибка получения информации Telegram'
+    telegramError: 'Ошибка получения информации Telegram',
   },
   contextMenu: {
     refresh: 'Обновить страницу',
     back: 'Назад',
     forward: 'Вперед',
     copy: 'Копировать',
-    paste: 'Вставить'
+    paste: 'Вставить',
   },
   service: {
     title: 'Онлайн-поддержка',
@@ -481,7 +484,7 @@ export default {
     offline: 'Поддержка сейчас оффлайн',
     leaveMessage: 'Оставить сообщение',
     startChat: 'Начать чат',
-    back: 'Назад'
+    back: 'Назад',
   },
   shop: {
     title: 'Магазин',
@@ -490,7 +493,7 @@ export default {
     filter: {
       all: 'Все',
       recurring: 'Периодические',
-      onetime: 'Разовые'
+      onetime: 'Разовые',
     },
     no_plans_found: 'Планы не найдены',
     try_different_filter: 'Попробуйте другие фильтры',
@@ -501,7 +504,7 @@ export default {
       stock: {
         plenty: 'В наличии',
         warning: 'Мало в наличии',
-        sold_out: 'Распродано'
+        sold_out: 'Распродано',
       },
       periods: {
         month: ' / Месяц',
@@ -510,7 +513,7 @@ export default {
         year: ' / Год',
         two_year: ' / Два года',
         three_year: ' / Три года',
-        onetime: ' / Разово'
+        onetime: ' / Разово',
       },
       price_options: {
         month: 'Месяц',
@@ -521,12 +524,12 @@ export default {
         three_year: 'Три года',
         onetime: 'Разово',
         reset_price: 'Сброс трафика',
-        deposit: 'Пополнение'
+        deposit: 'Пополнение',
       },
       discount: {
         relative: 'Относительная скидка примерно',
-        savings: 'экономит вам'
-      }
+        savings: 'экономит вам',
+      },
     },
     stats: {
       global_nodes: 'Глобальные узлы',
@@ -536,13 +539,13 @@ export default {
       streaming: 'Разблокировка стриминга',
       streaming_desc: 'Доступ к различным стриминговым сервисам',
       devices: 'Поддержка устройств',
-      devices_desc: 'Одновременная поддержка нескольких устройств'
+      devices_desc: 'Одновременная поддержка нескольких устройств',
     },
     config_error: 'Ошибка загрузки конфигурации магазина',
     popup: {
       close_btn: 'Понял',
-      wait_close_btn: 'Подождите {seconds} сек'
-    }
+      wait_close_btn: 'Подождите {seconds} сек',
+    },
   },
   order: {
     title: 'Подтвердить заказ',
@@ -570,7 +573,7 @@ export default {
     order_failed: 'Ошибка создания заказа',
     no_plan_selected: 'План не выбран',
     plan_not_found: 'План не существует',
-    failed_to_fetch_plan: 'Ошибка получения информации о плане'
+    failed_to_fetch_plan: 'Ошибка получения информации о плане',
   },
   payment: {
     title: 'Оплатить заказ',
@@ -580,7 +583,7 @@ export default {
     period: 'Цикл',
     period_types: {
       reset_price: 'Сброс трафика',
-      deposit: 'Пополнение'
+      deposit: 'Пополнение',
     },
     traffic: 'Трафик',
     order_info: 'Информация о заказе',
@@ -646,8 +649,8 @@ export default {
       completed: 'Завершен',
       discounted: 'Списан',
       unknown: 'Неизвестный статус',
-      activate: 'Ожидает активации'
-    }
+      activate: 'Ожидает активации',
+    },
   },
   invite: {
     title: 'Мои комиссии',
@@ -656,33 +659,33 @@ export default {
       registeredUsers: 'Зарегистрировано пользователей',
       pendingCommission: 'Ожидающие комиссии',
       availableCommission: 'Полученные комиссии',
-      commissionRate: 'Процент комиссии'
+      commissionRate: 'Процент комиссии',
     },
     rules: {
       title: 'Правила комиссии',
       share: {
         title: '1. Поделиться',
-        desc: 'Поделитесь ссылкой приглашения'
+        desc: 'Поделитесь ссылкой приглашения',
       },
       register: {
         title: '2. Регистрация',
-        desc: 'Друг завершает регистрацию'
+        desc: 'Друг завершает регистрацию',
       },
       purchase: {
         title: '3. Покупка',
-        desc: 'Друг покупает план'
+        desc: 'Друг покупает план',
       },
       commission: {
         title: '4. Комиссия',
-        desc: 'Получите {rate}% комиссии'
-      }
+        desc: 'Получите {rate}% комиссии',
+      },
     },
     balance: {
       title: 'Баланс комиссии',
       available: 'Доступная комиссия',
       description: 'Комиссии от приглашений можно перевести на баланс для покупок',
       transferToBalance: 'Перевести на баланс',
-      withdraw: 'Вывести'
+      withdraw: 'Вывести',
     },
     transfer: {
       title: 'Перевод комиссии',
@@ -696,7 +699,7 @@ export default {
       success: 'Перевод успешен',
       failure: 'Ошибка перевода',
       insufficientFunds: 'Недостаточно комиссии',
-      invalidAmount: 'Введите действительную сумму'
+      invalidAmount: 'Введите действительную сумму',
     },
     withdraw: {
       title: 'Вывод комиссии',
@@ -715,7 +718,7 @@ export default {
       invalidAmount: 'Введите действительную сумму',
       insufficientFunds: 'Недостаточно комиссии',
       belowMinAmount: 'Сумма вывода не менее {amount}',
-      minWithdrawAmount: 'Минимальная сумма вывода'
+      minWithdrawAmount: 'Минимальная сумма вывода',
     },
     inviteLink: {
       title: 'Ссылка приглашения',
@@ -729,7 +732,7 @@ export default {
       copyLink: 'Копировать ссылку',
       copied: 'Скопировано',
       noInviteCode: 'Нет доступного кода приглашения',
-      created: 'Код приглашения создан, поделитесь с друзьями'
+      created: 'Код приглашения создан, поделитесь с друзьями',
     },
     share: {
       wechat: 'WeChat',
@@ -742,7 +745,7 @@ export default {
       inviteQRCode: 'QR-код ссылки приглашения',
       orCopyLink: 'Или скопируйте ссылку',
       shareTitle: 'Приглашаем использовать наш сервис',
-      shareDescription: 'Я использую этот сервис, рекомендую попробовать'
+      shareDescription: 'Я использую этот сервис, рекомендую попробовать',
     },
     records: {
       title: 'Записи комиссии',
@@ -767,19 +770,20 @@ export default {
         waiting: 'Ожидание',
         processing: 'Обработка',
         invalid: 'Недействительно',
-        unknown: 'Неизвестно'
+        unknown: 'Неизвестно',
       },
       types: {
         confirmed_commission: 'Подтвержденная комиссия',
         pending_commission: 'Ожидающая комиссия',
-        all: 'Все'
-      }
-    }
+        all: 'Все',
+      },
+    },
   },
   docs: {
     title: 'Центр документации',
     searchPlaceholder: 'Поиск документации...',
-    noAccessPrompt: 'У вас нет активного плана. Купите план, чтобы просматривать содержимое этого раздела',
+    noAccessPrompt:
+      'У вас нет активного плана. Купите план, чтобы просматривать содержимое этого раздела',
     loading: 'Загрузка документации...',
     retry: 'Повторить',
     clearSearch: 'Очистить поиск',
@@ -796,8 +800,8 @@ export default {
     networkError: 'Ошибка сети',
     welcome: {
       title: 'Центр документации',
-      description: 'Найдите и прочитайте подробную документацию по использованию и настройке.'
-    }
+      description: 'Найдите и прочитайте подробную документацию по использованию и настройке.',
+    },
   },
   browserRestricted: {
     title: 'Ограничение доступа браузера',
@@ -811,7 +815,8 @@ export default {
     downloadSafari: 'Скачать Safari',
     openWithRecommended: 'Открыть в рекомендованном браузере',
     whyRestricted: 'Почему ограничены некоторые браузеры?',
-    whyRestrictedDesc: 'Некоторые браузеры имеют проблемы с безопасностью или не поддерживают нужные функции. Мы ограничиваем их для вашей безопасности и лучшего опыта.',
+    whyRestrictedDesc:
+      'Некоторые браузеры имеют проблемы с безопасностью или не поддерживают нужные функции. Мы ограничиваем их для вашей безопасности и лучшего опыта.',
     supportedBrowsersTitle: 'Список поддерживаемых браузеров',
     browserNames: {
       Chrome: 'Chrome',
@@ -821,8 +826,8 @@ export default {
       Opera: 'Opera',
       UC: 'UC Browser',
       Maxthon: 'Maxthon',
-      Unknown: 'Неизвестный браузер'
-    }
+      Unknown: 'Неизвестный браузер',
+    },
   },
   trafficLog: {
     title: 'Детали трафика',
@@ -843,12 +848,12 @@ export default {
     viewTrafficLog: 'Просмотреть детали трафика',
     days: 'дней',
     trafficLogDesc: 'Просмотр подробных записей и статистики трафика',
-    trafficChart: 'График трафика'
+    trafficChart: 'График трафика',
   },
   wallet: {
     balance: {
       title: 'Баланс аккаунта',
-      description: 'Пополненный баланс только для покупок'
+      description: 'Пополненный баланс только для покупок',
     },
     deposit: {
       title: 'Пополнить баланс',
@@ -861,12 +866,13 @@ export default {
       amountError: {
         required: 'Выберите или введите сумму пополнения',
         invalid: 'Введите действительную сумму',
-        minimum: 'Минимальная сумма пополнения — 1 руб.'
-      }
+        minimum: 'Минимальная сумма пополнения — 1 руб.',
+      },
     },
     welcome: {
       title: 'Пополнение аккаунта',
-      description: 'Пополняйте счет легко, выбирая предустановленные суммы или вводя свою. Баланс будет зачислен мгновенно и доступен для покупок.'
-    }
-  }
+      description:
+        'Пополняйте счет легко, выбирая предустановленные суммы или вводя свою. Баланс будет зачислен мгновенно и доступен для покупок.',
+    },
+  },
 };

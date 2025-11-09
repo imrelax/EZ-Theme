@@ -1,5 +1,4 @@
-﻿
-import { SITE_CONFIG } from '../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../utils/baseConfig';
 
 export default {
   common: {
@@ -74,7 +73,7 @@ export default {
     error_occurred: '오류가 발생했습니다. 나중에 다시 시도하세요',
     apiChecking: 'API 가용성 확인 중...',
     checking: '확인 중',
-    completed: '완료'
+    completed: '완료',
   },
   auth: {
     loginTitle: '다시 오신 것을 환영합니다',
@@ -109,7 +108,7 @@ export default {
     passwordMatchError: '입력한 비밀번호가 일치하지 않습니다',
     captchaSuccess: '인증 성공',
     captchaFailed: '인증 실패',
-    
+
     loginNow: '지금 로그인',
     resetNow: '비밀번호 재설정',
     alreadyHaveAccount: '이미 계정이 있으신가요?',
@@ -134,7 +133,7 @@ export default {
     captchaError: '인증 오류, 다시 시도하세요',
     captchaLoading: '인증 컴포넌트 로딩 중...',
     verifyTokenSuccess: '토큰 인증 성공',
-    verifyTokenFailed: '토큰 인증 실패, 다시 시도하세요'
+    verifyTokenFailed: '토큰 인증 실패, 다시 시도하세요',
   },
   validation: {
     required: '{field}은(는) 필수 입력 항목입니다',
@@ -147,7 +146,7 @@ export default {
     passwordRequired: '비밀번호를 입력하세요',
     confirmPasswordRequired: '비밀번호를 확인하세요',
     passwordsDontMatch: '입력한 비밀번호가 일치하지 않습니다',
-    codeRequired: '인증 코드를 입력하세요'
+    codeRequired: '인증 코드를 입력하세요',
   },
   errors: {
     networkError: '네트워크 오류, 연결을 확인하세요',
@@ -158,7 +157,7 @@ export default {
     notFoundDescription: '죄송합니다, 방문한 페이지가 존재하지 않거나 삭제되었습니다',
     backToHome: '홈으로 돌아가기',
     unknown: '알 수 없는 오류 발생',
-    browserRestricted: '브라우저 접근 제한'
+    browserRestricted: '브라우저 접근 제한',
   },
   messages: {
     loginSuccess: '로그인 성공',
@@ -170,12 +169,12 @@ export default {
     logoutSuccess: '로그아웃 성공',
     codeSent: '인증 코드 전송됨',
     sendCodeFailed: '인증 코드 전송 실패',
-    configLoadFailed: '구성 로드 실패, 페이지를 새로고침하세요'
+    configLoadFailed: '구성 로드 실패, 페이지를 새로고침하세요',
   },
   landing: {
     mainText: SITE_CONFIG.landingText['ko-KR'] || '글로벌 네트워크의 무한한 가능성을 탐험하세요',
     scrollText: '아래로 스크롤하여 로그인',
-    exploreButton: '탐험 시작'
+    exploreButton: '탐험 시작',
   },
   dashboard: {
     welcome: '다시 오신 것을 환영합니다',
@@ -198,9 +197,11 @@ export default {
     renewPlan: '플랜 갱신',
     noPlanToRenew: '갱신 가능한 플랜 없음',
     resetTrafficConfirm: '트래픽 초기화 확인',
-    resetTrafficDesc: '이 작업은 사용된 트래픽을 초기화하지만 플랜 기간은 연장되지 않습니다. 계속하시겠습니까?',
+    resetTrafficDesc:
+      '이 작업은 사용된 트래픽을 초기화하지만 플랜 기간은 연장되지 않습니다. 계속하시겠습니까?',
     resetTrafficSuccess: '트래픽 초기화 주문 생성 성공',
-    resetTrafficWarning: '초기화는 사용된 트래픽에만 영향을 미치며 플랜 유효 기간을 연장하지 않습니다',
+    resetTrafficWarning:
+      '초기화는 사용된 트래픽에만 영향을 미치며 플랜 유효 기간을 연장하지 않습니다',
     ticketSupport: '티켓 지원',
     viewHelp: '도움말 보기',
     documentation: '사용 문서',
@@ -212,7 +213,7 @@ export default {
     deviceLimit: '온라인 기기',
     unlimited: '무제한',
     nextResetTime: '다음 초기화 시간',
-    
+
     importTitle: '가져오기 방식 선택',
     copySubscription: '구독 주소 복사',
     copySubscriptionDesc: '구독 링크를 클립보드에 복사',
@@ -230,13 +231,14 @@ export default {
     manualImportRequired: '자동 가져오기가 불가능합니다. 구독 링크를 수동으로 복사하여 가져오세요',
     noSubscription: '사용 가능한 구독 없음',
     noClientsAvailable: '이 플랫폼은 빠른 가져오기 방법을 지원하지 않습니다',
-    clientNotInstalled: '해당 클라이언트가 설치되어 있지 않습니다. 구독 링크를 클립보드에 복사했습니다'
+    clientNotInstalled:
+      '해당 클라이언트가 설치되어 있지 않습니다. 구독 링크를 클립보드에 복사했습니다',
   },
   platforms: {
     ios: 'iOS',
     android: 'Android',
     windows: 'Windows',
-    macos: 'MacOS'
+    macos: 'MacOS',
   },
   menu: {
     dashboard: '대시보드',
@@ -251,7 +253,7 @@ export default {
     profile: '프로필',
     more: '더 보기',
     commission: '커미션',
-    hotSale: '인기 상품'
+    hotSale: '인기 상품',
   },
   more: {
     title: '추가 기능',
@@ -260,7 +262,7 @@ export default {
     viewNodes: '사용 가능한 서버 노드 보기',
     manageOrders: '주문 관리',
     getTechnicalSupport: '기술 지원 받기',
-    manageProfile: '프로필 관리'
+    manageProfile: '프로필 관리',
   },
   nodes: {
     title: '노드 목록',
@@ -269,7 +271,7 @@ export default {
     copiedToClipboard: '클립보드에 복사됨',
     welcome: {
       title: '노드 목록',
-      description: '사용 가능한 서버 노드를 확인하고 사용하세요'
+      description: '사용 가능한 서버 노드를 확인하고 사용하세요',
     },
     type: '노드 유형',
     rate: '비율',
@@ -286,7 +288,7 @@ export default {
     invalidNodeData: '노드 데이터가 완전하지 않아 링크를 생성할 수 없습니다',
     unsupportedNodeType: '지원되지 않는 노드 유형',
     userInfoError: '사용자 정보 가져오기 실패',
-    viewSubscribeLink: '구독 링크 보기'
+    viewSubscribeLink: '구독 링크 보기',
   },
   orders: {
     title: '주문 목록',
@@ -307,7 +309,7 @@ export default {
     cancelFailed: '주문 취소 실패',
     welcome: {
       title: '주문 목록',
-      description: '주문을 확인하고 관리하세요'
+      description: '주문을 확인하고 관리하세요',
     },
     status: {
       pending: '결제 대기',
@@ -315,7 +317,7 @@ export default {
       cancelled: '취소됨',
       completed: '완료됨',
       discounted: '할인 적용됨',
-      unknown: '알 수 없는 상태'
+      unknown: '알 수 없는 상태',
     },
     confirmOrder: '주문 확인',
     payment: '주문 결제',
@@ -323,11 +325,11 @@ export default {
   tickets: {
     title: '티켓 시스템',
     description: '지원 팀과 연락하세요',
-    
+
     searchPlaceholder: '티켓 검색...',
     newTicket: '새 티켓',
     createNew: '티켓 생성',
-    
+
     subject: '제목',
     subjectPlaceholder: '티켓 제목을 입력하세요',
     message: '내용',
@@ -336,30 +338,30 @@ export default {
     levelLow: '낮음',
     levelMedium: '중간',
     levelHigh: '높음',
-    
+
     statusOpen: '처리 중',
     statusClosed: '종료됨',
-    
+
     noTickets: '티켓 없음',
     selectTicket: '티켓을 선택하여 자세히 보세요',
     noMessages: '메시지 기록 없음',
     loadingMessages: '메시지 로딩 중...',
     loadingTickets: '티켓 로딩 중...',
-    
+
     formIncomplete: '티켓 정보를 완전히 입력하세요',
     createSuccess: '티켓 생성 성공',
     createError: '티켓 생성 실패',
     fetchError: '티켓 목록 가져오기 실패',
     fetchDetailError: '티켓 상세 정보 가져오기 실패',
-    
+
     replyPlaceholder: '답변 내용을 입력하세요...',
     send: '전송',
     replySent: '답변이 전송되었습니다',
     replyError: '답변 전송 실패',
-    
+
     admin: '고객 지원',
     you: '나',
-    
+
     closeTicket: '티켓 종료',
     closeConfirmTitle: '티켓 종료 확인',
     closeConfirmText: '이 티켓을 종료하시겠습니까? 종료 후에는 답변을 추가할 수 없습니다.',
@@ -367,22 +369,21 @@ export default {
     closeError: '티켓 종료 실패',
     ticketClosed: '이 티켓은 종료되어 답변할 수 없습니다',
     closing: '종료 중...',
-    
+
     createdAt: '생성 시간',
-    
+
     smallScreenNotice: '소형 화면 기기 감지됨',
     switchToMobile: '더 나은 경험을 위해 모바일 뷰로 전환하세요',
     switchToMobileView: '모바일 뷰로 전환',
-    
+
     largeScreenNotice: '대형 화면 감지됨',
     switchToDesktop: '더 나은 경험을 위해 데스크톱 티켓 페이지를 사용하세요',
     switchToDesktopView: '데스크톱 뷰로 전환',
-    
+
     popup: {
       close_btn: '닫기',
-      wait_close_btn: '{seconds}초 후 닫기'
-    }
-    ,
+      wait_close_btn: '{seconds}초 후 닫기',
+    },
     upPictures: '이미지 업로드',
     uploadingImages: '업로드 중...',
     uploadTipText: '이미지를 이곳에 드래그하거나 클릭하여 업로드',
@@ -419,7 +420,8 @@ export default {
     subscription: '구독 관리',
     resetSecurity: '구독 초기화',
     resetSecurityTitle: '구독 초기화',
-    resetSecurityConfirm: '구독을 초기화하시겠습니까? 초기화 후 이전 구독은 무효화되며 새 구독을 다시 가져와야 합니다.',
+    resetSecurityConfirm:
+      '구독을 초기화하시겠습니까? 초기화 후 이전 구독은 무효화되며 새 구독을 다시 가져와야 합니다.',
     resetSuccess: '초기화 성공',
     resetError: '초기화 실패',
     copySubscription: '구독 링크 복사',
@@ -463,14 +465,14 @@ export default {
     commandCopied: '명령이 클립보드에 복사되었습니다',
     iKnow: '알겠습니다',
     telegram: 'Telegram 통신',
-    telegramError: 'Telegram 정보 가져오기 실패'
+    telegramError: 'Telegram 정보 가져오기 실패',
   },
   contextMenu: {
     refresh: '페이지 새로고침',
     back: '이전 페이지로',
     forward: '다음 페이지로',
     copy: '복사',
-    paste: '붙여넣기'
+    paste: '붙여넣기',
   },
   service: {
     title: '온라인 고객 지원',
@@ -482,7 +484,7 @@ export default {
     offline: '고객 지원이 현재 오프라인입니다',
     leaveMessage: '메시지 남기기',
     startChat: '채팅 시작',
-    back: '뒤로'
+    back: '뒤로',
   },
   shop: {
     title: '상점',
@@ -491,7 +493,7 @@ export default {
     filter: {
       all: '전체',
       recurring: '주기적',
-      onetime: '일회성'
+      onetime: '일회성',
     },
     no_plans_found: '조건에 맞는 플랜을 찾을 수 없습니다',
     try_different_filter: '다른 필터를 시도하세요',
@@ -502,7 +504,7 @@ export default {
       stock: {
         plenty: '재고 충분',
         warning: '재고 부족',
-        sold_out: '품절'
+        sold_out: '품절',
       },
       periods: {
         month: ' / 월간',
@@ -511,7 +513,7 @@ export default {
         year: ' / 연간',
         two_year: ' / 2년',
         three_year: ' / 3년',
-        onetime: ' / 일회성'
+        onetime: ' / 일회성',
       },
       price_options: {
         month: '월간',
@@ -522,12 +524,12 @@ export default {
         three_year: '3년',
         onetime: '일회성',
         reset_price: '트래픽 초기화 패키지',
-        deposit: '충전'
+        deposit: '충전',
       },
       discount: {
         relative: '상대 할인 약',
-        savings: '절약해 줍니다'
-      }
+        savings: '절약해 줍니다',
+      },
     },
     stats: {
       global_nodes: '글로벌 노드',
@@ -537,13 +539,13 @@ export default {
       streaming: '스트리밍 잠금 해제',
       streaming_desc: '다양한 스트리밍 서비스 잠금 해제',
       devices: '다중 기기 지원',
-      devices_desc: '여러 기기에서 동시 사용 지원'
+      devices_desc: '여러 기기에서 동시 사용 지원',
     },
     config_error: '상점 구성 가져오기 실패',
     popup: {
       close_btn: '알겠습니다',
-      wait_close_btn: '{seconds}초 기다리세요'
-    }
+      wait_close_btn: '{seconds}초 기다리세요',
+    },
   },
   order: {
     title: '주문 확인',
@@ -571,7 +573,7 @@ export default {
     order_failed: '주문 생성 실패',
     no_plan_selected: '플랜을 선택하지 않음',
     plan_not_found: '플랜이 존재하지 않음',
-    failed_to_fetch_plan: '플랜 정보 가져오기 실패'
+    failed_to_fetch_plan: '플랜 정보 가져오기 실패',
   },
   payment: {
     title: '주문 결제',
@@ -581,7 +583,7 @@ export default {
     period: '주기',
     period_types: {
       reset_price: '트래픽 초기화 패키지',
-      deposit: '충전'
+      deposit: '충전',
     },
     traffic: '트래픽',
     order_info: '주문 정보',
@@ -647,8 +649,8 @@ export default {
       completed: '완료됨',
       discounted: '할인 적용됨',
       unknown: '알 수 없는 상태',
-      activate: '활성화 대기'
-    }
+      activate: '활성화 대기',
+    },
   },
   invite: {
     title: '내 커미션',
@@ -657,33 +659,33 @@ export default {
       registeredUsers: '등록된 사용자 수',
       pendingCommission: '확인 중인 커미션',
       availableCommission: '누적 커미션',
-      commissionRate: '커미션 비율'
+      commissionRate: '커미션 비율',
     },
     rules: {
       title: '커미션 규칙',
       share: {
         title: '1. 공유',
-        desc: '초대 링크 공유'
+        desc: '초대 링크 공유',
       },
       register: {
         title: '2. 등록',
-        desc: '친구가 등록 완료'
+        desc: '친구가 등록 완료',
       },
       purchase: {
         title: '3. 구매',
-        desc: '친구가 플랜 구매'
+        desc: '친구가 플랜 구매',
       },
       commission: {
         title: '4. 커미션',
-        desc: '{rate}% 커미션 획득'
-      }
+        desc: '{rate}% 커미션 획득',
+      },
     },
     balance: {
       title: '커미션 잔액',
       available: '사용 가능한 커미션',
       description: '친구 초대로 얻은 커미션은 소비 잔액으로 직접 전환 가능',
       transferToBalance: '잔액으로 전환',
-      withdraw: '출금'
+      withdraw: '출금',
     },
     transfer: {
       title: '커미션 전환',
@@ -697,7 +699,7 @@ export default {
       success: '전환 성공',
       failure: '전환 실패',
       insufficientFunds: '사용 가능한 커미션이 부족합니다',
-      invalidAmount: '유효한 금액을 입력하세요'
+      invalidAmount: '유효한 금액을 입력하세요',
     },
     withdraw: {
       title: '커미션 출금',
@@ -716,7 +718,7 @@ export default {
       invalidAmount: '유효한 금액을 입력하세요',
       insufficientFunds: '사용 가능한 커미션이 부족합니다',
       belowMinAmount: '출금 금액은 {amount} 이상이어야 합니다',
-      minWithdrawAmount: '최소 출금 금액'
+      minWithdrawAmount: '최소 출금 금액',
     },
     inviteLink: {
       title: '초대 링크',
@@ -730,7 +732,7 @@ export default {
       copyLink: '링크 복사',
       copied: '복사됨',
       noInviteCode: '사용 가능한 초대 코드 없음',
-      created: '초대 코드 생성 성공, 친구와 공유하세요'
+      created: '초대 코드 생성 성공, 친구와 공유하세요',
     },
     share: {
       wechat: 'WeChat',
@@ -743,7 +745,7 @@ export default {
       inviteQRCode: '초대 링크 QR 코드',
       orCopyLink: '또는 링크 복사',
       shareTitle: '저희 서비스를 사용해 보세요',
-      shareDescription: '이 서비스를 사용 중인데, 당신도 체험해 보세요'
+      shareDescription: '이 서비스를 사용 중인데, 당신도 체험해 보세요',
     },
     records: {
       title: '커미션 기록',
@@ -768,19 +770,20 @@ export default {
         waiting: '대기 중',
         processing: '처리 중',
         invalid: '무효',
-        unknown: '알 수 없음'
+        unknown: '알 수 없음',
       },
       types: {
         confirmed_commission: '확인된 커미션',
         pending_commission: '확인 중인 커미션',
-        all: '전체'
-      }
-    }
+        all: '전체',
+      },
+    },
   },
   docs: {
     title: '문서 센터',
     searchPlaceholder: '문서 검색...',
-    noAccessPrompt: '현재 유효한 플랜이 없습니다. 플랜을 구매하면 이 영역의 콘텐츠를 볼 수 있습니다',
+    noAccessPrompt:
+      '현재 유효한 플랜이 없습니다. 플랜을 구매하면 이 영역의 콘텐츠를 볼 수 있습니다',
     loading: '문서 로딩 중...',
     retry: '재시도',
     clearSearch: '검색 지우기',
@@ -797,13 +800,14 @@ export default {
     networkError: '네트워크 오류',
     welcome: {
       title: '문서 센터',
-      description: '사용 및 구성에 대한 자세한 문서를 찾아 읽으세요.'
-    }
+      description: '사용 및 구성에 대한 자세한 문서를 찾아 읽으세요.',
+    },
   },
   browserRestricted: {
     title: '브라우저 접근 제한',
     subtitle: '현재 브라우저는 지원되지 않습니다',
-    description: '최적의 브라우징 경험과 보안을 보장하기 위해 이 웹사이트는 사용 중인 브라우저를 지원하지 않습니다.',
+    description:
+      '최적의 브라우징 경험과 보안을 보장하기 위해 이 웹사이트는 사용 중인 브라우저를 지원하지 않습니다.',
     recommendText: '다음 추천 브라우저를 사용하여 접근하세요:',
     currentBrowser: '현재 사용 중인 브라우저:',
     currentUrl: '현재 URL:',
@@ -812,7 +816,8 @@ export default {
     downloadSafari: 'Safari 브라우저 다운로드',
     openWithRecommended: '추천 브라우저로 현재 페이지 열기',
     whyRestricted: '왜 일부 브라우저가 제한되나요?',
-    whyRestrictedDesc: '일부 브라우저는 보안 문제나 필수 기능을 지원하지 않을 수 있습니다. 계정 보안과 더 나은 사용자 경험을 위해 이러한 브라우저를 제한합니다.',
+    whyRestrictedDesc:
+      '일부 브라우저는 보안 문제나 필수 기능을 지원하지 않을 수 있습니다. 계정 보안과 더 나은 사용자 경험을 위해 이러한 브라우저를 제한합니다.',
     supportedBrowsersTitle: '지원되는 브라우저 목록',
     browserNames: {
       Chrome: 'Chrome 브라우저',
@@ -822,8 +827,8 @@ export default {
       Opera: 'Opera 브라우저',
       UC: 'UC 브라우저',
       Maxthon: 'Maxthon 브라우저',
-      Unknown: '알 수 없는 브라우저'
-    }
+      Unknown: '알 수 없는 브라우저',
+    },
   },
   trafficLog: {
     title: '트래픽 상세',
@@ -844,12 +849,12 @@ export default {
     viewTrafficLog: '트래픽 상세 보기',
     days: '일',
     trafficLogDesc: '트래픽 사용 기록 및 통계 상세 보기',
-    trafficChart: '트래픽 추세 그래프'
+    trafficChart: '트래픽 추세 그래프',
   },
   wallet: {
     balance: {
       title: '계정 잔액',
-      description: '충전된 잔액은 소비 전용입니다'
+      description: '충전된 잔액은 소비 전용입니다',
     },
     deposit: {
       title: '잔액 충전',
@@ -862,12 +867,13 @@ export default {
       amountError: {
         required: '충전 금액을 선택하거나 입력하세요',
         invalid: '유효한 금액을 입력하세요',
-        minimum: '최소 충전 금액은 1원입니다'
-      }
+        minimum: '최소 충전 금액은 1원입니다',
+      },
     },
     welcome: {
       title: '계정 충전',
-      description: '여기서 계정에 쉽게 충전할 수 있습니다. 사전 설정된 금액을 선택하거나 사용자 지정 금액을 입력하여 충전하세요. 충전된 잔액은 즉시 반영되며 서비스 구매에 사용할 수 있습니다.'
-    }
-  }
+      description:
+        '여기서 계정에 쉽게 충전할 수 있습니다. 사전 설정된 금액을 선택하거나 사용자 지정 금액을 입력하여 충전하세요. 충전된 잔액은 즉시 반영되며 서비스 구매에 사용할 수 있습니다.',
+    },
+  },
 };

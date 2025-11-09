@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -43,7 +41,7 @@ export default {
     sendCodeFailed: 'Failed to send verification code',
     popup: {
       close_btn: 'I understand',
-      wait_close_btn: 'Please wait {seconds}s'
+      wait_close_btn: 'Please wait {seconds}s',
     },
     passwordResetSuccess: 'Password reset successfully',
     passwordResetFailed: 'Password reset failed, please try again later',
@@ -65,7 +63,7 @@ export default {
     captcha: 'CAPTCHA Verification',
     captchaRequired: 'Please complete the CAPTCHA verification',
     verifyTokenSuccess: 'Token verification successful',
-    verifyTokenFailed: 'Token verification failed, please try again'
+    verifyTokenFailed: 'Token verification failed, please try again',
   },
   validation: {
     required: '{field} cannot be empty',
@@ -78,7 +76,7 @@ export default {
     passwordRequired: 'Please enter a password',
     confirmPasswordRequired: 'Please confirm the password',
     passwordsDontMatch: 'Passwords do not match',
-    codeRequired: 'Please enter the verification code'
+    codeRequired: 'Please enter the verification code',
   },
   errors: {
     networkError: 'Network error, please check your connection',
@@ -89,7 +87,7 @@ export default {
     notFoundDescription: 'Sorry, the page you visited does not exist or has been removed',
     backToHome: 'Back to Home',
     unknown: 'Unknown error occurred',
-    browserRestricted: 'Browser access restricted'
+    browserRestricted: 'Browser access restricted',
   },
   messages: {
     loginSuccess: 'Signed in successfully',
@@ -101,12 +99,13 @@ export default {
     logoutSuccess: 'Signed out successfully',
     codeSent: 'Verification code sent',
     sendCodeFailed: 'Failed to send verification code',
-    configLoadFailed: 'Failed to load configuration, please refresh the page'
+    configLoadFailed: 'Failed to load configuration, please refresh the page',
   },
   browserRestricted: {
     title: 'Browser Access Restricted',
     subtitle: 'Current browser is not supported',
-    description: 'To ensure the best browsing experience and security, this website does not support the browser you are using.',
+    description:
+      'To ensure the best browsing experience and security, this website does not support the browser you are using.',
     recommendText: 'Please use one of the recommended browsers below to access:',
     currentBrowser: 'You are currently using:',
     currentUrl: 'Sign-in URL:',
@@ -115,7 +114,8 @@ export default {
     downloadSafari: 'Download Safari Browser',
     openWithRecommended: 'Open the current page with a recommended browser',
     whyRestricted: 'Why are some browsers restricted?',
-    whyRestrictedDesc: 'Some browsers may have security issues or lack support for necessary features. We restrict these browsers to ensure your account security and provide a better user experience.',
+    whyRestrictedDesc:
+      'Some browsers may have security issues or lack support for necessary features. We restrict these browsers to ensure your account security and provide a better user experience.',
     supportedBrowsersTitle: 'List of Supported Browsers',
     browserNames: {
       Chrome: 'Chrome Browser',
@@ -125,20 +125,22 @@ export default {
       Opera: 'Opera Browser',
       UC: 'UC Browser',
       Maxthon: 'Maxthon Browser',
-      Unknown: 'Unknown Browser'
-    }
+      Unknown: 'Unknown Browser',
+    },
   },
   landing: {
-    mainText: SITE_CONFIG.landingText['en-US'] || 'Explore the infinite possibilities of the global network',
+    mainText:
+      SITE_CONFIG.landingText['en-US'] ||
+      'Explore the infinite possibilities of the global network',
     scrollText: 'Scroll down to sign in',
-    exploreButton: 'Start Exploring'
+    exploreButton: 'Start Exploring',
   },
   contextMenu: {
     refresh: 'Refresh Page',
     back: 'Go Back',
     forward: 'Go Forward',
     copy: 'Copy',
-    paste: 'Paste'
+    paste: 'Paste',
   },
   service: {
     title: 'Online Support',
@@ -150,7 +152,7 @@ export default {
     offline: 'Support is currently offline',
     leaveMessage: 'Leave a Message',
     startChat: 'Start Chat',
-    back: 'Back'
+    back: 'Back',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +186,6 @@ export default {
     copyFailed: 'Copy failed',
     apiChecking: 'Checking API availability...',
     checking: 'Checking',
-    completed: 'Completed'
-  }
+    completed: 'Completed',
+  },
 };

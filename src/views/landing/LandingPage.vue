@@ -1,646 +1,528 @@
 ﻿<template>
-
-  <div class="landing-page" :class="{ 'dark-theme': isDarkTheme }" @wheel="handleWheel" @scroll="handleScroll" ref="landingPageRef">
-
+  <div
+    class="landing-page"
+    :class="{ 'dark-theme': isDarkTheme }"
+    @wheel="handleWheel"
+    @scroll="handleScroll"
+    ref="landingPageRef"
+  >
     <!-- 背景装饰 -->
 
     <div class="background-decoration">
-
       <div class="bg-circle circle-1" :class="{ 'dark-mode': isDarkTheme }"></div>
 
       <div class="bg-circle circle-2" :class="{ 'dark-mode': isDarkTheme }"></div>
 
       <div class="bg-circle circle-3" :class="{ 'dark-mode': isDarkTheme }"></div>
-
     </div>
 
     <!-- 顶部工具栏 -->
 
     <div class="top-toolbar">
-
       <ThemeToggle />
 
       <LanguageSelector />
-
     </div>
 
     <!-- 中央内容区 -->
 
     <div class="content-container">
-
       <div class="site-title">
-
         <img v-if="siteConfig.showLogo" src="/images/logo.png" alt="Logo" class="site-logo-img" />
 
         {{ siteConfig.siteName }}
-
       </div>
 
       <div class="landing-text">{{ $t('landing.mainText') }}</div>
-
     </div>
 
     <!-- 底部箭头 -->
 
     <div class="scroll-arrow-container" @click="navigateToLogin">
-
       <div class="scroll-arrow">
-
         <IconChevronDown :size="32" :stroke-width="1.5" />
-
       </div>
 
       <div class="scroll-text">{{ $t('landing.scrollText') }}</div>
-
     </div>
 
     <!-- 页面过渡遮罩 -->
 
-    <div class="page-transition-mask" :class="{ 'active': isTransitioning }"></div>
-
+    <div class="page-transition-mask" :class="{ active: isTransitioning }"></div>
   </div>
-
 </template>
 
 <script>
+  import { ref, onMounted, onUnmounted, computed } from 'vue';
 
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+  import { useRouter } from 'vue-router';
 
-import { useRouter } from 'vue-router';
+  import { useStore } from 'vuex';
 
-import { useStore } from 'vuex';
+  import { useI18n } from 'vue-i18n';
 
-import { useI18n } from 'vue-i18n';
+  import { SITE_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
 
-import { SITE_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
+  import ThemeToggle from '@/components/common/ThemeToggle.vue';
 
-import ThemeToggle from '@/components/common/ThemeToggle.vue';
+  import LanguageSelector from '@/components/common/LanguageSelector.vue';
 
-import LanguageSelector from '@/components/common/LanguageSelector.vue';
+  import { IconChevronDown } from '@tabler/icons-vue';
 
-import { IconChevronDown } from '@tabler/icons-vue';
+  import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
-import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
+  export default {
+    name: 'LandingPage',
 
-export default {
+    components: {
+      ThemeToggle,
 
-  name: 'LandingPage',
+      LanguageSelector,
 
-  components: {
+      IconChevronDown,
 
-    ThemeToggle,
+      DomainAuthAlert,
+    },
 
-    LanguageSelector,
+    setup() {
+      const router = useRouter();
 
-    IconChevronDown,
+      const store = useStore();
 
-    DomainAuthAlert
+      const { t } = useI18n();
 
-  },
+      const landingPageRef = ref(null);
 
-  setup() {
+      const isDarkTheme = computed(() => store.getters.currentTheme === 'dark');
 
-    const router = useRouter();
+      const siteConfig = ref(SITE_CONFIG);
 
-    const store = useStore();
+      const defaultConfig = ref(DEFAULT_CONFIG);
 
-    const { t } = useI18n();
+      const isTransitioning = ref(false);
 
-    const landingPageRef = ref(null);
-
-    const isDarkTheme = computed(() => store.getters.currentTheme === 'dark');
-
-    const siteConfig = ref(SITE_CONFIG);
-
-    const defaultConfig = ref(DEFAULT_CONFIG);
-
-    const isTransitioning = ref(false);
-
-    const handleScroll = (e) => {
-
-      if (e.currentTarget === landingPageRef.value && window.scrollY > 100) {
-
-        navigateToLogin();
-
-      }
-
-    };
-
-    const handleWheel = (e) => {
-
-      if (e.currentTarget === landingPageRef.value && e.deltaY > 0) {
-
-        navigateToLogin();
-
-      }
-
-    };
-
-    const navigateToLogin = () => {
-
-      if (isTransitioning.value) {
-
-        return;
-
-      }
-
-      isTransitioning.value = true;
-
-      document.body.classList.add('page-transitioning');
-
-      console.log(t('landing.navigatingToLogin', 'Navigating to login page'));
-
-      setTimeout(() => {
-
-        router.push('/login');
-
-      }, 600); 
-    };
-
-    let touchStartY = 0;
-
-    let handleTouchStart, handleTouchMove;
-
-    onMounted(() => {
-
-      handleTouchStart = (e) => {
-
-        if (e.currentTarget === landingPageRef.value || landingPageRef.value.contains(e.target)) {
-
-          touchStartY = e.touches[0].clientY;
-
+      const handleScroll = (e) => {
+        if (e.currentTarget === landingPageRef.value && window.scrollY > 100) {
+          navigateToLogin();
         }
-
       };
 
-      handleTouchMove = (e) => {
+      const handleWheel = (e) => {
+        if (e.currentTarget === landingPageRef.value && e.deltaY > 0) {
+          navigateToLogin();
+        }
+      };
 
-        if (e.currentTarget === landingPageRef.value || landingPageRef.value.contains(e.target)) {
+      const navigateToLogin = () => {
+        if (isTransitioning.value) {
+          return;
+        }
 
-          const touchY = e.touches[0].clientY;
+        isTransitioning.value = true;
 
-          if (touchStartY - touchY > 50) { 
-            navigateToLogin();
+        document.body.classList.add('page-transitioning');
 
+        console.log(t('landing.navigatingToLogin', 'Navigating to login page'));
+
+        setTimeout(() => {
+          router.push('/login');
+        }, 600);
+      };
+
+      let touchStartY = 0;
+
+      let handleTouchStart, handleTouchMove;
+
+      onMounted(() => {
+        handleTouchStart = (e) => {
+          if (e.currentTarget === landingPageRef.value || landingPageRef.value.contains(e.target)) {
+            touchStartY = e.touches[0].clientY;
           }
+        };
 
+        handleTouchMove = (e) => {
+          if (e.currentTarget === landingPageRef.value || landingPageRef.value.contains(e.target)) {
+            const touchY = e.touches[0].clientY;
+
+            if (touchStartY - touchY > 50) {
+              navigateToLogin();
+            }
+          }
+        };
+
+        if (landingPageRef.value) {
+          landingPageRef.value.addEventListener('touchstart', handleTouchStart, { passive: true });
+
+          landingPageRef.value.addEventListener('touchmove', handleTouchMove, { passive: true });
         }
+      });
 
+      onUnmounted(() => {
+        if (landingPageRef.value) {
+          landingPageRef.value.removeEventListener('touchstart', handleTouchStart);
+
+          landingPageRef.value.removeEventListener('touchmove', handleTouchMove);
+        }
+      });
+
+      return {
+        landingPageRef,
+
+        siteConfig,
+
+        defaultConfig,
+
+        isDarkTheme,
+
+        isTransitioning,
+
+        navigateToLogin,
+
+        handleScroll,
+
+        handleWheel,
       };
-
-      if (landingPageRef.value) {
-
-        landingPageRef.value.addEventListener('touchstart', handleTouchStart, { passive: true });
-
-        landingPageRef.value.addEventListener('touchmove', handleTouchMove, { passive: true });
-
-      }
-
-    });
-
-    onUnmounted(() => {
-
-      if (landingPageRef.value) {
-
-        landingPageRef.value.removeEventListener('touchstart', handleTouchStart);
-
-        landingPageRef.value.removeEventListener('touchmove', handleTouchMove);
-
-      }
-
-    });
-
-    return {
-
-      landingPageRef,
-
-      siteConfig,
-
-      defaultConfig,
-
-      isDarkTheme,
-
-      isTransitioning,
-
-      navigateToLogin,
-
-      handleScroll,
-
-      handleWheel,
-
-    };
-
-  }
-
-};
-
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
+  .landing-page {
+    position: relative;
 
-.landing-page {
+    width: 100%;
 
-  position: relative;
+    height: 100vh;
 
-  width: 100%;
+    overflow: hidden;
 
-  height: 100vh;
+    display: flex;
 
-  overflow: hidden;
+    flex-direction: column;
 
-  display: flex;
+    justify-content: center;
 
-  flex-direction: column;
+    align-items: center;
 
-  justify-content: center;
+    background-color: var(--background-color);
 
-  align-items: center;
+    color: var(--text-color);
 
-  background-color: var(--background-color);
-
-  color: var(--text-color);
-
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-}
-
-.background-decoration {
-
-  position: absolute;
-
-  top: 0;
-
-  left: 0;
-
-  width: 100%;
-
-  height: 100%;
-
-  z-index: 0;
-
-  overflow: hidden;
-
-  @supports (-webkit-touch-callout: none) {
-
-    display: none;
-
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
-  .bg-circle {
-
+  .background-decoration {
     position: absolute;
 
-    border-radius: 50%;
+    top: 0;
 
-    filter: blur(80px);
+    left: 0;
 
-    opacity: 0.4; 
+    width: 100%;
 
-    animation: float 20s infinite ease-in-out;
+    height: 100%;
 
-    transition: opacity 0.5s ease, background-color 0.5s ease;
+    z-index: 0;
+
+    overflow: hidden;
 
     @supports (-webkit-touch-callout: none) {
-
-      filter: blur(20px);
-
-      opacity: 0.15;
-
-      animation-duration: 40s; 
+      display: none;
     }
 
-    &.dark-mode {
+    .bg-circle {
+      position: absolute;
 
-      opacity: 0.25; 
+      border-radius: 50%;
 
-      filter: blur(100px) saturate(0.7); 
+      filter: blur(80px);
+
+      opacity: 0.4;
+
+      animation: float 20s infinite ease-in-out;
+
+      transition:
+        opacity 0.5s ease,
+        background-color 0.5s ease;
 
       @supports (-webkit-touch-callout: none) {
+        filter: blur(20px);
 
-        filter: blur(15px) saturate(0.5);
+        opacity: 0.15;
 
-        opacity: 0.1;
-
+        animation-duration: 40s;
       }
 
+      &.dark-mode {
+        opacity: 0.25;
+
+        filter: blur(100px) saturate(0.7);
+
+        @supports (-webkit-touch-callout: none) {
+          filter: blur(15px) saturate(0.5);
+
+          opacity: 0.1;
+        }
+      }
     }
 
-  }
+    .circle-1 {
+      width: 600px;
 
-  .circle-1 {
+      height: 600px;
 
-    width: 600px;
+      background: var(--theme-color);
 
-    height: 600px;
+      top: -10%;
 
-    background: var(--theme-color);
+      left: -10%;
 
-    top: -10%;
+      animation-duration: 25s;
 
-    left: -10%;
-
-    animation-duration: 25s;
-
-    &.dark-mode {
-
-      background: rgba(0, 148, 124, 0.6); 
-
+      &.dark-mode {
+        background: rgba(0, 148, 124, 0.6);
+      }
     }
 
-  }
+    .circle-2 {
+      width: 500px;
 
-  .circle-2 {
+      height: 500px;
 
-    width: 500px;
+      background: #a747fe;
 
-    height: 500px;
+      top: 40%;
 
-    background: #A747FE;
+      right: -5%;
 
-    top: 40%;
+      animation-duration: 30s;
 
-    right: -5%;
-
-    animation-duration: 30s;
-
-    &.dark-mode {
-
-      background: rgba(167, 71, 254, 0.5); 
-
+      &.dark-mode {
+        background: rgba(167, 71, 254, 0.5);
+      }
     }
 
+    .circle-3 {
+      width: 450px;
+
+      height: 450px;
+
+      background: #37dec9;
+
+      bottom: -10%;
+
+      left: 20%;
+
+      animation-duration: 35s;
+
+      &.dark-mode {
+        background: rgba(55, 222, 201, 0.5);
+      }
+    }
   }
 
-  .circle-3 {
-
-    width: 450px;
-
-    height: 450px;
-
-    background: #37DEC9;
-
-    bottom: -10%;
-
-    left: 20%;
-
-    animation-duration: 35s;
-
-    &.dark-mode {
-
-      background: rgba(55, 222, 201, 0.5); 
-
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
     }
 
-  }
-
-}
-
-@keyframes float {
-
-  0%, 100% {
-
-    transform: translate(0, 0) rotate(0deg);
-
-  }
-
-  25% {
-
-    transform: translate(5%, 5%) rotate(5deg);
-
-  }
-
-  50% {
-
-    transform: translate(0, 10%) rotate(0deg);
-
-  }
-
-  75% {
-
-    transform: translate(-5%, 5%) rotate(-5deg);
-
-  }
-
-}
-
-.top-toolbar {
-
-  position: fixed;
-
-  top: 20px;
-
-  right: 25px;
-
-  display: flex;
-
-  gap: 12px;
-
-  z-index: 100;
-
-}
-
-.content-container {
-
-  position: relative;
-
-  z-index: 10;
-
-  text-align: center;
-
-  padding: 0 20px;
-
-  max-width: 800px;
-
-}
-
-.site-title {
-
-  font-size: 48px;
-
-  font-weight: 700;
-
-  margin-bottom: 20px;
-
-  background: linear-gradient(to right, var(--theme-color), #a78bfa);
-
-  -webkit-background-clip: text;
-
-  background-clip: text;
-
-  color: transparent;
-
-  text-align: center;
-
-  letter-spacing: -0.5px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 15px;
-
-  .site-logo-img {
-
-    height: 40px;
-
-    width: 40px;
-
-    border-radius: 10px;
-
-    object-fit: cover;
-
-  }
-
-}
-
-.landing-text {
-
-  font-size: 1.5rem;
-
-  font-weight: 400;
-
-  line-height: 1.5;
-
-  margin-bottom: 2rem;
-
-  color: var(--text-color);
-
-  opacity: 0.9;
-
-  @media (max-width: 768px) {
-
-    font-size: 1.25rem;
-
-  }
-
-  @media (max-width: 480px) {
-
-    font-size: 1rem;
-
-  }
-
-}
-
-.scroll-arrow-container {
-
-  position: fixed;
-
-  bottom: 40px;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
-  cursor: pointer;
-
-  z-index: 10;
-
-  transition: transform 0.3s ease;
-
-  &:hover {
-
-    transform: translateX(-50%) translateY(5px);
-
-    .scroll-arrow {
-
-      animation-play-state: paused;
-
+    25% {
+      transform: translate(5%, 5%) rotate(5deg);
     }
 
+    50% {
+      transform: translate(0, 10%) rotate(0deg);
+    }
+
+    75% {
+      transform: translate(-5%, 5%) rotate(-5deg);
+    }
   }
 
-}
+  .top-toolbar {
+    position: fixed;
 
-.scroll-arrow {
+    top: 20px;
 
-  color: var(--theme-color);
+    right: 25px;
 
-  animation: bounce 2s infinite;
+    display: flex;
 
-  margin-bottom: 8px;
+    gap: 12px;
 
-}
-
-.scroll-text {
-
-  font-size: 0.875rem;
-
-  color: var(--secondary-text-color);
-
-  opacity: 0.8;
-
-}
-
-@keyframes bounce {
-
-  0%, 20%, 50%, 80%, 100% {
-
-    transform: translateY(0);
-
+    z-index: 100;
   }
 
-  40% {
+  .content-container {
+    position: relative;
 
-    transform: translateY(-20px);
+    z-index: 10;
 
+    text-align: center;
+
+    padding: 0 20px;
+
+    max-width: 800px;
   }
 
-  60% {
+  .site-title {
+    font-size: 48px;
 
-    transform: translateY(-10px);
+    font-weight: 700;
 
+    margin-bottom: 20px;
+
+    background: linear-gradient(to right, var(--theme-color), #a78bfa);
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    text-align: center;
+
+    letter-spacing: -0.5px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    .site-logo-img {
+      height: 40px;
+
+      width: 40px;
+
+      border-radius: 10px;
+
+      object-fit: cover;
+    }
   }
 
-}
+  .landing-text {
+    font-size: 1.5rem;
 
-.page-transition-mask {
+    font-weight: 400;
 
-  position: fixed;
+    line-height: 1.5;
 
-  top: 0;
+    margin-bottom: 2rem;
 
-  left: 0;
+    color: var(--text-color);
 
-  width: 100%;
+    opacity: 0.9;
 
-  height: 100%;
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+    }
 
-  background-color: var(--background-color);
-
-  z-index: 1000;
-
-  opacity: 0;
-
-  pointer-events: none;
-
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &.active {
-
-    opacity: 1;
-
-    pointer-events: all;
-
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
-
-}
-
-@media (max-width: 768px) {
 
   .scroll-arrow-container {
+    position: fixed;
 
-    bottom: 30px;
+    bottom: 40px;
 
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateX(-50%) translateY(5px);
+
+      .scroll-arrow {
+        animation-play-state: paused;
+      }
+    }
   }
 
-}
+  .scroll-arrow {
+    color: var(--theme-color);
 
-</style> 
+    animation: bounce 2s infinite;
+
+    margin-bottom: 8px;
+  }
+
+  .scroll-text {
+    font-size: 0.875rem;
+
+    color: var(--secondary-text-color);
+
+    opacity: 0.8;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+
+    40% {
+      transform: translateY(-20px);
+    }
+
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .page-transition-mask {
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color: var(--background-color);
+
+    z-index: 1000;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.active {
+      opacity: 1;
+
+      pointer-events: all;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .scroll-arrow-container {
+      bottom: 30px;
+    }
+  }
+</style>

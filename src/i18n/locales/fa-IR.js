@@ -1,5 +1,4 @@
-﻿
-import { SITE_CONFIG } from '../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../utils/baseConfig';
 
 export default {
   common: {
@@ -74,7 +73,7 @@ export default {
     error_occurred: 'خطایی رخ داد، لطفا بعدا امتحان کنید',
     apiChecking: 'در حال بررسی دسترسی به API...',
     checking: 'در حال بررسی',
-    completed: 'تکمیل شد'
+    completed: 'تکمیل شد',
   },
   auth: {
     loginTitle: 'به خانه خوش آمدید',
@@ -109,7 +108,7 @@ export default {
     passwordMatchError: 'پسورد ها مطابقت ندارند',
     captchaSuccess: 'تایید انسان موفق',
     captchaFailed: 'تایید انسان شکست خورد',
-    
+
     loginNow: 'اکنون وارد شوید',
     resetNow: 'پسورد را بازنشانی کنید',
     alreadyHaveAccount: 'حساب دارید؟',
@@ -134,7 +133,7 @@ export default {
     captchaError: 'خطا در تایید، دوباره امتحان کنید',
     captchaLoading: 'در حال بارگذاری تایید...',
     verifyTokenSuccess: 'تایید توکن موفق',
-    verifyTokenFailed: 'تایید توکن شکست خورد، لطفا دوباره امتحان کنید'
+    verifyTokenFailed: 'تایید توکن شکست خورد، لطفا دوباره امتحان کنید',
   },
   validation: {
     required: '{field} نمی تواند خالی باشد',
@@ -147,7 +146,7 @@ export default {
     passwordRequired: 'پسورد را وارد کنید',
     confirmPasswordRequired: 'پسورد را تایید کنید',
     passwordsDontMatch: 'پسورد ها مطابقت ندارند',
-    codeRequired: 'کد تایید را وارد کنید'
+    codeRequired: 'کد تایید را وارد کنید',
   },
   errors: {
     networkError: 'خطای شبکه، اتصال را چک کنید',
@@ -158,7 +157,7 @@ export default {
     notFoundDescription: 'متاسفیم، صفحه مورد نظر وجود ندارد یا حذف شده است',
     backToHome: 'به خانه برگردید',
     unknown: 'خطای ناشناخته رخ داد',
-    browserRestricted: 'دسترسی مرورگر محدود است'
+    browserRestricted: 'دسترسی مرورگر محدود است',
   },
   messages: {
     loginSuccess: 'ورود موفق',
@@ -170,12 +169,12 @@ export default {
     logoutSuccess: 'خروج موفق',
     codeSent: 'کد تایید ارسال شد',
     sendCodeFailed: 'ارسال کد شکست خورد',
-    configLoadFailed: 'بارگذاری تنظیمات شکست خورد، صفحه را تازه کنید'
+    configLoadFailed: 'بارگذاری تنظیمات شکست خورد، صفحه را تازه کنید',
   },
   landing: {
     mainText: SITE_CONFIG.landingText['fa-IR'] || 'امکانات نامحدود شبکه جهانی را کاوش کنید',
     scrollText: 'برای ورود به پایین بکشید',
-    exploreButton: 'شروع کاوش'
+    exploreButton: 'شروع کاوش',
   },
   dashboard: {
     welcome: 'به خانه خوش آمدید',
@@ -198,9 +197,11 @@ export default {
     renewPlan: 'تمدید بسته',
     noPlanToRenew: 'بسته ای برای تمدید وجود ندارد',
     resetTrafficConfirm: 'تایید بازنشانی ترافیک',
-    resetTrafficDesc: 'این عمل ترافیک استفاده شده را بازنشانی می کند اما زمان بسته را افزایش نمی دهد، ادامه دهید؟',
+    resetTrafficDesc:
+      'این عمل ترافیک استفاده شده را بازنشانی می کند اما زمان بسته را افزایش نمی دهد، ادامه دهید؟',
     resetTrafficSuccess: 'سفارش بازنشانی ترافیک موفق',
-    resetTrafficWarning: 'بازنشانی فقط ترافیک استفاده شده را تحت تاثیر قرار می دهد، زمان بسته را تمدید نمی کند',
+    resetTrafficWarning:
+      'بازنشانی فقط ترافیک استفاده شده را تحت تاثیر قرار می دهد، زمان بسته را تمدید نمی کند',
     ticketSupport: 'پشتیبانی تیکت',
     viewHelp: 'نمایش کمک',
     documentation: 'مستندات استفاده',
@@ -212,7 +213,7 @@ export default {
     deviceLimit: 'دستگاه های آنلاین',
     unlimited: 'نامحدود',
     nextResetTime: 'زمان بازنشانی بعدی',
-    
+
     importTitle: 'انتخاب روش وارد کردن',
     copySubscription: 'کپی لینک اشتراک',
     copySubscriptionDesc: 'لینک اشتراک را به کلیپ بورد کپی کنید',
@@ -230,13 +231,13 @@ export default {
     manualImportRequired: 'وارد کردن خودکار ممکن نیست، لینک را دستی کپی کنید',
     noSubscription: 'اشتراکی موجود نیست',
     noClientsAvailable: 'برای این پلتفرم روش سریع وارد کردن موجود نیست',
-    clientNotInstalled: 'کلاینت نصب نشده، لینک اشتراک کپی شد'
+    clientNotInstalled: 'کلاینت نصب نشده، لینک اشتراک کپی شد',
   },
   platforms: {
     ios: 'iOS',
     android: 'Android',
     windows: 'Windows',
-    macos: 'MacOS'
+    macos: 'MacOS',
   },
   menu: {
     dashboard: 'داشبورد',
@@ -251,7 +252,7 @@ export default {
     profile: 'پروفایل',
     more: 'بیشتر',
     commission: 'کمیسیون',
-    hotSale: 'فروش داغ'
+    hotSale: 'فروش داغ',
   },
   more: {
     title: 'بیشتر ویژگی ها',
@@ -260,7 +261,7 @@ export default {
     viewNodes: 'نمایش نودهای سرور',
     manageOrders: 'مدیریت سفارش ها',
     getTechnicalSupport: 'دریافت پشتیبانی فنی',
-    manageProfile: 'مدیریت پروفایل'
+    manageProfile: 'مدیریت پروفایل',
   },
   nodes: {
     title: 'لیست نودها',
@@ -269,7 +270,7 @@ export default {
     copiedToClipboard: 'به کلیپ بورد کپی شد',
     welcome: {
       title: 'لیست نودها',
-      description: 'نودهای سرور را ببینید و استفاده کنید'
+      description: 'نودهای سرور را ببینید و استفاده کنید',
     },
     type: 'نوع نود',
     rate: 'نرخ',
@@ -286,7 +287,7 @@ export default {
     invalidNodeData: 'داده نود ناقص است، نمی توان لینک ایجاد کرد',
     unsupportedNodeType: 'نوع نود پشتیبانی نمی شود',
     userInfoError: 'دریافت اطلاعات کاربر شکست خورد',
-    viewSubscribeLink: 'نمایش لینک اشتراک'
+    viewSubscribeLink: 'نمایش لینک اشتراک',
   },
   orders: {
     title: 'لیست سفارش ها',
@@ -307,7 +308,7 @@ export default {
     cancelFailed: 'لغو سفارش شکست خورد',
     welcome: {
       title: 'لیست سفارش ها',
-      description: 'سفارش ها را ببینید و مدیریت کنید'
+      description: 'سفارش ها را ببینید و مدیریت کنید',
     },
     status: {
       pending: 'در حال پرداخت',
@@ -315,7 +316,7 @@ export default {
       cancelled: 'لغو شد',
       completed: 'کامل شد',
       discounted: 'تخفیف داده شد',
-      unknown: 'وضعیت ناشناخته'
+      unknown: 'وضعیت ناشناخته',
     },
     confirmOrder: 'تایید سفارش',
     payment: 'پرداخت سفارش',
@@ -323,11 +324,11 @@ export default {
   tickets: {
     title: 'سیستم تیکت',
     description: 'با تیم پشتیبانی تماس بگیرید',
-    
+
     searchPlaceholder: 'جستجوی تیکت...',
     newTicket: 'تیکت جدید',
     createNew: 'ایجاد تیکت',
-    
+
     subject: 'موضوع',
     subjectPlaceholder: 'موضوع تیکت را وارد کنید',
     message: 'محتوا',
@@ -336,52 +337,52 @@ export default {
     levelLow: 'پایین',
     levelMedium: 'متوسط',
     levelHigh: 'بالا',
-    
+
     statusOpen: 'در حال پردازش',
     statusClosed: 'بسته شد',
-    
+
     noTickets: 'تیکتی موجود نیست',
     selectTicket: 'تیکت را برای نمایش جزئیات انتخاب کنید',
     noMessages: 'پیامی موجود نیست',
     loadingMessages: 'در حال بارگذاری پیام ها...',
     loadingTickets: 'در حال بارگذاری تیکت ها...',
-    
+
     formIncomplete: 'اطلاعات تیکت را کامل کنید',
     createSuccess: 'تیکت ایجاد شد',
     createError: 'ایجاد تیکت شکست خورد',
     fetchError: 'دریافت لیست تیکت شکست خورد',
     fetchDetailError: 'دریافت جزئیات تیکت شکست خورد',
-    
+
     replyPlaceholder: 'محتوای پاسخ را وارد کنید...',
     send: 'ارسال',
     replySent: 'پاسخ ارسال شد',
     replyError: 'ارسال پاسخ شکست خورد',
-    
+
     admin: 'پشتیبانی',
     you: 'من',
-    
+
     closeTicket: 'بستن تیکت',
     closeConfirmTitle: 'تایید بستن تیکت',
-    closeConfirmText: 'آیا مطمئن هستید که می خواهید تیکت را ببندید؟ پس از بسته شدن نمی توانید پاسخ دهید',
+    closeConfirmText:
+      'آیا مطمئن هستید که می خواهید تیکت را ببندید؟ پس از بسته شدن نمی توانید پاسخ دهید',
     closeSuccess: 'تیکت بسته شد',
     closeError: 'بستن تیکت شکست خورد',
     ticketClosed: 'این تیکت بسته شد، نمی توانید پاسخ دهید',
     closing: 'در حال بسته شدن...',
-    
+
     createdAt: 'زمان ایجاد',
-    
+
     smallScreenNotice: 'دستگاه با صفحه کوچک تشخیص داده شد',
     switchToMobile: 'برای تجربه بهتر به حالت موبایل سوئیچ کنید',
     switchToMobileView: 'سوئیچ به حالت موبایل',
-    
+
     largeScreenNotice: 'دستگاه با صفحه بزرگ تشخیص داده شد',
     switchToDesktop: 'برای تجربه بهتر به حالت دسکتاپ سوئیچ کنید',
     switchToDesktopView: 'سوئیچ به حالت دسکتاپ',
     popup: {
       close_btn: 'بستن',
-      wait_close_btn: 'بستن در {seconds} ثانیه'
-    }
-    ,
+      wait_close_btn: 'بستن در {seconds} ثانیه',
+    },
     upPictures: 'آپلود تصاویر',
     uploadingImages: 'در حال آپلود...',
     uploadTipText: 'تصاویر را اینجا بکشید و رها کنید یا برای آپلود کلیک کنید',
@@ -418,7 +419,8 @@ export default {
     subscription: 'مدیریت اشتراک',
     resetSecurity: 'بازنشانی اشتراک',
     resetSecurityTitle: 'بازنشانی لینک اشتراک',
-    resetSecurityConfirm: 'آیا مطمئن هستید که می خواهید اشتراک را بازنشانی کنید؟ اشتراک قبلی نامعتبر می شود و باید دوباره وارد کنید',
+    resetSecurityConfirm:
+      'آیا مطمئن هستید که می خواهید اشتراک را بازنشانی کنید؟ اشتراک قبلی نامعتبر می شود و باید دوباره وارد کنید',
     resetSuccess: 'بازنشانی موفق',
     resetError: 'بازنشانی شکست خورد',
     copySubscription: 'کپی لینک اشتراک',
@@ -462,14 +464,14 @@ export default {
     commandCopied: 'دستور به کلیپ بورد کپی شد',
     iKnow: 'درک کردم',
     telegram: 'ارتباط Telegram',
-    telegramError: 'دریافت اطلاعات Telegram شکست خورد'
+    telegramError: 'دریافت اطلاعات Telegram شکست خورد',
   },
   contextMenu: {
     refresh: 'تازه سازی صفحه',
     back: 'بازگشت به صفحه قبلی',
     forward: 'به صفحه بعدی',
     copy: 'کپی',
-    paste: 'چسباندن'
+    paste: 'چسباندن',
   },
   service: {
     title: 'پشتیبانی آنلاین',
@@ -481,7 +483,7 @@ export default {
     offline: 'پشتیبانی در حال حاضر آفلاین است',
     leaveMessage: 'پیام بگذارید',
     startChat: 'شروع چت',
-    back: 'بازگشت'
+    back: 'بازگشت',
   },
   shop: {
     title: 'فروشگاه',
@@ -490,7 +492,7 @@ export default {
     filter: {
       all: 'همه',
       recurring: 'دوره ای',
-      onetime: 'یک بار'
+      onetime: 'یک بار',
     },
     no_plans_found: 'بسته ای پیدا نشد',
     try_different_filter: 'فیلتر دیگری امتحان کنید',
@@ -501,7 +503,7 @@ export default {
       stock: {
         plenty: 'موجودی کافی',
         warning: 'موجودی کم',
-        sold_out: 'فروخته شد'
+        sold_out: 'فروخته شد',
       },
       periods: {
         month: ' / ماهانه',
@@ -510,7 +512,7 @@ export default {
         year: ' / سالانه',
         two_year: ' / دو ساله',
         three_year: ' / سه ساله',
-        onetime: ' / یک بار'
+        onetime: ' / یک بار',
       },
       price_options: {
         month: 'ماهانه',
@@ -521,12 +523,12 @@ export default {
         three_year: 'سه ساله',
         onetime: 'یک بار',
         reset_price: 'بسته بازنشانی ترافیک',
-        deposit: 'شارژ'
+        deposit: 'شارژ',
       },
       discount: {
         relative: 'تخفیف نسبی حدود',
-        savings: 'برای شما صرفه جویی می کند'
-      }
+        savings: 'برای شما صرفه جویی می کند',
+      },
     },
     stats: {
       global_nodes: 'نودهای جهانی',
@@ -536,13 +538,13 @@ export default {
       streaming: 'باز کردن قفل استریم',
       streaming_desc: 'باز کردن قفل خدمات استریم',
       devices: 'پشتیبانی چند دستگاه',
-      devices_desc: 'استفاده همزمان چند دستگاه'
+      devices_desc: 'استفاده همزمان چند دستگاه',
     },
     config_error: 'دریافت تنظیمات فروشگاه شکست خورد',
     popup: {
       close_btn: 'درک کردم',
-      wait_close_btn: 'لطفا {seconds} ثانیه صبر کنید'
-    }
+      wait_close_btn: 'لطفا {seconds} ثانیه صبر کنید',
+    },
   },
   order: {
     title: 'تایید سفارش',
@@ -570,7 +572,7 @@ export default {
     order_failed: 'ایجاد سفارش شکست خورد',
     no_plan_selected: 'بسته ای انتخاب نشده',
     plan_not_found: 'بسته وجود ندارد',
-    failed_to_fetch_plan: 'دریافت اطلاعات بسته شکست خورد'
+    failed_to_fetch_plan: 'دریافت اطلاعات بسته شکست خورد',
   },
   payment: {
     title: 'پرداخت سفارش',
@@ -580,7 +582,7 @@ export default {
     period: 'دوره',
     period_types: {
       reset_price: 'بسته بازنشانی ترافیک',
-      deposit: 'شارژ'
+      deposit: 'شارژ',
     },
     traffic: 'ترافیک',
     order_info: 'اطلاعات سفارش',
@@ -646,8 +648,8 @@ export default {
       completed: 'کامل شد',
       discounted: 'تخفیف داده شد',
       unknown: 'وضعیت ناشناخته',
-      activate: 'در حال فعال سازی'
-    }
+      activate: 'در حال فعال سازی',
+    },
   },
   invite: {
     title: 'کمیسیون من',
@@ -656,33 +658,33 @@ export default {
       registeredUsers: 'تعداد کاربران ثبت شده',
       pendingCommission: 'کمیسیون در حال تایید',
       availableCommission: 'کمیسیون کسب شده',
-      commissionRate: 'نرخ کمیسیون'
+      commissionRate: 'نرخ کمیسیون',
     },
     rules: {
       title: 'قوانین کمیسیون',
       share: {
         title: '1. اشتراک گذاری',
-        desc: 'لینک دعوت را اشتراک گذاری کنید'
+        desc: 'لینک دعوت را اشتراک گذاری کنید',
       },
       register: {
         title: '2. ثبت نام',
-        desc: 'دوستان ثبت نام کنند'
+        desc: 'دوستان ثبت نام کنند',
       },
       purchase: {
         title: '3. خرید',
-        desc: 'دوستان بسته خریداری کنند'
+        desc: 'دوستان بسته خریداری کنند',
       },
       commission: {
         title: '4. کمیسیون',
-        desc: '{rate}% کمیسیون کسب کنید'
-      }
+        desc: '{rate}% کمیسیون کسب کنید',
+      },
     },
     balance: {
       title: 'موجودی کمیسیون',
       available: 'کمیسیون قابل استفاده',
       description: 'کمیسیون از دعوت دوستان، می توانید به موجودی منتقل کنید',
       transferToBalance: 'انتقال به موجودی',
-      withdraw: 'برداشت'
+      withdraw: 'برداشت',
     },
     transfer: {
       title: 'انتقال کمیسیون',
@@ -696,7 +698,7 @@ export default {
       success: 'انتقال موفق',
       failure: 'انتقال شکست خورد',
       insufficientFunds: 'کمیسیون کافی نیست',
-      invalidAmount: 'مبلغ معتبر وارد کنید'
+      invalidAmount: 'مبلغ معتبر وارد کنید',
     },
     withdraw: {
       title: 'برداشت کمیسیون',
@@ -715,7 +717,7 @@ export default {
       invalidAmount: 'مبلغ معتبر وارد کنید',
       insufficientFunds: 'کمیسیون کافی نیست',
       belowMinAmount: 'مبلغ برداشت نمی تواند کمتر از {amount} باشد',
-      minWithdrawAmount: 'حداقل مبلغ برداشت'
+      minWithdrawAmount: 'حداقل مبلغ برداشت',
     },
     inviteLink: {
       title: 'لینک دعوت',
@@ -729,7 +731,7 @@ export default {
       copyLink: 'کپی لینک',
       copied: 'کپی شد',
       noInviteCode: 'کد دعوتی موجود نیست',
-      created: 'کد دعوت ایجاد شد، با دوستان اشتراک گذاری کنید'
+      created: 'کد دعوت ایجاد شد، با دوستان اشتراک گذاری کنید',
     },
     share: {
       wechat: 'WeChat',
@@ -742,7 +744,7 @@ export default {
       inviteQRCode: 'QR کد لینک دعوت',
       orCopyLink: 'یا لینک را کپی کنید',
       shareTitle: 'شما را برای استفاده از خدمات دعوت می کنم',
-      shareDescription: 'من از این خدمات استفاده می کنم، شما هم امتحان کنید'
+      shareDescription: 'من از این خدمات استفاده می کنم، شما هم امتحان کنید',
     },
     records: {
       title: 'رکورد کمیسیون',
@@ -767,19 +769,20 @@ export default {
         waiting: 'در حال انتظار',
         processing: 'در حال پردازش',
         invalid: 'نامعتبر',
-        unknown: 'ناشناخته'
+        unknown: 'ناشناخته',
       },
       types: {
         confirmed_commission: 'کمیسیون تایید شده',
         pending_commission: 'کمیسیون در حال تایید',
-        all: 'همه'
-      }
-    }
+        all: 'همه',
+      },
+    },
   },
   docs: {
     title: 'مرکز مستندات',
     searchPlaceholder: 'جستجوی مستندات...',
-    noAccessPrompt: 'شما در حال حاضر طرح فعال ندارید. برای مشاهده محتوای این بخش، یک طرح خریداری کنید',
+    noAccessPrompt:
+      'شما در حال حاضر طرح فعال ندارید. برای مشاهده محتوای این بخش، یک طرح خریداری کنید',
     loading: 'در حال بارگذاری مستندات...',
     retry: 'دوباره امتحان کنید',
     clearSearch: 'پاک کردن جستجو',
@@ -796,8 +799,8 @@ export default {
     networkError: 'خطای شبکه',
     welcome: {
       title: 'مرکز مستندات',
-      description: 'مستندات مربوط به استفاده و تنظیمات را پیدا کنید و بخوانید'
-    }
+      description: 'مستندات مربوط به استفاده و تنظیمات را پیدا کنید و بخوانید',
+    },
   },
   browserRestricted: {
     title: 'دسترسی مرورگر محدود است',
@@ -811,7 +814,8 @@ export default {
     downloadSafari: 'دانلود Safari',
     openWithRecommended: 'صفحه را با مرورگر پیشنهادی باز کنید',
     whyRestricted: 'چرا برخی مرورگرها محدود هستند؟',
-    whyRestrictedDesc: 'برخی مرورگرها مشکلات امنیتی دارند یا ویژگی های لازم را پشتیبانی نمی کنند، برای امنیت و تجربه بهتر این محدودیت اعمال می شود',
+    whyRestrictedDesc:
+      'برخی مرورگرها مشکلات امنیتی دارند یا ویژگی های لازم را پشتیبانی نمی کنند، برای امنیت و تجربه بهتر این محدودیت اعمال می شود',
     supportedBrowsersTitle: 'لیست مرورگرهای پشتیبانی شده',
     browserNames: {
       Chrome: 'Chrome',
@@ -821,8 +825,8 @@ export default {
       Opera: 'Opera',
       UC: 'UC',
       Maxthon: 'Maxthon',
-      Unknown: 'ناشناخته'
-    }
+      Unknown: 'ناشناخته',
+    },
   },
   trafficLog: {
     title: 'جزئیات ترافیک',
@@ -843,12 +847,12 @@ export default {
     viewTrafficLog: 'نمایش جزئیات ترافیک',
     days: 'روز',
     trafficLogDesc: 'رکوردهای دقیق ترافیک و آمار را ببینید',
-    trafficChart: 'نمودار روند ترافیک'
+    trafficChart: 'نمودار روند ترافیک',
   },
   wallet: {
     balance: {
       title: 'موجودی حساب',
-      description: 'موجودی شارژ شده فقط برای مصرف است'
+      description: 'موجودی شارژ شده فقط برای مصرف است',
     },
     deposit: {
       title: 'شارژ موجودی',
@@ -861,12 +865,13 @@ export default {
       amountError: {
         required: 'مبلغ شارژ را انتخاب یا وارد کنید',
         invalid: 'مبلغ معتبر وارد کنید',
-        minimum: 'حداقل مبلغ شارژ 1 تومان است'
-      }
+        minimum: 'حداقل مبلغ شارژ 1 تومان است',
+      },
     },
     welcome: {
       title: 'شارژ حساب',
-      description: 'اینجا می توانید موجودی حساب را شارژ کنید، مبلغ را انتخاب کنید یا وارد کنید. موجودی شارژ شده بلافاصله اضافه می شود و برای خرید خدمات استفاده می شود'
-    }
-  }
+      description:
+        'اینجا می توانید موجودی حساب را شارژ کنید، مبلغ را انتخاب کنید یا وارد کنید. موجودی شارژ شده بلافاصله اضافه می شود و برای خرید خدمات استفاده می شود',
+    },
+  },
 };

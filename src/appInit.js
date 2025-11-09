@@ -28,10 +28,7 @@ const initApp = async () => {
 
     app.provide('$toast', toast);
 
-    app.use(router)
-       .use(store)
-       .use(i18n)
-       .use(MotionPlugin);
+    app.use(router).use(store).use(i18n).use(MotionPlugin);
 
     app.mount('#app');
 

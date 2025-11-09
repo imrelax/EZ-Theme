@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -43,7 +41,7 @@ export default {
     sendCodeFailed: '验证码发送失败',
     popup: {
       close_btn: '我知道了',
-      wait_close_btn: '请等待 {seconds} 秒'
+      wait_close_btn: '请等待 {seconds} 秒',
     },
     passwordResetSuccess: '密码重置成功',
     passwordResetFailed: '密码重置失败，请稍后重试',
@@ -65,7 +63,7 @@ export default {
     captcha: '人机验证',
     captchaRequired: '请完成人机验证',
     verifyTokenSuccess: '令牌验证成功',
-    verifyTokenFailed: '令牌验证失败，请重试'
+    verifyTokenFailed: '令牌验证失败，请重试',
   },
   validation: {
     required: '{field}不能为空',
@@ -78,7 +76,7 @@ export default {
     passwordRequired: '请输入密码',
     confirmPasswordRequired: '请确认密码',
     passwordsDontMatch: '两次输入的密码不一致',
-    codeRequired: '请输入验证码'
+    codeRequired: '请输入验证码',
   },
   errors: {
     networkError: '网络错误，请检查您的连接',
@@ -89,7 +87,7 @@ export default {
     notFoundDescription: '抱歉，您访问的页面不存在或已被移除',
     backToHome: '返回首页',
     unknown: '发生未知错误',
-    browserRestricted: '浏览器访问受限'
+    browserRestricted: '浏览器访问受限',
   },
   messages: {
     loginSuccess: '登录成功',
@@ -101,7 +99,7 @@ export default {
     logoutSuccess: '已成功退出登录',
     codeSent: '验证码已发送',
     sendCodeFailed: '验证码发送失败',
-    configLoadFailed: '配置加载失败，请刷新页面重试'
+    configLoadFailed: '配置加载失败，请刷新页面重试',
   },
   browserRestricted: {
     title: '浏览器访问受限',
@@ -115,7 +113,8 @@ export default {
     downloadSafari: '下载 Safari 浏览器',
     openWithRecommended: '使用推荐浏览器打开当前页面',
     whyRestricted: '为什么限制某些浏览器？',
-    whyRestrictedDesc: '一些浏览器可能存在安全问题或不支持必要的功能，我们限制这些浏览器是为了确保您的账户安全和提供更好的用户体验。',
+    whyRestrictedDesc:
+      '一些浏览器可能存在安全问题或不支持必要的功能，我们限制这些浏览器是为了确保您的账户安全和提供更好的用户体验。',
     supportedBrowsersTitle: '支持访问的浏览器列表',
     browserNames: {
       Chrome: 'Chrome 浏览器',
@@ -125,20 +124,20 @@ export default {
       Opera: 'Opera 浏览器',
       UC: 'UC 浏览器',
       Maxthon: '傲游浏览器',
-      Unknown: '未知浏览器'
-    }
+      Unknown: '未知浏览器',
+    },
   },
   landing: {
     mainText: SITE_CONFIG.landingText['zh-CN'] || '探索全球网络无限可能',
     scrollText: '向下滑动以登录',
-    exploreButton: '开始探索'
+    exploreButton: '开始探索',
   },
   contextMenu: {
     refresh: '刷新页面',
     back: '返回上一页',
     forward: '前进下一页',
     copy: '复制',
-    paste: '粘贴'
+    paste: '粘贴',
   },
   service: {
     title: '在线客服',
@@ -150,7 +149,7 @@ export default {
     offline: '客服当前不在线',
     leaveMessage: '留言',
     startChat: '开始聊天',
-    back: '返回'
+    back: '返回',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +183,6 @@ export default {
     copyFailed: '复制失败',
     apiChecking: '正在检测API可用性...',
     checking: '正在检测',
-    completed: '已完成'
-  }
-}; 
+    completed: '已完成',
+  },
+};

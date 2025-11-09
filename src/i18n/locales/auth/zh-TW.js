@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -43,7 +41,7 @@ export default {
     sendCodeFailed: '驗證碼發送失敗',
     popup: {
       close_btn: '我知道了',
-      wait_close_btn: '請等待 {seconds} 秒'
+      wait_close_btn: '請等待 {seconds} 秒',
     },
     passwordResetSuccess: '密碼重置成功',
     passwordResetFailed: '密碼重置失敗，請稍後重試',
@@ -65,7 +63,7 @@ export default {
     captcha: '人機驗證',
     captchaRequired: '請完成人機驗證',
     verifyTokenSuccess: '令牌驗證成功',
-    verifyTokenFailed: '令牌驗證失敗，請重試'
+    verifyTokenFailed: '令牌驗證失敗，請重試',
   },
   validation: {
     required: '{field}不能為空',
@@ -78,7 +76,7 @@ export default {
     passwordRequired: '請輸入密碼',
     confirmPasswordRequired: '請確認密碼',
     passwordsDontMatch: '兩次輸入的密碼不一致',
-    codeRequired: '請輸入驗證碼'
+    codeRequired: '請輸入驗證碼',
   },
   errors: {
     networkError: '網絡錯誤，請檢查您的連接',
@@ -89,7 +87,7 @@ export default {
     notFoundDescription: '抱歉，您訪問的頁面不存在或已被移除',
     backToHome: '返回首頁',
     unknown: '發生未知錯誤',
-    browserRestricted: '瀏覽器訪問受限'
+    browserRestricted: '瀏覽器訪問受限',
   },
   messages: {
     loginSuccess: '登錄成功',
@@ -101,7 +99,7 @@ export default {
     logoutSuccess: '已成功退出登錄',
     codeSent: '驗證碼已發送',
     sendCodeFailed: '驗證碼發送失敗',
-    configLoadFailed: '配置加載失敗，請刷新頁面重試'
+    configLoadFailed: '配置加載失敗，請刷新頁面重試',
   },
   browserRestricted: {
     title: '瀏覽器訪問受限',
@@ -115,7 +113,8 @@ export default {
     downloadSafari: '下載 Safari 瀏覽器',
     openWithRecommended: '使用推薦瀏覽器打開當前頁面',
     whyRestricted: '為什麼限制某些瀏覽器？',
-    whyRestrictedDesc: '一些瀏覽器可能存在安全問題或不支持必要的功能，我們限制這些瀏覽器是為了確保您的賬戶安全和提供更好的用戶體驗。',
+    whyRestrictedDesc:
+      '一些瀏覽器可能存在安全問題或不支持必要的功能，我們限制這些瀏覽器是為了確保您的賬戶安全和提供更好的用戶體驗。',
     supportedBrowsersTitle: '支持訪問的瀏覽器列表',
     browserNames: {
       Chrome: 'Chrome 瀏覽器',
@@ -125,20 +124,20 @@ export default {
       Opera: 'Opera 瀏覽器',
       UC: 'UC 瀏覽器',
       Maxthon: '傲遊瀏覽器',
-      Unknown: '未知瀏覽器'
-    }
+      Unknown: '未知瀏覽器',
+    },
   },
   landing: {
     mainText: SITE_CONFIG.landingText['zh-TW'] || '探索全球網絡無限可能',
     scrollText: '向下滑動以登錄',
-    exploreButton: '開始探索'
+    exploreButton: '開始探索',
   },
   contextMenu: {
     refresh: '刷新頁面',
     back: '返回上一頁',
     forward: '前進下一頁',
     copy: '複製',
-    paste: '粘貼'
+    paste: '粘貼',
   },
   service: {
     title: '線上客服',
@@ -150,7 +149,7 @@ export default {
     offline: '客服當前不在線',
     leaveMessage: '留言',
     startChat: '開始聊天',
-    back: '返回'
+    back: '返回',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +183,6 @@ export default {
     copyFailed: '複製失敗',
     apiChecking: '正在檢測API可用性...',
     checking: '正在檢測',
-    completed: '已完成'
-  }
+    completed: '已完成',
+  },
 };

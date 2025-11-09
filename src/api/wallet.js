@@ -1,22 +1,25 @@
-﻿
-import request from './request';
+﻿import request from './request';
 
-export function getUserConfig() {
-  return request({
-    url: '/user/comm/config',
-    method: 'get'
-  });
-}
+export function getUserConfig() {
+  return request({
+    url: '/user/comm/config',
 
-export function createOrderDeposit(amount) {
-  return request({
-    url: '/user/order/save',
-    method: 'post',
-    data: {
-      period: 'deposit',
-      deposit_amount: amount,
-      plan_id: 0 
-    }
-  });
-}
+    method: 'get',
+  });
+}
 
+export function createOrderDeposit(amount) {
+  return request({
+    url: '/user/order/save',
+
+    method: 'post',
+
+    data: {
+      period: 'deposit',
+
+      deposit_amount: amount,
+
+      plan_id: 0,
+    },
+  });
+}

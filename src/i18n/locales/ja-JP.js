@@ -1,5 +1,4 @@
-﻿
-import { SITE_CONFIG } from '../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../utils/baseConfig';
 
 export default {
   common: {
@@ -74,7 +73,7 @@ export default {
     error_occurred: 'エラーが発生しました。後で再試行してください',
     apiChecking: 'APIの可用性を確認中...',
     checking: '確認中',
-    completed: '完了'
+    completed: '完了',
   },
   auth: {
     loginTitle: 'おかえりなさい',
@@ -109,7 +108,7 @@ export default {
     passwordMatchError: 'パスワードが一致しません',
     captchaSuccess: '認証成功',
     captchaFailed: '認証失敗',
-    
+
     loginNow: '今すぐログイン',
     resetNow: 'パスワードリセット',
     alreadyHaveAccount: 'アカウントをお持ちですか？',
@@ -134,7 +133,7 @@ export default {
     captchaError: '認証エラー。もう一度お試しください',
     captchaLoading: '認証コンポーネント読み込み中...',
     verifyTokenSuccess: 'トークン認証成功',
-    verifyTokenFailed: 'トークン認証失敗、もう一度お試しください'
+    verifyTokenFailed: 'トークン認証失敗、もう一度お試しください',
   },
   validation: {
     required: '{field}は必須です',
@@ -147,7 +146,7 @@ export default {
     passwordRequired: 'パスワードを入力',
     confirmPasswordRequired: 'パスワードを確認',
     passwordsDontMatch: 'パスワードが一致しません',
-    codeRequired: '認証コードを入力'
+    codeRequired: '認証コードを入力',
   },
   errors: {
     networkError: 'ネットワークエラー。接続を確認してください',
@@ -158,7 +157,7 @@ export default {
     notFoundDescription: 'アクセスしたページは存在しないか、削除されました',
     backToHome: 'ホームに戻る',
     unknown: '不明なエラー',
-    browserRestricted: 'ブラウザアクセス制限'
+    browserRestricted: 'ブラウザアクセス制限',
   },
   messages: {
     loginSuccess: 'ログイン成功',
@@ -170,12 +169,12 @@ export default {
     logoutSuccess: 'ログアウト成功',
     codeSent: '認証コード送信済み',
     sendCodeFailed: '認証コード送信失敗',
-    configLoadFailed: '設定読み込み失敗。ページを更新してください'
+    configLoadFailed: '設定読み込み失敗。ページを更新してください',
   },
   landing: {
     mainText: SITE_CONFIG.landingText['ja-JP'] || 'グローバルネットワークの無限の可能性を探る',
     scrollText: '下にスクロールしてログイン',
-    exploreButton: '探索開始'
+    exploreButton: '探索開始',
   },
   dashboard: {
     welcome: 'おかえりなさい',
@@ -198,7 +197,8 @@ export default {
     renewPlan: 'プラン更新',
     noPlanToRenew: '更新可能なプランがありません',
     resetTrafficConfirm: '流量リセット確認',
-    resetTrafficDesc: 'この操作は使用済み流量をリセットしますが、プラン期間は延長されません。続行しますか？',
+    resetTrafficDesc:
+      'この操作は使用済み流量をリセットしますが、プラン期間は延長されません。続行しますか？',
     resetTrafficSuccess: '流量リセット注文作成成功',
     resetTrafficWarning: 'リセットは使用済み流量にのみ影響し、プラン有効期間は延長されません',
     ticketSupport: 'チケットサポート',
@@ -212,7 +212,7 @@ export default {
     deviceLimit: 'オンライン機器',
     unlimited: '無制限',
     nextResetTime: '次回リセット時間',
-    
+
     importTitle: 'インポート方法選択',
     copySubscription: 'サブスクリプションアドレスをコピー',
     copySubscriptionDesc: 'サブスクリプションリンクをクリップボードにコピー',
@@ -227,16 +227,18 @@ export default {
     selectPlatform: 'デバイスプラットフォームを選択',
     subscriptionCopied: 'サブスクリプションリンクをクリップボードにコピー済み',
     copyFailed: 'コピー失敗。手動でコピーしてください',
-    manualImportRequired: '自動インポート不可。サブスクリプションリンクを手動でコピーしてインポートしてください',
+    manualImportRequired:
+      '自動インポート不可。サブスクリプションリンクを手動でコピーしてインポートしてください',
     noSubscription: '利用可能なサブスクリプションなし',
     noClientsAvailable: 'このプラットフォームでは即時インポート方法がありません',
-    clientNotInstalled: '対応クライアントがインストールされていません。サブスクリプションリンクをクリップボードにコピーしました'
+    clientNotInstalled:
+      '対応クライアントがインストールされていません。サブスクリプションリンクをクリップボードにコピーしました',
   },
   platforms: {
     ios: 'iOS',
     android: 'Android',
     windows: 'Windows',
-    macos: 'MacOS'
+    macos: 'MacOS',
   },
   menu: {
     dashboard: 'ダッシュボード',
@@ -251,7 +253,7 @@ export default {
     profile: 'プロフィール',
     more: 'もっと見る',
     commission: 'リベート',
-    hotSale: '人気'
+    hotSale: '人気',
   },
   more: {
     title: '追加機能',
@@ -260,7 +262,7 @@ export default {
     viewNodes: '利用可能なサーバーノードを見る',
     manageOrders: '注文管理',
     getTechnicalSupport: '技術サポートを受ける',
-    manageProfile: 'プロフィール管理'
+    manageProfile: 'プロフィール管理',
   },
   nodes: {
     title: 'ノードリスト',
@@ -269,7 +271,7 @@ export default {
     copiedToClipboard: 'クリップボードにコピー済み',
     welcome: {
       title: 'ノードリスト',
-      description: '利用可能なサーバーノードを表示・使用'
+      description: '利用可能なサーバーノードを表示・使用',
     },
     type: 'ノードタイプ',
     rate: 'レート',
@@ -286,7 +288,7 @@ export default {
     invalidNodeData: 'ノードデータが不完全でリンク生成不可',
     unsupportedNodeType: 'サポートされていないノードタイプ',
     userInfoError: 'ユーザー情報取得失敗',
-    viewSubscribeLink: 'サブスクリプションリンクを見る'
+    viewSubscribeLink: 'サブスクリプションリンクを見る',
   },
   orders: {
     title: '注文リスト',
@@ -307,7 +309,7 @@ export default {
     cancelFailed: '注文キャンセル失敗',
     welcome: {
       title: '注文リスト',
-      description: '注文を表示・管理'
+      description: '注文を表示・管理',
     },
     status: {
       pending: '未払い',
@@ -315,7 +317,7 @@ export default {
       cancelled: 'キャンセル済み',
       completed: '完了',
       discounted: '割引済み',
-      unknown: '不明な状態'
+      unknown: '不明な状態',
     },
     confirmOrder: '注文確認',
     payment: '注文支払い',
@@ -323,11 +325,11 @@ export default {
   tickets: {
     title: 'チケットシステム',
     description: 'サポートチームに連絡',
-    
+
     searchPlaceholder: 'チケット検索...',
     newTicket: '新規チケット',
     createNew: 'チケット作成',
-    
+
     subject: '主題',
     subjectPlaceholder: 'チケットの主題を入力',
     message: '内容',
@@ -336,30 +338,30 @@ export default {
     levelLow: '低',
     levelMedium: '中',
     levelHigh: '高',
-    
+
     statusOpen: '処理中',
     statusClosed: '閉鎖済み',
-    
+
     noTickets: 'チケットなし',
     selectTicket: 'チケットを選択して詳細を見る',
     noMessages: 'メッセージ記録なし',
     loadingMessages: 'メッセージ読み込み中...',
     loadingTickets: 'チケット読み込み中...',
-    
+
     formIncomplete: 'チケット情報をすべて入力してください',
     createSuccess: 'チケット作成成功',
     createError: 'チケット作成失敗',
     fetchError: 'チケットリスト取得失敗',
     fetchDetailError: 'チケット詳細取得失敗',
-    
+
     replyPlaceholder: '返信内容を入力...',
     send: '送信',
     replySent: '返信送信済み',
     replyError: '返信送信失敗',
-    
+
     admin: 'カスタマーサービス',
     you: '私',
-    
+
     closeTicket: 'チケット閉鎖',
     closeConfirmTitle: 'チケット閉鎖確認',
     closeConfirmText: 'このチケットを閉鎖しますか？閉鎖後は返信できません。',
@@ -367,21 +369,20 @@ export default {
     closeError: 'チケット閉鎖失敗',
     ticketClosed: 'このチケットは閉鎖済みで返信できません',
     closing: '閉鎖中...',
-    
+
     createdAt: '作成日',
-    
+
     smallScreenNotice: '小さい画面のデバイスを検出',
     switchToMobile: 'より良い体験のためにモバイルビューに切り替えることを推奨',
     switchToMobileView: 'モバイルビューに切り替え',
-    
+
     largeScreenNotice: '大きい画面を検出',
     switchToDesktop: 'より良い体験のためにデスクトップビューを使用することを推奨',
     switchToDesktopView: 'デスクトップビューに切り替え',
     popup: {
       close_btn: '閉じる',
-      wait_close_btn: '{seconds}秒後に閉じる'
-    }
-    ,
+      wait_close_btn: '{seconds}秒後に閉じる',
+    },
     upPictures: '画像をアップロード',
     uploadingImages: 'アップロード中...',
     uploadTipText: 'ここに画像をドラッグ＆ドロップするか、クリックしてアップロード',
@@ -418,7 +419,8 @@ export default {
     subscription: 'サブスクリプション管理',
     resetSecurity: 'サブスクリプションリセット',
     resetSecurityTitle: 'サブスクリプションリンクリセット',
-    resetSecurityConfirm: 'サブスクリプションをリセットしますか？リセット後、前のサブスクリプションは無効になり、新しいサブスクリプションを再インポートする必要があります。',
+    resetSecurityConfirm:
+      'サブスクリプションをリセットしますか？リセット後、前のサブスクリプションは無効になり、新しいサブスクリプションを再インポートする必要があります。',
     resetSuccess: 'リセット成功',
     resetError: 'リセット失敗',
     copySubscription: 'サブスクリプションリンクコピー',
@@ -462,14 +464,14 @@ export default {
     commandCopied: 'コマンドをクリップボードにコピー済み',
     iKnow: '了解',
     telegram: 'Telegram通信',
-    telegramError: 'Telegram情報取得失敗'
+    telegramError: 'Telegram情報取得失敗',
   },
   contextMenu: {
     refresh: 'ページ更新',
     back: '前のページに戻る',
     forward: '次のページに進む',
     copy: 'コピー',
-    paste: '貼り付け'
+    paste: '貼り付け',
   },
   service: {
     title: 'オンラインカスタマーサービス',
@@ -481,7 +483,7 @@ export default {
     offline: 'カスタマーサービスは現在オフラインです',
     leaveMessage: 'メッセージを残す',
     startChat: 'チャット開始',
-    back: '戻る'
+    back: '戻る',
   },
   shop: {
     title: 'ストア',
@@ -490,7 +492,7 @@ export default {
     filter: {
       all: 'すべて',
       recurring: '定期',
-      onetime: '一次性'
+      onetime: '一次性',
     },
     no_plans_found: '条件に合うプランが見つかりません',
     try_different_filter: '他のフィルタ条件を試してください',
@@ -501,7 +503,7 @@ export default {
       stock: {
         plenty: '在庫十分',
         warning: '在庫僅少',
-        sold_out: '売り切れ'
+        sold_out: '売り切れ',
       },
       periods: {
         month: ' / 月払い',
@@ -510,7 +512,7 @@ export default {
         year: ' / 1年',
         two_year: ' / 2年',
         three_year: ' / 3年',
-        onetime: ' / 一次性'
+        onetime: ' / 一次性',
       },
       price_options: {
         month: '月払い',
@@ -521,12 +523,12 @@ export default {
         three_year: '3年',
         onetime: '一次性',
         reset_price: '流量リセットパック',
-        deposit: 'チャージ'
+        deposit: 'チャージ',
       },
       discount: {
         relative: '相対割引約',
-        savings: '節約できます'
-      }
+        savings: '節約できます',
+      },
     },
     stats: {
       global_nodes: 'グローバルノード',
@@ -536,13 +538,13 @@ export default {
       streaming: 'ストリーミング解除',
       streaming_desc: '各種ストリーミングサービスを解除',
       devices: '複数デバイス対応',
-      devices_desc: '複数デバイスの同時使用に対応'
+      devices_desc: '複数デバイスの同時使用に対応',
     },
     config_error: 'ストア設定取得失敗',
     popup: {
       close_btn: '了解',
-      wait_close_btn: '{seconds}秒お待ちください'
-    }
+      wait_close_btn: '{seconds}秒お待ちください',
+    },
   },
   order: {
     title: '注文確認',
@@ -570,7 +572,7 @@ export default {
     order_failed: '注文作成失敗',
     no_plan_selected: 'プラン未選択',
     plan_not_found: 'プランが存在しません',
-    failed_to_fetch_plan: 'プラン情報取得失敗'
+    failed_to_fetch_plan: 'プラン情報取得失敗',
   },
   payment: {
     title: '注文支払い',
@@ -580,7 +582,7 @@ export default {
     period: '周期',
     period_types: {
       reset_price: '流量リセットパック',
-      deposit: 'チャージ'
+      deposit: 'チャージ',
     },
     traffic: '流量',
     order_info: '注文情報',
@@ -646,8 +648,8 @@ export default {
       completed: '完了',
       discounted: '割引済み',
       unknown: '不明な状態',
-      activate: 'アクティブ化待ち'
-    }
+      activate: 'アクティブ化待ち',
+    },
   },
   invite: {
     title: 'マイリベート',
@@ -656,33 +658,33 @@ export default {
       registeredUsers: '登録ユーザー数',
       pendingCommission: '確認中のコミッション',
       availableCommission: '累計獲得コミッション',
-      commissionRate: 'コミッション率'
+      commissionRate: 'コミッション率',
     },
     rules: {
       title: 'リベートルール',
       share: {
         title: '1. 共有',
-        desc: '招待リンクを共有'
+        desc: '招待リンクを共有',
       },
       register: {
         title: '2. 登録',
-        desc: '友達が登録を完了'
+        desc: '友達が登録を完了',
       },
       purchase: {
         title: '3. 購入',
-        desc: '友達がプランを購入'
+        desc: '友達がプランを購入',
       },
       commission: {
         title: '4. リベート',
-        desc: '{rate}%のリベートを獲得'
-      }
+        desc: '{rate}%のリベートを獲得',
+      },
     },
     balance: {
       title: 'コミッション残高',
       available: '利用可能なコミッション',
       description: '友達招待で獲得したコミッションは消費残高に直接移行可能',
       transferToBalance: '残高に移行',
-      withdraw: '引き出し'
+      withdraw: '引き出し',
     },
     transfer: {
       title: 'コミッション移行',
@@ -696,7 +698,7 @@ export default {
       success: '移行成功',
       failure: '移行失敗',
       insufficientFunds: '利用可能なコミッション不足',
-      invalidAmount: '有効な金額を入力'
+      invalidAmount: '有効な金額を入力',
     },
     withdraw: {
       title: 'コミッション引き出し',
@@ -715,7 +717,7 @@ export default {
       invalidAmount: '有効な金額を入力',
       insufficientFunds: '利用可能なコミッション不足',
       belowMinAmount: '引き出し金額は{amount}未満不可',
-      minWithdrawAmount: '最低引き出し金額'
+      minWithdrawAmount: '最低引き出し金額',
     },
     inviteLink: {
       title: '招待リンク',
@@ -729,7 +731,7 @@ export default {
       copyLink: 'リンクコピー',
       copied: 'コピー済み',
       noInviteCode: '利用可能な招待コードなし',
-      created: '招待コード生成成功。友達と共有してください'
+      created: '招待コード生成成功。友達と共有してください',
     },
     share: {
       wechat: 'WeChat',
@@ -742,7 +744,7 @@ export default {
       inviteQRCode: '招待リンクQRコード',
       orCopyLink: 'またはリンクをコピー',
       shareTitle: 'サービスへの招待',
-      shareDescription: 'このサービスを利用中です。ぜひ試してみてください'
+      shareDescription: 'このサービスを利用中です。ぜひ試してみてください',
     },
     records: {
       title: 'リベート記録',
@@ -767,19 +769,20 @@ export default {
         waiting: '待機中',
         processing: '処理中',
         invalid: '無効',
-        unknown: '不明'
+        unknown: '不明',
       },
       types: {
         confirmed_commission: '確認済みコミッション',
         pending_commission: '確認中コミッション',
-        all: 'すべて'
-      }
-    }
+        all: 'すべて',
+      },
+    },
   },
   docs: {
     title: 'ドキュメントセンター',
     searchPlaceholder: 'ドキュメント検索...',
-    noAccessPrompt: '現在有効なプランがありません。プランを購入すると本セクションの内容を閲覧できます',
+    noAccessPrompt:
+      '現在有効なプランがありません。プランを購入すると本セクションの内容を閲覧できます',
     loading: 'ドキュメント読み込み中...',
     retry: '再試行',
     clearSearch: '検索クリア',
@@ -792,17 +795,19 @@ export default {
     docNotFound: 'ドキュメントが存在しません',
     invalidDocId: '無効なドキュメントID',
     contentFormatError: 'ドキュメント内容の形式エラー。正常に表示できません',
-    languageHint: '現在の言語 {currentLang} にドキュメントがありません。他の言語に切り替えてください',
+    languageHint:
+      '現在の言語 {currentLang} にドキュメントがありません。他の言語に切り替えてください',
     networkError: 'ネットワークエラー',
     welcome: {
       title: 'ドキュメントセンター',
-      description: '使用と設定に関する詳細なドキュメントを検索・閲覧'
-    }
+      description: '使用と設定に関する詳細なドキュメントを検索・閲覧',
+    },
   },
   browserRestricted: {
     title: 'ブラウザアクセス制限',
     subtitle: '現在のブラウザはサポートされていません',
-    description: '最適な閲覧体験とセキュリティを確保するため、このウェブサイトは使用中のブラウザをサポートしていません。',
+    description:
+      '最適な閲覧体験とセキュリティを確保するため、このウェブサイトは使用中のブラウザをサポートしていません。',
     recommendText: '以下の推奨ブラウザを使用してアクセスしてください：',
     currentBrowser: '現在使用中のブラウザ：',
     currentUrl: '現在のURL：',
@@ -811,7 +816,8 @@ export default {
     downloadSafari: 'Safariブラウザをダウンロード',
     openWithRecommended: '推奨ブラウザで現在のページを開く',
     whyRestricted: 'なぜ一部のブラウザを制限するのか？',
-    whyRestrictedDesc: '一部のブラウザにはセキュリティ問題や必要な機能の非対応があるため、アカウントの安全と優れたユーザー体験を確保するためにこれらのブラウザを制限しています。',
+    whyRestrictedDesc:
+      '一部のブラウザにはセキュリティ問題や必要な機能の非対応があるため、アカウントの安全と優れたユーザー体験を確保するためにこれらのブラウザを制限しています。',
     supportedBrowsersTitle: 'サポートされているブラウザリスト',
     browserNames: {
       Chrome: 'Chromeブラウザ',
@@ -821,8 +827,8 @@ export default {
       Opera: 'Operaブラウザ',
       UC: 'UCブラウザ',
       Maxthon: '傲游ブラウザ',
-      Unknown: '不明なブラウザ'
-    }
+      Unknown: '不明なブラウザ',
+    },
   },
   trafficLog: {
     title: '流量明細',
@@ -843,12 +849,12 @@ export default {
     viewTrafficLog: '流量明細を見る',
     days: '日',
     trafficLogDesc: '詳細な流量使用記録と統計を閲覧',
-    trafficChart: '流量トレンドグラフ'
+    trafficChart: '流量トレンドグラフ',
   },
   wallet: {
     balance: {
       title: 'アカウント残高',
-      description: 'チャージ後の残高は消費専用です'
+      description: 'チャージ後の残高は消費専用です',
     },
     deposit: {
       title: '残高チャージ',
@@ -861,12 +867,13 @@ export default {
       amountError: {
         required: 'チャージ金額を選択または入力してください',
         invalid: '有効な金額を入力してください',
-        minimum: '最低チャージ金額は1円です'
-      }
+        minimum: '最低チャージ金額は1円です',
+      },
     },
     welcome: {
       title: 'アカウントチャージ',
-      description: 'ここでは簡単にアカウントにチャージできます。プリセット金額を選択するか、カスタム金額を入力してチャージしてください。チャージ後の残高は即時反映され、サービスの購入に使用できます。'
-    }
-  }
+      description:
+        'ここでは簡単にアカウントにチャージできます。プリセット金額を選択するか、カスタム金額を入力してチャージしてください。チャージ後の残高は即時反映され、サービスの購入に使用できます。',
+    },
+  },
 };

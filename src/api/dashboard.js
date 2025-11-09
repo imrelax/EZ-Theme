@@ -1,74 +1,49 @@
 ﻿import request from './request';
 
 export function getUserInfo() {
+  return request({
+    url: '/user/info',
 
-    return request({
-
-        url: '/user/info',
-
-        method: 'get'
-
-    });
-
+    method: 'get',
+  });
 }
 
 export function getSubscribe() {
+  return request({
+    url: '/user/getSubscribe',
 
-    return request({
-
-        url: '/user/getSubscribe',
-
-        method: 'get'
-
-    });
-
+    method: 'get',
+  });
 }
 
 export function getNotices() {
+  return request({
+    url: '/user/notice/fetch',
 
-    return request({
-
-        url: '/user/notice/fetch',
-
-        method: 'get'
-
-    });
-
+    method: 'get',
+  });
 }
 
 export function getUserStats() {
+  return request({
+    url: '/user/getStat',
 
-    return request({
-
-        url: '/user/getStat',
-
-        method: 'get'
-
-    });
-
+    method: 'get',
+  });
 }
 
 export function getUserConfig() {
+  return request({
+    url: '/user/comm/config',
 
-    return request({
-
-        url: '/user/comm/config',
-
-        method: 'get'
-
-    });
-
+    method: 'get',
+  });
 }
 
 export function setNextPeriod() {
+  return request({
+    url: '/user/newPeriod',
 
-    return request({
-
-        url: '/user/newPeriod',
-
-        method: 'POST'
-
-    });
-
+    method: 'POST',
+  });
 }
-

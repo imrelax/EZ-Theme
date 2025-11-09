@@ -1,5 +1,4 @@
-﻿
-import { SITE_CONFIG } from '../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../utils/baseConfig';
 
 export default {
   common: {
@@ -74,7 +73,7 @@ export default {
     error_occurred: '發生錯誤，請稍後重試',
     apiChecking: '正在檢測API可用性...',
     checking: '正在檢測',
-    completed: '已完成'
+    completed: '已完成',
   },
   auth: {
     loginTitle: '歡迎回來',
@@ -109,7 +108,7 @@ export default {
     passwordMatchError: '兩次輸入的密碼不一致',
     captchaSuccess: '人機驗證成功',
     captchaFailed: '人機驗證失敗',
-    
+
     loginNow: '立即登入',
     resetNow: '重設密碼',
     alreadyHaveAccount: '已有帳戶？',
@@ -134,7 +133,7 @@ export default {
     captchaError: '驗證錯誤，請重試',
     captchaLoading: '正在載入驗證元件...',
     verifyTokenSuccess: '令牌驗證成功',
-    verifyTokenFailed: '令牌驗證失敗，請重試'
+    verifyTokenFailed: '令牌驗證失敗，請重試',
   },
   validation: {
     required: '{field}不能為空',
@@ -147,7 +146,7 @@ export default {
     passwordRequired: '請輸入密碼',
     confirmPasswordRequired: '請確認密碼',
     passwordsDontMatch: '兩次輸入的密碼不一致',
-    codeRequired: '請輸入驗證碼'
+    codeRequired: '請輸入驗證碼',
   },
   errors: {
     networkError: '網路錯誤，請檢查您的連線',
@@ -158,7 +157,7 @@ export default {
     notFoundDescription: '抱歉，您存取的頁面不存在或已被移除',
     backToHome: '返回首頁',
     unknown: '發生未知錯誤',
-    browserRestricted: '瀏覽器存取受限'
+    browserRestricted: '瀏覽器存取受限',
   },
   messages: {
     loginSuccess: '登入成功',
@@ -170,12 +169,12 @@ export default {
     logoutSuccess: '已成功登出',
     codeSent: '驗證碼已傳送',
     sendCodeFailed: '驗證碼傳送失敗',
-    configLoadFailed: '配置載入失敗，請重新整理頁面重試'
+    configLoadFailed: '配置載入失敗，請重新整理頁面重試',
   },
   landing: {
     mainText: SITE_CONFIG.landingText['zh-TW'] || '探索全球網路的無限可能',
     scrollText: '向下滑動以登入',
-    exploreButton: '開始探索'
+    exploreButton: '開始探索',
   },
   dashboard: {
     welcome: '歡迎回來',
@@ -212,7 +211,7 @@ export default {
     deviceLimit: '線上設備',
     unlimited: '不限制',
     nextResetTime: '下次重設時間',
-    
+
     importTitle: '選擇匯入方式',
     copySubscription: '複製訂閱地址',
     copySubscriptionDesc: '複製訂閱連結到剪貼簿',
@@ -230,13 +229,13 @@ export default {
     manualImportRequired: '無法自動匯入，請手動複製訂閱連結匯入',
     noSubscription: '無可用訂閱',
     noClientsAvailable: '此平台暫無可用快速匯入方式',
-    clientNotInstalled: '您未安裝對應的客戶端，已複製訂閱連結到剪貼簿'
+    clientNotInstalled: '您未安裝對應的客戶端，已複製訂閱連結到剪貼簿',
   },
   platforms: {
     ios: 'iOS',
     android: 'Android',
     windows: 'Windows',
-    macos: 'MacOS'
+    macos: 'MacOS',
   },
   menu: {
     dashboard: '儀表板',
@@ -251,7 +250,7 @@ export default {
     profile: '帳號',
     more: '更多',
     commission: '返利',
-    hotSale: '熱銷'
+    hotSale: '熱銷',
   },
   more: {
     title: '更多功能',
@@ -260,7 +259,7 @@ export default {
     viewNodes: '檢視可用伺服器節點',
     manageOrders: '管理您的訂單',
     getTechnicalSupport: '取得技術支援',
-    manageProfile: '管理個人資料'
+    manageProfile: '管理個人資料',
   },
   nodes: {
     title: '節點列表',
@@ -269,7 +268,7 @@ export default {
     copiedToClipboard: '已複製到剪貼簿',
     welcome: {
       title: '節點列表',
-      description: '檢視並使用可用伺服器節點'
+      description: '檢視並使用可用伺服器節點',
     },
     type: '節點類型',
     rate: '倍率',
@@ -286,7 +285,7 @@ export default {
     invalidNodeData: '節點資料不完整，無法產生連結',
     unsupportedNodeType: '不支援的節點類型',
     userInfoError: '取得使用者資訊失敗',
-    viewSubscribeLink: '檢視訂閱連結'
+    viewSubscribeLink: '檢視訂閱連結',
   },
   orders: {
     title: '訂單列表',
@@ -307,7 +306,7 @@ export default {
     cancelFailed: '取消訂單失敗',
     welcome: {
       title: '訂單列表',
-      description: '檢視並管理您的訂單'
+      description: '檢視並管理您的訂單',
     },
     status: {
       pending: '待支付',
@@ -315,7 +314,7 @@ export default {
       cancelled: '已取消',
       completed: '已完成',
       discounted: '已折抵',
-      unknown: '未知狀態'
+      unknown: '未知狀態',
     },
     confirmOrder: '確認訂單',
     payment: '支付訂單',
@@ -323,11 +322,11 @@ export default {
   tickets: {
     title: '工單系統',
     description: '與我們的支援團隊聯繫',
-    
+
     searchPlaceholder: '搜尋工單...',
     newTicket: '新建工單',
     createNew: '建立工單',
-    
+
     subject: '主題',
     subjectPlaceholder: '請輸入工單主題',
     message: '內容',
@@ -336,30 +335,30 @@ export default {
     levelLow: '低',
     levelMedium: '中',
     levelHigh: '高',
-    
+
     statusOpen: '處理中',
     statusClosed: '已關閉',
-    
+
     noTickets: '暫無工單',
     selectTicket: '請選擇工單檢視詳情',
     noMessages: '暫無訊息記錄',
     loadingMessages: '正在載入訊息...',
     loadingTickets: '載入工單中...',
-    
+
     formIncomplete: '請填寫完整的工單資訊',
     createSuccess: '工單建立成功',
     createError: '工單建立失敗',
     fetchError: '取得工單列表失敗',
     fetchDetailError: '取得工單詳情失敗',
-    
+
     replyPlaceholder: '請輸入回覆內容...',
     send: '傳送',
     replySent: '回覆已傳送',
     replyError: '回覆傳送失敗',
-    
+
     admin: '客服',
     you: '我',
-    
+
     closeTicket: '關閉工單',
     closeConfirmTitle: '確認關閉工單',
     closeConfirmText: '您確定要關閉此工單？關閉後無法繼續回覆。',
@@ -367,25 +366,25 @@ export default {
     closeError: '關閉工單失敗',
     ticketClosed: '此工單已關閉，無法回覆',
     closing: '關閉中...',
-    
+
     createdAt: '建立時間',
-    
+
     smallScreenNotice: '偵測到小螢幕設備',
     switchToMobile: '為獲得更好的體驗，建議切換到行動端視圖',
     switchToMobileView: '切換到行動端視圖',
-    
+
     largeScreenNotice: '偵測到較大螢幕',
     switchToDesktop: '建議使用電腦端工單頁面以獲得更好的體驗',
     switchToDesktopView: '切換到電腦端視圖',
     popup: {
-            close_btn: '關閉',
-            wait_close_btn: '{seconds}秒後關閉'
-        },
+      close_btn: '關閉',
+      wait_close_btn: '{seconds}秒後關閉',
+    },
     upPictures: '上傳圖片',
     uploadingImages: '上傳中...',
     uploadTipText: '拖曳圖片到此處或點擊上傳',
     uploadDescText: '支援 JPG、PNG、GIF 格式，最大 5 MB',
-    uploadSuccess: '圖片上傳成功'
+    uploadSuccess: '圖片上傳成功',
   },
   profile: {
     title: '用戶中心',
@@ -461,14 +460,14 @@ export default {
     commandCopied: '指令已複製到剪貼簿',
     iKnow: '我知道了',
     telegram: 'Telegram 通訊',
-    telegramError: '取得Telegram資訊失敗'
+    telegramError: '取得Telegram資訊失敗',
   },
   contextMenu: {
     refresh: '重新整理頁面',
     back: '返回上一頁',
     forward: '前進下一頁',
     copy: '複製',
-    paste: '貼上'
+    paste: '貼上',
   },
   service: {
     title: '線上客服',
@@ -480,7 +479,7 @@ export default {
     offline: '客服目前不在線',
     leaveMessage: '留言',
     startChat: '開始聊天',
-    back: '返回'
+    back: '返回',
   },
   shop: {
     title: '商店',
@@ -489,7 +488,7 @@ export default {
     filter: {
       all: '全部',
       recurring: '週期性',
-      onetime: '一次性'
+      onetime: '一次性',
     },
     no_plans_found: '未找到符合條件的套餐',
     try_different_filter: '請嘗試其他篩選條件',
@@ -500,7 +499,7 @@ export default {
       stock: {
         plenty: '庫存充足',
         warning: '庫存緊張',
-        sold_out: '已售罄'
+        sold_out: '已售罄',
       },
       periods: {
         month: ' / 月付',
@@ -509,7 +508,7 @@ export default {
         year: ' / 一年',
         two_year: ' / 兩年',
         three_year: ' / 三年',
-        onetime: ' / 一次性'
+        onetime: ' / 一次性',
       },
       price_options: {
         month: '月付',
@@ -520,12 +519,12 @@ export default {
         three_year: '三年',
         onetime: '一次性',
         reset_price: '重設流量包',
-        deposit: '充值'
+        deposit: '充值',
       },
       discount: {
         relative: '相對折扣大約',
-        savings: '為您節省'
-      }
+        savings: '為您節省',
+      },
     },
     stats: {
       global_nodes: '全球節點',
@@ -535,12 +534,12 @@ export default {
       streaming: '串流媒體解鎖',
       streaming_desc: '解鎖各類串流媒體服務',
       devices: '多設備支援',
-      devices_desc: '同時支援多台設備使用'
+      devices_desc: '同時支援多台設備使用',
     },
     config_error: '取得商店配置失敗',
     popup: {
       close_btn: '我知道了',
-      wait_close_btn: '請等待 {seconds} 秒'
+      wait_close_btn: '請等待 {seconds} 秒',
     },
   },
   order: {
@@ -569,7 +568,7 @@ export default {
     order_failed: '訂單建立失敗',
     no_plan_selected: '未選擇套餐',
     plan_not_found: '套餐不存在',
-    failed_to_fetch_plan: '取得套餐資訊失敗'
+    failed_to_fetch_plan: '取得套餐資訊失敗',
   },
   payment: {
     title: '支付訂單',
@@ -579,7 +578,7 @@ export default {
     period: '週期',
     period_types: {
       reset_price: '重設流量包',
-      deposit: '充值'
+      deposit: '充值',
     },
     traffic: '流量',
     order_info: '訂單資訊',
@@ -645,8 +644,8 @@ export default {
       completed: '已完成',
       discounted: '已折抵',
       unknown: '未知狀態',
-      activate: '待啟動'
-    }
+      activate: '待啟動',
+    },
   },
   invite: {
     title: '我的返佣',
@@ -655,33 +654,33 @@ export default {
       registeredUsers: '已註冊用戶數',
       pendingCommission: '確認中的佣金',
       availableCommission: '累計獲得佣金',
-      commissionRate: '佣金比例'
+      commissionRate: '佣金比例',
     },
     rules: {
       title: '返佣規則',
       share: {
         title: '1. 分享',
-        desc: '分享邀請連結'
+        desc: '分享邀請連結',
       },
       register: {
         title: '2. 註冊',
-        desc: '好友完成註冊'
+        desc: '好友完成註冊',
       },
       purchase: {
         title: '3. 購買',
-        desc: '好友購買套餐'
+        desc: '好友購買套餐',
       },
       commission: {
         title: '4. 返佣',
-        desc: '獲得{rate}%返佣'
-      }
+        desc: '獲得{rate}%返佣',
+      },
     },
     balance: {
       title: '佣金餘額',
       available: '可用佣金',
       description: '邀請好友獲得的佣金，可直接劃轉到消費餘額',
       transferToBalance: '劃轉到餘額',
-      withdraw: '提現'
+      withdraw: '提現',
     },
     transfer: {
       title: '劃轉佣金',
@@ -695,7 +694,7 @@ export default {
       success: '劃轉成功',
       failure: '劃轉失敗',
       insufficientFunds: '可用佣金不足',
-      invalidAmount: '請輸入有效金額'
+      invalidAmount: '請輸入有效金額',
     },
     withdraw: {
       title: '提現佣金',
@@ -714,7 +713,7 @@ export default {
       invalidAmount: '請輸入有效金額',
       insufficientFunds: '可用佣金不足',
       belowMinAmount: '提現金額不得低於{amount}',
-      minWithdrawAmount: '最低提現金額'
+      minWithdrawAmount: '最低提現金額',
     },
     inviteLink: {
       title: '邀請連結',
@@ -728,7 +727,7 @@ export default {
       copyLink: '複製連結',
       copied: '已複製',
       noInviteCode: '暫無可用邀請碼',
-      created: '邀請碼產生成功，可分享給好友'
+      created: '邀請碼產生成功，可分享給好友',
     },
     share: {
       wechat: '微信',
@@ -741,7 +740,7 @@ export default {
       inviteQRCode: '邀請連結二維碼',
       orCopyLink: '或複製連結',
       shareTitle: '邀請您使用我們的服務',
-      shareDescription: '我正在使用此服務，推薦您也來體驗'
+      shareDescription: '我正在使用此服務，推薦您也來體驗',
     },
     records: {
       title: '返佣記錄',
@@ -766,14 +765,14 @@ export default {
         waiting: '等待中',
         processing: '處理中',
         invalid: '無效',
-        unknown: '未知'
+        unknown: '未知',
       },
       types: {
         confirmed_commission: '已確認佣金',
         pending_commission: '確認中佣金',
-        all: '全部'
-      }
-    }
+        all: '全部',
+      },
+    },
   },
   docs: {
     title: '文件中心',
@@ -795,8 +794,8 @@ export default {
     networkError: '網路錯誤',
     welcome: {
       title: '文件中心',
-      description: '查找並閱讀有關使用與配置的詳細文件。'
-    }
+      description: '查找並閱讀有關使用與配置的詳細文件。',
+    },
   },
   browserRestricted: {
     title: '瀏覽器存取受限',
@@ -810,7 +809,8 @@ export default {
     downloadSafari: '下載 Safari 瀏覽器',
     openWithRecommended: '使用推薦瀏覽器開啟目前頁面',
     whyRestricted: '為何限制某些瀏覽器？',
-    whyRestrictedDesc: '部分瀏覽器可能存在安全問題或不支援必要功能，我們限制這些瀏覽器以確保您的帳戶安全並提供更好的用戶體驗。',
+    whyRestrictedDesc:
+      '部分瀏覽器可能存在安全問題或不支援必要功能，我們限制這些瀏覽器以確保您的帳戶安全並提供更好的用戶體驗。',
     supportedBrowsersTitle: '支援存取的瀏覽器列表',
     browserNames: {
       Chrome: 'Chrome 瀏覽器',
@@ -820,8 +820,8 @@ export default {
       Opera: 'Opera 瀏覽器',
       UC: 'UC 瀏覽器',
       Maxthon: '傲遊瀏覽器',
-      Unknown: '未知瀏覽器'
-    }
+      Unknown: '未知瀏覽器',
+    },
   },
   trafficLog: {
     title: '流量明細',
@@ -842,12 +842,12 @@ export default {
     viewTrafficLog: '檢視流量明細',
     days: '天',
     trafficLogDesc: '檢視詳細的流量使用記錄與統計',
-    trafficChart: '流量趨勢圖'
+    trafficChart: '流量趨勢圖',
   },
   wallet: {
     balance: {
       title: '帳戶餘額',
-      description: '充值後的餘額僅限消費'
+      description: '充值後的餘額僅限消費',
     },
     deposit: {
       title: '充值餘額',
@@ -860,12 +860,13 @@ export default {
       amountError: {
         required: '請選擇或輸入充值金額',
         invalid: '請輸入有效金額',
-        minimum: '最低充值金額為1元'
-      }
+        minimum: '最低充值金額為1元',
+      },
     },
     welcome: {
       title: '帳戶充值',
-      description: '在此您可輕鬆為帳戶充值，選擇預設金額或輸入自訂金額進行充值。充值後的餘額將立即到帳，可用於購買我們的服務。'
-    }
-  }
+      description:
+        '在此您可輕鬆為帳戶充值，選擇預設金額或輸入自訂金額進行充值。充值後的餘額將立即到帳，可用於購買我們的服務。',
+    },
+  },
 };

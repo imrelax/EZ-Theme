@@ -1,6 +1,4 @@
-﻿
-
-import zhCN from './zh-CN';
+﻿import zhCN from './zh-CN';
 
 import viVN from './vi-VN';
 
@@ -17,7 +15,6 @@ import ruRU from './ru-RU';
 import faIR from './fa-IR';
 
 export default {
-
   'zh-CN': zhCN,
 
   'vi-VN': viVN,
@@ -32,6 +29,5 @@ export default {
 
   'ru-RU': ruRU,
 
-  'fa-IR': faIR
-
+  'fa-IR': faIR,
 };

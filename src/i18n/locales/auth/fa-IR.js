@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -43,7 +41,7 @@ export default {
     sendCodeFailed: 'ارسال کد شکست خورد',
     popup: {
       close_btn: 'متوجه شدم',
-      wait_close_btn: 'لطفا {seconds} ثانیه صبر کنید'
+      wait_close_btn: 'لطفا {seconds} ثانیه صبر کنید',
     },
     passwordResetSuccess: 'پسورد بازنشانی شد',
     passwordResetFailed: 'بازنشانی شکست خورد، بعدا امتحان کنید',
@@ -65,7 +63,7 @@ export default {
     captcha: 'تایید انسان',
     captchaRequired: 'تایید انسان را انجام دهید',
     verifyTokenSuccess: 'تایید توکن موفق',
-    verifyTokenFailed: 'تایید توکن شکست خورد، لطفا دوباره امتحان کنید'
+    verifyTokenFailed: 'تایید توکن شکست خورد، لطفا دوباره امتحان کنید',
   },
   validation: {
     required: '{field} نمی تواند خالی باشد',
@@ -78,7 +76,7 @@ export default {
     passwordRequired: 'پسورد را وارد کنید',
     confirmPasswordRequired: 'پسورد را تایید کنید',
     passwordsDontMatch: 'پسورد ها مطابقت ندارند',
-    codeRequired: 'کد تایید را وارد کنید'
+    codeRequired: 'کد تایید را وارد کنید',
   },
   errors: {
     networkError: 'خطای شبکه، اتصال را چک کنید',
@@ -89,7 +87,7 @@ export default {
     notFoundDescription: 'متاسفیم، صفحه مورد نظر وجود ندارد یا حذف شده است',
     backToHome: 'به خانه برگردید',
     unknown: 'خطای ناشناخته رخ داد',
-    browserRestricted: 'دسترسی مرورگر محدود است'
+    browserRestricted: 'دسترسی مرورگر محدود است',
   },
   messages: {
     loginSuccess: 'ورود موفق',
@@ -101,7 +99,7 @@ export default {
     logoutSuccess: 'خروج موفق',
     codeSent: 'کد تایید ارسال شد',
     sendCodeFailed: 'ارسال کد شکست خورد',
-    configLoadFailed: 'بارگذاری تنظیمات شکست خورد، صفحه را تازه کنید'
+    configLoadFailed: 'بارگذاری تنظیمات شکست خورد، صفحه را تازه کنید',
   },
   browserRestricted: {
     title: 'دسترسی مرورگر محدود است',
@@ -115,7 +113,8 @@ export default {
     downloadSafari: 'دانلود Safari',
     openWithRecommended: 'صفحه را با مرورگر پیشنهادی باز کنید',
     whyRestricted: 'چرا برخی مرورگرها محدود هستند؟',
-    whyRestrictedDesc: 'برخی مرورگرها مشکلات امنیتی دارند یا ویژگی های لازم را پشتیبانی نمی کنند، برای امنیت و تجربه بهتر این محدودیت اعمال می شود',
+    whyRestrictedDesc:
+      'برخی مرورگرها مشکلات امنیتی دارند یا ویژگی های لازم را پشتیبانی نمی کنند، برای امنیت و تجربه بهتر این محدودیت اعمال می شود',
     supportedBrowsersTitle: 'لیست مرورگرهای پشتیبانی شده',
     browserNames: {
       Chrome: 'Chrome',
@@ -125,20 +124,20 @@ export default {
       Opera: 'Opera',
       UC: 'UC',
       Maxthon: 'Maxthon',
-      Unknown: 'ناشناخته'
-    }
+      Unknown: 'ناشناخته',
+    },
   },
   landing: {
     mainText: SITE_CONFIG.landingText['fa-IR'] || 'امکانات نامحدود شبکه جهانی را کاوش کنید',
     scrollText: 'برای ورود به پایین بکشید',
-    exploreButton: 'شروع کاوش'
+    exploreButton: 'شروع کاوش',
   },
   contextMenu: {
     refresh: 'تازه سازی صفحه',
     back: 'بازگشت به صفحه قبلی',
     forward: 'به صفحه بعدی',
     copy: 'کپی',
-    paste: 'چسباندن'
+    paste: 'چسباندن',
   },
   service: {
     title: 'پشتیبانی آنلاین',
@@ -150,7 +149,7 @@ export default {
     offline: 'پشتیبانی در حال حاضر آفلاین است',
     leaveMessage: 'پیام بگذارید',
     startChat: 'شروع چت',
-    back: 'بازگشت'
+    back: 'بازگشت',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +183,6 @@ export default {
     copyFailed: 'کپی ناموفق بود',
     apiChecking: 'در حال بررسی دسترسی به API...',
     checking: 'در حال بررسی',
-    completed: 'تکمیل شد'
-  }
+    completed: 'تکمیل شد',
+  },
 };

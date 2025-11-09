@@ -1,282 +1,249 @@
 ﻿<template>
-
   <div class="main-board">
-
     <!-- 域名授权验证提示 - 如果不需要域名授权功能，移除此组件即可 -->
 
     <!-- 内容区域 - 路由视图 -->
 
     <div class="content-area">
-
       <router-view v-slot="{ Component }">
-
         <transition name="content-transition" mode="out-in" appear>
-
           <div class="view-wrapper" :key="$route.path">
-
             <component :is="Component" />
-
           </div>
-
         </transition>
-
       </router-view>
-
     </div>
 
     <!-- 背景装饰 -->
 
     <div class="background-decoration">
-
       <div class="floating-ball ball-1"></div>
 
       <div class="floating-ball ball-2"></div>
 
       <div class="floating-ball ball-3"></div>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
+  import { ref, onMounted } from 'vue';
 
-import { ref, onMounted } from 'vue';
+  import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
-import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
+  export default {
+    name: 'MainBoard',
 
-export default {
+    components: {
+      DomainAuthAlert,
+    },
 
-  name: 'MainBoard',
-
-  components: {
-
-    DomainAuthAlert
-
-  },
-
-  setup() {
-
-    onMounted(() => {
-
-    });
-
-  }
-
-};
-
+    setup() {
+      onMounted(() => {});
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
+  .main-board {
+    min-height: 100vh;
 
-.main-board {
+    position: relative;
 
-  min-height: 100vh;
+    overflow-x: hidden;
 
-  position: relative;
-
-  overflow-x: hidden;
-
-  z-index: 1;
-
-}
-
-.content-area {
-
-  padding: 2rem 1rem;
-
-  padding-top: 80px; 
-
-  @media (min-width: 768px) {
-
-    padding: 2rem;
-
-    padding-top: 90px;
-
+    z-index: 1;
   }
 
-  @media (min-width: 1200px) {
+  .content-area {
+    padding: 2rem 1rem;
 
-    padding: 2rem 4rem;
+    padding-top: 80px;
 
-    padding-top: 90px;
+    @media (min-width: 768px) {
+      padding: 2rem;
 
+      padding-top: 90px;
+    }
+
+    @media (min-width: 1200px) {
+      padding: 2rem 4rem;
+
+      padding-top: 90px;
+    }
   }
 
-}
+  .background-decoration {
+    position: fixed;
 
-.background-decoration {
+    top: 0;
 
-  position: fixed;
+    left: 0;
 
-  top: 0;
+    right: 0;
 
-  left: 0;
+    bottom: 0;
 
-  right: 0;
+    z-index: -1;
 
-  bottom: 0;
+    overflow: hidden;
 
-  z-index: -1;
+    pointer-events: none;
 
-  overflow: hidden;
-
-  pointer-events: none;
-
-  @supports (-webkit-touch-callout: none) {
-
-    display: none;
-
+    @supports (-webkit-touch-callout: none) {
+      display: none;
+    }
   }
 
-}
+  .floating-ball {
+    position: absolute;
 
-.floating-ball {
+    border-radius: 50%;
 
-  position: absolute;
+    filter: blur(60px);
 
-  border-radius: 50%;
+    opacity: 0.3;
 
-  filter: blur(60px);
+    mix-blend-mode: lighten;
+  }
 
-  opacity: 0.3;
+  .ball-1 {
+    width: 600px;
 
-  mix-blend-mode: lighten;
+    height: 600px;
 
-}
+    background: radial-gradient(
+      circle at 30% 30%,
 
-.ball-1 {
+      rgba(var(--theme-color-rgb), 0.4),
+      rgba(var(--theme-color-rgb), 0.1) 70%,
 
-  width: 600px;
+      transparent
+    );
 
-  height: 600px;
+    top: -10%;
 
-  background: radial-gradient(circle at 30% 30%, 
+    left: -10%;
 
-    rgba(var(--theme-color-rgb), 0.4),
+    animation: floatingBall1 25s infinite ease-in-out;
+  }
 
-    rgba(var(--theme-color-rgb), 0.1) 70%,
+  .ball-2 {
+    width: 500px;
 
-    transparent
+    height: 500px;
 
-  );
+    background: radial-gradient(
+      circle at 70% 70%,
 
-  top: -10%;
+      rgba(167, 71, 254, 0.35),
+      rgba(167, 71, 254, 0.08) 70%,
 
-  left: -10%;
+      transparent
+    );
 
-  animation: floatingBall1 25s infinite ease-in-out;
+    top: 40%;
 
-}
+    right: -5%;
 
-.ball-2 {
+    animation: floatingBall2 30s infinite ease-in-out;
+  }
 
-  width: 500px;
+  .ball-3 {
+    width: 450px;
 
-  height: 500px;
+    height: 450px;
 
-  background: radial-gradient(circle at 70% 70%, 
+    background: radial-gradient(
+      circle at 50% 50%,
 
-    rgba(167, 71, 254, 0.35),
+      rgba(55, 222, 201, 0.3),
+      rgba(55, 222, 201, 0.05) 70%,
 
-    rgba(167, 71, 254, 0.08) 70%,
+      transparent
+    );
 
-    transparent
+    bottom: -10%;
 
-  );
+    left: 20%;
 
-  top: 40%;
+    animation: floatingBall3 35s infinite ease-in-out;
+  }
 
-  right: -5%;
+  .content-transition-enter-active,
+  .content-transition-leave-active {
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
 
-  animation: floatingBall2 30s infinite ease-in-out;
+  .content-transition-enter-from,
+  .content-transition-leave-to {
+    opacity: 0;
 
-}
+    transform: translateY(3px);
+  }
 
-.ball-3 {
+  @keyframes floatingBall1 {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
 
-  width: 450px;
+    25% {
+      transform: translate(5%, 10%) rotate(90deg);
+    }
 
-  height: 450px;
-
-  background: radial-gradient(circle at 50% 50%, 
-
-    rgba(55, 222, 201, 0.3),
-
-    rgba(55, 222, 201, 0.05) 70%,
-
-    transparent
-
-  );
-
-  bottom: -10%;
-
-  left: 20%;
-
-  animation: floatingBall3 35s infinite ease-in-out;
-
-}
-
-.content-transition-enter-active,
-
-.content-transition-leave-active {
-
-  transition: opacity 0.3s ease, transform 0.3s ease;
-
-}
-
-.content-transition-enter-from,
-
-.content-transition-leave-to {
-
-  opacity: 0;
-
-  transform: translateY(3px); 
-}
-
-@keyframes floatingBall1 {
-
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-
-  25% { transform: translate(5%, 10%) rotate(90deg); }
-
-  50% { transform: translate(2%, 5%) rotate(180deg); }
-
-  75% { transform: translate(-3%, 8%) rotate(270deg); }
-
-}
-
-@keyframes floatingBall2 {
-
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-
-  25% { transform: translate(-8%, -5%) rotate(-90deg); }
-
-  50% { transform: translate(-4%, -10%) rotate(-180deg); }
-
-  75% { transform: translate(-6%, -2%) rotate(-270deg); }
-
-}
-
-@keyframes floatingBall3 {
-
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-
-  33% { transform: translate(6%, -8%) rotate(120deg); }
-
-  66% { transform: translate(-4%, -4%) rotate(240deg); }
-
-  100% { transform: translate(0, 0) rotate(360deg); }
-
-}
-
-.view-wrapper {
-
-  width: 100%;
-
-  height: 100%;
-
-}
-
-</style> 
+    50% {
+      transform: translate(2%, 5%) rotate(180deg);
+    }
+
+    75% {
+      transform: translate(-3%, 8%) rotate(270deg);
+    }
+  }
+
+  @keyframes floatingBall2 {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+      transform: translate(-8%, -5%) rotate(-90deg);
+    }
+
+    50% {
+      transform: translate(-4%, -10%) rotate(-180deg);
+    }
+
+    75% {
+      transform: translate(-6%, -2%) rotate(-270deg);
+    }
+  }
+
+  @keyframes floatingBall3 {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+      transform: translate(6%, -8%) rotate(120deg);
+    }
+
+    66% {
+      transform: translate(-4%, -4%) rotate(240deg);
+    }
+
+    100% {
+      transform: translate(0, 0) rotate(360deg);
+    }
+  }
+
+  .view-wrapper {
+    width: 100%;
+
+    height: 100%;
+  }
+</style>

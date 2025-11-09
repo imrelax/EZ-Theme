@@ -1,19 +1,14 @@
 ﻿<template>
-
   <div class="not-found-container">
-
     <!-- 返回按钮 -->
 
     <button class="back-button" @click="goBack">
-
       <IconArrowLeft :size="20" />
 
       {{ $t('common.back') }}
-
     </button>
 
     <div class="not-found-content">
-
       <h1 class="error-code">404</h1>
 
       <h2 class="error-title">{{ $t('errors.notFound') }}</h2>
@@ -21,295 +16,240 @@
       <p class="error-description">{{ $t('errors.notFoundDescription') }}</p>
 
       <button class="home-button" @click="goHome">
-
         <IconHome :size="20" />
 
         {{ $t('errors.backToHome') }}
-
       </button>
-
     </div>
-
   </div>
-
 </template>
 
 <script>
+  import { ref, onMounted } from 'vue';
 
-import { ref, onMounted } from 'vue';
+  import { useRouter } from 'vue-router';
 
-import { useRouter } from 'vue-router';
+  import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
-import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
+  import { IconArrowLeft, IconHome } from '@tabler/icons-vue';
 
-import { IconArrowLeft, IconHome } from '@tabler/icons-vue';
+  export default {
+    name: 'NotFound',
 
-export default {
+    components: {
+      IconArrowLeft,
 
-  name: 'NotFound',
+      IconHome,
 
-  components: {
+      DomainAuthAlert,
+    },
 
-    IconArrowLeft,
+    setup() {
+      const router = useRouter();
 
-    IconHome,
+      const countDown = ref(5);
 
-    DomainAuthAlert
+      const backToHome = () => {
+        router.push('/login');
+      };
 
-  },
+      onMounted(() => {
+        const timer = setInterval(() => {
+          countDown.value--;
 
-  setup() {
+          if (countDown.value <= 0) {
+            clearInterval(timer);
 
-    const router = useRouter();
+            backToHome();
+          }
+        }, 1000);
+      });
 
-    const countDown = ref(5);
+      const goBack = () => {
+        router.go(-1);
+      };
 
-    const backToHome = () => {
+      const goHome = () => {
+        router.push('/');
+      };
 
-      router.push('/login');
+      return {
+        countDown,
 
-    };
+        backToHome,
 
-    onMounted(() => {
+        goBack,
 
-      const timer = setInterval(() => {
-
-        countDown.value--;
-
-        if (countDown.value <= 0) {
-
-          clearInterval(timer);
-
-          backToHome();
-
-        }
-
-      }, 1000);
-
-    });
-
-    const goBack = () => {
-
-      router.go(-1);
-
-    };
-
-    const goHome = () => {
-
-      router.push('/');
-
-    };
-
-    return {
-
-      countDown,
-
-      backToHome,
-
-      goBack,
-
-      goHome
-
-    };
-
-  }
-
-};
-
+        goHome,
+      };
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
+  .not-found-container {
+    display: flex;
 
-.not-found-container {
+    flex-direction: column;
 
-  display: flex;
+    min-height: 100vh;
 
-  flex-direction: column;
+    background-color: var(--bg-color);
 
-  min-height: 100vh;
+    position: relative;
 
-  background-color: var(--bg-color);
+    padding: 20px;
 
-  position: relative;
-
-  padding: 20px;
-
-  transform: translateZ(0);
-
-}
-
-.back-button {
-
-  position: absolute;
-
-  top: 20px;
-
-  left: 20px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-
-  background: none;
-
-  border: none;
-
-  color: var(--theme-color);
-
-  font-size: 16px;
-
-  font-weight: 500;
-
-  padding: 8px 16px;
-
-  border-radius: 8px;
-
-  cursor: pointer;
-
-  transition: background-color 0.2s ease;
-
-  &:hover {
-
-    background-color: rgba(var(--theme-color-rgb), 0.1);
-
+    transform: translateZ(0);
   }
 
-}
+  .back-button {
+    position: absolute;
 
-.not-found-content {
+    top: 20px;
 
-  display: flex;
+    left: 20px;
 
-  flex-direction: column;
+    display: flex;
 
-  align-items: center;
+    align-items: center;
 
-  justify-content: center;
+    gap: 8px;
 
-  flex: 1;
+    background: none;
 
-  text-align: center;
+    border: none;
 
-  max-width: 600px;
-
-  margin: 0 auto;
-
-}
-
-.error-code {
-
-  font-size: 120px;
-
-  font-weight: 900;
-
-  color: var(--theme-color);
-
-  margin: 0;
-
-  line-height: 1.2;
-
-  letter-spacing: -2px;
-
-  background: linear-gradient(45deg, var(--theme-color), rgba(var(--theme-color-rgb), 0.6));
-
-  background-clip: text;
-
-  -webkit-background-clip: text;
-
-  color: transparent;
-
-}
-
-.error-title {
-
-  font-size: 28px;
-
-  font-weight: 700;
-
-  color: var(--text-color);
-
-  margin: 10px 0 20px;
-
-}
-
-.error-description {
-
-  font-size: 18px;
-
-  line-height: 1.6;
-
-  color: var(--secondary-text-color);
-
-  margin-bottom: 30px;
-
-}
-
-.home-button {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  background-color: var(--theme-color);
-
-  color: white;
-
-  border: none;
-
-  border-radius: 10px;
-
-  padding: 12px 24px;
-
-  font-size: 16px;
-
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition: transform 0.2s ease, background-color 0.2s ease;
-
-  &:hover {
-
-    background-color: rgba(var(--theme-color-rgb), 0.9);
-
-    transform: translateY(-2px);
-
-  }
-
-  &:active {
-
-    transform: translateY(0);
-
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  .error-code {
-
-    font-size: 100px;
-
-  }
-
-  .error-title {
-
-    font-size: 24px;
-
-  }
-
-  .error-description {
+    color: var(--theme-color);
 
     font-size: 16px;
 
+    font-weight: 500;
+
+    padding: 8px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(var(--theme-color-rgb), 0.1);
+    }
   }
 
-}
+  .not-found-content {
+    display: flex;
 
-</style> 
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 1;
+
+    text-align: center;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+  }
+
+  .error-code {
+    font-size: 120px;
+
+    font-weight: 900;
+
+    color: var(--theme-color);
+
+    margin: 0;
+
+    line-height: 1.2;
+
+    letter-spacing: -2px;
+
+    background: linear-gradient(45deg, var(--theme-color), rgba(var(--theme-color-rgb), 0.6));
+
+    background-clip: text;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+  }
+
+  .error-title {
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: var(--text-color);
+
+    margin: 10px 0 20px;
+  }
+
+  .error-description {
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    color: var(--secondary-text-color);
+
+    margin-bottom: 30px;
+  }
+
+  .home-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    background-color: var(--theme-color);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px 24px;
+
+    font-size: 16px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(var(--theme-color-rgb), 0.9);
+
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .error-code {
+      font-size: 100px;
+    }
+
+    .error-title {
+      font-size: 24px;
+    }
+
+    .error-description {
+      font-size: 16px;
+    }
+  }
+</style>

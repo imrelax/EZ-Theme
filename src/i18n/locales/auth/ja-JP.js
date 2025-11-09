@@ -1,6 +1,4 @@
-﻿
-
-import { SITE_CONFIG } from '../../../utils/baseConfig';
+﻿import { SITE_CONFIG } from '../../../utils/baseConfig';
 
 export default {
   auth: {
@@ -43,7 +41,7 @@ export default {
     sendCodeFailed: '認証コードの送信に失敗しました',
     popup: {
       close_btn: '理解しました',
-      wait_close_btn: '{seconds}秒お待ちください'
+      wait_close_btn: '{seconds}秒お待ちください',
     },
     passwordResetSuccess: 'パスワードのリセットが成功しました',
     passwordResetFailed: 'パスワードのリセットに失敗しました、しばらくしてから再度お試しください',
@@ -65,7 +63,7 @@ export default {
     captcha: 'CAPTCHA認証',
     captchaRequired: 'CAPTCHA認証を完了してください',
     verifyTokenSuccess: 'トークン認証成功',
-    verifyTokenFailed: 'トークン認証失敗、もう一度お試しください'
+    verifyTokenFailed: 'トークン認証失敗、もう一度お試しください',
   },
   validation: {
     required: '{field}は空にできません',
@@ -78,7 +76,7 @@ export default {
     passwordRequired: 'パスワードを入力してください',
     confirmPasswordRequired: 'パスワードを再入力してください',
     passwordsDontMatch: '入力したパスワードが一致しません',
-    codeRequired: '認証コードを入力してください'
+    codeRequired: '認証コードを入力してください',
   },
   errors: {
     networkError: 'ネットワークエラー、接続を確認してください',
@@ -89,7 +87,7 @@ export default {
     notFoundDescription: '申し訳ありませんが、訪問したページは存在しないか削除されています',
     backToHome: 'ホームページに戻る',
     unknown: '不明なエラーが発生しました',
-    browserRestricted: 'ブラウザのアクセスが制限されています'
+    browserRestricted: 'ブラウザのアクセスが制限されています',
   },
   messages: {
     loginSuccess: 'ログイン成功',
@@ -101,12 +99,13 @@ export default {
     logoutSuccess: 'ログアウト成功',
     codeSent: '認証コードを送信しました',
     sendCodeFailed: '認証コードの送信に失敗しました',
-    configLoadFailed: '構成の読み込みに失敗しました、ページを更新してください'
+    configLoadFailed: '構成の読み込みに失敗しました、ページを更新してください',
   },
   browserRestricted: {
     title: 'ブラウザのアクセスが制限されています',
     subtitle: '現在のブラウザはサポートされていません',
-    description: '最適な閲覧体験とセキュリティを確保するため、このウェブサイトは現在使用中のブラウザをサポートしていません。',
+    description:
+      '最適な閲覧体験とセキュリティを確保するため、このウェブサイトは現在使用中のブラウザをサポートしていません。',
     recommendText: '以下の推奨ブラウザを使用してアクセスしてください：',
     currentBrowser: '現在使用中のブラウザ：',
     currentUrl: 'ログインURL：',
@@ -115,7 +114,8 @@ export default {
     downloadSafari: 'Safariブラウザをダウンロード',
     openWithRecommended: '推奨ブラウザで現在のページを開く',
     whyRestricted: 'なぜ一部のブラウザが制限されているのですか？',
-    whyRestrictedDesc: '一部のブラウザにはセキュリティ上の問題があったり、必要な機能がサポートされていない場合があります。これらのブラウザを制限することで、アカウントの安全性とより優れたユーザー体験を保証します。',
+    whyRestrictedDesc:
+      '一部のブラウザにはセキュリティ上の問題があったり、必要な機能がサポートされていない場合があります。これらのブラウザを制限することで、アカウントの安全性とより優れたユーザー体験を保証します。',
     supportedBrowsersTitle: 'サポートされているブラウザのリスト',
     browserNames: {
       Chrome: 'Chromeブラウザ',
@@ -125,20 +125,20 @@ export default {
       Opera: 'Operaブラウザ',
       UC: 'UCブラウザ',
       Maxthon: 'Maxthonブラウザ',
-      Unknown: '不明なブラウザ'
-    }
+      Unknown: '不明なブラウザ',
+    },
   },
   landing: {
     mainText: SITE_CONFIG.landingText['ja-JP'] || 'グローバルネットワークの無限の可能性を探る',
     scrollText: '下にスクロールしてログイン',
-    exploreButton: '探索を開始'
+    exploreButton: '探索を開始',
   },
   contextMenu: {
     refresh: 'ページを更新',
     back: '前のページに戻る',
     forward: '次のページに進む',
     copy: 'コピー',
-    paste: '貼り付け'
+    paste: '貼り付け',
   },
   service: {
     title: 'オンラインサポート',
@@ -150,7 +150,7 @@ export default {
     offline: 'サポートは現在オフラインです',
     leaveMessage: 'メッセージを残す',
     startChat: 'チャットを開始',
-    back: '戻る'
+    back: '戻る',
   },
   common: {
     appName: SITE_CONFIG.siteName,
@@ -184,6 +184,6 @@ export default {
     copyFailed: 'コピー失敗',
     apiChecking: 'APIの可用性を確認中...',
     checking: '確認中',
-    completed: '完了'
-  }
+    completed: '完了',
+  },
 };
