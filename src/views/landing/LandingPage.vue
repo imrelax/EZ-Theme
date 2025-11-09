@@ -2,10 +2,6 @@
 
   <div class="landing-page" :class="{ 'dark-theme': isDarkTheme }" @wheel="handleWheel" @scroll="handleScroll" ref="landingPageRef">
 
-
-
-    
-
     <!-- 背景装饰 -->
 
     <div class="background-decoration">
@@ -18,8 +14,6 @@
 
     </div>
 
-    
-
     <!-- 顶部工具栏 -->
 
     <div class="top-toolbar">
@@ -29,8 +23,6 @@
       <LanguageSelector />
 
     </div>
-
-    
 
     <!-- 中央内容区 -->
 
@@ -48,8 +40,6 @@
 
     </div>
 
-    
-
     <!-- 底部箭头 -->
 
     <div class="scroll-arrow-container" @click="navigateToLogin">
@@ -64,8 +54,6 @@
 
     </div>
 
-    
-
     <!-- 页面过渡遮罩 -->
 
     <div class="page-transition-mask" :class="{ 'active': isTransitioning }"></div>
@@ -73,8 +61,6 @@
   </div>
 
 </template>
-
-
 
 <script>
 
@@ -88,7 +74,6 @@ import { useI18n } from 'vue-i18n';
 
 import { SITE_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
 
-
 import ThemeToggle from '@/components/common/ThemeToggle.vue';
 
 import LanguageSelector from '@/components/common/LanguageSelector.vue';
@@ -96,8 +81,6 @@ import LanguageSelector from '@/components/common/LanguageSelector.vue';
 import { IconChevronDown } from '@tabler/icons-vue';
 
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
-
-
 
 export default {
 
@@ -125,24 +108,13 @@ export default {
 
     const landingPageRef = ref(null);
 
-    
-
     const isDarkTheme = computed(() => store.getters.currentTheme === 'dark');
-
-    
 
     const siteConfig = ref(SITE_CONFIG);
 
     const defaultConfig = ref(DEFAULT_CONFIG);
 
-    
-
     const isTransitioning = ref(false);
-
-    
-
-
-    
 
     const handleScroll = (e) => {
 
@@ -154,8 +126,6 @@ export default {
 
     };
 
-    
-
     const handleWheel = (e) => {
 
       if (e.currentTarget === landingPageRef.value && e.deltaY > 0) {
@@ -166,8 +136,6 @@ export default {
 
     };
 
-    
-
     const navigateToLogin = () => {
 
       if (isTransitioning.value) {
@@ -176,19 +144,11 @@ export default {
 
       }
 
-
-
       isTransitioning.value = true;
-
-      
 
       document.body.classList.add('page-transitioning');
 
-      
-
       console.log(t('landing.navigatingToLogin', 'Navigating to login page'));
-
-      
 
       setTimeout(() => {
 
@@ -197,19 +157,11 @@ export default {
       }, 600); 
     };
 
-    
-
     let touchStartY = 0;
 
     let handleTouchStart, handleTouchMove;
 
-    
-
     onMounted(() => {
-
-
-
-      
 
       handleTouchStart = (e) => {
 
@@ -220,8 +172,6 @@ export default {
         }
 
       };
-
-      
 
       handleTouchMove = (e) => {
 
@@ -238,8 +188,6 @@ export default {
 
       };
 
-      
-
       if (landingPageRef.value) {
 
         landingPageRef.value.addEventListener('touchstart', handleTouchStart, { passive: true });
@@ -249,8 +197,6 @@ export default {
       }
 
     });
-
-    
 
     onUnmounted(() => {
 
@@ -263,8 +209,6 @@ export default {
       }
 
     });
-
-    
 
     return {
 
@@ -284,7 +228,6 @@ export default {
 
       handleWheel,
 
-
     };
 
   }
@@ -292,8 +235,6 @@ export default {
 };
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -323,10 +264,6 @@ export default {
 
 }
 
-
-
-
-
 .background-decoration {
 
   position: absolute;
@@ -343,15 +280,11 @@ export default {
 
   overflow: hidden;
 
-  
-
   @supports (-webkit-touch-callout: none) {
 
     display: none;
 
   }
-
-  
 
   .bg-circle {
 
@@ -367,8 +300,6 @@ export default {
 
     transition: opacity 0.5s ease, background-color 0.5s ease;
 
-    
-
     @supports (-webkit-touch-callout: none) {
 
       filter: blur(20px);
@@ -378,15 +309,11 @@ export default {
       animation-duration: 40s; 
     }
 
-    
-
     &.dark-mode {
 
       opacity: 0.25; 
 
       filter: blur(100px) saturate(0.7); 
-
-      
 
       @supports (-webkit-touch-callout: none) {
 
@@ -399,8 +326,6 @@ export default {
     }
 
   }
-
-  
 
   .circle-1 {
 
@@ -416,8 +341,6 @@ export default {
 
     animation-duration: 25s;
 
-    
-
     &.dark-mode {
 
       background: rgba(0, 148, 124, 0.6); 
@@ -425,8 +348,6 @@ export default {
     }
 
   }
-
-  
 
   .circle-2 {
 
@@ -442,8 +363,6 @@ export default {
 
     animation-duration: 30s;
 
-    
-
     &.dark-mode {
 
       background: rgba(167, 71, 254, 0.5); 
@@ -451,8 +370,6 @@ export default {
     }
 
   }
-
-  
 
   .circle-3 {
 
@@ -468,8 +385,6 @@ export default {
 
     animation-duration: 35s;
 
-    
-
     &.dark-mode {
 
       background: rgba(55, 222, 201, 0.5); 
@@ -479,8 +394,6 @@ export default {
   }
 
 }
-
-
 
 @keyframes float {
 
@@ -510,10 +423,6 @@ export default {
 
 }
 
-
-
-
-
 .top-toolbar {
 
   position: fixed;
@@ -530,10 +439,6 @@ export default {
 
 }
 
-
-
-
-
 .content-container {
 
   position: relative;
@@ -547,8 +452,6 @@ export default {
   max-width: 800px;
 
 }
-
-
 
 .site-title {
 
@@ -578,8 +481,6 @@ export default {
 
   gap: 15px;
 
-  
-
   .site-logo-img {
 
     height: 40px;
@@ -593,8 +494,6 @@ export default {
   }
 
 }
-
-
 
 .landing-text {
 
@@ -610,15 +509,11 @@ export default {
 
   opacity: 0.9;
 
-  
-
   @media (max-width: 768px) {
 
     font-size: 1.25rem;
 
   }
-
-  
 
   @media (max-width: 480px) {
 
@@ -627,10 +522,6 @@ export default {
   }
 
 }
-
-
-
-
 
 .scroll-arrow-container {
 
@@ -654,13 +545,9 @@ export default {
 
   transition: transform 0.3s ease;
 
-  
-
   &:hover {
 
     transform: translateX(-50%) translateY(5px);
-
-    
 
     .scroll-arrow {
 
@@ -672,8 +559,6 @@ export default {
 
 }
 
-
-
 .scroll-arrow {
 
   color: var(--theme-color);
@@ -684,8 +569,6 @@ export default {
 
 }
 
-
-
 .scroll-text {
 
   font-size: 0.875rem;
@@ -695,8 +578,6 @@ export default {
   opacity: 0.8;
 
 }
-
-
 
 @keyframes bounce {
 
@@ -720,10 +601,6 @@ export default {
 
 }
 
-
-
-
-
 .page-transition-mask {
 
   position: fixed;
@@ -746,8 +623,6 @@ export default {
 
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
-  
-
   &.active {
 
     opacity: 1;
@@ -757,10 +632,6 @@ export default {
   }
 
 }
-
-
-
-
 
 @media (max-width: 768px) {
 

@@ -2,8 +2,7 @@
 import { checkLoginStatus } from '@/api/auth';
 
 let lastLoginState = null;
-
-
+
 export const checkAuthAndReloadMessages = () => {
   const isLoggedIn = checkLoginStatus();
   
@@ -24,13 +23,11 @@ export const checkAuthAndReloadMessages = () => {
   
   return isLoggedIn;
 };
-
-
+
 export const isAuthPage = (path) => {
   return /\/(login|register|forgot-password)/.test(path);
 };
-
-
+
 export const setupLoginStateWatcher = () => {
   let lastLoginState = null;
   

@@ -16,8 +16,6 @@ import ruRU from './ru-RU';
 
 import faIR from './fa-IR';
 
-
-
 export default {
 
   'zh-CN': zhCN,

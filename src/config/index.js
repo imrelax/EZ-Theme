@@ -6,7 +6,7 @@
 
 export const config  = {
     // 面板类型配置 - 请选择您使用的面板类型
-    PANEL_TYPE: 'Xiao-V2board', // 可选值: 'V2board', 'Xiao-V2board' 或 'Xboard'
+    PANEL_TYPE: 'Xboard', // 可选值: 'V2board', 'Xiao-V2board' 或 'Xboard'
     // 说明:
     // 1. V2board: 标准V2board面板，使用默认请求格式
     // 2. Xiao-V2board: Xiao修改版面板，使用特殊格式的请求参数
@@ -29,9 +29,10 @@ export const config  = {
         // 支持字符串形式(单个API地址)或数组形式(多个备选API地址)
         // 多个地址时，会按顺序检测可用性，并使用第一个可用的地址
         staticBaseUrl: [
-            'https://w5x8mu2a9943r.ezdemo.xyz/api/v1',
-            'https://skhsn6q4pnv95.ezdemo.xyz/api/v1',
-            'https://gy1v06omopzc8.ezdemo.xyz/api/v1'
+            'https://dsadasdfeer.231233.xyz/api/v1',
+           'https://1ddadad222.231233.xyz/api/v1',
+           'https://skhsn6q4pnv95.968091.xyz/api/v1',
+           'https://gy1v06omopzc8.968091.xyz/api/v1'
         ],
       
         // 自动获取模式配置 (urlMode = 'auto'时使用)
@@ -49,7 +50,7 @@ export const config  = {
 
     // 是否启用中间件代理API请求
     // 设置为true时，所有API请求将通过中间件转发
-    API_MIDDLEWARE_ENABLED: true,
+    API_MIDDLEWARE_ENABLED: false,
   
     //=======================================================
     // 中间件服务器URL (不含路径) 开源地址 https://github.com/codeman857/EZ-Encrypt-Middleware
@@ -72,7 +73,7 @@ export const config  = {
         copyright: `© ${new Date().getFullYear()} EZ THEME. All Rights Reserved.`,
 
         // 是否显示标题中的网站Logo (true=显示, false=隐藏)
-        showLogo: true,
+        showLogo: false,
 
         // Landing页面多语言标语
         landingText: {
@@ -230,7 +231,7 @@ export const config  = {
     // 仪表盘页面配置
     DASHBOARD_CONFIG: {
         // 是否在欢迎卡片中显示用户邮箱 (true=显示, false=隐藏)
-        showUserEmail: false,
+        showUserEmail: true,
 
         // 是否为导入订阅按钮添加高光效果和填充底色 (true=添加效果, false=不添加效果)
         importButtonHighlightBtnbgcolor: false,

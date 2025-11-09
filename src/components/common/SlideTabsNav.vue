@@ -50,8 +50,6 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, onMounted, watch, nextTick, onBeforeUnmount, computed, reactive, onUnmounted } from 'vue';
@@ -84,8 +82,6 @@ import {
 
 } from '@tabler/icons-vue';  
 
-
-
 export default {
 
   name: 'SlideTabsNav',
@@ -112,23 +108,17 @@ export default {
 
     const languageKey = ref(Date.now());
 
-    
-
     const showInviteBadge = computed(() => {
 
       return INVITE_CONFIG && INVITE_CONFIG.showCommissionBadge === true;
 
     });
 
-    
-
     const showShopBadge = computed(() => {
 
       return SHOP_CONFIG && SHOP_CONFIG.showHotSaleBadge === true;
 
     });
-
-
 
     const sliderState = reactive({
 
@@ -142,8 +132,6 @@ export default {
       
     });
 
-    
-
     const sliderStyle = computed(() => ({
 
       width: `${sliderState.width}px`,
@@ -156,19 +144,13 @@ export default {
 
     }));
 
-
-
     const isSmallScreen = ref(false);
-
 
     const checkScreenSize = () => {
 
       isSmallScreen.value = window.innerWidth < 905;
 
     };
-
-
-
 
     // 替换原有的 navItems 定义
     const getNavItems = () => {
@@ -239,8 +221,6 @@ export default {
 
     const navItems = getNavItems();
 
-    
-
     const getIcon = (iconName) => {
 
       switch(iconName) {
@@ -271,25 +251,17 @@ export default {
 
     };
 
-    
-
     let positionTimers = [];
-
-
 
     const navigateTo = (item, index) => {
 
       if (!isComponentMounted.value) return;
-
-      
 
       previousIndex.value = currentIndex.value;
 
       currentIndex.value = index;
 
       updateSliderPosition(index, true);
-
-      
 
       nextTick(() => {
 
@@ -314,19 +286,13 @@ export default {
 
     };
 
-
-
     const updateSliderPosition = (index, animate = true) => {
 
       if (!isComponentMounted.value || index < 0 || !tabsNav.value) return;
 
-      
-
       positionTimers.forEach(timer => clearTimeout(timer));
 
       positionTimers = [];
-
-      
 
       try {
 
@@ -334,19 +300,13 @@ export default {
 
           if (!isComponentMounted.value || !tabsNav.value) return;
 
-          
-
           const navItemElements = tabsNav.value.querySelectorAll('.nav-item');
-
-          
 
           if (navItemElements.length > 0 && index >= 0 && index < navItemElements.length) {
 
             const activeItem = navItemElements[index];
 
             const { offsetWidth, offsetLeft } = activeItem;
-
-            
 
             if (animate) {
 
@@ -358,17 +318,11 @@ export default {
 
             }
 
-            
-
             sliderState.width = offsetWidth;
 
             sliderState.transform = `translateX(${offsetLeft}px)`;
 
-            
-
             sliderState.opacity = 1;
-
-            
 
             isInitialized.value = true;
 
@@ -384,8 +338,6 @@ export default {
 
     };
 
-
-
     const findIndexByRouteName = (routeName) => {
 
       if (route && route.meta && route.meta.activeNav) {
@@ -393,8 +345,6 @@ export default {
         const activeNavName = route.meta.activeNav;
 
         const activeIndex = navItems.findIndex(item => item.name === activeNavName);
-
-        
 
         if (activeIndex !== -1) {
 
@@ -404,22 +354,16 @@ export default {
 
       }
 
-      
-
       const index = navItems.findIndex(item => item.name === routeName);
 
       return index !== -1 ? index : 0; 
     };
-
-    
 
     const handleResize = () => {
 
       if (isComponentMounted.value) {
 
         updateSliderPosition(currentIndex.value, false);
-
-        
 
         safeTimeout(() => {
 
@@ -431,23 +375,15 @@ export default {
 
     };
 
-
-
     let stopRouteWatch = null;
-
-    
 
     const handleVisibilityChange = () => {
 
       if (!isComponentMounted.value) return;
 
-      
-
       if (!document.hidden && currentIndex.value >= 0) {
 
         updateSliderPosition(currentIndex.value, false);
-
-        
 
         if (isComponentMounted.value) {
 
@@ -461,8 +397,6 @@ export default {
 
           }, 200);
 
-          
-
           positionTimers.push(timer);
 
         }
@@ -470,8 +404,6 @@ export default {
       }
 
     };
-
-
 
     const safeTimeout = (callback, delay) => {
 
@@ -485,31 +417,21 @@ export default {
 
       }, delay);
 
-      
-
       positionTimers.push(timer);
 
       return timer;
 
     };
 
-
-
     let positionCheckInterval = null;
-
-    
 
     const checkAndFixSliderPosition = () => {
 
       if (!isComponentMounted.value || !tabsNav.value) return;
 
-      
-
       try {
 
         const navItemElements = tabsNav.value.querySelectorAll('.nav-item');
-
-        
 
         let activeIndex;
 
@@ -535,21 +457,15 @@ export default {
 
         }
 
-        
-
         if (navItemElements.length > 0 && activeIndex >= 0 && activeIndex < navItemElements.length) {
 
           const activeItem = navItemElements[activeIndex];
 
           const { offsetWidth, offsetLeft } = activeItem;
 
-          
-
           const currentTransform = sliderState.transform;
 
           const expectedTransform = `translateX(${offsetLeft}px)`;
-
-          
 
           if (currentTransform !== expectedTransform || sliderState.width !== offsetWidth) {
 
@@ -567,8 +483,6 @@ export default {
 
     };
 
-    
-
     const handleScroll = debounce(() => {
 
       if (isComponentMounted.value) {
@@ -579,21 +493,13 @@ export default {
 
     }, 200);
 
-    
-
     const onLanguageChanged = () => {
 
       languageKey.value = Date.now();
 
-      
-
       sliderState.transition = 'width 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease';
 
-      
-
       sliderState.opacity = 0.3;
-
-      
 
       [50, 200, 400, 600].forEach(delay => {
 
@@ -617,44 +523,28 @@ export default {
 
     };
 
-
-
     onMounted(() => {
 
       isComponentMounted.value = true;
-
-      
 
       // 初始化屏幕尺寸检测
       checkScreenSize();
 
       window.addEventListener('resize', checkScreenSize);
 
-
-
       document.addEventListener('visibilitychange', handleVisibilityChange);
-
-      
 
       window.addEventListener('languageChanged', onLanguageChanged);
 
-      
-
       isTransitionEnabled.value = false;
-
-      
 
       stopRouteWatch = watch(() => route.name, (newRoute) => {
 
         if (!isComponentMounted.value) return;
 
-        
-
         if (newRoute) {
 
           currentRoute.value = newRoute;
-
-          
 
           let newIndex;
 
@@ -680,13 +570,9 @@ export default {
 
           }
 
-          
-
           previousIndex.value = currentIndex.value;
 
           currentIndex.value = newIndex;
-
-          
 
           updateSliderPosition(newIndex, true);
 
@@ -694,19 +580,13 @@ export default {
 
       }, { immediate: true });
 
-      
-
       nextTick(() => {
 
         if (!isComponentMounted.value) return;
 
-        
-
         const index = findIndexByRouteName(route.name);
 
         updateSliderPosition(index, false);
-
-        
 
         safeTimeout(() => {
 
@@ -715,8 +595,6 @@ export default {
         }, 300);
 
       });
-
-      
 
       [100, 300, 500, 1000].forEach(delay => {
 
@@ -733,8 +611,6 @@ export default {
         }, delay);
 
       });
-
-      
 
       safeTimeout(() => {
 
@@ -754,8 +630,6 @@ export default {
 
       }, 1500);
 
-      
-
       window.addEventListener('load', () => {
 
         if (isComponentMounted.value && tabsNav.value) {
@@ -774,17 +648,11 @@ export default {
 
       });
 
-      
-
       const debouncedResize = debounce(handleResize, 100);
 
       window.addEventListener('resize', debouncedResize);
 
-      
-
       window.addEventListener('scroll', handleScroll, { passive: true });
-
-      
 
       positionCheckInterval = setInterval(() => {
 
@@ -796,15 +664,11 @@ export default {
 
       }, 3000);
 
-      
-
       safeTimeout(() => {
 
         handleResize();
 
       }, 1500);
-
-      
 
       window.addEventListener('popstate', () => {
 
@@ -830,8 +694,6 @@ export default {
 
     });
 
-    
-
     onUnmounted(() => {
 
       if (stopRouteWatch) {
@@ -842,8 +704,6 @@ export default {
 
       }
 
-      
-
       if (positionCheckInterval) {
 
         clearInterval(positionCheckInterval);
@@ -852,30 +712,20 @@ export default {
 
       }
 
-      
-
       window.removeEventListener('popstate', () => {});
 
     });
-
-    
 
     onBeforeUnmount(() => {
 
       isComponentMounted.value = false;
 
-
       // 移除屏幕尺寸监听器
       window.removeEventListener('resize', checkScreenSize);
-
-
-      
 
       positionTimers.forEach(timer => clearTimeout(timer));
 
       positionTimers = [];
-
-      
 
       document.removeEventListener('visibilitychange', handleVisibilityChange);
 
@@ -885,13 +735,9 @@ export default {
 
       window.removeEventListener('scroll', handleScroll);
 
-      
-
       tabsNav.value = null;
 
     });
-
-
 
     return {
 
@@ -921,8 +767,6 @@ export default {
 
 };
 
-
-
 function debounce(fn, delay) {
 
   let timer = null;
@@ -943,8 +787,6 @@ function debounce(fn, delay) {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .slide-tabs-container {
@@ -962,8 +804,6 @@ function debounce(fn, delay) {
   z-index: 10;
 
   width: auto;
-
-  
 
   .slide-tabs-wrapper {
 
@@ -987,15 +827,11 @@ function debounce(fn, delay) {
 
   }
 
-
-
   .slide-tabs-nav {
 
     display: flex;
 
     position: relative;
-
-    
 
     .indicator-container {
 
@@ -1014,8 +850,6 @@ function debounce(fn, delay) {
       z-index: 1;
 
     }
-
-    
 
     .nav-item {
 
@@ -1047,10 +881,6 @@ function debounce(fn, delay) {
 
       gap: 5px;
 
-      
-
-      
-
       .badge-dot {
 
         position: absolute;
@@ -1081,15 +911,11 @@ function debounce(fn, delay) {
 
       }
 
-      
-      
       &:last-child {
 
         border: 1px solid var(--theme-color);
 
         background-color: rgba(var(--theme-color-rgb), 0.05);
-
-        
 
         .nav-icon svg {
 
@@ -1097,15 +923,11 @@ function debounce(fn, delay) {
 
         }
 
-        
-
         &:hover {
 
           background-color: rgba(var(--theme-color-rgb), 0.1);
 
         }
-
-        
 
         &.active {
 
@@ -1115,10 +937,6 @@ function debounce(fn, delay) {
 
       }
 
-      
-
-      
-
       .nav-icon {
 
         display: flex;
@@ -1126,8 +944,6 @@ function debounce(fn, delay) {
         align-items: center;
 
         justify-content: center;
-
-        
 
         svg {
 
@@ -1143,13 +959,9 @@ function debounce(fn, delay) {
 
       }
 
-      
-
       &.active {
 
         color: var(--text-color);
-
-        
 
         .nav-icon svg {
 
@@ -1161,8 +973,6 @@ function debounce(fn, delay) {
 
       }
 
-      
-
       &:hover {
 
         color: var(--text-color);
@@ -1170,8 +980,6 @@ function debounce(fn, delay) {
       }
 
     }
-
-    
 
     .slider-indicator {
 
@@ -1203,8 +1011,6 @@ function debounce(fn, delay) {
 
 }
 
-
-
 @media (max-width: 768px) {
 
   .slide-tabs-container {
@@ -1225,10 +1031,6 @@ function debounce(fn, delay) {
 
         height: 64px;
 
-        
-
-        
-
         .badge-dot {
 
           top: -1px;
@@ -1241,8 +1043,6 @@ function debounce(fn, delay) {
 
         }
 
-        
-
         &:last-child {
 
           height: 64px;
@@ -1250,8 +1050,6 @@ function debounce(fn, delay) {
           min-width: 64px;  
 
         }
-
-        
 
         .nav-icon {
 
@@ -1265,8 +1063,6 @@ function debounce(fn, delay) {
 
           justify-content: center;
 
-          
-
           svg {
 
             width: 22px;
@@ -1279,8 +1075,6 @@ function debounce(fn, delay) {
 
         }
 
-        
-
         .nav-text {
 
           font-weight: 500;
@@ -1288,8 +1082,6 @@ function debounce(fn, delay) {
           line-height: 1.2;
 
         }
-
-        
 
         &.active {
 
@@ -1315,8 +1107,6 @@ function debounce(fn, delay) {
 
 }
 
-
-
 @media (max-width: 768px) {
 
   .slide-tabs-container {
@@ -1331,8 +1121,6 @@ function debounce(fn, delay) {
 
     margin-bottom: 0;
 
-    
-
     .slide-tabs-wrapper {
 
       width: 100%;
@@ -1345,15 +1133,11 @@ function debounce(fn, delay) {
 
     }
 
-    
-
     .slide-tabs-nav {
 
       width: 100%;
 
       justify-content: space-around;
-
-      
 
       .slider-indicator {
 
@@ -1367,8 +1151,6 @@ function debounce(fn, delay) {
 
 }
 
-
-
 @media (max-width: 480px) {
 
   .slide-tabs-container {
@@ -1377,15 +1159,11 @@ function debounce(fn, delay) {
 
     width: 94%;
 
-    
-
     .slide-tabs-wrapper {
 
       border-radius: 18px;
 
     }
-
-    
 
     .slide-tabs-nav {
 
@@ -1396,8 +1174,6 @@ function debounce(fn, delay) {
         font-size: 11px;
 
         height: 58px;
-
-        
 
         .nav-icon {
 

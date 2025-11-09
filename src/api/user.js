@@ -1,15 +1,13 @@
 ﻿
 import request from './request';
-
-
+
 export function getUserInfo() {
   return request({
     url: '/user/info',
     method: 'get'
   });
 }
-
-
+
 export function getIpLocationInfo() {
   return request({
     url: 'https://ipwho.is/',
@@ -17,8 +15,7 @@ export function getIpLocationInfo() {
     baseURL: '' 
   });
 }
-
-
+
 export function redeemGiftCard(giftcard) {
   return request({
     url: '/user/redeemgiftcard',
@@ -26,8 +23,7 @@ export function redeemGiftCard(giftcard) {
     data: { giftcard }
   });
 }
-
-
+
 export function changePassword(data) {
   return request({
     url: '/user/changePassword',
@@ -35,16 +31,14 @@ export function changePassword(data) {
     data
   });
 }
-
-
+
 export function resetSecurity() {
   return request({
     url: '/user/resetSecurity',
     method: 'get'
   });
 }
-
-
+
 export function updateRemindSettings(data) {
   return request({
     url: '/user/update',
@@ -52,32 +46,28 @@ export function updateRemindSettings(data) {
     data
   });
 }
-
-
+
 export function getActiveSession() {
   return request({
     url: '/user/getActiveSession',
     method: 'get'
   });
 }
-
-
+
 export function getCommConfig() {
   return request({
     url: '/user/comm/config',
     method: 'get'
   });
 }
-
-
+
 export function getTelegramBotInfo() {
   return request({
     url: '/user/telegram/getBotInfo',
     method: 'get'
   });
 }
-
-
+
 export function getUserSubscribe() {
   return request({
     url: '/user/getSubscribe',

@@ -22,11 +22,6 @@
 
     </div>
 
-
-
-
-
-
     <!-- iframe用于加载自定义landing页面 -->
 
     <iframe
@@ -49,8 +44,6 @@
 
     ></iframe>
 
-
-
     <!-- 如果没有授权码或未指定自定义landing页，显示默认landing页 -->
 
     <div v-else>
@@ -63,8 +56,6 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue';
@@ -73,16 +64,11 @@ import { useRouter } from 'vue-router';
 
 import { SITE_CONFIG, THEME_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
 
-
-
-
 import { useTheme } from '@/composables/useTheme';
 
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
 import LandingPage from './LandingPage.vue';
-
-
 
 export default {
 
@@ -106,14 +92,7 @@ export default {
 
     const isLoaded = ref(false);
 
-
-
     const { theme, toggleTheme } = useTheme();
-
-
-
-
-
 
     const preloaderStyle = computed(() => {
 
@@ -127,8 +106,6 @@ export default {
 
     });
 
-
-
     const loaderStyle = computed(() => {
 
       const themeColors = THEME_CONFIG[theme.value];
@@ -136,8 +113,6 @@ export default {
       const primaryColor = themeColors.primaryColor || DEFAULT_CONFIG.primaryColor;
 
       const primaryRgb = themeColors.primaryColorRgb;
-
-
 
       return {
 
@@ -149,8 +124,6 @@ export default {
       };
 
     });
-
-
 
     const handleIframeMessage = (event) => {
 
@@ -178,8 +151,6 @@ export default {
 
     };
 
-
-
     const sendThemeToIframe = () => {
 
       if (landingIframe.value && landingIframe.value.contentWindow) {
@@ -196,15 +167,11 @@ export default {
 
     };
 
-
-
     watch(theme, () => {
 
       sendThemeToIframe();
 
     });
-
-
 
     const handleIframeLoaded = () => {
 
@@ -216,21 +183,15 @@ export default {
 
     };
 
-
-
     const handleContentLoaded = () => {
 
       hidePreloader();
 
     };
 
-
-
     const PRELOADER_KEY = 'ez_preloader_shown';
 
     const shouldShowPreloader = ref(sessionStorage.getItem(PRELOADER_KEY) !== '1');
-
-
 
     const hidePreloader = () => {
 
@@ -242,8 +203,6 @@ export default {
 
     };
 
-
-
     onMounted(async () => {
 
       if (sessionStorage.getItem(PRELOADER_KEY) === '1') {
@@ -254,18 +213,7 @@ export default {
 
       }
 
-
-
-
-
-
-
-
-
-
       window.addEventListener('message', handleIframeMessage);
-
-
 
       if (landingIframe.value) {
 
@@ -281,8 +229,6 @@ export default {
 
       }
 
-
-
       setTimeout(() => {
 
         if (!isLoaded.value) {
@@ -295,25 +241,17 @@ export default {
 
     });
 
-
-
     onBeforeUnmount(() => {
 
       window.removeEventListener('message', handleIframeMessage);
 
     });
 
-
-
     const customLandingPath = computed(() => {
 
       if (!SITE_CONFIG.customLandingPage) return '';
 
-
-
       let path = SITE_CONFIG.customLandingPage;
-
-
 
       if (!path.startsWith('/') && !path.startsWith('http://') && !path.startsWith('https://')) {
 
@@ -321,16 +259,11 @@ export default {
 
       }
 
-
-
       return path;
 
     });
 
-
-
     return {
-
 
       customLandingPath,
 
@@ -358,8 +291,6 @@ export default {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .custom-landing-container {
@@ -367,8 +298,6 @@ export default {
   width: 100%;
 
 }
-
-
 
 .custom-landing-iframe {
 
@@ -385,10 +314,6 @@ export default {
   left: 0;
 
 }
-
-
-
-
 
 .preloader {
 
@@ -416,8 +341,6 @@ export default {
 
 }
 
-
-
 .preloader.fade-out {
 
   opacity: 0;
@@ -425,8 +348,6 @@ export default {
   visibility: hidden;
 
 }
-
-
 
 .loader {
 
@@ -443,8 +364,6 @@ export default {
   position: relative;
 
 }
-
-
 
 .loader::before {
 
@@ -469,8 +388,6 @@ export default {
   animation: spin 1.5s linear infinite;
 
 }
-
-
 
 @keyframes spin {
 

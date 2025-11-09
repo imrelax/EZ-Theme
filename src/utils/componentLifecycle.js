@@ -1,6 +1,5 @@
 ﻿
-
-
+
 export function cleanupResources(timers = {}, listeners = {}) {
   Object.keys(timers).forEach(key => {
     if (timers[key]) {
@@ -21,8 +20,7 @@ export function cleanupResources(timers = {}, listeners = {}) {
     }
   });
 }
-
-
+
 export function createDebouncedUpdate(updateFn, delay = 300) {
   let timer = null;
   
@@ -41,8 +39,7 @@ export function createDebouncedUpdate(updateFn, delay = 300) {
     return timer;
   };
 }
-
-
+
 export function createThrottledUpdate(updateFn, delay = 300) {
   let lastExecTime = 0;
   let timer = null;
@@ -70,8 +67,7 @@ export function createThrottledUpdate(updateFn, delay = 300) {
     }
   };
 }
-
-
+
 export function registerEventListener(listeners, name, element, event, callback, options = false) {
   if (listeners[name]) {
     const existing = listeners[name];
@@ -87,8 +83,7 @@ export function registerEventListener(listeners, name, element, event, callback,
     options
   };
 }
-
-
+
 export function createTimer(timers, name, callback, delay, isInterval = false) {
   if (timers[name]) {
     if (timers[name]._repeat) { 

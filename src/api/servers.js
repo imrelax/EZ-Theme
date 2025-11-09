@@ -1,6 +1,5 @@
 ﻿import request from './request';
-
-
+
 export function fetchServerNodes() {
   return request({
     url: '/user/server/fetch',

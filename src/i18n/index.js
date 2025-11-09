@@ -6,8 +6,6 @@ import { SITE_CONFIG, DEFAULT_CONFIG } from '@/utils/baseConfig';
 
 import { checkLoginStatus } from '@/api/auth';
 
-
-
 const injectSiteName = (messages) => {
 
   Object.keys(messages).forEach(locale => {
@@ -30,8 +28,6 @@ const injectSiteName = (messages) => {
 
 };
 
-
-
 const getBrowserLanguage = () => {
 
   const browserLang = navigator.language || navigator.userLanguage;
@@ -50,8 +46,6 @@ const getBrowserLanguage = () => {
 
   if (browserLang === 'fa' || browserLang === 'fa-IR') return 'fa-IR';
 
-  
-
   if (browserLang.startsWith('zh')) return 'zh-CN';
 
   if (browserLang.startsWith('vi')) return 'vi-VN';
@@ -64,13 +58,9 @@ const getBrowserLanguage = () => {
 
   if (browserLang.startsWith('fa')) return 'fa-IR';
 
-  
-
   return 'en-US';
 
 };
-
-
 
 const getStoredLanguage = () => {
 
@@ -82,8 +72,6 @@ const getStoredLanguage = () => {
 
   }
 
-  
-
   const browserLanguage = getBrowserLanguage();
 
   if (browserLanguage) {
@@ -92,31 +80,19 @@ const getStoredLanguage = () => {
 
   }
 
-  
-
   return DEFAULT_CONFIG.defaultLanguage;
 
 };
 
-
-
 const supportedLocales = ['zh-CN', 'vi-VN', 'en-US', 'zh-TW', 'ja-JP', 'ko-KR', 'ru-RU', 'fa-IR'];
-
-
 
 const loadLocaleMessages = async (isLoggedIn) => {
 
   const messages = {};
 
-  
-
   try {
 
     let indexModule = null;
-
-    
-
-    
 
     if (isLoggedIn) {
 
@@ -140,8 +116,6 @@ const loadLocaleMessages = async (isLoggedIn) => {
 
     }
 
-    
-
     if (indexModule && indexModule.default) {
 
       for (const locale of supportedLocales) {
@@ -156,8 +130,6 @@ const loadLocaleMessages = async (isLoggedIn) => {
 
     }
 
-    
-
     for (const locale of supportedLocales) {
 
       if (!messages[locale]) {
@@ -165,8 +137,6 @@ const loadLocaleMessages = async (isLoggedIn) => {
         try {
 
           let module = null;
-
-          
 
           if (locale === 'zh-CN') {
 
@@ -202,8 +172,6 @@ const loadLocaleMessages = async (isLoggedIn) => {
 
           }
 
-          
-
           if (module && module.default) {
 
             messages[locale] = module.default;
@@ -211,8 +179,6 @@ const loadLocaleMessages = async (isLoggedIn) => {
           }
 
         } catch (e) {
-
-          
 
           if (locale !== 'en-US') {
 
@@ -232,8 +198,6 @@ const loadLocaleMessages = async (isLoggedIn) => {
 
           }
 
-
-
         }
 
       }
@@ -244,13 +208,9 @@ const loadLocaleMessages = async (isLoggedIn) => {
 
   }
 
-  
-
   return injectSiteName(messages);
 
 };
-
-
 
 const i18n = createI18n({
 
@@ -266,8 +226,6 @@ const i18n = createI18n({
   fallbackWarn: false
 });
 
-
-
 export const setLanguage = async (lang) => {
 
   if (!supportedLocales.includes(lang)) {
@@ -275,11 +233,7 @@ export const setLanguage = async (lang) => {
     lang = 'en-US';
   }
 
-  
-
   const isLoggedIn = checkLoginStatus();
-
-  
 
   /*for (const locale of supportedLocales) {
 
@@ -287,11 +241,7 @@ export const setLanguage = async (lang) => {
 
   }*/
 
-  
-
   const messages = await loadLocaleMessages(isLoggedIn);
-
-  
 
   for (const locale in messages) {
 
@@ -303,27 +253,19 @@ export const setLanguage = async (lang) => {
 
   }
 
-  
-
   i18n.global.locale.value = lang;
 
   localStorage.setItem('language', lang);
 
   document.querySelector('html').setAttribute('lang', lang);
 
-  
-
   updatePageTitle();
-
-  
 
   setTimeout(() => {
 
     updatePageTitle();
 
   }, 300);
-
-  
 
   return {
 
@@ -334,8 +276,6 @@ export const setLanguage = async (lang) => {
   };
 
 };
-
-
 
 export const updatePageTitle = () => {
 
@@ -363,13 +303,9 @@ export const updatePageTitle = () => {
 
 };
 
-
-
 export const reloadMessages = async () => {
 
   const isLoggedIn = checkLoginStatus();
-
-  
 
   /*for (const locale of supportedLocales) {
 
@@ -377,15 +313,9 @@ export const reloadMessages = async () => {
 
   }*/
 
-  
-
   const messages = await loadLocaleMessages(isLoggedIn);
 
-  
-
   const currentLang = i18n.global.locale.value;
-
-  
 
   for (const locale in messages) {
 
@@ -397,23 +327,15 @@ export const reloadMessages = async () => {
 
   }
 
-  
-
   i18n.global.locale.value = currentLang;
 
-  
-
   updatePageTitle();
-
-  
 
   setTimeout(() => {
 
     updatePageTitle();
 
   }, 300);
-
-  
 
   return {
 
@@ -425,8 +347,6 @@ export const reloadMessages = async () => {
 
 };
 
-
-
 (async () => {
 
   try {
@@ -435,11 +355,7 @@ export const reloadMessages = async () => {
 
     const initialLang = getStoredLanguage();
 
-    
-
     const messages = await loadLocaleMessages(isLoggedIn);
-
-    
 
     for (const locale in messages) {
 
@@ -451,11 +367,7 @@ export const reloadMessages = async () => {
 
     }
 
-    
-
     i18n.global.locale.value = initialLang;
-
-    
 
     updatePageTitle();
 
@@ -464,7 +376,5 @@ export const reloadMessages = async () => {
   }
 
 })();
-
-
 
 export default i18n;

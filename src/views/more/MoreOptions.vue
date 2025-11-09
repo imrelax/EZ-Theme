@@ -4,10 +4,6 @@
 
     <!-- 域名授权验证提示 - 如果不需要域名授权功能，移除此组件即可 -->
 
-
-
-    
-
     <div class="more-inner">
 
       <!-- 欢迎卡片 -->
@@ -27,8 +23,6 @@
         </div>
 
       </div>
-
-      
 
       <!-- 功能导航卡片组 -->
 
@@ -58,8 +52,6 @@
 
         </div>
 
-
-
         <div v-if="shouldShowDocsCard" class="stats-card" @click="$router.push('/docs')">
 
           <div class="stats-icon">
@@ -83,8 +75,6 @@
           </div>
 
         </div>
-
-        
 
         <div v-if="shouldShowNodesCard" class="stats-card" @click="$router.push('/nodes')">
 
@@ -110,8 +100,6 @@
 
         </div>
 
-        
-
         <div v-if="shouldShowOrdersCard" class="stats-card" @click="$router.push('/orders')">
 
           <div class="stats-icon">
@@ -135,8 +123,6 @@
           </div>
 
         </div>
-
-        
 
         <div v-if="shouldShowTicketsCard" class="stats-card" @click="navigateToTickets">
 
@@ -162,8 +148,6 @@
 
         </div>
 
-        
-
         <div class="stats-card" v-if="shouldShowTrafficCard && showTrafficLog" @click="$router.push('/trafficlog')">
 
           <div class="stats-icon">
@@ -187,8 +171,6 @@
           </div>
 
         </div>
-
-        
 
         <!-- 充值选项，仅Xiao-V2board面板显示 -->
 
@@ -216,8 +198,6 @@
 
         </div>
 
-        
-
         <div v-if="shouldShowProfileCard" class="stats-card" @click="$router.push('/profile')">
 
           <div class="stats-icon">
@@ -241,8 +221,6 @@
           </div>
 
         </div>
-
-        
 
         <!-- 自定义卡片 -->
 
@@ -302,8 +280,6 @@
 
 </template>
 
-
-
 <script setup name="MoreOptions">
 
 import {
@@ -354,31 +330,17 @@ import { ref, onMounted, onUnmounted, computed } from 'vue';
 
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
-
-
 import { TRAFFICLOG_CONFIG, isXiaoV2board, MORE_PAGE_CONFIG, NAVIGATION_CONFIG } from '@/utils/baseConfig';
-
-
 
 const { t } = useI18n();
 
 const router = useRouter();
 
-
-
 const isSmallScreen = ref(false);
-
-
-
-
-
-
 
 const showTrafficLog = ref(false);
 
 const isXiaoPanel = isXiaoV2board();
-
-
 
 const morePageConfig = MORE_PAGE_CONFIG;
 
@@ -387,8 +349,6 @@ const thirdNavItem = NAVIGATION_CONFIG?.thirdNavItem || 'invite';
 const fourthNavItem = NAVIGATION_CONFIG?.fourthNavItem || '';
 
 const isHiddenByTopNav = (key) => key === thirdNavItem || key === fourthNavItem;
-
-
 
 const shouldShowInviteCard = computed(() => !isHiddenByTopNav('invite'));
 
@@ -406,14 +366,11 @@ const shouldShowWalletCard = computed(() => !isHiddenByTopNav('wallet'));
 
 const shouldShowProfileCard = computed(() => !isHiddenByTopNav('profile'));
 
-
 const checkScreenSize = () => {
 
   isSmallScreen.value = window.innerWidth < 905;
 
 };
-
-
 
 const navigateToTickets = () => {
 
@@ -429,8 +386,6 @@ const navigateToTickets = () => {
 
 };
 
-
-
 const handleCustomCardClick = (card) => {
 
   if (card.url) {
@@ -438,8 +393,6 @@ const handleCustomCardClick = (card) => {
     const cardTitle = card.title || getLocaleTitle(card.id);
 
     console.log(`Clicked on card: ${cardTitle}`);
-
-    
 
     if (card.openInNewTab) {
 
@@ -454,8 +407,6 @@ const handleCustomCardClick = (card) => {
   }
 
 };
-
-
 
 const getIconComponent = (iconName) => {
 
@@ -473,12 +424,8 @@ const getIconComponent = (iconName) => {
 
   };
 
-  
-
   return iconMap[iconName] || IconChevronRight; 
 };
-
-
 
 const getLocaleTitle = (key) => {
 
@@ -486,24 +433,15 @@ const getLocaleTitle = (key) => {
 
 };
 
-
-
 onMounted(async () => {
 
-
-  
-
   showTrafficLog.value = TRAFFICLOG_CONFIG.enableTrafficLog;
-
-  
 
   checkScreenSize();
 
   window.addEventListener('resize', checkScreenSize);
 
 });
-
-
 
 onUnmounted(() => {
 
@@ -512,8 +450,6 @@ onUnmounted(() => {
 });
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -525,8 +461,6 @@ onUnmounted(() => {
 
   justify-content: center;
 
-  
-
   .more-inner {
 
     width: 100%;
@@ -535,15 +469,11 @@ onUnmounted(() => {
 
   }
 
-  
-
   .welcome-card {
 
     margin-bottom: 24px;
 
   }
-
-  
 
   .dashboard-card {
 
@@ -561,8 +491,6 @@ onUnmounted(() => {
 
     transition: all 0.3s ease;
 
-    
-
     &:hover {
 
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -570,8 +498,6 @@ onUnmounted(() => {
       border-color: rgba(var(--theme-color-rgb), 0.3);
 
     }
-
-    
 
     .card-header {
 
@@ -582,8 +508,6 @@ onUnmounted(() => {
       align-items: center;
 
       margin-bottom: 15px;
-
-      
 
       .card-title {
 
@@ -599,8 +523,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   .stats-grid {
 
     display: grid;
@@ -611,23 +533,17 @@ onUnmounted(() => {
 
     margin-bottom: 24px;
 
-    
-
     @media (min-width: 768px) {
 
       grid-template-columns: repeat(2, 1fr);
 
     }
 
-    
-
     @media (min-width: 992px) {
 
       grid-template-columns: repeat(3, 1fr);
 
     }
-
-    
 
     .stats-card {
 
@@ -649,8 +565,6 @@ onUnmounted(() => {
 
       cursor: pointer;
 
-      
-
       &:hover {
 
         border-color: rgba(var(--theme-color-rgb), 0.3);
@@ -660,8 +574,6 @@ onUnmounted(() => {
         transform: translateY(-2px);
 
       }
-
-      
 
       .stats-icon {
 
@@ -685,13 +597,9 @@ onUnmounted(() => {
 
       }
 
-      
-
       .stats-info {
 
         flex: 1;
-
-        
 
         .stats-value {
 
@@ -705,8 +613,6 @@ onUnmounted(() => {
 
         }
 
-        
-
         .stats-label {
 
           font-size: 14px;
@@ -717,8 +623,6 @@ onUnmounted(() => {
 
       }
 
-      
-
       .chevron-icon {
 
         color: var(--theme-color);
@@ -728,8 +632,6 @@ onUnmounted(() => {
         transition: all 0.3s ease;
 
       }
-
-      
 
       &:hover {
 
@@ -749,10 +651,6 @@ onUnmounted(() => {
 
 }
 
-
-
-
-
 @media (max-width: 768px) {
 
   .more-container {
@@ -760,8 +658,6 @@ onUnmounted(() => {
     padding: 15px;
 
     padding-bottom: 80px; 
-
-    
 
     .stats-grid {
 
@@ -772,10 +668,6 @@ onUnmounted(() => {
   }
 
 }
-
-
-
-
 
 .custom-svg-icon {
 
@@ -788,8 +680,6 @@ onUnmounted(() => {
   align-items: center;
 
   justify-content: center;
-
-  
 
   :deep(svg) {
 

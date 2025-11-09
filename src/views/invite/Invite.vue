@@ -1587,8 +1587,7 @@ export default {
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 10px rgba(var(--theme-color-rgb), 0.15);
-    
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -1963,14 +1962,12 @@ export default {
           border-bottom: none;
         }
       }
-      
-      
+
       td:nth-child(2), td:nth-child(3) {
         font-weight: 600;
         font-size: 15px;
       }
-      
-      
+
       td:nth-child(3) {
         color: var(--theme-color);
       }
@@ -2011,8 +2008,7 @@ export default {
         }
       }
     }
-    
-    
+
     @media (max-width: 768px) {
       .records-table {
         th, td {
@@ -2068,7 +2064,6 @@ export default {
     }
   }
 }
-
 
 .btn-primary, .btn-outline, .btn-action {
   display: inline-flex;
@@ -2162,7 +2157,6 @@ export default {
     }
   }
 }
-
 
 .skeleton-loading {
   overflow: hidden;
@@ -2301,7 +2295,6 @@ export default {
   gap: 12px;
 }
 
-
 .dark-theme .skeleton-header-cell,
 .dark-theme .skeleton-cell,
 .dark-theme .skeleton-icon,
@@ -2310,7 +2303,6 @@ export default {
 .dark-theme .skeleton-row-xs {
   background-color: rgba(255, 255, 255, 0.08);
 }
-
 
 @media (max-width: 768px) {
   .account-container {
@@ -2348,7 +2340,6 @@ export default {
   }
 }
 
-
 .dark-theme .invite-code-tabs,
 .dark .invite-code-tabs {
   background-color: rgba(255, 255, 255, 0.05);
@@ -2365,7 +2356,6 @@ export default {
     }
   }
 }
-
 
 @media (max-width: 768px) {
   .invite-code-tabs {
@@ -2408,7 +2398,6 @@ export default {
   }
 }
 
-
 .loading-icon {
   display: inline-block;
   width: 16px;
@@ -2437,12 +2426,10 @@ export default {
   to { transform: rotate(360deg); }
 }
 
-
 .card-actions .btn-action .loading-icon {
   border: 2px solid rgba(var(--theme-color-rgb), 0.3);
   border-top-color: var(--theme-color);
 }
-
 
 .dark-theme, .dark {
   .invite-link-wrapper .input-with-icon .invite-link {
@@ -2483,8 +2470,7 @@ export default {
       border-top-color: var(--theme-color);
     }
   }
-  
-  
+
   .transfer-card {
     background-color: var(--card-bg-color);
     border-color: rgba(255, 255, 255, 0.1);
@@ -2529,8 +2515,7 @@ export default {
       opacity: 0.8;
     }
   }
-  
-  
+
   .balance-card {
     &:hover {
       border-color: rgba(var(--theme-color-rgb), 0.3);
@@ -2541,15 +2526,13 @@ export default {
       opacity: 0.8;
     }
   }
-  
-  
+
   .modal-container {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     background-color: var(--card-bg-color);
     border-color: rgba(255, 255, 255, 0.1);
   }
 }
-
 
 .custom-modal {
   position: fixed;
@@ -2891,7 +2874,6 @@ export default {
   opacity: 0;
 }
 
-
 .withdraw-methods {
   display: flex;
   flex-wrap: wrap;
@@ -2931,13 +2913,11 @@ export default {
   }
 }
 
-
 @media (max-width: 768px) {
   .modal-container {
     width: 95%;
   }
 }
-
 
 .invite-cards-container {
   position: relative;
@@ -3040,8 +3020,7 @@ export default {
   cursor: pointer;
   transition: all 0.2s ease;
   box-shadow: 0 2px 10px rgba(var(--theme-color-rgb), 0.15);
-  
-  
+
   &::before {
     content: '';
     position: absolute;
@@ -3167,7 +3146,6 @@ export default {
   }
 }
 
-
 .invite-card-enter-active,
 .invite-card-leave-active {
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -3193,7 +3171,6 @@ export default {
     transform: translateY(0);
   }
 }
-
 
 .modal-enter-active,
 .modal-leave-active {
@@ -3236,7 +3213,6 @@ export default {
   }
 }
 
-
 .invite-cards-indicators {
   display: flex;
   justify-content: center;
@@ -3263,7 +3239,6 @@ export default {
   }
 }
 
-
 .dark-theme, .dark {
   .invite-cards-nav {
     background-color: rgba(255, 255, 255, 0.05);
@@ -3282,7 +3257,6 @@ export default {
     }
   }
 }
-
 
 @media (max-width: 768px) {
   .invite-cards {
@@ -3329,7 +3303,6 @@ export default {
     }
   }
 }
-
 
 .balance-card {
   transition: all 0.3s ease;
@@ -3408,7 +3381,6 @@ export default {
     }
   }
 }
-
 
 .transfer-card {
   margin-bottom: 24px;
@@ -3642,7 +3614,6 @@ export default {
   }
 }
 
-
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -3655,7 +3626,6 @@ export default {
   opacity: 0;
   transform: translateY(-10px);
 }
-
 
 .custom-select {
   position: relative;
@@ -3718,8 +3688,7 @@ export default {
     z-index: 3001; 
     padding: 5px 0;
   }
-  
-  
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -3745,7 +3714,6 @@ export default {
     color: var(--theme-color);
   }
 
-
 .withdraw-btn {
   background: transparent !important;
   border: 1.5px solid var(--theme-color) !important;
@@ -3761,7 +3729,6 @@ export default {
     color: var(--theme-color);
   }
 }
-
 
 .withdraw-methods {
   display: flex;
@@ -3792,7 +3759,6 @@ export default {
     border-color: var(--theme-color);
   }
 }
-
 
 .dark-theme, .dark {
   .method-tag {
@@ -3846,7 +3812,6 @@ export default {
     }
   }
 }
-
 
 .pagination-controls {
   display: flex;
@@ -3925,7 +3890,6 @@ export default {
   }
 }
 
-
 @media (max-width: 768px) {
   .pagination-controls {
     flex-wrap: nowrap;
@@ -3973,7 +3937,6 @@ export default {
     }
   }
 }
-
 
 .page-size-selector {
   position: relative;
@@ -4034,8 +3997,7 @@ export default {
     z-index: 3001; 
     padding: 5px 0;
   }
-  
-  
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.2s ease, transform 0.2s ease;

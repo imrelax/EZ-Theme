@@ -107,8 +107,7 @@ export default {
     }
   }
 }
-
-
+
 :deep(.dark-theme) .domain-auth-alert {
   .alert-content {
     background-color: var(--card-background, #222);

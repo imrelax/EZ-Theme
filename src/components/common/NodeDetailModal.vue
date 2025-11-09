@@ -18,8 +18,6 @@
 
         </div>
 
-        
-
         <!-- 使用页面切换动画 -->
 
         <transition :name="slideDirection" mode="out-in">
@@ -64,8 +62,6 @@
 
               </div>
 
-              
-
               <!-- 根据节点类型显示不同的信息 -->
 
               <template v-if="node.type === 'ss' || node.type === 'shadowsocks'">
@@ -80,8 +76,6 @@
 
               </template>
 
-              
-
               <template v-if="node.type === 'trojan'">
 
                 <div class="info-row">
@@ -93,8 +87,6 @@
                 </div>
 
               </template>
-
-              
 
               <template v-if="node.type === 'vmess'">
 
@@ -109,8 +101,6 @@
               </template>
 
             </div>
-
-            
 
             <!-- 切换到订阅链接页面的按钮 -->
 
@@ -127,8 +117,6 @@
             </div>
 
           </div>
-
-          
 
           <!-- 订阅链接页面 -->
 
@@ -180,8 +168,6 @@
 
               </div>
 
-              
-
               <!-- 链接视图 -->
 
               <div v-if="viewMode === 'link'" class="link-card">
@@ -197,8 +183,6 @@
                 </button>
 
               </div>
-
-              
 
               <!-- 二维码视图 -->
 
@@ -230,8 +214,6 @@
 
             </div>
 
-            
-
             <!-- 返回节点信息页面的按钮 -->
 
             <div class="page-nav-btn-container">
@@ -257,8 +239,6 @@
   </transition>
 
 </template>
-
-
 
 <script setup>
 
@@ -286,13 +266,9 @@ import { useToast } from '@/composables/useToast';
 
 import QRCode from 'qrcode';
 
-
-
 const { t } = useI18n();
 
 const { showToast } = useToast();
-
-
 
 const props = defineProps({
 
@@ -322,15 +298,10 @@ const props = defineProps({
 
 });
 
-
-
 const emit = defineEmits(['close']);
-
-
 
 const currentPage = ref('info'); 
 const slideDirection = ref('slide-left'); 
-
 
 const switchToPage = (pageName) => {
 
@@ -346,17 +317,11 @@ const switchToPage = (pageName) => {
 
 };
 
-
-
 const viewMode = ref('link');
-
-
 
 const qrCodeUrl = ref('');
 
 const qrCodeLoading = ref(false);
-
-
 
 const close = () => {
 
@@ -369,8 +334,6 @@ const close = () => {
   }, 300);
 
 };
-
-
 
 const safeBase64Encode = (str) => {
 
@@ -386,13 +349,9 @@ const safeBase64Encode = (str) => {
 
 };
 
-
-
 const subscribeLink = computed(() => {
 
   let nodeType = props.node.type?.toLowerCase();
-
-  
 
   if (!nodeType || !props.node.host || !props.node.port) {
 
@@ -400,19 +359,13 @@ const subscribeLink = computed(() => {
 
   }
 
-  
-
   if (nodeType === 'shadowsocks') {
 
     nodeType = 'ss';
 
   }
 
-  
-
   const userUuid = props.userInfo?.uuid || '00000000-0000-0000-0000-000000000000';
-
-
 
   switch (nodeType) {
     case 'ss': {
@@ -506,8 +459,6 @@ const subscribeLink = computed(() => {
 
 });
 
-
-
 const updateQrCode = () => {
 
   if (subscribeLink.value) {
@@ -564,15 +515,11 @@ const updateQrCode = () => {
 
 };
 
-
-
 const qrCodeLoaded = () => {
 
   qrCodeLoading.value = false;
 
 };
-
-
 
 const copySubscribeLink = () => {
 
@@ -587,8 +534,6 @@ const copySubscribeLink = () => {
     .catch(err => {
 
       console.error('无法复制链接: ', err);
-
-      
 
       try {
 
@@ -607,8 +552,6 @@ const copySubscribeLink = () => {
         const successful = document.execCommand('copy');
 
         document.body.removeChild(textarea);
-
-        
 
         if (successful) {
 
@@ -632,8 +575,6 @@ const copySubscribeLink = () => {
 
 };
 
-
-
 watchEffect(() => {
 
   if (viewMode.value === 'qrcode' && props.show && currentPage.value === 'subscribe') {
@@ -644,8 +585,6 @@ watchEffect(() => {
 
 });
 
-
-
 watchEffect(() => {
 
   if (props.show && viewMode.value === 'qrcode' && currentPage.value === 'subscribe') {
@@ -655,8 +594,6 @@ watchEffect(() => {
   }
 
 });
-
-
 
 watchEffect(() => {
 
@@ -670,8 +607,6 @@ watchEffect(() => {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .fade-enter-active, .fade-leave-active {
@@ -680,17 +615,11 @@ watchEffect(() => {
 
 }
 
-
-
 .fade-enter-from, .fade-leave-to {
 
   opacity: 0;
 
 }
-
-
-
-
 
 .slide-left-enter-active,
 
@@ -704,8 +633,6 @@ watchEffect(() => {
 
 }
 
-
-
 .slide-left-enter-from {
 
   transform: translateX(100%);
@@ -713,8 +640,6 @@ watchEffect(() => {
   opacity: 0;
 
 }
-
-
 
 .slide-left-leave-to {
 
@@ -724,8 +649,6 @@ watchEffect(() => {
 
 }
 
-
-
 .slide-right-enter-from {
 
   transform: translateX(-100%);
@@ -734,8 +657,6 @@ watchEffect(() => {
 
 }
 
-
-
 .slide-right-leave-to {
 
   transform: translateX(100%);
@@ -743,8 +664,6 @@ watchEffect(() => {
   opacity: 0;
 
 }
-
-
 
 .node-detail-modal-overlay {
 
@@ -776,8 +695,6 @@ watchEffect(() => {
 
 }
 
-
-
 .node-detail-modal-container {
 
   width: 100%;
@@ -802,8 +719,6 @@ watchEffect(() => {
 
   animation: modal-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
-  
-
   @keyframes modal-in {
 
     from {
@@ -826,8 +741,6 @@ watchEffect(() => {
 
 }
 
-
-
 .node-detail-modal-header {
 
   padding: 16px 20px;
@@ -844,8 +757,6 @@ watchEffect(() => {
 
   flex-shrink: 0; 
 
-  
-
   .modal-title {
 
     margin: 0;
@@ -857,8 +768,6 @@ watchEffect(() => {
     color: var(--text-color);
 
   }
-
-  
 
   .modal-close-btn {
 
@@ -884,8 +793,6 @@ watchEffect(() => {
 
     transition: all 0.3s ease;
 
-    
-
     &:hover {
 
       background-color: rgba(0, 0, 0, 0.05);
@@ -899,8 +806,6 @@ watchEffect(() => {
   }
 
 }
-
-
 
 .node-detail-modal-body {
 
@@ -922,8 +827,6 @@ watchEffect(() => {
 
 }
 
-
-
 .node-info-section {
 
   display: flex;
@@ -931,8 +834,6 @@ watchEffect(() => {
   flex-direction: column;
 
   gap: 12px;
-
-  
 
   .info-row {
 
@@ -944,15 +845,11 @@ watchEffect(() => {
 
     border-bottom: 1px solid var(--border-color);
 
-    
-
     &:last-child {
 
       border-bottom: none;
 
     }
-
-    
 
     .info-label {
 
@@ -963,8 +860,6 @@ watchEffect(() => {
       flex: 0 0 40%; 
 
     }
-
-    
 
     .info-value {
 
@@ -978,8 +873,6 @@ watchEffect(() => {
 
       word-break: break-word; 
 
-      
-
       &.high-rate {
 
         color: #ff6b6b;
@@ -991,8 +884,6 @@ watchEffect(() => {
   }
 
 }
-
-
 
 .quick-link-section {
 
@@ -1006,8 +897,6 @@ watchEffect(() => {
 
     margin-bottom: 12px;
 
-    
-
     h4 {
 
       margin: 0;
@@ -1018,15 +907,11 @@ watchEffect(() => {
 
     }
 
-    
-
     .view-toggle {
 
       display: flex;
 
       gap: 8px;
-
-      
 
       .toggle-btn {
 
@@ -1052,8 +937,6 @@ watchEffect(() => {
 
         transition: all 0.2s ease;
 
-        
-
         &:hover {
 
           background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -1061,8 +944,6 @@ watchEffect(() => {
           color: var(--theme-color);
 
         }
-
-        
 
         &.active {
 
@@ -1080,8 +961,6 @@ watchEffect(() => {
 
   }
 
-  
-
   .link-card {
 
     background-color: rgba(var(--theme-color-rgb), 0.05);
@@ -1091,8 +970,6 @@ watchEffect(() => {
     padding: 12px;
 
     position: relative;
-
-    
 
     .link-text {
 
@@ -1121,8 +998,6 @@ watchEffect(() => {
       padding-bottom: 8px; 
 
     }
-
-    
 
     .copy-btn {
 
@@ -1154,8 +1029,6 @@ watchEffect(() => {
 
       transition: all 0.2s ease;
 
-      
-
       &:hover {
 
         background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -1165,8 +1038,6 @@ watchEffect(() => {
     }
 
   }
-
-  
 
   .qrcode-container {
 
@@ -1184,8 +1055,6 @@ watchEffect(() => {
 
     min-height: 240px;
 
-    
-
     .qrcode-loading {
 
       display: flex;
@@ -1197,8 +1066,6 @@ watchEffect(() => {
       justify-content: center;
 
       gap: 16px;
-
-      
 
       .loader {
 
@@ -1216,8 +1083,6 @@ watchEffect(() => {
 
       }
 
-      
-
       p {
 
         color: var(--text-muted);
@@ -1230,8 +1095,6 @@ watchEffect(() => {
 
     }
 
-    
-
     .qrcode-wrapper {
 
       position: relative;
@@ -1243,8 +1106,6 @@ watchEffect(() => {
       align-items: center;
 
       gap: 12px;
-
-      
 
       img {
 
@@ -1261,8 +1122,6 @@ watchEffect(() => {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 
       }
-
-      
 
       .copy-btn {
 
@@ -1290,8 +1149,6 @@ watchEffect(() => {
 
         width: auto;
 
-        
-
         &:hover {
 
           background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -1304,8 +1161,6 @@ watchEffect(() => {
 
   }
 
-  
-
   @keyframes spin {
 
     to { transform: rotate(360deg); }
@@ -1313,10 +1168,6 @@ watchEffect(() => {
   }
 
 }
-
-
-
-
 
 .page-nav-btn-container {
 
@@ -1329,8 +1180,6 @@ watchEffect(() => {
   padding-top: 16px;
 
 }
-
-
 
 .page-nav-btn {
 
@@ -1364,8 +1213,6 @@ watchEffect(() => {
 
   max-width: 240px;
 
-  
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -1374,8 +1221,6 @@ watchEffect(() => {
 
   }
 
-  
-
   &:active {
 
     transform: translateY(0);
@@ -1383,8 +1228,6 @@ watchEffect(() => {
   }
 
 }
-
-
 
 @media (max-width: 480px) {
 
@@ -1396,8 +1239,6 @@ watchEffect(() => {
 
   }
 
-  
-
   .node-detail-modal-container {
 
     margin: 0; 
@@ -1408,8 +1249,6 @@ watchEffect(() => {
 
   }
 
-  
-
   .node-detail-modal-body {
 
     padding: 16px; 
@@ -1418,19 +1257,13 @@ watchEffect(() => {
 
   }
 
-  
-
   .node-info-section .info-row {
-
-    
 
     display: flex;
 
     flex-direction: row; 
 
     justify-content: space-between; 
-
-    
 
     .info-label {
 
@@ -1439,8 +1272,6 @@ watchEffect(() => {
       flex: 0 0 40%; 
 
     }
-
-    
 
     .info-value {
 
@@ -1454,8 +1285,6 @@ watchEffect(() => {
 
   }
 
-  
-
   .quick-link-section {
 
     .section-header {
@@ -1466,13 +1295,9 @@ watchEffect(() => {
 
       gap: 10px;
 
-      
-
       .view-toggle {
 
         width: 100%;
-
-        
 
         .toggle-btn {
 
@@ -1485,8 +1310,6 @@ watchEffect(() => {
       }
 
     }
-
-    
 
     .link-card {
 
@@ -1501,8 +1324,6 @@ watchEffect(() => {
     }
 
   }
-
-  
 
   .page-nav-btn {
 

@@ -1,15 +1,13 @@
 ﻿
 import request from './request';
-
-
+
 export function fetchTicketList() {
   return request({
     url: '/user/ticket/fetch',
     method: 'get'
   });
 }
-
-
+
 export function createTicket(data) {
   return request({
     url: '/user/ticket/save',
@@ -17,16 +15,14 @@ export function createTicket(data) {
     data
   });
 }
-
-
+
 export function getTicketDetail(id) {
   return request({
     url: `/user/ticket/fetch?id=${id}`,
     method: 'get'
   });
 }
-
-
+
 export function replyTicket(id, message) {
   return request({
     url: '/user/ticket/reply',
@@ -37,8 +33,7 @@ export function replyTicket(id, message) {
     }
   });
 }
-
-
+
 export function closeTicket(id) {
   return request({
     url: '/user/ticket/close',

@@ -346,16 +346,14 @@ export default {
     }
   }
 }
-
-
+
 @media (max-width: 768px) {
   .validation-container {
     max-width: 85%;
     padding: 30px 20px;
   }
 }
-
-
+
 @media (prefers-color-scheme: light) {
   .api-validation-page {
     background-color: #f8f9fc;

@@ -181,8 +181,7 @@ export default {
   opacity: 0;
   transform: scale(0.9) translateY(20px);
 }
-
-
+
 @media (max-width: 768px) {
   .back-to-top {
     right: 16px;
@@ -206,8 +205,7 @@ export default {
     }
   }
 }
-
-
+
 @media (max-width: 480px) {
   .back-to-top {
     right: 12px;

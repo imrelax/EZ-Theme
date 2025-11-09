@@ -1,19 +1,16 @@
 ﻿
-
-
+
 export function isValidEmail(email) {
   if (!email) return false;
   
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
-
-
+
 export const validateEmail = (email) => {
   return isValidEmail(email);
 };
-
-
+
 export const validatePassword = (password) => {
   const result = {
     valid: false,
@@ -45,14 +42,12 @@ export const validatePassword = (password) => {
   result.valid = true;
   return result;
 };
-
-
+
 export function passwordsMatch(password, confirmPassword) {
   if (!password || !confirmPassword) return false;
   return password === confirmPassword;
 }
-
-
+
 export const validateRequiredWithMessage = (value, fieldName) => {
   const result = {
     valid: false,
@@ -67,13 +62,11 @@ export const validateRequiredWithMessage = (value, fieldName) => {
   result.valid = true;
   return result;
 };
-
-
+
 export const validateRequired = (value) => {
   return !!value && (typeof value !== 'string' || value.trim() !== '');
 };
-
-
+
 export function isStrongPassword(password) {
   if (!password) return false;
   

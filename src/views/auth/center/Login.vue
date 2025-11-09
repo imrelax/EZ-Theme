@@ -4,10 +4,6 @@
 
     <!-- 域名授权验证提示 -->
 
-
-
-
-
     <!-- 背景装饰 -->
 
     <div class="background-decoration">
@@ -20,8 +16,6 @@
 
     </div>
 
-
-
     <!-- 顶部工具栏：语言选择器和主题切换 -->
 
     <div class="top-toolbar">
@@ -31,8 +25,6 @@
       <LanguageSelector />
 
     </div>
-
-
 
     <div class="auth-card">
 
@@ -59,8 +51,6 @@
         <p class="auth-subtitle">{{ $t('auth.loginSubtitle') }}</p>
 
       </div>
-
-
 
       <form class="auth-form" @submit.prevent="handleLogin">
 
@@ -93,8 +83,6 @@
           <div v-if="errors.email" class="error-message">{{ errors.email }}</div>
 
         </div>
-
-
 
         <div class="form-group">
 
@@ -134,8 +122,6 @@
 
         </div>
 
-
-
         <div class="form-options">
 
           <div class="remember-me">
@@ -159,8 +145,6 @@
           </router-link>
 
         </div>
-
-
 
         <button
 
@@ -190,8 +174,6 @@
 
       </form>
 
-
-
       <div class="auth-footer">
 
         <div class="auth-divider">
@@ -199,8 +181,6 @@
           <span class="auth-divider-text">{{ $t('auth.noAccount') }}</span>
 
         </div>
-
-
 
         <router-link to="/register" class="btn btn-secondary btn-block">
 
@@ -211,8 +191,6 @@
       </div>
 
     </div>
-
-
 
     <!-- 自定义弹窗 -->
 
@@ -235,8 +213,6 @@
   </div>
 
 </template>
-
-
 
 <script>
 
@@ -265,8 +241,6 @@ import IconEyeOff from '@/components/icons/IconEyeOff.vue';
 import { login, checkLoginStatus } from '@/api/auth';
 
 import { validateEmail, validateRequired } from '@/utils/validators';
-
-
 
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
@@ -306,8 +280,6 @@ export default {
 
   },
 
-
-
   setup() {
 
     const router = useRouter();
@@ -318,8 +290,6 @@ export default {
 
     const { goTo } = useNavigator()
 
-
-
     const logoPath = ref('./images/logo.png');
 
     const handleLogoError = () => {
@@ -327,8 +297,6 @@ export default {
       logoPath.value = '/images/logo.png';
 
     };
-
-
 
     const formData = reactive({
 
@@ -340,8 +308,6 @@ export default {
 
     });
 
-
-
     const errors = reactive({
 
       email: '',
@@ -350,15 +316,9 @@ export default {
 
     });
 
-
-
     const loading = ref(false);
 
-
-
     const showPassword = ref(false);
-
-
 
     const showAuthPopup = ref(false);
 
@@ -374,35 +334,19 @@ export default {
 
     });
 
-
-
     const handleAuthPopupClose = () => {
 
       showAuthPopup.value = false;
 
     };
 
-
-
-
-
-
-
     onMounted(async () => {
 
-
-
-
-
       const hasToken = hasVerifyToken();
-
-
 
       if (hasToken) {
 
         loading.value = true;
-
-
 
         try {
 
@@ -415,10 +359,6 @@ export default {
             }
 
           });
-
-
-
-
 
           if (tokenLoginResult.success) {
 
@@ -438,21 +378,15 @@ export default {
 
       }
 
-
-
       const urlParams = new URLSearchParams(window.location.search);
 
       const isJustLoggedOut = urlParams.get('logout') === 'true';
-
-
 
       if (isJustLoggedOut) {
 
         console.log('检测到用户刚刚登出，清除所有登录状态');
 
         showToast(t('auth.logoutSuccess'), 'success', 3000);
-
-
 
         if (window.history && window.history.replaceState) {
 
@@ -462,17 +396,11 @@ export default {
 
         }
 
-
-
         return;
 
       }
 
-
-
       showAuthPopup.value = shouldShowAuthPopup(AUTH_CONFIG.popup);
-
-
 
       try {
 
@@ -484,11 +412,7 @@ export default {
 
         }
 
-
-
         const loginStatus = checkLoginStatus();
-
-
 
         if (loginStatus) {
 
@@ -512,19 +436,13 @@ export default {
 
     });
 
-
-
     const validateForm = () => {
 
       let isValid = true;
 
-
-
       errors.email = '';
 
       errors.password = '';
-
-
 
       if (!validateRequired(formData.email)) {
 
@@ -540,8 +458,6 @@ export default {
 
       }
 
-
-
       if (!validateRequired(formData.password)) {
 
         errors.password = t('validation.passwordRequired');
@@ -550,13 +466,9 @@ export default {
 
       }
 
-
-
       return isValid;
 
     };
-
-
 
     const handleLogin = async () => {
 
@@ -566,21 +478,13 @@ export default {
 
       }
 
-
-
       loading.value = true;
-
-
 
       try {
 
         const response = await login(formData);
 
-
-
         showToast(response.message || t('auth.loginSuccess'), 'success', 3000);
-
-
 
         setTimeout(() => {
 
@@ -612,8 +516,6 @@ export default {
 
       handleLogin,
 
-
-
       logoPath,
 
       handleLogoError,
@@ -634,8 +536,6 @@ export default {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .top-toolbar {
@@ -654,8 +554,6 @@ export default {
 
 }
 
-
-
 .required {
 
   color: #ff4d4f;
@@ -668,15 +566,11 @@ export default {
 
 }
 
-
-
 .input-with-icon {
 
   position: relative;
 
   width: 100%;
-
-
 
   .input-icon {
 
@@ -695,8 +589,6 @@ export default {
     height: 20px;
 
   }
-
-
 
   .password-toggle {
 
@@ -722,8 +614,6 @@ export default {
 
     transition: color 0.2s ease;
 
-
-
     &:hover {
 
       color: var(--theme-color);
@@ -731,8 +621,6 @@ export default {
     }
 
   }
-
-
 
   .form-control {
 
@@ -750,8 +638,6 @@ export default {
 
     color: var(--primary-text-color);
 
-
-
     &[type="password"],
 
     &[type="text"] {
@@ -759,8 +645,6 @@ export default {
       padding-right: 40px;
 
     }
-
-
 
     &:focus {
 
@@ -774,8 +658,6 @@ export default {
 
     }
 
-
-
     &::placeholder {
 
       color: var(--placeholder-color, #aaa);
@@ -786,8 +668,6 @@ export default {
 
 }
 
-
-
 .form-options {
 
   display: flex;
@@ -797,8 +677,6 @@ export default {
   align-items: center;
 
   margin-bottom: 1.5rem;
-
-
 
   .remember-me .checkbox-container {
 
@@ -814,8 +692,6 @@ export default {
 
     user-select: none;
 
-
-
     input {
 
       position: absolute;
@@ -828,15 +704,11 @@ export default {
 
       width: 0;
 
-
-
       &:checked ~ .checkmark {
 
         background-color: var(--theme-color);
 
         border-color: var(--theme-color);
-
-
 
         &:after {
 
@@ -847,8 +719,6 @@ export default {
       }
 
     }
-
-
 
     .checkmark {
 
@@ -869,8 +739,6 @@ export default {
       border-radius: 4px;
 
       transition: all 0.2s ease;
-
-
 
       &:after {
 
@@ -898,8 +766,6 @@ export default {
 
     }
 
-
-
     .checkbox-label {
 
       color: var(--secondary-text-color);
@@ -909,8 +775,6 @@ export default {
     }
 
   }
-
-
 
   .forgot-password {
 
@@ -922,8 +786,6 @@ export default {
 
     transition: color 0.3s ease, opacity 0.3s ease;
 
-
-
     &:hover {
 
       opacity: 0.8;
@@ -933,8 +795,6 @@ export default {
   }
 
 }
-
-
 
 .btn {
 
@@ -950,8 +810,6 @@ export default {
 
   justify-content: center;
 
-
-
   &.btn-primary {
 
     background-color: var(--theme-color);
@@ -962,15 +820,11 @@ export default {
 
     font-weight: 600;
 
-
-
     &:hover:not(:disabled) {
 
       background-color: var(--primary-color-hover);
 
     }
-
-
 
     &:disabled {
 
@@ -979,8 +833,6 @@ export default {
       cursor: not-allowed;
 
     }
-
-
 
     .icon-right {
 
@@ -991,8 +843,6 @@ export default {
   }
 
 }
-
-
 
 .error-message {
 
@@ -1006,10 +856,6 @@ export default {
 
 }
 
-
-
-
-
 @media (max-width: 576px) {
 
   .auth-card {
@@ -1017,8 +863,6 @@ export default {
     padding: 1.5rem;
 
   }
-
-
 
   .form-options {
 
@@ -1032,15 +876,11 @@ export default {
 
     gap: 0.5rem;
 
-
-
     .remember-me {
 
       flex: 0 0 auto;
 
     }
-
-
 
     .forgot-password {
 
@@ -1054,10 +894,6 @@ export default {
 
 }
 
-
-
-
-
 @media (min-width: 576px) and (max-width: 992px) {
 
   .auth-container {
@@ -1067,10 +903,6 @@ export default {
   }
 
 }
-
-
-
-
 
 .dark-theme {
 
@@ -1082,15 +914,11 @@ export default {
 
     }
 
-
-
     .form-control {
 
       background-color: var(--input-bg-color, #333);
 
       border-color: var(--input-border-color, #444);
-
-
 
       &:focus {
 
@@ -1099,8 +927,6 @@ export default {
         border-color: var(--theme-color);
 
       }
-
-
 
       &::placeholder {
 
@@ -1112,8 +938,6 @@ export default {
 
   }
 
-
-
   .checkbox-container {
 
     .checkbox-label {
@@ -1121,8 +945,6 @@ export default {
       color: var(--secondary-text-color);
 
     }
-
-
 
     .checkmark {
 
@@ -1136,13 +958,9 @@ export default {
 
 }
 
-
-
 .auth-footer {
 
   margin-top: 24px;
-
-
 
   a.btn {
 
@@ -1161,8 +979,6 @@ export default {
   }
 
 }
-
-
 
 .btn.btn-secondary.btn-block {
 
@@ -1184,8 +1000,6 @@ export default {
 
   transition: all 0.3s ease;
 
-
-
   &:hover {
 
     border-color: var(--theme-color);
@@ -1202,8 +1016,6 @@ export default {
 
 }
 
-
-
 .loading-wrapper {
 
   display: flex;
@@ -1216,15 +1028,11 @@ export default {
 
   transition: all 0.3s ease;
 
-
-
   svg {
 
     display: none;
 
   }
-
-
 
   &::before {
 
@@ -1246,8 +1054,6 @@ export default {
 
   }
 
-
-
   span {
 
     display: inline-block;
@@ -1258,8 +1064,6 @@ export default {
 
 }
 
-
-
 @keyframes pulse {
 
   0%, 100% { opacity: 1; }
@@ -1268,8 +1072,6 @@ export default {
 
 }
 
-
-
 @keyframes spin {
 
   from { transform: rotate(0deg); }
@@ -1277,8 +1079,6 @@ export default {
   to { transform: rotate(360deg); }
 
 }
-
-
 
 @keyframes cardAppear {
 
@@ -1296,8 +1096,6 @@ export default {
 
 }
 
-
-
 @keyframes formAppear {
 
   0% {
@@ -1313,8 +1111,6 @@ export default {
   }
 
 }
-
-
 
 .auth-logo {
 

@@ -2,10 +2,6 @@
 
   <div class="not-found-container">
 
-
-
-    
-
     <!-- 返回按钮 -->
 
     <button class="back-button" @click="goBack">
@@ -15,8 +11,6 @@
       {{ $t('common.back') }}
 
     </button>
-
-
 
     <div class="not-found-content">
 
@@ -40,8 +34,6 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, onMounted } from 'vue';
@@ -51,8 +43,6 @@ import { useRouter } from 'vue-router';
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
 import { IconArrowLeft, IconHome } from '@tabler/icons-vue';
-
-
 
 export default {
 
@@ -74,23 +64,13 @@ export default {
 
     const countDown = ref(5);
 
-    
-
-
-    
-
     const backToHome = () => {
 
       router.push('/login');
 
     };
 
-    
-
     onMounted(() => {
-
-
-      
 
       const timer = setInterval(() => {
 
@@ -108,15 +88,11 @@ export default {
 
     });
 
-    
-
     const goBack = () => {
 
       router.go(-1);
 
     };
-
-
 
     const goHome = () => {
 
@@ -124,15 +100,11 @@ export default {
 
     };
 
-
-
     return {
 
       countDown,
 
       backToHome,
-
-
 
       goBack,
 
@@ -145,8 +117,6 @@ export default {
 };
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -164,13 +134,9 @@ export default {
 
   padding: 20px;
 
-  
-
   transform: translateZ(0);
 
 }
-
-
 
 .back-button {
 
@@ -204,8 +170,6 @@ export default {
 
   transition: background-color 0.2s ease;
 
-  
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -213,8 +177,6 @@ export default {
   }
 
 }
-
-
 
 .not-found-content {
 
@@ -236,8 +198,6 @@ export default {
 
 }
 
-
-
 .error-code {
 
   font-size: 120px;
@@ -252,8 +212,6 @@ export default {
 
   letter-spacing: -2px;
 
-  
-
   background: linear-gradient(45deg, var(--theme-color), rgba(var(--theme-color-rgb), 0.6));
 
   background-clip: text;
@@ -263,8 +221,6 @@ export default {
   color: transparent;
 
 }
-
-
 
 .error-title {
 
@@ -278,8 +234,6 @@ export default {
 
 }
 
-
-
 .error-description {
 
   font-size: 18px;
@@ -291,8 +245,6 @@ export default {
   margin-bottom: 30px;
 
 }
-
-
 
 .home-button {
 
@@ -322,8 +274,6 @@ export default {
 
   transition: transform 0.2s ease, background-color 0.2s ease;
 
-  
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.9);
@@ -331,8 +281,6 @@ export default {
     transform: translateY(-2px);
 
   }
-
-  
 
   &:active {
 
@@ -342,10 +290,6 @@ export default {
 
 }
 
-
-
-
-
 @media (max-width: 768px) {
 
   .error-code {
@@ -354,15 +298,11 @@ export default {
 
   }
 
-  
-
   .error-title {
 
     font-size: 24px;
 
   }
-
-  
 
   .error-description {
 

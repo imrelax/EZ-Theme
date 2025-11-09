@@ -1,4 +1,4 @@
-﻿<template>
+<template>
 
   <div class="profile-container">
 
@@ -21,8 +21,6 @@
         </div>
 
       </div>
-
-
 
       <!-- 骨架屏加载状态 -->
 
@@ -59,8 +57,6 @@
           </div>
 
         </div>
-
-
 
         <!-- 设置骨架屏 -->
 
@@ -106,8 +102,6 @@
 
         </div>
 
-
-
         <!-- 按钮骨架屏 -->
 
         <div class="profile-card">
@@ -128,8 +122,6 @@
 
       </div>
 
-
-
       <!-- 错误提示 -->
 
       <div v-else-if="error" class="error-state">
@@ -141,8 +133,6 @@
         <button class="retry-button" @click="fetchUserInfo">{{ $t('common.retry') }}</button>
 
       </div>
-
-
 
       <div v-else class="profile-content">
 
@@ -181,8 +171,6 @@
           </div>
 
         </div>
-
-
 
         <!-- 礼品卡兑换 -->
 
@@ -237,8 +225,6 @@
           </div>
 
         </div>
-
-
 
         <!-- 邮件提醒设置 -->
 
@@ -304,8 +290,6 @@
 
         </div>
 
-
-
         <!-- 账号设置 -->
 
         <div class="profile-card">
@@ -346,8 +330,6 @@
 
         </div>
 
-
-
         <!-- 安全设置 -->
 
         <div class="profile-card">
@@ -376,8 +358,6 @@
 
         </div>
 
-
-
         <!-- Telegram通信 -->
 
         <div class="profile-card" v-if="(telegramConfig?.telegram_discuss_link || (telegramBotInfo && telegramBotInfo.username)) && !loadingTelegram">
@@ -404,8 +384,6 @@
 
             </div>
 
-
-
             <!-- 正常状态 -->
 
             <div class="action-buttons">
@@ -417,8 +395,6 @@
                 {{ $t('profile.telegramGroup') }}
 
               </button>
-
-
 
               <button class="action-btn" @click="openTelegramBotModal" v-if="telegramBotInfo && telegramBotInfo.username">
 
@@ -433,8 +409,6 @@
           </div>
 
         </div>
-
-
 
         <!-- 订阅管理 -->
 
@@ -458,8 +432,6 @@
 
               </button>
 
-
-
               <button v-if="subscriptionUrl" class="action-btn" @click="copySubscriptionUrl">
 
                 <IconCopy :size="18" />
@@ -470,8 +442,6 @@
 
             </div>
 
-
-
             <div v-if="subscriptionUrl" class="subscription-info">
 
               <div class="subscription-url">{{ subscriptionUrl }}</div>
@@ -481,8 +451,6 @@
           </div>
 
         </div>
-
-
 
         <!-- 近期登录设备 -->
 
@@ -516,8 +484,6 @@
 
             </div>
 
-
-
             <!-- 错误状态 -->
 
             <div v-else-if="sessionError" class="device-error">
@@ -532,8 +498,6 @@
 
             </div>
 
-
-
             <!-- 无数据状态 -->
 
             <div v-else-if="activeSessions.length === 0" class="device-empty">
@@ -543,8 +507,6 @@
               <p>{{ $t('profile.noDevices') }}</p>
 
             </div>
-
-
 
             <!-- 数据列表 -->
 
@@ -581,8 +543,6 @@
         </div>
 
       </div>
-
-
 
       <!-- 修改密码弹窗 -->
 
@@ -694,8 +654,6 @@
 
       </transition>
 
-
-
       <!-- 重置订阅弹窗 -->
 
       <transition name="modal-fade">
@@ -756,15 +714,11 @@
 
     </div>
 
-
-
     <!-- 底部安全区域 -->
 
     <div class="bottom-safe-area"></div>
 
   </div>
-
-
 
   <!-- Telegram机器人绑定弹窗 -->
 
@@ -809,8 +763,6 @@
               </div>
 
             </div>
-
-
 
             <div class="step-item">
 
@@ -857,8 +809,6 @@
   </transition>
 
 </template>
-
-
 
 <script setup name="UserProfile">
 
@@ -924,25 +874,17 @@ import { reloadMessages } from '@/i18n';
 
 import { DASHBOARD_CONFIG, PROFILE_CONFIG } from '@/utils/baseConfig';
 
-
-
 defineOptions({
 
   name: 'UserProfile'
 
 });
 
-
-
 reloadMessages();
-
-
 
 const { t } = useI18n();
 
 const { success, error: showError } = useToast();
-
-
 
 const loading = ref(true);
 
@@ -966,8 +908,6 @@ const remindAutoRenewal = ref(false);
 
 const subscriptionUrl = ref('');
 
-
-
 const telegramConfig = ref({
 
   is_telegram: 0,
@@ -984,21 +924,15 @@ const telegramError = ref('');
 
 const showTelegramBotModal = ref(false);
 
-
-
 const activeSessions = ref([]);
 
 const loadingSessions = ref(false);
 
 const sessionError = ref('');
 
-
-
 const giftCardCode = ref('');
 
 const isRedeeming = ref(false);
-
-
 
 const updatingSettings = ref(false);
 
@@ -1020,8 +954,6 @@ const passwordForm = ref({
 
 });
 
-
-
 const passwordMismatch = computed(() => {
 
   if (!passwordForm.value.confirmPassword) return false;
@@ -1029,8 +961,6 @@ const passwordMismatch = computed(() => {
   return passwordForm.value.newPassword !== passwordForm.value.confirmPassword;
 
 });
-
-
 
 const validatePasswordForm = () => {
 
@@ -1048,13 +978,9 @@ const validatePasswordForm = () => {
 
 };
 
-
-
 const route = useRoute();
 
 const router = useRouter();
-
-
 
 const fetchUserInfo = async (showLoading = true) => {
 
@@ -1066,27 +992,19 @@ const fetchUserInfo = async (showLoading = true) => {
 
   error.value = '';
 
-
-
   try {
 
     const response = await getUserInfo();
 
-
-
     if (response && response.data) {
 
       userInfo.value = response.data;
-
-
 
       remindExpire.value = !!response.data.remind_expire;
 
       remindTraffic.value = !!response.data.remind_traffic;
 
       remindAutoRenewal.value = !!response.data.auto_renewal;
-
-
 
       await fetchSubscribeInfo();
 
@@ -1102,8 +1020,6 @@ const fetchUserInfo = async (showLoading = true) => {
 
     error.value = err?.message || t('common.networkError');
 
-
-
     showError(error.value);
 
   } finally {
@@ -1114,15 +1030,11 @@ const fetchUserInfo = async (showLoading = true) => {
 
     }
 
-
-
     checkOpenPasswordModal();
 
   }
 
 };
-
-
 
 const checkOpenPasswordModal = () => {
 
@@ -1131,8 +1043,6 @@ const checkOpenPasswordModal = () => {
     setTimeout(() => {
 
       showPasswordModal.value = true;
-
-
 
       const query = { ...route.query };
 
@@ -1146,8 +1056,6 @@ const checkOpenPasswordModal = () => {
 
 };
 
-
-
 watch(() => route.query, (newQuery) => {
 
   if (newQuery.openPasswordModal === 'true') {
@@ -1155,8 +1063,6 @@ watch(() => route.query, (newQuery) => {
     setTimeout(() => {
 
       showPasswordModal.value = true;
-
-
 
       const query = { ...newQuery };
 
@@ -1169,8 +1075,6 @@ watch(() => route.query, (newQuery) => {
   }
 
 }, { immediate: true });
-
-
 
 const fetchSubscribeInfo = async () => {
 
@@ -1192,15 +1096,11 @@ const fetchSubscribeInfo = async () => {
 
 };
 
-
-
 const fetchTelegramInfo = async () => {
 
   loadingTelegram.value = true;
 
   telegramError.value = '';
-
-
 
   try {
 
@@ -1211,8 +1111,6 @@ const fetchTelegramInfo = async () => {
       telegramConfig.value = configResponse.data;
 
     }
-
-
 
     try {
 
@@ -1262,8 +1160,6 @@ const fetchTelegramInfo = async () => {
 
 };
 
-
-
 const openTelegramGroup = () => {
 
   if (telegramConfig.value && telegramConfig.value.telegram_discuss_link) {
@@ -1274,23 +1170,17 @@ const openTelegramGroup = () => {
 
 };
 
-
-
 const openTelegramBotModal = () => {
 
   showTelegramBotModal.value = true;
 
 };
 
-
-
 const closeTelegramBotModal = () => {
 
   showTelegramBotModal.value = false;
 
 };
-
-
 
 const copyCommand = () => {
 
@@ -1318,13 +1208,9 @@ const copyCommand = () => {
 
 };
 
-
-
 const updateRemindSettings = async (type) => {
 
   updatingSettings.value = true;
-
-
 
   if (type === 'expire') {
 
@@ -1340,8 +1226,6 @@ const updateRemindSettings = async (type) => {
 
   }
 
-
-
   try {
 
     const data = {
@@ -1354,11 +1238,7 @@ const updateRemindSettings = async (type) => {
 
     };
 
-
-
     const response = await apiUpdateRemind(data);
-
-
 
     if (response && response.data) {
 
@@ -1370,23 +1250,17 @@ const updateRemindSettings = async (type) => {
 
     console.error('Failed to update remind settings:', err);
 
-
-
     remindExpire.value = !!userInfo.value.remind_expire;
 
     remindTraffic.value = !!userInfo.value.remind_traffic;
 
     remindAutoRenewal.value = !!userInfo.value.auto_renewal;
 
-
-
     showError(t('profile.updateError'));
 
   } finally {
 
     await fetchUserInfo(false);
-
-
 
     updatingSettings.value = false;
 
@@ -1400,17 +1274,11 @@ const updateRemindSettings = async (type) => {
 
 };
 
-
-
 const changePassword = async () => {
 
   if (!validatePasswordForm()) return;
 
-
-
   changingPassword.value = true;
-
-
 
   try {
 
@@ -1422,17 +1290,11 @@ const changePassword = async () => {
 
     };
 
-
-
     const response = await apiChangePassword(data);
-
-
 
     if (response && response.data) {
 
       success(t('profile.passwordChanged'));
-
-
 
       passwordForm.value = {
 
@@ -1444,8 +1306,6 @@ const changePassword = async () => {
 
       };
 
-
-
       showPasswordModal.value = false;
 
     }
@@ -1453,8 +1313,6 @@ const changePassword = async () => {
   } catch (err) {
 
     console.error('Failed to change password:', err);
-
-
 
     showError(t('profile.passwordError'));
 
@@ -1466,29 +1324,19 @@ const changePassword = async () => {
 
 };
 
-
-
 const resetSecurity = async () => {
 
   resetting.value = true;
-
-
 
   try {
 
     const response = await apiResetSecurity();
 
-
-
     if (response && response.data) {
 
       subscriptionUrl.value = response.data;
 
-
-
       success(t('profile.resetSuccess'));
-
-
 
       showResetModal.value = false;
 
@@ -1497,8 +1345,6 @@ const resetSecurity = async () => {
   } catch (err) {
 
     console.error('Failed to reset security:', err);
-
-
 
     showError(t('profile.resetError'));
 
@@ -1510,13 +1356,9 @@ const resetSecurity = async () => {
 
 };
 
-
-
 const copySubscriptionUrl = () => {
 
   if (!subscriptionUrl.value) return;
-
-
 
   navigator.clipboard.writeText(subscriptionUrl.value)
 
@@ -1534,8 +1376,6 @@ const copySubscriptionUrl = () => {
 
 };
 
-
-
 const redeemGiftCard = async () => {
 
   if (!giftCardCode.value) {
@@ -1546,24 +1386,17 @@ const redeemGiftCard = async () => {
 
   }
 
-
-
   isRedeeming.value = true;
-
-
 
   try {
 
     const response = await apiRedeemGiftCard(giftCardCode.value);
-
-
 
     if (response && response.data) {
 
       success(t('profile.giftCardSuccess'));
 
       giftCardCode.value = '';
-
 
       await fetchUserInfo(false);
 
@@ -1583,29 +1416,21 @@ const redeemGiftCard = async () => {
 
 };
 
-
-
 const fetchActiveSessions = async () => {
 
   loadingSessions.value = true;
 
   sessionError.value = '';
 
-
-
   try {
 
     const response = await getActiveSession();
-
-
 
     if (response && response.data) {
 
       const sessions = Array.isArray(response.data) ? response.data :
 
                       (typeof response.data === 'object' && response.data !== null ? Object.values(response.data) : []);
-
-
 
       const sortedSessions = sessions.sort((a, b) => {
 
@@ -1614,8 +1439,6 @@ const fetchActiveSessions = async () => {
         return b.login_at - a.login_at;
 
       });
-
-
 
       activeSessions.value = sortedSessions.slice(0, 10);
 
@@ -1645,17 +1468,11 @@ const fetchActiveSessions = async () => {
 
 };
 
-
-
 const getDeviceIcon = (ua) => {
 
   if (!ua) return IconBrowser;
 
-
-
   const uaLower = ua.toLowerCase();
-
-
 
   if (uaLower.includes('iphone') || uaLower.includes('ipad') || uaLower.includes('ipod')) {
 
@@ -1685,21 +1502,15 @@ const getDeviceIcon = (ua) => {
 
 };
 
-
-
 const formatDeviceInfo = (ua) => {
 
   if (!ua) return t('profile.unknownDevice');
-
-
 
   const uaLower = ua.toLowerCase();
 
   let deviceType = '';
 
   let browserType = '';
-
-
 
   if (uaLower.includes('iphone')) {
 
@@ -1735,8 +1546,6 @@ const formatDeviceInfo = (ua) => {
 
   }
 
-
-
   if (uaLower.includes('edg/') || uaLower.includes('edge/')) {
 
     browserType = 'Edge';
@@ -1763,25 +1572,17 @@ const formatDeviceInfo = (ua) => {
 
   }
 
-
-
   return `${deviceType} - ${browserType}`;
 
 };
-
-
 
 const formatTimestamp = (timestamp) => {
 
   if (!timestamp) return '';
 
-
-
   const numTimestamp = Number(timestamp);
 
   if (isNaN(numTimestamp)) return '';
-
-
 
   if (numTimestamp < 0 || numTimestamp > 4102444800) {
     console.error('Invalid timestamp:', timestamp);
@@ -1790,13 +1591,9 @@ const formatTimestamp = (timestamp) => {
 
   }
 
-
-
   try {
 
     const date = new Date(numTimestamp * 1000);
-
-
 
     const options = {
 
@@ -1812,8 +1609,6 @@ const formatTimestamp = (timestamp) => {
 
     };
 
-
-
     return new Intl.DateTimeFormat('zh-CN', options).format(date);
 
   } catch (err) {
@@ -1825,8 +1620,6 @@ const formatTimestamp = (timestamp) => {
   }
 
 };
-
-
 
 onMounted(() => {
 
@@ -1851,8 +1644,6 @@ onMounted(() => {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .profile-container {
@@ -1860,8 +1651,6 @@ onMounted(() => {
   padding: 1.25rem;
 
   padding-bottom: calc(1.25rem + 70px);
-
-
 
   @media (min-width: 768px) {
 
@@ -1873,183 +1662,91 @@ onMounted(() => {
 
 }
 
-
-
 .profile-inner {
 
   max-width: 1200px;
-
   margin: 0 auto;
-
 }
-
-
-
-
 
 .bottom-safe-area {
-
   height: 20px;
-
   width: 100%;
-
   margin-top: 20px;
-
   margin-bottom: 60px;
-
   @media (min-width: 768px) {
-
     display: none;
-
   }
-
 }
-
-
-
-
 
 .dashboard-card {
-
   background-color: var(--card-bg);
-
   border-radius: 12px;
-
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-
   padding: 20px;
-
   margin-bottom: 24px;
-
   border: 1px solid var(--border-color);
-
   transition: all 0.3s ease;
 
-
-
   &:hover {
-
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-
     border-color: rgba(var(--theme-color-rgb), 0.3);
-
   }
-
-
 
   .card-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     margin-bottom: 15px;
 
-
-
     .card-title {
-
       font-size: 18px;
-
       font-weight: 600;
-
       margin: 0;
-
     }
-
   }
-
-
 
   .card-body {
-
     p {
-
       color: var(--text-muted);
-
       margin: 0;
-
       line-height: 1.5;
-
     }
-
   }
-
 }
-
-
 
 .welcome-card {
-
   margin-bottom: 24px;
-
 }
 
-
-
-
-
 .profile-skeleton {
-
   .profile-card {
-
     background-color: var(--card-bg);
-
     border-radius: 12px;
-
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-
     border: 1px solid var(--border-color);
-
     margin-bottom: 24px;
-
     overflow: hidden;
-
     position: relative;
 
-
-
     &::after {
-
       content: '';
-
       position: absolute;
-
       top: 0;
-
       right: 0;
-
       bottom: 0;
-
       left: 0;
-
       transform: translateX(-100%);
-
       background-image: linear-gradient(
-
         90deg,
-
         rgba(255, 255, 255, 0) 0,
-
         rgba(255, 255, 255, 0.1) 20%,
-
         rgba(255, 255, 255, 0.2) 60%,
-
         rgba(255, 255, 255, 0) 100%
-
       );
-
       animation: shimmer 2s infinite;
-
       z-index: 1;
-
     }
-
   }
-
-
 
   .card-header {
 
@@ -2058,8 +1755,6 @@ onMounted(() => {
     border-bottom: 1px solid var(--border-color);
 
     background-color: rgba(var(--theme-color-rgb), 0.03);
-
-
 
     .skeleton-title {
 
@@ -2075,27 +1770,19 @@ onMounted(() => {
 
   }
 
-
-
   .skeleton-content {
 
     padding: 20px;
 
-
-
     .skeleton-item {
 
       margin-bottom: 16px;
-
-
 
       &:last-child {
 
         margin-bottom: 0;
 
       }
-
-
 
       .skeleton-label {
 
@@ -2111,8 +1798,6 @@ onMounted(() => {
 
       }
 
-
-
       .skeleton-value {
 
         height: 16px;
@@ -2124,8 +1809,6 @@ onMounted(() => {
         background-color: var(--skeleton-color);
 
       }
-
-
 
       .skeleton-description {
 
@@ -2143,8 +1826,6 @@ onMounted(() => {
 
     }
 
-
-
     .skeleton-setting {
 
       display: flex;
@@ -2155,15 +1836,11 @@ onMounted(() => {
 
       border-bottom: 1px solid rgba(var(--border-color-rgb), 0.5);
 
-
-
       &:last-child {
 
         border-bottom: none;
 
       }
-
-
 
       .skeleton-text {
 
@@ -2172,8 +1849,6 @@ onMounted(() => {
         margin-right: 16px;
 
       }
-
-
 
       .skeleton-toggle {
 
@@ -2188,8 +1863,6 @@ onMounted(() => {
       }
 
     }
-
-
 
     .skeleton-button {
 
@@ -2207,25 +1880,17 @@ onMounted(() => {
 
 }
 
-
-
-
-
 :root {
 
   --skeleton-color: rgba(0, 0, 0, 0.1);
 
 }
 
-
-
 body.dark-theme {
 
   --skeleton-color: rgba(255, 255, 255, 0.08);
 
 }
-
-
 
 @keyframes shimmer {
 
@@ -2236,10 +1901,6 @@ body.dark-theme {
   }
 
 }
-
-
-
-
 
 .error-state {
 
@@ -2255,8 +1916,6 @@ body.dark-theme {
 
   text-align: center;
 
-
-
   p {
 
     margin-top: 1rem;
@@ -2267,8 +1926,6 @@ body.dark-theme {
 
   }
 
-
-
   .error-icon {
 
     color: var(--text-muted);
@@ -2276,8 +1933,6 @@ body.dark-theme {
     opacity: 0.7;
 
   }
-
-
 
   .retry-button {
 
@@ -2315,8 +1970,6 @@ body.dark-theme {
 
     transition: all 0.3s ease;
 
-
-
     &:hover {
 
       transform: translateY(-2px);
@@ -2330,10 +1983,6 @@ body.dark-theme {
   }
 
 }
-
-
-
-
 
 .profile-card {
 
@@ -2351,8 +2000,6 @@ body.dark-theme {
 
   margin-bottom: 24px;
 
-
-
   &:hover {
 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -2361,8 +2008,6 @@ body.dark-theme {
 
   }
 
-
-
   .card-header {
 
     padding: 16px 20px;
@@ -2370,8 +2015,6 @@ body.dark-theme {
     border-bottom: 1px solid var(--border-color);
 
     background-color: rgba(var(--theme-color-rgb), 0.03);
-
-
 
     h3 {
 
@@ -2387,13 +2030,9 @@ body.dark-theme {
 
   }
 
-
-
   .info-content {
 
     padding: 20px;
-
-
 
     .info-list {
 
@@ -2403,23 +2042,17 @@ body.dark-theme {
 
       grid-gap: 16px;
 
-
-
       @media (min-width: 768px) {
 
         grid-template-columns: repeat(2, 1fr);
 
       }
 
-
-
       .info-item {
 
         display: flex;
 
         flex-direction: column;
-
-
 
         .info-label {
 
@@ -2431,8 +2064,6 @@ body.dark-theme {
 
         }
 
-
-
         .info-value {
 
           font-size: 16px;
@@ -2440,8 +2071,6 @@ body.dark-theme {
           font-weight: 500;
 
           color: var(--text-color);
-
-
 
           &.highlight {
 
@@ -2457,13 +2086,9 @@ body.dark-theme {
 
   }
 
-
-
   .settings-content {
 
     padding: 16px 20px;
-
-
 
     .setting-item {
 
@@ -2477,23 +2102,17 @@ body.dark-theme {
 
       border-bottom: 1px solid rgba(var(--border-color-rgb), 0.5);
 
-
-
       &:last-child {
 
         border-bottom: none;
 
       }
 
-
-
       .setting-info {
 
         flex: 1;
 
         margin-right: 16px;
-
-
 
         .setting-label {
 
@@ -2509,8 +2128,6 @@ body.dark-theme {
 
         }
 
-
-
         .setting-description {
 
           font-size: 13px;
@@ -2523,8 +2140,6 @@ body.dark-theme {
 
     }
 
-
-
     .action-buttons {
 
       display: flex;
@@ -2534,8 +2149,6 @@ body.dark-theme {
       gap: 12px;
 
       margin-bottom: 16px;
-
-
 
       .action-btn {
 
@@ -2563,8 +2176,6 @@ body.dark-theme {
 
         transition: all 0.3s ease;
 
-
-
         &:hover {
 
           background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -2573,8 +2184,6 @@ body.dark-theme {
 
         }
 
-
-
         &.danger {
 
           background-color: rgba(244, 67, 54, 0.1);
@@ -2582,8 +2191,6 @@ body.dark-theme {
           color: #f44336;
 
           border-color: rgba(244, 67, 54, 0.2);
-
-
 
           &:hover {
 
@@ -2597,8 +2204,6 @@ body.dark-theme {
 
     }
 
-
-
     .subscription-info {
 
       margin-top: 16px;
@@ -2610,8 +2215,6 @@ body.dark-theme {
       border-radius: 8px;
 
       border: 1px dashed rgba(var(--theme-color-rgb), 0.3);
-
-
 
       .subscription-url {
 
@@ -2627,21 +2230,15 @@ body.dark-theme {
 
     }
 
-
-
     .gift-card-form {
 
       margin-top: 8px;
-
-
 
       .input-group {
 
         display: flex;
 
         gap: 10px;
-
-
 
         @media (max-width: 576px) {
 
@@ -2650,8 +2247,6 @@ body.dark-theme {
           gap: 12px;
 
         }
-
-
 
         .gift-card-input {
 
@@ -2671,8 +2266,6 @@ body.dark-theme {
 
           transition: all 0.3s ease;
 
-
-
           &:focus {
 
             outline: none;
@@ -2684,8 +2277,6 @@ body.dark-theme {
           }
 
         }
-
-
 
         .gift-card-btn {
 
@@ -2715,8 +2306,6 @@ body.dark-theme {
 
           transition: all 0.3s ease;
 
-
-
           @media (max-width: 576px) {
 
             width: 100%;
@@ -2724,8 +2313,6 @@ body.dark-theme {
             padding: 12px 16px;
 
           }
-
-
 
           &:hover:not(:disabled) {
 
@@ -2735,8 +2322,6 @@ body.dark-theme {
 
           }
 
-
-
           &:disabled {
 
             opacity: 0.7;
@@ -2744,8 +2329,6 @@ body.dark-theme {
             cursor: not-allowed;
 
           }
-
-
 
           .loader {
 
@@ -2773,10 +2356,6 @@ body.dark-theme {
 
 }
 
-
-
-
-
 .switch {
 
   position: relative;
@@ -2787,8 +2366,6 @@ body.dark-theme {
 
   height: 24px;
 
-
-
   &.disabled {
 
     opacity: 0.7;
@@ -2796,8 +2373,6 @@ body.dark-theme {
     cursor: not-allowed;
 
   }
-
-
 
   input {
 
@@ -2807,23 +2382,17 @@ body.dark-theme {
 
     height: 0;
 
-
-
     &:checked + .slider {
 
       background-color: var(--theme-color);
 
     }
 
-
-
     &:checked + .slider:before {
 
       transform: translateX(22px);
 
     }
-
-
 
     &:disabled + .slider {
 
@@ -2832,8 +2401,6 @@ body.dark-theme {
     }
 
   }
-
-
 
   .slider {
 
@@ -2853,21 +2420,15 @@ body.dark-theme {
 
     transition: .4s;
 
-
-
     &.loading {
 
       overflow: hidden;
-
-
 
       &:before {
 
         animation: pulse 1.5s infinite;
 
       }
-
-
 
       &:after {
 
@@ -2886,8 +2447,6 @@ body.dark-theme {
       }
 
     }
-
-
 
     &:before {
 
@@ -2911,13 +2470,9 @@ body.dark-theme {
 
     }
 
-
-
     &.round {
 
       border-radius: 34px;
-
-
 
       &:before {
 
@@ -2930,8 +2485,6 @@ body.dark-theme {
   }
 
 }
-
-
 
 @keyframes pulse {
 
@@ -2955,8 +2508,6 @@ body.dark-theme {
 
 }
 
-
-
 @keyframes sweep {
 
   0% {
@@ -2972,10 +2523,6 @@ body.dark-theme {
   }
 
 }
-
-
-
-
 
 .modal-overlay {
 
@@ -3005,8 +2552,6 @@ body.dark-theme {
 
 }
 
-
-
 .modal-content {
 
   background-color: var(--card-background);
@@ -3027,8 +2572,6 @@ body.dark-theme {
 
 }
 
-
-
 .modal-header {
 
   padding: 16px 20px;
@@ -3041,8 +2584,6 @@ body.dark-theme {
 
   align-items: center;
 
-
-
   h3 {
 
     margin: 0;
@@ -3054,8 +2595,6 @@ body.dark-theme {
     color: var(--text-color);
 
   }
-
-
 
   .modal-close {
 
@@ -3079,8 +2618,6 @@ body.dark-theme {
 
     transition: all 0.3s ease;
 
-
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -3093,13 +2630,9 @@ body.dark-theme {
 
 }
 
-
-
 .modal-body {
 
   padding: 20px;
-
-
 
   p {
 
@@ -3113,21 +2646,15 @@ body.dark-theme {
 
   }
 
-
-
   .form-group {
 
     margin-bottom: 16px;
-
-
 
     &:last-child {
 
       margin-bottom: 0;
 
     }
-
-
 
     label {
 
@@ -3142,8 +2669,6 @@ body.dark-theme {
       margin-bottom: 8px;
 
     }
-
-
 
     input {
 
@@ -3163,8 +2688,6 @@ body.dark-theme {
 
       transition: all 0.3s ease;
 
-
-
       &:focus {
 
         outline: none;
@@ -3176,8 +2699,6 @@ body.dark-theme {
       }
 
     }
-
-
 
     .error-text {
 
@@ -3193,8 +2714,6 @@ body.dark-theme {
 
 }
 
-
-
 .modal-footer {
 
   padding: 16px 20px;
@@ -3206,8 +2725,6 @@ body.dark-theme {
   justify-content: flex-end;
 
   gap: 12px;
-
-
 
   button {
 
@@ -3223,8 +2740,6 @@ body.dark-theme {
 
     transition: all 0.3s ease;
 
-
-
     &.btn-cancel {
 
       background-color: transparent;
@@ -3233,8 +2748,6 @@ body.dark-theme {
 
       color: var(--text-color);
 
-
-
       &:hover {
 
         background-color: rgba(0, 0, 0, 0.05);
@@ -3242,8 +2755,6 @@ body.dark-theme {
       }
 
     }
-
-
 
     &.btn-submit {
 
@@ -3259,15 +2770,11 @@ body.dark-theme {
 
       gap: 8px;
 
-
-
       &:hover:not(:disabled) {
 
         background-color: rgba(var(--theme-color-rgb), 0.9);
 
       }
-
-
 
       &:disabled {
 
@@ -3277,13 +2784,9 @@ body.dark-theme {
 
       }
 
-
-
       &.danger {
 
         background-color: #f44336;
-
-
 
         &:hover:not(:disabled) {
 
@@ -3292,8 +2795,6 @@ body.dark-theme {
         }
 
       }
-
-
 
       .loader {
 
@@ -3317,8 +2818,6 @@ body.dark-theme {
 
 }
 
-
-
 .modal-fade-enter-active,
 
 .modal-fade-leave-active {
@@ -3326,8 +2825,6 @@ body.dark-theme {
   transition: opacity 0.3s ease;
 
 }
-
-
 
 .modal-fade-enter-from,
 
@@ -3337,17 +2834,11 @@ body.dark-theme {
 
 }
 
-
-
 @keyframes spin {
 
   to { transform: rotate(360deg); }
 
 }
-
-
-
-
 
 @media (max-width: 576px) {
 
@@ -3357,8 +2848,6 @@ body.dark-theme {
 
   }
 
-
-
   .info-content {
 
     padding: 16px !important;
@@ -3367,10 +2856,6 @@ body.dark-theme {
 
 }
 
-
-
-
-
 .device-list {
 
   display: flex;
@@ -3378,8 +2863,6 @@ body.dark-theme {
   flex-direction: column;
 
   gap: 12px;
-
-
 
   .device-item {
 
@@ -3395,8 +2878,6 @@ body.dark-theme {
 
     transition: all 0.3s ease;
 
-
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -3404,8 +2885,6 @@ body.dark-theme {
       transform: translateY(-2px);
 
     }
-
-
 
     .device-icon {
 
@@ -3429,13 +2908,9 @@ body.dark-theme {
 
     }
 
-
-
     .device-info {
 
       flex: 1;
-
-
 
       .device-name {
 
@@ -3449,8 +2924,6 @@ body.dark-theme {
 
       }
 
-
-
       .device-meta {
 
         display: flex;
@@ -3463,8 +2936,6 @@ body.dark-theme {
 
         color: var(--text-muted);
 
-
-
         .device-ip {
 
           display: flex;
@@ -3473,15 +2944,11 @@ body.dark-theme {
 
         }
 
-
-
         .device-time {
 
           display: flex;
 
           align-items: center;
-
-
 
           &:before {
 
@@ -3501,10 +2968,6 @@ body.dark-theme {
 
 }
 
-
-
-
-
 .device-loading {
 
   .session-skeleton {
@@ -3521,8 +2984,6 @@ body.dark-theme {
 
     border-radius: 8px;
 
-
-
     .session-skeleton-icon {
 
       width: 40px;
@@ -3537,13 +2998,9 @@ body.dark-theme {
 
     }
 
-
-
     .session-skeleton-content {
 
       flex: 1;
-
-
 
       .session-skeleton-title {
 
@@ -3558,8 +3015,6 @@ body.dark-theme {
         margin-bottom: 8px;
 
       }
-
-
 
       .session-skeleton-info {
 
@@ -3579,10 +3034,6 @@ body.dark-theme {
 
 }
 
-
-
-
-
 .device-error,
 
 .device-empty {
@@ -3599,8 +3050,6 @@ body.dark-theme {
 
   text-align: center;
 
-
-
   p {
 
     margin: 12px 0;
@@ -3609,8 +3058,6 @@ body.dark-theme {
 
   }
 
-
-
   .empty-icon {
 
     color: var(--text-muted);
@@ -3618,8 +3065,6 @@ body.dark-theme {
     opacity: 0.7;
 
   }
-
-
 
   .refresh-btn {
 
@@ -3639,8 +3084,6 @@ body.dark-theme {
 
     transition: all 0.3s ease;
 
-
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -3650,10 +3093,6 @@ body.dark-theme {
   }
 
 }
-
-
-
-
 
 .telegram-loading {
 
@@ -3675,8 +3114,6 @@ body.dark-theme {
 
 }
 
-
-
 .telegram-error {
 
   display: flex;
@@ -3691,8 +3128,6 @@ body.dark-theme {
 
   text-align: center;
 
-
-
   p {
 
     margin: 12px 0;
@@ -3700,8 +3135,6 @@ body.dark-theme {
     color: var(--text-muted);
 
   }
-
-
 
   .refresh-btn {
 
@@ -3721,8 +3154,6 @@ body.dark-theme {
 
     transition: all 0.3s ease;
 
-
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -3733,17 +3164,11 @@ body.dark-theme {
 
 }
 
-
-
-
-
 .tgbot-modal {
 
   max-width: 400px;
 
 }
-
-
 
 .step-container {
 
@@ -3757,8 +3182,6 @@ body.dark-theme {
 
 }
 
-
-
 .step-item {
 
   display: flex;
@@ -3768,8 +3191,6 @@ body.dark-theme {
   gap: 8px;
 
 }
-
-
 
 .step-number {
 
@@ -3782,8 +3203,6 @@ body.dark-theme {
   margin-bottom: 4px;
 
 }
-
-
 
 .step-content {
 
@@ -3799,8 +3218,6 @@ body.dark-theme {
 
   }
 
-
-
   .tg-link {
 
     color: var(--theme-color);
@@ -3812,8 +3229,6 @@ body.dark-theme {
   }
 
 }
-
-
 
 .command-container {
 
@@ -3832,8 +3247,6 @@ body.dark-theme {
   position: relative;
 
   margin-top: 8px;
-
-
 
   .command-text {
 
@@ -3858,8 +3271,6 @@ body.dark-theme {
     background: none;
 
   }
-
-
 
   .copy-command-btn {
 
@@ -3887,8 +3298,6 @@ body.dark-theme {
 
     flex-shrink: 0;
 
-
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -3901,8 +3310,6 @@ body.dark-theme {
 
 }
 
-
-
 .telegram-actions {
 
   display: flex;
@@ -3914,8 +3321,6 @@ body.dark-theme {
   width: 100%;
 
 }
-
-
 
 .telegram-btn {
 
@@ -3943,15 +3348,11 @@ body.dark-theme {
 
   transition: all 0.3s ease;
 
-
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.05);
 
   }
-
-
 
   .telegram-icon {
 

@@ -294,8 +294,7 @@ export default {
         processNextComponent();
         return;
       }
-      
-      
+
       try {
         nextComponent.component()
           .then(() => {
@@ -335,8 +334,7 @@ export default {
 
     const preloadVueComponents = () => {
       if (isPreloaded.value.components) return;
-      
-      
+
       preloadManager.startPreloadTimer();
       
       if (isCustomerServiceEnabled) {

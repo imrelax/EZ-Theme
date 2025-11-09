@@ -35,7 +35,6 @@ const isObject = item => {
     return (item && typeof item === 'object' && !Array.isArray(item));
 };
 
-
 // 获取面板类型的常量
 // 可选值: 'V2board', 'Xiao-V2board' 或 'Xboard'
 export const PANEL_TYPE = getConfig('PANEL_TYPE', 'V2board');
@@ -454,7 +453,6 @@ export const SHOP_CONFIG = mergeDeep(DEFAULT_SHOP_CONFIG, getConfig('SHOP_CONFIG
 
 // ===========================================================
 
-
 /**
  * 商店二次确认
  * 提交订单强制二次确认
@@ -467,9 +465,7 @@ const DEFAULT_ORDER_CONFIG = {
 };
 export const ORDER_CONFIG = mergeDeep(DEFAULT_ORDER_CONFIG, getConfig('ORDER_CONFIG'));
 
-
 // ===========================================================
-
 
 /**
  * 仪表盘页面配置
@@ -586,7 +582,6 @@ const DEFAULT_THEME_CONFIG = {
 };
 
 export const THEME_CONFIG = mergeDeep(DEFAULT_THEME_CONFIG, getConfig('THEME_CONFIG'));
-
 
 // 默认背景装饰球配置
 const DEFAULT_BACKGROUND_BALLS_CONFIG = [

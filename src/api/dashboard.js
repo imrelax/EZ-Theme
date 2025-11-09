@@ -1,6 +1,5 @@
 ﻿import request from './request';
 
-
 export function getUserInfo() {
 
     return request({
@@ -12,7 +11,6 @@ export function getUserInfo() {
     });
 
 }
-
 
 export function getSubscribe() {
 
@@ -26,7 +24,6 @@ export function getSubscribe() {
 
 }
 
-
 export function getNotices() {
 
     return request({
@@ -39,7 +36,6 @@ export function getNotices() {
 
 }
 
-
 export function getUserStats() {
 
     return request({
@@ -51,7 +47,6 @@ export function getUserStats() {
     });
 
 }
-
 
 export function getUserConfig() {
 
@@ -76,5 +71,4 @@ export function setNextPeriod() {
     });
 
 }
-
 

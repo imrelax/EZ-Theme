@@ -2,10 +2,6 @@
 
   <div class="trafficlog-container">
 
-
-    
-
-
     <div class="trafficlog-inner">
 
       <!-- 欢迎卡片 -->
@@ -22,8 +18,6 @@
 
           <p>{{ $t('trafficLog.description') }}</p>
 
-          
-
           <!-- 计算公式展示 -->
 
           <div class="formula-card">
@@ -37,8 +31,6 @@
         </div>
 
       </div>
-
-      
 
       <!-- 流量图表卡片 -->
 
@@ -70,8 +62,6 @@
 
           </div>
 
-          
-
           <!-- 加载错误 -->
 
           <div v-else-if="error" class="error-container">
@@ -81,8 +71,6 @@
             <p>{{ $t('trafficLog.errorLoadingTraffic') }}</p>
 
           </div>
-
-          
 
           <!-- 数据为空 -->
 
@@ -94,8 +82,6 @@
 
           </div>
 
-          
-
           <!-- 流量图表 -->
 
           <div v-else ref="chartRef" class="traffic-chart"></div>
@@ -103,8 +89,6 @@
         </div>
 
       </div>
-
-      
 
       <!-- 流量数据列表 -->
 
@@ -128,8 +112,6 @@
 
           </div>
 
-          
-
           <!-- 加载错误 -->
 
           <div v-else-if="error" class="error-container">
@@ -146,8 +128,6 @@
 
           </div>
 
-          
-
           <!-- 数据为空 -->
 
           <div v-else-if="!trafficData.length" class="empty-container">
@@ -157,8 +137,6 @@
             <p>{{ $t('trafficLog.noTrafficData') }}</p>
 
           </div>
-
-          
 
           <!-- 流量数据表格 -->
 
@@ -220,8 +198,6 @@
 
 </template>
 
-
-
 <script setup>
 
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
@@ -236,19 +212,11 @@ import { formatTraffic, formatDate } from '@/utils/formatters';
 
 import { TRAFFICLOG_CONFIG } from '@/utils/baseConfig';
 
-
-
 import * as echarts from 'echarts';
 
 import { createDebouncedUpdate } from '@/utils/componentLifecycle';
 
-
-
 const { t } = useI18n();
-
-
-
-
 
 const trafficData = ref([]);
 
@@ -262,14 +230,11 @@ let chartInstance = null;
 
 const showOriginalData = ref(false); // false: 显示倍率后, true: 显示实际
 
-
 const fetchTrafficData = async () => {
 
   loading.value = true;
 
   error.value = false;
-
-  
 
   try {
 
@@ -278,8 +243,6 @@ const fetchTrafficData = async () => {
     if (response && response.data) {
 
       trafficData.value = response.data.sort((a, b) => b.record_at - a.record_at);
-
-      
 
       if (TRAFFICLOG_CONFIG.daysToShow > 0) {
 
@@ -290,8 +253,6 @@ const fetchTrafficData = async () => {
           return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
         }))];
-
-        
 
         if (uniqueDates.length > TRAFFICLOG_CONFIG.daysToShow) {
 
@@ -336,7 +297,6 @@ const toggleDataView = (showOriginal) => {
   initChart();
 };
 
-
 const initChart = () => {
 
   if (chartInstance) {
@@ -345,19 +305,11 @@ const initChart = () => {
 
   }
 
-  
-
   if (!chartRef.value || trafficData.value.length === 0) return;
-
-  
 
   chartInstance = echarts.init(chartRef.value);
 
-  
-
   const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--theme-color').trim() || '#355cc2';
-
-  
 
   const dates = [];
 
@@ -394,8 +346,6 @@ const initChart = () => {
     sortedData = [...trafficData.value].slice(0, 30).reverse();
   }
 
-  
-
   sortedData.forEach(item => {
 
     dates.push(formatDate(item.record_at));
@@ -411,8 +361,6 @@ const initChart = () => {
     totalData.push(parseFloat((upload + download).toFixed(2)));
 
   });
-
-  
 
   const option = {
 
@@ -653,17 +601,11 @@ const initChart = () => {
 
   };
 
-  
-
   chartInstance.setOption(option);
-
-  
 
   window.addEventListener('resize', handleResize);
 
 };
-
-
 
 const handleResize = () => {
 
@@ -675,11 +617,7 @@ const handleResize = () => {
 
 };
 
-
-
 const debouncedResize = createDebouncedUpdate(handleResize, 200);
-
-
 
 watch(trafficData, () => {
 
@@ -695,10 +633,7 @@ watch(trafficData, () => {
 
 }, { deep: true });
 
-
-
 let themeObserver = null;
-
 
 let isInitialThemeLoad = true;
 const setupThemeObserver = () => {
@@ -708,8 +643,6 @@ const setupThemeObserver = () => {
     themeObserver.disconnect();
 
   }
-
-  
 
   let debounceTimer = null;
 
@@ -734,8 +667,6 @@ const setupThemeObserver = () => {
     }, 300); 
   });
 
-  
-
   themeObserver.observe(document.documentElement, {
 
     attributes: true,
@@ -748,23 +679,15 @@ const setupThemeObserver = () => {
   }, 800);
 };
 
-
-
 onMounted(() => {
-
-
 
   fetchTrafficData();
 
   setupThemeObserver();
 
-  
-
   window.addEventListener('resize', debouncedResize);
 
 });
-
-
 
 onUnmounted(() => {
 
@@ -778,8 +701,6 @@ onUnmounted(() => {
 
   window.removeEventListener('resize', debouncedResize);
 
-  
-
   if (themeObserver) {
 
     themeObserver.disconnect();
@@ -790,12 +711,7 @@ onUnmounted(() => {
 
 });
 
-
-
-
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -809,8 +725,6 @@ onUnmounted(() => {
 
   justify-content: center;
 
-  
-
   .trafficlog-inner {
 
     width: 100%;
@@ -819,29 +733,21 @@ onUnmounted(() => {
 
   }
 
-  
-
   .welcome-card {
 
     margin-bottom: 24px;
 
   }
 
-  
-
   .chart-card {
 
     margin-bottom: 24px;
-
-    
 
     .traffic-chart {
 
       height: 400px;
 
       width: 100%;
-
-      
 
       @media (max-width: 768px) {
 
@@ -885,8 +791,6 @@ onUnmounted(() => {
     }
   }
 
-  
-
   .dashboard-card {
 
     background-color: var(--card-bg-color);
@@ -903,15 +807,11 @@ onUnmounted(() => {
 
     transition: all 0.3s ease;
 
-    
-
     &:hover {
 
       border-color: rgba(var(--theme-color-rgb), 0.3);
 
     }
-
-    
 
     .card-header {
 
@@ -940,8 +840,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   .formula-card {
 
     background-color: rgba(var(--theme-color-rgb), 0.05);
@@ -952,8 +850,6 @@ onUnmounted(() => {
 
     margin-top: 16px;
 
-    
-
     .formula-title {
 
       font-weight: 600;
@@ -961,8 +857,6 @@ onUnmounted(() => {
       margin-bottom: 8px;
 
     }
-
-    
 
     .formula-content {
 
@@ -978,8 +872,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   .loading-container, .error-container, .empty-container {
 
     display: flex;
@@ -992,8 +884,6 @@ onUnmounted(() => {
 
     padding: 40px 0;
 
-    
-
     p {
 
       margin-top: 16px;
@@ -1003,8 +893,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
 
   .loading-spinner {
 
@@ -1022,8 +910,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   @keyframes spin {
 
     100% {
@@ -1034,8 +920,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   .error-icon, .empty-icon {
 
     color: var(--secondary-text-color);
@@ -1043,8 +927,6 @@ onUnmounted(() => {
     opacity: 0.7;
 
   }
-
-  
 
   .retry-button {
 
@@ -1066,8 +948,6 @@ onUnmounted(() => {
 
     transition: background-color 0.2s;
 
-    
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.8);
@@ -1075,8 +955,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
 
   .traffic-table-container {
 
@@ -1086,8 +964,6 @@ onUnmounted(() => {
 
     -webkit-overflow-scrolling: touch; 
 
-    
-
     .traffic-table {
 
       width: 100%;
@@ -1095,8 +971,6 @@ onUnmounted(() => {
       min-width: 650px; 
 
       border-collapse: collapse;
-
-      
 
       th, td {
 
@@ -1110,8 +984,6 @@ onUnmounted(() => {
 
       }
 
-      
-
       th {
 
         font-weight: 600;
@@ -1122,23 +994,17 @@ onUnmounted(() => {
 
       }
 
-      
-
       tr:last-child td {
 
         border-bottom: none;
 
       }
 
-      
-
       tr:hover td {
 
         background-color: rgba(var(--theme-color-rgb), 0.05);
 
       }
-
-      
 
       @media (max-width: 768px) {
 

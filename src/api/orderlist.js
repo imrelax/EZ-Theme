@@ -1,6 +1,5 @@
 ﻿import request from './request';
-
-
+
 export function fetchOrderList() {
   return request({
     url: '/user/order/fetch',
@@ -16,8 +15,7 @@ export function fetchOrderList() {
     throw error;
   });
 }
-
-
+
 export function cancelOrder(tradeNo) {
   return new Promise((resolve, reject) => {
     if (!tradeNo) {

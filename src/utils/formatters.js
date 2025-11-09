@@ -1,8 +1,7 @@
 ﻿
 const trafficCache = new Map();
 const MAX_CACHE_SIZE = 100;
-
-
+
 export function formatTraffic(bytes) {
   if (bytes === 0) return '0 B';
   
@@ -23,11 +22,9 @@ export function formatTraffic(bytes) {
   
   return result;
 }
-
-
+
 const dateCache = new Map();
-
-
+
 export function formatDate(date, withTime = false) {
   if (!date) return '--';
   
@@ -88,8 +85,7 @@ export function formatDate(date, withTime = false) {
   
   return result;
 }
-
-
+
 export function formatUserInfoForTicket(userInfo, ipInfo, userSubscribe = null) {
   const userData = userInfo.data ? userInfo.data : userInfo;
   const ipData = ipInfo.data ? ipInfo.data : ipInfo;

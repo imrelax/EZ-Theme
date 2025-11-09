@@ -22,8 +22,6 @@
 
       </div>
 
-      
-
       <!-- 套餐统计卡片组 -->
 
       <div class="stats-grid" v-if="SHOP_CONFIG.showPlanFeatureCards">
@@ -46,8 +44,6 @@
 
         </div>
 
-        
-
         <div class="stats-card animate-card">
 
           <div class="stats-icon">
@@ -66,8 +62,6 @@
 
         </div>
 
-        
-
         <div class="stats-card animate-card">
 
           <div class="stats-icon">
@@ -85,8 +79,6 @@
           </div>
 
         </div>
-
-        
 
         <div class="stats-card animate-card">
 
@@ -107,8 +99,6 @@
         </div>
 
       </div>
-
-      
 
       <!-- 筛选选项卡 - 设计成圆形切换按钮 -->
 
@@ -146,8 +136,6 @@
 
       </div>
 
-      
-
       <!-- 套餐列表 -->
 
       <div class="plans-wrapper">
@@ -169,8 +157,6 @@
           </button>
 
         </div>
-
-        
 
         <!-- 骨架屏加载动画 -->
 
@@ -197,8 +183,6 @@
           </div>
 
         </div>
-
-        
 
         <!-- 套餐卡片 修改内容 -->
 
@@ -250,8 +234,6 @@
 
               </div>
 
-              
-
               <!-- 支持的周期标签 - 改进显示效果 -->
 
               <div class="supported-periods" v-if="!SHOP_CONFIG.hidePeriodTabs">
@@ -292,8 +274,6 @@
 
             </div>
 
-            
-
             <!-- 周期折扣计算 -->
 
             <div class="discount-calculation" v-if="SHOP_CONFIG.enableDiscountCalculation && calculateDiscount(plan).showDiscount">
@@ -314,45 +294,29 @@
 
             </div>
 
-            
-
             <!-- 套餐特性 -->
-
             <div class="plan-features">
-
               <!-- JSON格式内容 -->
-
               <template v-if="isJsonContent(plan.content)">
-
                 <div 
-
                   class="feature-item" 
-
                   v-for="(feature, index) in parseJsonContent(plan.content)" 
-
                   :key="index"
-
                 >
-
                   <IconCheck v-if="feature.support" class="feature-icon enabled" />
-
                   <IconX v-else class="feature-icon disabled" />
-
                   <span :class="{ 'disabled-text': !feature.support }">{{ feature.feature }}</span>
-
                 </div>
-
               </template>
-
               
-
+              <!-- Markdown格式内容 -->
+              <div v-else-if="isMarkdownContent(plan.content)" class="markdown-content">
+                <div v-html="renderMarkdown(plan.content)"></div>
+              </div>
+              
               <!-- HTML格式内容 -->
-
               <div v-else class="html-content" v-html="plan.content"></div>
-
             </div>
-
-            
 
             <!-- 购买按钮 -->
 
@@ -384,8 +348,6 @@
 
   </div>
 
-
-
   <!-- 弹窗组件 -->
 
   <ShopPopup
@@ -406,21 +368,15 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, reactive, onMounted, computed, watch, nextTick } from 'vue';
-
 import { useI18n } from 'vue-i18n';
-
 import { useToast } from '@/composables/useToast';
-
 import { fetchPlans, getCommConfig } from '@/api/shop';
-
 import { SHOP_CONFIG } from '@/utils/baseConfig';
-
 import ShopPopup from '@/components/shop/ShopPopup.vue';
+import MarkdownIt from 'markdown-it';
 
 import {
 
@@ -449,8 +405,6 @@ import {
 } from '@tabler/icons-vue';
 
 import { useRouter } from 'vue-router';
-
-
 
 export default {
 
@@ -487,12 +441,15 @@ export default {
   setup() {
 
     const { t, locale } = useI18n();
-
     const { showToast } = useToast();
-
     const router = useRouter();
-
     
+    // Markdown解析器
+    const md = new MarkdownIt({
+      html: true,
+      linkify: true,
+      breaks: true
+    });
 
     const loading = reactive({
 
@@ -502,31 +459,19 @@ export default {
 
     });
 
-    
-
     const plans = ref([]);
 
     const currency = ref('CNY');
 
     const currencySymbol = ref('¥');
 
-    
-
     const selectedPriceType = reactive({});
-
-    
 
     const paymentMethods = ref([]);
 
-    
-
     const selectedFilter = ref('all');
 
-    
-
     const filterToggle = ref(null);
-
-    
 
     const filters = [
 
@@ -537,8 +482,6 @@ export default {
       { label: '一次性', value: 'onetime' }
 
     ];
-
-    
 
     const showPopup = ref(false);
 
@@ -554,15 +497,11 @@ export default {
 
     });
 
-    
-
     const handlePopupClose = () => {
 
       showPopup.value = false;
 
     };
-
-    
 
     const initPopup = () => {
 
@@ -576,8 +515,6 @@ export default {
 
         popupConfig.closeWaitSeconds = SHOP_CONFIG.popup.closeWaitSeconds || 0;
 
-        
-
         if (popupConfig.cooldownHours === 0) {
 
           showPopup.value = true;
@@ -585,8 +522,6 @@ export default {
           return;
 
         }
-
-        
 
         const closeTime = localStorage.getItem('shop_popup_close_time');
 
@@ -602,8 +537,6 @@ export default {
 
           const cooldownMs = popupConfig.cooldownHours * 60 * 60 * 1000;
 
-          
-
           if (elapsed >= cooldownMs) {
 
             showPopup.value = true;
@@ -616,11 +549,7 @@ export default {
 
     };
 
-    
-
     const currentLanguage = computed(() => locale.value);
-
-    
 
     const setFilter = (filter) => {
 
@@ -628,19 +557,13 @@ export default {
 
     };
 
-    
-
     const getPlanMainPriceType = (plan) => {
 
       const priceTypes = SHOP_CONFIG.periodOrder || ['three_year_price', 'two_year_price', 'year_price', 'half_year_price', 'quarter_price', 'month_price', 'onetime_price'];
 
-      
-
       const recurringTypes = priceTypes.filter(type => type !== 'onetime_price');
 
       const defaultRecurring = recurringTypes.find(type => plan[type] !== null);
-
-      
 
       if (defaultRecurring) {
 
@@ -648,21 +571,15 @@ export default {
 
       }
 
-      
-
       if (plan.onetime_price !== null) {
 
         return 'onetime_price';
 
       }
 
-      
-
       return priceTypes.find(type => plan[type] !== null) || priceTypes[0];
 
     };
-
-    
 
     const getPlanMainPrice = (plan) => {
 
@@ -678,15 +595,11 @@ export default {
 
     };
 
-    
-
     watch(() => selectedFilter.value, () => {
 
       console.log('筛选条件变化为:', selectedFilter.value);
 
     });
-
-    
 
     watch(() => currentLanguage.value, () => {
 
@@ -694,15 +607,11 @@ export default {
 
     });
 
-    
-
     onMounted(() => {
 
       selectedFilter.value = 'all';
 
     });
-
-    
 
     const fetchPlanData = async () => {
 
@@ -716,17 +625,11 @@ export default {
 
           plans.value = response.data;
 
-          
-
           Object.keys(selectedPriceType).forEach(key => {
 
             delete selectedPriceType[key];
 
           });
-
-          
-
-          
 
           if (SHOP_CONFIG.autoSelectMaxPeriod) {
 
@@ -736,13 +639,9 @@ export default {
 
                 const priceTypes = SHOP_CONFIG.periodOrder || ['three_year_price', 'two_year_price', 'year_price', 'half_year_price', 'quarter_price', 'month_price', 'onetime_price'];
 
-                
-
                 const recurringTypes = priceTypes.filter(type => type !== 'onetime_price');
 
                 const defaultRecurring = recurringTypes.find(type => plan[type] !== null);
-
-                
 
                 if (defaultRecurring) {
 
@@ -780,8 +679,6 @@ export default {
 
     };
 
-    
-
     const fetchConfig = async () => {
 
       loading.config = true;
@@ -810,8 +707,6 @@ export default {
 
     };
 
-    
-
     const getPlanPrices = (plan) => {
 
       return {
@@ -833,8 +728,6 @@ export default {
       };
 
     };
-
-    
 
     const getPriceTypeKey = (type) => {
 
@@ -860,8 +753,6 @@ export default {
 
     };
 
-    
-
     const getPriceTypeName = (type) => {
 
       const nameMap = {
@@ -885,8 +776,6 @@ export default {
       return nameMap[type] || '';
 
     };
-
-    
 
     const getPeriodText = (type) => {
 
@@ -912,15 +801,11 @@ export default {
 
     };
 
-    
-
     const selectPriceType = (planId, type) => {
 
       selectedPriceType[planId] = type;
 
     };
-
-    
 
     const getSelectedPrice = (plan) => {
 
@@ -931,8 +816,6 @@ export default {
       return (plan[type] / 100).toFixed(2);
 
     };
-
-    
 
     const isJsonContent = (content) => {
 
@@ -952,23 +835,48 @@ export default {
 
     };
 
-    
-
     const parseJsonContent = (content) => {
-
       try {
-
         return JSON.parse(content);
-
       } catch (e) {
-
         return [];
-
       }
-
     };
-
     
+    // 检测是否为Markdown内容
+    const isMarkdownContent = (content) => {
+      if (!content || typeof content !== 'string') return false;
+      
+      // 排除JSON和HTML内容
+      if (isJsonContent(content)) return false;
+      if (content.trim().startsWith('<') && content.includes('>')) return false;
+      
+      // Markdown特征检测
+      const markdownPatterns = [
+        /^#+\s/,                         // 标题
+        /\*\*.+\*\*/,                     // 粗体
+        /\*.+\*/,                         // 斜体
+        /\[.+\]\(.+\)/,                   // 链接
+        /^-\s/,                           // 无序列表
+        /^\d+\.\s/,                       // 有序列表
+        /```[\s\S]*```/,                  // 代码块
+        /`[^`]+`/,                         // 行内代码
+        /^>\s/,                           // 引用
+        /\|.*\|.*\|/                      // 表格
+      ];
+      
+      return markdownPatterns.some(pattern => pattern.test(content));
+    };
+    
+    // 渲染Markdown内容
+    const renderMarkdown = (content) => {
+      try {
+        return md.render(content);
+      } catch (error) {
+        console.error('Markdown渲染失败:', error);
+        return content; // 失败时返回原始内容
+      }
+    };
 
     const purchasePlan = (plan) => {
 
@@ -980,13 +888,7 @@ export default {
 
       }
 
-      
-
       const priceType = getDisplayPriceType(plan);
-
-      
-
-      
 
       router.push({
 
@@ -1003,8 +905,6 @@ export default {
       });
 
     };
-
-    
 
     const filteredPlans = computed(() => {
 
@@ -1026,8 +926,6 @@ export default {
 
     });
 
-    
-
     const hasRecurringPrice = (plan) => {
 
       const recurringTypes = ['month_price', 'quarter_price', 'half_year_price', 'year_price', 'two_year_price', 'three_year_price'];
@@ -1036,8 +934,6 @@ export default {
 
     };
 
-    
-
     const isOnetimeOnly = (plan) => {
 
       const recurringTypes = ['month_price', 'quarter_price', 'half_year_price', 'year_price', 'two_year_price', 'three_year_price'];
@@ -1045,8 +941,6 @@ export default {
       return plan.onetime_price !== null && !recurringTypes.some(type => plan[type] !== null);
 
     };
-
-    
 
     const selectPlanPriceType = (planId, type) => {
 
@@ -1060,8 +954,6 @@ export default {
 
     };
 
-    
-
     const getDisplayPriceType = (plan) => {
 
       if (selectedPriceType[plan.id]) {
@@ -1069,8 +961,6 @@ export default {
         return selectedPriceType[plan.id];
 
       }
-
-      
 
       if (SHOP_CONFIG.autoSelectMaxPeriod) {
 
@@ -1080,15 +970,11 @@ export default {
 
       }
 
-      
-
       const availablePrices = Object.entries(getPlanPrices(plan))
 
         .filter(([, price]) => price !== null)
 
         .map(([type]) => type);
-
-      
 
       if (availablePrices.length > 0) {
 
@@ -1096,13 +982,9 @@ export default {
 
       }
 
-      
-
       return '';
 
     };
-
-    
 
     onMounted(async () => {
 
@@ -1113,8 +995,6 @@ export default {
         await Promise.all([fetchPlanData(), fetchConfig()]);
 
         loading.plans = false;
-
-        
 
         nextTick(() => {
 
@@ -1138,8 +1018,6 @@ export default {
 
     });
 
-    
-
     const calculateDiscount = (plan) => {
 
       if (!plan.month_price) {
@@ -1148,10 +1026,7 @@ export default {
 
       }
 
-      
-
       const monthlyPrice = plan.month_price / 100; 
-      
 
       const availablePeriods = [
 
@@ -1167,31 +1042,19 @@ export default {
 
       ].filter(period => period.price !== null);
 
-      
-
       if (availablePeriods.length === 0) {
 
         return { showDiscount: false, periodName: '', discountPercentage: 0, savingsAmount: 0 };
 
       }
 
-      
-
       const selectedPeriod = availablePeriods[0];
-
-      
 
       const totalMonthlyPrice = monthlyPrice * selectedPeriod.months;
 
-      
-
       const discountPercentage = ((totalMonthlyPrice - selectedPeriod.price) / totalMonthlyPrice) * 100;
 
-      
-
       const savingsAmount = (totalMonthlyPrice - selectedPeriod.price).toFixed(2);
-
-      
 
       return {
 
@@ -1206,72 +1069,40 @@ export default {
 
     };
 
-    
-
     return {
-
       plans,
-
       loading,
-
       currency,
-
       currencySymbol,
-
       paymentMethods,
-
       selectedPriceType,
-
       selectedFilter,
-
       filteredPlans,
-
       getPlanPrices,
-
       getPriceTypeKey,
-
       getPriceTypeName,
-
       getPeriodText,
-
       selectPriceType,
-
       getSelectedPrice,
-
       isJsonContent,
-
       parseJsonContent,
-
+      isMarkdownContent,
+      renderMarkdown,
       purchasePlan,
-
       filterToggle,
-
       filters,
-
       setFilter,
-
       getPlanMainPrice,
-
       getPlanMainPriceType,
-
       currentLanguage,
-
       selectPlanPriceType,
-
       getDisplayPriceType,
-
       showPopup,
-
       popupConfig,
-
       handlePopupClose,
-
       initPopup,
-
       SHOP_CONFIG,
-
       calculateDiscount
-
     };
 
   }
@@ -1279,8 +1110,6 @@ export default {
 };
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -1292,8 +1121,6 @@ export default {
 
   justify-content: center;
 
-  
-
   .shop-inner {
 
     width: 100%;
@@ -1302,15 +1129,11 @@ export default {
 
   }
 
-  
-
   .welcome-card {
 
     margin-bottom: 24px;
 
   }
-
-  
 
   .dashboard-card {
 
@@ -1330,8 +1153,6 @@ export default {
 
     position: relative;
 
-    
-
     &:hover {
 
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -1339,8 +1160,6 @@ export default {
       border-color: rgba(var(--theme-color-rgb), 0.3);
 
     }
-
-    
 
     .card-header {
 
@@ -1351,8 +1170,6 @@ export default {
       align-items: flex-start;
 
       margin-bottom: 15px;
-
-      
 
       .card-title {
 
@@ -1374,8 +1191,6 @@ export default {
 
       }
 
-      
-
       .card-badge {
 
         display: flex;
@@ -1396,8 +1211,6 @@ export default {
 
         flex-shrink: 0;
 
-        
-
         &.glassmorphism {
 
           backdrop-filter: blur(8px);
@@ -1410,8 +1223,6 @@ export default {
 
           transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
-          
-
           &.stock-plenty {
 
             background-color: rgba(76, 175, 80, 0.2);
@@ -1422,8 +1233,6 @@ export default {
 
           }
 
-          
-
           &.stock-warning {
 
             background-color: rgba(255, 152, 0, 0.2);
@@ -1433,8 +1242,6 @@ export default {
             color: #ff9800;
 
           }
-
-          
 
           &.stock-danger {
 
@@ -1448,8 +1255,6 @@ export default {
 
         }
 
-        
-
         .badge-icon {
 
           margin-right: 4px;
@@ -1462,17 +1267,11 @@ export default {
 
   }
 
-  
-
-  
-
   .skeleton-card {
 
     width: 100%;
 
     height: 100%;
-
-    
 
     .skeleton-header,
 
@@ -1485,8 +1284,6 @@ export default {
       position: relative;
 
       overflow: hidden;
-
-      
 
       &::after {
 
@@ -1518,8 +1315,6 @@ export default {
 
     }
 
-    
-
     .skeleton-header {
 
       height: 24px;
@@ -1533,8 +1328,6 @@ export default {
       width: 60%;
 
     }
-
-    
 
     .skeleton-body {
 
@@ -1550,13 +1343,9 @@ export default {
 
       }
 
-      
-
       .skeleton-features {
 
         margin-bottom: 24px;
-
-        
 
         .skeleton-feature {
 
@@ -1567,8 +1356,6 @@ export default {
           border-radius: 4px;
 
           margin-bottom: 12px;
-
-          
 
           &:nth-child(1) { width: 90%; }
 
@@ -1584,8 +1371,6 @@ export default {
 
       }
 
-      
-
       .skeleton-button {
 
         height: 48px;
@@ -1599,8 +1384,6 @@ export default {
     }
 
   }
-
-  
 
   @keyframes shimmer {
 
@@ -1618,8 +1401,6 @@ export default {
 
   }
 
-  
-
   @keyframes pulse {
 
     0% { opacity: 0.6; }
@@ -1629,8 +1410,6 @@ export default {
     100% { opacity: 0.6; }
 
   }
-
-  
 
   .stats-grid {
 
@@ -1642,23 +1421,17 @@ export default {
 
     margin-bottom: 24px;
 
-    
-
     @media (max-width: 1200px) {
 
       grid-template-columns: repeat(2, 1fr);
 
     }
 
-    
-
     @media (max-width: 768px) {
 
       grid-template-columns: 1fr;
 
     }
-
-    
 
     .stats-card {
 
@@ -1678,8 +1451,6 @@ export default {
 
       transition: all 0.3s ease;
 
-      
-
       &:hover {
 
         border-color: rgba(var(--theme-color-rgb), 0.3);
@@ -1687,8 +1458,6 @@ export default {
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
       }
-
-      
 
       .stats-icon {
 
@@ -1712,13 +1481,9 @@ export default {
 
       }
 
-      
-
       .stats-info {
 
         flex: 1;
-
-        
 
         .stats-value {
 
@@ -1731,8 +1496,6 @@ export default {
           margin-bottom: 5px;
 
         }
-
-        
 
         .stats-label {
 
@@ -1748,8 +1511,6 @@ export default {
 
   }
 
-  
-
   .plans-wrapper {
 
     display: grid;
@@ -1760,23 +1521,17 @@ export default {
 
     margin-bottom: 24px;
 
-    
-
     @media (max-width: 1200px) {
 
       grid-template-columns: repeat(2, 1fr);
 
     }
 
-    
-
     @media (max-width: 768px) {
 
       grid-template-columns: 1fr;
 
     }
-
-    
 
     .dashboard-card {
 
@@ -1785,8 +1540,6 @@ export default {
       overflow: hidden;
 
     }
-
-    
 
     .plan-card {
 
@@ -1810,8 +1563,6 @@ export default {
 
       height: auto;
 
-      
-
       &:hover {
 
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -1822,8 +1573,6 @@ export default {
 
       }
 
-      
-
       .card-header {
 
         display: flex;
@@ -1833,8 +1582,6 @@ export default {
         align-items: flex-start;
 
         margin-bottom: 15px;
-
-        
 
         .card-title {
 
@@ -1856,8 +1603,6 @@ export default {
 
         }
 
-        
-
         .card-badge {
 
           display: flex;
@@ -1878,8 +1623,6 @@ export default {
 
           flex-shrink: 0;
 
-          
-
           &.glassmorphism {
 
             backdrop-filter: blur(8px);
@@ -1892,8 +1635,6 @@ export default {
 
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
-            
-
             &.stock-plenty {
 
               background-color: rgba(76, 175, 80, 0.2);
@@ -1904,8 +1645,6 @@ export default {
 
             }
 
-            
-
             &.stock-warning {
 
               background-color: rgba(255, 152, 0, 0.2);
@@ -1915,8 +1654,6 @@ export default {
               color: #ff9800;
 
             }
-
-            
 
             &.stock-danger {
 
@@ -1930,8 +1667,6 @@ export default {
 
           }
 
-          
-
           .badge-icon {
 
             margin-right: 4px;
@@ -1941,8 +1676,6 @@ export default {
         }
 
       }
-
-      
 
       .card-body {
 
@@ -1958,23 +1691,17 @@ export default {
 
     }
 
-    
-
     .plan-price {
 
       margin: 24px 0;
 
       padding: 0 4px;
 
-      
-
       .price-display {
 
         text-align: center;
 
         margin-bottom: 12px;
-
-        
 
         .currency {
 
@@ -1986,8 +1713,6 @@ export default {
 
         }
 
-        
-
         .amount {
 
           font-size: 48px;
@@ -1997,8 +1722,6 @@ export default {
           color: var(--text-color);
 
         }
-
-        
 
         .period {
 
@@ -2010,13 +1733,9 @@ export default {
 
       }
 
-      
-
       .supported-periods {
 
         margin-top: 15px;
-
-        
 
         .period-labels {
 
@@ -2027,8 +1746,6 @@ export default {
           flex-wrap: wrap;
 
           gap: 6px;
-
-          
 
           .period-tag {
 
@@ -2054,8 +1771,6 @@ export default {
 
             align-items: center;
 
-            
-
             .tag-icon {
 
               margin-right: 4px;
@@ -2064,15 +1779,11 @@ export default {
 
               height: 14px;
 
-              
-
               &.check {
 
                 color: #4caf50;
 
               }
-
-              
 
               &.error {
 
@@ -2082,8 +1793,6 @@ export default {
 
             }
 
-            
-
             &:hover:not(.disabled) {
 
               background-color: rgba(var(--theme-color-rgb), 0.08);
@@ -2091,8 +1800,6 @@ export default {
               color: var(--text-color);
 
             }
-
-            
 
             &.active {
 
@@ -2103,8 +1810,6 @@ export default {
               border-color: rgba(var(--theme-color-rgb), 0.2);
 
             }
-
-            
 
             &.disabled {
 
@@ -2122,10 +1827,6 @@ export default {
 
     }
 
-    
-
-    
-
     .discount-calculation {
 
       margin: 5px 0 15px 0;
@@ -2136,8 +1837,6 @@ export default {
 
       border-radius: 8px;
 
-      
-
       .discount-info {
 
         font-size: 14px;
@@ -2145,8 +1844,6 @@ export default {
         text-align: center;
 
         color: var(--text-color);
-
-        
 
         .period-name {
 
@@ -2156,15 +1853,9 @@ export default {
 
         }
 
-        
-
         .discount-label {
 
           font-weight: 500;
-
-          
-
-          
 
           &::first-line,
 
@@ -2178,8 +1869,6 @@ export default {
 
         }
 
-        
-
         .discount-value {
 
           font-weight: 700;
@@ -2188,15 +1877,11 @@ export default {
 
         }
 
-        
-
         .saving-text {
 
           font-weight: 400;
 
         }
-
-        
 
         .saving-amount {
 
@@ -2210,15 +1895,11 @@ export default {
 
     }
 
-    
-
     .plan-features {
 
       margin: 24px 0 10px 0;
 
       padding: 0 4px;
-
-      
 
       .feature-item {
 
@@ -2227,8 +1908,6 @@ export default {
         align-items: flex-start; // 改为 flex-start 以便长文本时对齐更好
 
         margin-bottom: 12px;
-
-        
 
         .feature-icon {
 
@@ -2246,15 +1925,11 @@ export default {
 
           margin-top: 1px; // 微调垂直对齐
 
-          
-
           &.enabled {
 
             color: var(--theme-color);
 
           }
-
-          
 
           &.disabled {
 
@@ -2263,8 +1938,6 @@ export default {
           }
 
         }
-
-        
 
         span {
 
@@ -2280,8 +1953,6 @@ export default {
 
           flex: 1; // 占据剩余空间
 
-          
-
           &.disabled-text {
 
             color: #999;
@@ -2292,25 +1963,102 @@ export default {
 
       }
 
-      
-
       .html-content {
-
         font-size: 14px;
-
         line-height: 1.6;
-
         color: var(--text-color);
-
+      }
+      
+      .markdown-content {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--text-color);
+        
+        h1, h2, h3, h4, h5, h6 {
+          margin: 1em 0 0.5em 0;
+          font-weight: 600;
+          color: var(--text-color);
+        }
+        
+        p {
+          margin: 0.5em 0;
+        }
+        
+        ul, ol {
+          margin: 0.5em 0;
+          padding-left: 1.5em;
+        }
+        
+        li {
+          margin: 0.25em 0;
+        }
+        
+        strong, b {
+          font-weight: 600;
+        }
+        
+        em, i {
+          font-style: italic;
+        }
+        
+        code {
+          background-color: var(--code-bg-color);
+          padding: 0.2em 0.4em;
+          border-radius: 3px;
+          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+          font-size: 0.9em;
+        }
+        
+        pre {
+          background-color: var(--code-bg-color);
+          padding: 1em;
+          border-radius: 5px;
+          overflow-x: auto;
+          margin: 1em 0;
+          
+          code {
+            background: none;
+            padding: 0;
+          }
+        }
+        
+        a {
+          color: var(--link-color);
+          text-decoration: none;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        
+        blockquote {
+          border-left: 4px solid var(--border-color);
+          padding-left: 1em;
+          margin: 1em 0;
+          color: var(--text-muted-color);
+        }
+        
+        table {
+          border-collapse: collapse;
+          width: 100%;
+          margin: 1em 0;
+          
+          th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.5em;
+            text-align: left;
+          }
+          
+          th {
+            background-color: var(--table-header-bg);
+            font-weight: 600;
+          }
+        }
       }
 
     }
 
   }
-
-  
-
-  
 
   .btn-purchase {
 
@@ -2354,8 +2102,6 @@ export default {
 
     align-self: flex-start;
 
-    
-
     &.glassmorphism {
 
       background-color: rgba(var(--theme-color-rgb), 0.85);
@@ -2370,8 +2116,6 @@ export default {
 
     }
 
-    
-
     &:hover {
 
       transform: translateY(-2px);
@@ -2381,8 +2125,6 @@ export default {
       background-color: rgba(var(--theme-color-rgb), 0.95);
 
     }
-
-    
 
     &.btn-disabled {
 
@@ -2398,8 +2140,6 @@ export default {
 
       border: 1px solid rgba(150, 150, 150, 0.3);
 
-      
-
       &:hover {
 
         transform: none;
@@ -2410,8 +2150,6 @@ export default {
 
     }
 
-    
-
     .btn-icon {
 
       width: 18px;
@@ -2421,10 +2159,6 @@ export default {
     }
 
   }
-
-  
-
-  
 
   .dark-theme {
 
@@ -2437,8 +2171,6 @@ export default {
     .skeleton-button {
 
       background-color: rgba(255, 255, 255, 0.08);
-
-      
 
       &::after {
 
@@ -2454,8 +2186,6 @@ export default {
 
     }
 
-    
-
     .card-badge.glassmorphism {
 
       &.stock-plenty {
@@ -2464,15 +2194,11 @@ export default {
 
       }
 
-      
-
       &.stock-warning {
 
         background-color: rgba(255, 152, 0, 0.1);
 
       }
-
-      
 
       &.stock-danger {
 
@@ -2484,10 +2210,6 @@ export default {
 
   }
 
-  
-
-  
-
   .filter-toggle-container {
 
     margin-bottom: 30px;
@@ -2495,8 +2217,6 @@ export default {
     display: flex;
 
     justify-content: center;
-
-    
 
     .filter-toggle-wrapper {
 
@@ -2528,8 +2248,6 @@ export default {
 
       transition: background-color 0.3s ease;
 
-      
-
       .filter-option {
 
         display: flex;
@@ -2544,15 +2262,11 @@ export default {
 
         border-radius: 12px;
 
-        
-
         &:hover {
 
           background-color: rgba(var(--theme-color-rgb), 0.05);
 
         }
-
-        
 
         &.active {
 
@@ -2574,8 +2288,6 @@ export default {
 
         }
 
-        
-
         .option-icon {
 
           margin-right: 6px;
@@ -2588,8 +2300,6 @@ export default {
 
           transition: color 0.3s ease;
 
-          
-
           svg {
 
             width: 18px;
@@ -2599,8 +2309,6 @@ export default {
           }
 
         }
-
-        
 
         .option-text {
 
@@ -2612,17 +2320,11 @@ export default {
 
         }
 
-
-
       }
 
     }
 
   }
-
-  
-
-  
 
   .no-plans-message {
 
@@ -2642,8 +2344,6 @@ export default {
 
     text-align: center;
 
-    
-
     .info-icon {
 
       color: var(--theme-color);
@@ -2653,8 +2353,6 @@ export default {
       margin-bottom: 16px;
 
     }
-
-    
 
     h3 {
 
@@ -2668,8 +2366,6 @@ export default {
 
     }
 
-    
-
     p {
 
       color: var(--secondary-text-color);
@@ -2677,8 +2373,6 @@ export default {
       margin-bottom: 24px;
 
     }
-
-    
 
     .btn-reset-filter {
 
@@ -2700,8 +2394,6 @@ export default {
 
       transition: all 0.3s ease;
 
-      
-
       &:hover {
 
         background-color: var(--primary-color-hover);
@@ -2714,17 +2406,11 @@ export default {
 
   }
 
-  
-
-  
-
   .animate-card {
 
     position: relative;
 
     overflow: hidden;
-
-    
 
     &::after {
 
@@ -2760,8 +2446,6 @@ export default {
 
   }
 
-  
-
   @keyframes shimmer {
 
     0% {
@@ -2780,10 +2464,6 @@ export default {
 
 }
 
-
-
-
-
 @media (max-width: 768px) {
 
   .shop-container {
@@ -2792,15 +2472,11 @@ export default {
 
     padding-bottom: 80px;
 
-    
-
     .stats-grid {
 
       grid-template-columns: 1fr;
 
     }
-
-    
 
     .plans-wrapper {
 
@@ -2809,8 +2485,6 @@ export default {
     }
 
   }
-
-  
 
   .shop-container .filter-toggle-container {
 
@@ -2830,8 +2504,6 @@ export default {
 
       border-radius: 14px;
 
-      
-
       .filter-option {
 
         padding: 8px 10px;
@@ -2842,13 +2514,9 @@ export default {
 
         min-width: 80px;
 
-        
-
         .option-icon {
 
           margin-right: 4px;
-
-          
 
           svg {
 
@@ -2859,8 +2527,6 @@ export default {
           }
 
         }
-
-        
 
         .option-text {
 
@@ -2878,8 +2544,6 @@ export default {
 
 }
 
-
-
 @media (max-width: 480px) {
 
   .shop-container .filter-toggle-container {
@@ -2888,15 +2552,11 @@ export default {
 
       padding: 8px;
 
-      
-
       .filter-option {
 
         padding: 6px 8px;
 
         min-width: auto;
-
-        
 
         .option-icon {
 
@@ -2913,5 +2573,4 @@ export default {
 }
 
 </style>
-
 

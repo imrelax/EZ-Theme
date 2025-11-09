@@ -37,8 +37,7 @@ const initialUrlParams = {
   } catch (error) {
   }
 })();
-
-
+
 export const handleTokenLogin = async (options = {}) => {
   const router = useRouter();
   const { showToast } = useToast();
@@ -70,8 +69,7 @@ export const handleTokenLogin = async (options = {}) => {
       redirectPath = queryParams.get('redirect');
     }
   }
-  
-  
+
   redirectPath = redirectPath || '/dashboard';
   
   if (!verifyToken) {
@@ -117,8 +115,7 @@ export const handleTokenLogin = async (options = {}) => {
     NProgress.done();
   }
 };
-
-
+
 export const hasVerifyToken = () => {
   if (initialUrlParams.verifyToken) {
     return true;
@@ -138,7 +135,6 @@ export const hasVerifyToken = () => {
   }
   
   const queryParams = new URLSearchParams(window.location.search);
-  
-  
+
   return hashParams.has('verify') || queryParams.has('verify') || !!initialUrlParams.verifyToken;
 }; 

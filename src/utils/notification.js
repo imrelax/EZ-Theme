@@ -2,8 +2,7 @@
 import { useToast } from '@/composables/useToast';
 
 const TOAST_DURATION = 3000;
-
-
+
 export const showToast = (options) => {
   let message, type, duration;
   

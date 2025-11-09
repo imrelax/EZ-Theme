@@ -1,6 +1,5 @@
 ﻿import { AUTHORIZED_DOMAINS, SECURITY_CONFIG } from './baseConfig';
-
-
+
 export const isDomainAuthorized = () => {
   if (!SECURITY_CONFIG.enableFrontendDomainCheck) {
     return true;
@@ -9,8 +8,7 @@ export const isDomainAuthorized = () => {
   const currentDomain = window.location.hostname; 
   return AUTHORIZED_DOMAINS.includes(currentDomain); 
 };
-
-
+
 export const handleUnauthorizedDomain = () => {
   if (!SECURITY_CONFIG.enableFrontendDomainCheck) {
     return true;
@@ -18,8 +16,7 @@ export const handleUnauthorizedDomain = () => {
   
   if (!isDomainAuthorized()) {
     console.clear(); 
-    
-    
+
     const blockUI = () => {
       const blocker = document.createElement('div');
       blocker.style.position = 'fixed';
@@ -32,8 +29,7 @@ export const handleUnauthorizedDomain = () => {
       document.body.appendChild(blocker);
       
       document.body.style.overflow = 'hidden';
-      
-      
+
       const disableEvents = (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -44,8 +40,7 @@ export const handleUnauthorizedDomain = () => {
        'touchend', 'keydown', 'keyup', 'keypress', 'scroll', 'wheel'].forEach(eventType => {
         document.addEventListener(eventType, disableEvents, { capture: true });
       });
-      
-      
+
       const startLoop = () => {
       };
       

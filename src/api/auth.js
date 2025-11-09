@@ -3,7 +3,6 @@ import request from './request';
 import store from '@/store';
 import { SITE_CONFIG } from '@/utils/baseConfig';
 
-
 const setCookie = (name, value, days) => {
   const siteName = SITE_CONFIG.siteName;
   
@@ -45,7 +44,6 @@ const setCookie = (name, value, days) => {
     }
   }, 300);
 };
-
 
 const getCookie = (name) => {
   const siteName = SITE_CONFIG.siteName;
@@ -97,7 +95,6 @@ const getCookie = (name) => {
   return cookieValue;
 };
 
-
 const deleteCookie = (name) => {
   document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
   
@@ -118,7 +115,6 @@ const deleteCookie = (name) => {
     }
   }, 100);
 };
-
 
 export const handleLoginSuccess = (responseData, rememberMe) => {
   try {
@@ -168,7 +164,6 @@ export const handleLoginSuccess = (responseData, rememberMe) => {
   }
 };
 
-
 export const login = async (loginData) => {
   const { rememberMe, ...requestData } = loginData;
   
@@ -200,7 +195,6 @@ export const login = async (loginData) => {
     throw new Error(handledResponse.error);
   }
 };
-
 
 export function register(data) {
   return request({
@@ -245,7 +239,6 @@ export function register(data) {
   });
 }
 
-
 export function resetPassword(data) {
   return request({
     url: '/passport/auth/forget',
@@ -254,14 +247,12 @@ export function resetPassword(data) {
   });
 }
 
-
 export function getUserInfo() {
   return request({
     url: '/user/info',
     method: 'get'
   });
 }
-
 
 export const logout = async () => {
   try {
@@ -303,14 +294,12 @@ export const logout = async () => {
   }
 };
 
-
 export function getWebsiteConfig() {
   return request({
     url: '/guest/comm/config',
     method: 'get'
   });
 }
-
 
 export function sendEmailVerify(data) {
   const sendData = { ...data };
@@ -327,7 +316,6 @@ export function sendEmailVerify(data) {
     data: sendData
   });
 }
-
 
 export const checkLoginStatus = () => {
   const now = Date.now();
@@ -406,12 +394,10 @@ export const checkLoginStatus = () => {
   return isLoggedIn;
 };
 
-
 const _cacheLoginStatus = (status) => {
   window._lastLoginCheck = status;
   window._lastLoginCheckTime = Date.now();
 };
-
 
 const _clearAllAuthData = () => {
   window.isUserLoggedIn = false;
@@ -465,7 +451,6 @@ const _clearAllAuthData = () => {
     console.error('Vuex状态清除失败', e);
   }
 };
-
 
 export const forceLogout = () => {
   window.isUserLoggedIn = false;
@@ -521,7 +506,6 @@ export const forceLogout = () => {
   }
 };
 
-
 export const tokenLogin = (verifyToken, redirect) => {
   return request({
     url: `/passport/auth/token2Login`,
@@ -532,7 +516,6 @@ export const tokenLogin = (verifyToken, redirect) => {
     }
   });
 };
-
 
 export const checkUserLoginStatus = async () => {
   const authData = localStorage.getItem('auth_data') || sessionStorage.getItem('auth_data');

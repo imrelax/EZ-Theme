@@ -387,8 +387,7 @@ onMounted(() => {
         color: var(--secondary-text-color);
       }
     }
-    
-    
+
     .balance-skeleton {
       width: 100%;
       text-align: center;
@@ -562,8 +561,7 @@ onMounted(() => {
         font-size: 0.9rem;
       }
     }
-    
-    
+
     .amount-selection {
       margin-bottom: 10px;
       width: 100%;
@@ -696,8 +694,7 @@ onMounted(() => {
         font-size: 0.85rem;
       }
     }
-    
-    
+
     .deposit-actions {
       margin-top: 25px;
       display: flex;

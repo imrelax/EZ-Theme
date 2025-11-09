@@ -1229,8 +1229,7 @@ export default {
       }
     }
   }
-  
-  
+
   .product-info, .order-info {
     .info-row {
       display: flex;
@@ -1284,8 +1283,7 @@ export default {
       }
     }
   }
-  
-  
+
   .payment-methods {
     .payment-method-item {
       display: flex;
@@ -1347,8 +1345,7 @@ export default {
       }
     }
   }
-  
-  
+
   .free-notice {
     display: flex;
     align-items: center;
@@ -1381,8 +1378,7 @@ export default {
       }
     }
   }
-  
-  
+
   .action-buttons {
     display: flex;
     flex-direction: column;
@@ -1398,8 +1394,7 @@ export default {
       @media (max-width: 480px) {
         flex-direction: column;
         gap: 10px;
-        
-        
+
         .btn-back, .btn-pay, .btn-check, .btn-continue {
           width: 100%;
           height: 48px;
@@ -1430,8 +1425,7 @@ export default {
         .btn-back, .btn-check {
           flex: 1;
         }
-        
-        
+
         .btn-pay {
           flex: 2;
         }
@@ -1536,8 +1530,7 @@ export default {
       animation: spin 1s linear infinite;
     }
   }
-  
-  
+
   .skeleton-card {
     width: 100%;
     position: relative;
@@ -1579,8 +1572,7 @@ export default {
       margin-bottom: 20px;
     }
   }
-  
-  
+
   .payment-success-overlay {
     position: fixed;
     top: 0;
@@ -1634,8 +1626,7 @@ export default {
         animation: slideUp 0.5s ease 0.6s both;
       }
     }
-    
-    
+
     .confetti-container {
       position: fixed;
       top: 50%;
@@ -1645,8 +1636,7 @@ export default {
       pointer-events: none;
     }
   }
-  
-  
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.5s ease;
@@ -1656,8 +1646,7 @@ export default {
   .fade-leave-to {
     opacity: 0;
   }
-  
-  
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -1726,8 +1715,7 @@ export default {
       transform: translateX(0);
     }
   }
-  
-  
+
   @media (max-width: 768px) {
     .content-wrapper {
       flex-direction: column;
@@ -1772,8 +1760,7 @@ export default {
       }
     }
   }
-  
-  
+
   .modal-wrapper {
     position: fixed;
     top: 0;
@@ -2007,8 +1994,7 @@ export default {
       }
     }
   }
-  
-  
+
   .modal-enter-active {
     transition: opacity 0.3s ease-out;
     
@@ -2035,8 +2021,7 @@ export default {
     }
   }
 }
-
-
+
 .cancel-modal {
   position: fixed;
   top: 0;
@@ -2150,8 +2135,7 @@ export default {
     }
   }
 }
-
-
+
 .modal-fade-enter-active {
   animation: fade-in 0.2s ease-out;
 }
@@ -2169,8 +2153,7 @@ export default {
   from { opacity: 1; }
   to { opacity: 0; }
 }
-
-
+
 .status-info {
   display: flex;
   justify-content: center;
@@ -2185,8 +2168,7 @@ export default {
   border-radius: 12px;
   width: 100%;
   transition: all 0.5s ease; 
-  
-  
+
   &.status-transition {
     animation: status-change 0.5s ease;
   }
@@ -2216,8 +2198,7 @@ export default {
       margin-bottom: 0;
     }
   }
-  
-  
+
   &.status-free-confirm {
     flex-direction: column;
     justify-content: center;
@@ -2324,8 +2305,7 @@ export default {
     transform: rotate(360deg);
   }
 }
-
-
+
 @keyframes status-change {
   0% {
     transform: scale(1);

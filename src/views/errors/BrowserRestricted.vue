@@ -1,11 +1,8 @@
-﻿<template>
+<template>
 
   <div class="browser-restricted-container">
 
     <!-- 域名授权验证提示 -->
-
-
-    
 
     <div class="browser-restricted-card">
 
@@ -17,8 +14,6 @@
 
       </div>
 
-      
-
       <div class="card-body">
 
         <div class="browser-icon">
@@ -27,11 +22,7 @@
 
         </div>
 
-        
-
         <p class="description">{{ $t('browserRestricted.description') }}</p>
-
-        
 
         <div class="browser-info">
 
@@ -44,8 +35,6 @@
           </p>
 
         </div>
-
-        
 
         <div class="current-url-container">
 
@@ -67,13 +56,9 @@
 
         </div>
 
-        
-
         <div class="recommend-section">
 
           <h3 class="recommend-title">{{ $t('browserRestricted.recommendText') }}</h3>
-
-          
 
           <div class="browser-buttons">
 
@@ -100,8 +85,6 @@
             </a>
 
           </div>
-
-          
 
           <div class="supported-browsers-section">
 
@@ -135,8 +118,6 @@
 
         </div>
 
-        
-
         <div class="info-section">
 
           <details class="info-details">
@@ -157,8 +138,6 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, onMounted } from 'vue';
@@ -166,8 +145,6 @@ import { ref, onMounted } from 'vue';
 import { detectBrowser, BROWSER_RESTRICT_CONFIG } from '@/utils/baseConfig';
 
 import { useI18n } from 'vue-i18n';
-
-
 
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
 
@@ -192,8 +169,6 @@ import {
   IconCopy 
 
 } from '@tabler/icons-vue';
-
-
 
 export default {
 
@@ -237,11 +212,6 @@ export default {
 
     const copyStatus = ref('');
 
-    
-
-
-    
-
     const getBrowserIcon = (browserName) => {
 
       const iconMap = {
@@ -265,21 +235,15 @@ export default {
         'Tor': IconBrandFirefox   
       };
 
-      
-
       return iconMap[browserName] || IconDeviceDesktop;
 
     };
-
-    
 
     const getBrowserLocalName = (browserName) => {
 
       return t(`browserRestricted.browserNames.${browserName}`) || browserName;
 
     };
-
-    
 
     const getBrowserDownloadText = (browserName) => {
 
@@ -295,8 +259,6 @@ export default {
 
     };
 
-    
-
     const copyCurrentUrl = async () => {
 
       try {
@@ -304,8 +266,6 @@ export default {
         await navigator.clipboard.writeText(currentUrl.value);
 
         copyStatus.value = t('common.copied');
-
-        
 
         setTimeout(() => {
 
@@ -318,8 +278,6 @@ export default {
         console.error('复制失败:', err);
 
         copyStatus.value = t('common.copyFailed');
-
-        
 
         try {
 
@@ -335,8 +293,6 @@ export default {
 
           textarea.select();
 
-          
-
           const successful = document.execCommand('copy');
 
           if (successful) {
@@ -349,11 +305,7 @@ export default {
 
           }
 
-          
-
           document.body.removeChild(textarea);
-
-          
 
           setTimeout(() => {
 
@@ -371,21 +323,11 @@ export default {
 
     };
 
-    
-
     onMounted(() => {
-
-
-
-      
 
       currentBrowser.value = detectBrowser();
 
-      
-
       recommendedBrowsers.value = BROWSER_RESTRICT_CONFIG.recommendedBrowsers;
-
-      
 
       const restrictedBrowsers = BROWSER_RESTRICT_CONFIG.restrictBrowsers;
 
@@ -395,7 +337,6 @@ export default {
 
         .concat(Object.keys(recommendedBrowsers.value)) 
         .filter((browser, index, self) => self.indexOf(browser) === index); 
-        
 
       const origin = window.location.origin;
 
@@ -405,13 +346,9 @@ export default {
 
         : `${origin}/${window.location.pathname.split('/')[1]}`;
 
-      
-
       currentUrl.value = `${baseUrl}/#/login`;
 
     });
-
-    
 
     return {
 
@@ -431,7 +368,6 @@ export default {
 
       copyStatus,
 
-
       getBrowserDownloadText
 
     };
@@ -441,8 +377,6 @@ export default {
 };
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -460,13 +394,9 @@ export default {
 
   background-color: var(--bg-color);
 
-  
-
   transform: translateZ(0);
 
 }
-
-
 
 .browser-restricted-card {
 
@@ -478,21 +408,15 @@ export default {
 
   border-radius: 16px;
 
-  
-
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 
   overflow: hidden;
 
   border: 1px solid var(--border-color);
 
-  
-
   transform: translateZ(0);
 
   will-change: transform;
-
-  
 
   .card-header {
 
@@ -503,8 +427,6 @@ export default {
     background-color: rgba(var(--theme-color-rgb), 0.05);
 
     text-align: center;
-
-    
 
     .title {
 
@@ -517,8 +439,6 @@ export default {
       margin-bottom: 10px;
 
     }
-
-    
 
     .subtitle {
 
@@ -534,8 +454,6 @@ export default {
 
   }
 
-  
-
   .card-body {
 
     padding: 30px;
@@ -546,8 +464,6 @@ export default {
 
     align-items: center;
 
-    
-
     .browser-icon {
 
       color: var(--theme-color);
@@ -557,8 +473,6 @@ export default {
       margin-bottom: 20px;
 
     }
-
-    
 
     .description {
 
@@ -574,8 +488,6 @@ export default {
 
     }
 
-    
-
     .browser-info {
 
       background-color: rgba(var(--theme-color-rgb), 0.05);
@@ -587,8 +499,6 @@ export default {
       margin-bottom: 25px;
 
       width: 100%;
-
-      
 
       .current-browser {
 
@@ -602,8 +512,6 @@ export default {
 
     }
 
-    
-
     .current-url-container {
 
       width: 100%;
@@ -616,8 +524,6 @@ export default {
 
       margin-bottom: 25px;
 
-      
-
       .url-title {
 
         margin: 0 0 8px 0;
@@ -629,8 +535,6 @@ export default {
         color: var(--text-color);
 
       }
-
-      
 
       .url-copy-container {
 
@@ -645,8 +549,6 @@ export default {
         padding: 10px 15px;
 
         border: 1px solid rgba(var(--theme-color-rgb), 0.1);
-
-        
 
         .current-url {
 
@@ -663,8 +565,6 @@ export default {
           color: var(--secondary-text-color);
 
         }
-
-        
 
         .copy-button {
 
@@ -692,8 +592,6 @@ export default {
 
           transition: background-color 0.2s ease, transform 0.2s ease;
 
-          
-
           &:hover {
 
             background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -701,8 +599,6 @@ export default {
             transform: translateY(-2px);
 
           }
-
-          
 
           &:active {
 
@@ -713,8 +609,6 @@ export default {
         }
 
       }
-
-      
 
       .copy-status {
 
@@ -732,8 +626,6 @@ export default {
 
     }
 
-    
-
     .recommend-section {
 
       width: 100%;
@@ -745,8 +637,6 @@ export default {
       flex-direction: column;
 
       align-items: center;
-
-      
 
       .recommend-title {
 
@@ -761,8 +651,6 @@ export default {
         color: var(--text-color);
 
       }
-
-      
 
       .browser-buttons {
 
@@ -779,8 +667,6 @@ export default {
         width: 100%;
 
       }
-
-      
 
       .browser-button {
 
@@ -802,17 +688,11 @@ export default {
 
         text-decoration: none;
 
-        
-
         transition: transform 0.2s ease, background-color 0.2s ease;
-
-        
 
         transform: translateZ(0);
 
         will-change: transform;
-
-        
 
         &.browser-download {
 
@@ -820,23 +700,15 @@ export default {
 
           color: white;
 
-          
-
           &:hover {
 
             background-color: rgba(var(--theme-color-rgb), 0.9);
 
             transform: translateY(-2px);
 
-            
-
             box-shadow: 0 3px 8px rgba(var(--theme-color-rgb), 0.2);
 
           }
-
-          
-
-          
 
           &:active {
 
@@ -850,8 +722,6 @@ export default {
 
       }
 
-      
-
       .supported-browsers-section {
 
         width: 100%;
@@ -861,8 +731,6 @@ export default {
         border-top: 1px solid rgba(var(--theme-color-rgb), 0.1);
 
         padding-top: 20px;
-
-        
 
         .supported-title {
 
@@ -878,8 +746,6 @@ export default {
 
         }
 
-        
-
         .supported-browsers-list {
 
           display: flex;
@@ -889,8 +755,6 @@ export default {
           gap: 10px;
 
           justify-content: center;
-
-          
 
           .supported-browser-item {
 
@@ -910,8 +774,6 @@ export default {
 
             font-size: 14px;
 
-            
-
             .browser-icon-small {
 
               color: var(--theme-color);
@@ -930,15 +792,11 @@ export default {
 
     }
 
-    
-
     .info-section {
 
       width: 100%;
 
       margin-bottom: 20px;
-
-      
 
       .info-details {
 
@@ -947,8 +805,6 @@ export default {
         border-radius: 10px;
 
         padding: 15px;
-
-        
 
         summary {
 
@@ -964,8 +820,6 @@ export default {
 
         }
 
-        
-
         p {
 
           margin-top: 10px;
@@ -979,219 +833,105 @@ export default {
         }
 
       }
-
     }
-
   }
-
 }
-
-
-
-
 
 @media (max-width: 768px) {
-
   .browser-restricted-container {
-
-    
-
     -webkit-overflow-scrolling: touch;
-
     min-height: calc(100vh - 40px);
-
   }
-
-  
 
   .browser-restricted-card {
-
-    
-
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 
-    
-
     .card-header {
-
       padding: 20px;
-
-      
 
       .title {
-
         font-size: 20px;
-
       }
-
-      
 
       .subtitle {
-
         font-size: 14px;
-
       }
-
     }
-
-    
 
     .card-body {
-
       padding: 20px;
 
-      
-
       .description {
-
         font-size: 14px;
-
       }
-
-      
 
       .current-url-container {
-
         padding: 15px;
 
-        
-
         .url-title {
-
           font-size: 14px;
-
         }
-
-        
 
         .url-copy-container {
-
           padding: 8px 12px;
 
-          
-
           .current-url {
-
             font-size: 12px;
-
           }
-
-          
 
           .copy-button {
-
             width: 32px;
-
             height: 32px;
-
           }
-
         }
-
-        
 
         .copy-status {
-
           font-size: 12px;
-
         }
-
       }
-
-      
 
       .recommend-section {
-
         .recommend-title {
-
           font-size: 16px;
-
         }
-
-        
 
         .browser-buttons {
-
           flex-direction: column;
 
-          
-
           .browser-button {
-
             width: 100%;
-
-            
-
             transition: transform 0.15s ease, background-color 0.15s ease;
-
           }
-
         }
-
-        
 
         .supported-browsers-section {
-
           .supported-browsers-list {
-
             gap: 8px;
 
-            
-
             .supported-browser-item {
-
               padding: 6px 12px;
-
               font-size: 13px;
-
             }
-
           }
-
         }
-
       }
-
     }
-
   }
-
 }
-
-
-
-
 
 @media (hover: none) {
-
   .browser-button {
-
     &:hover {
-
-      
-
       transform: none !important;
-
       box-shadow: none !important;
-
     }
-
   }
-
-  
 
   .copy-button {
-
     &:hover {
-
-      
-
       transform: none !important;
-
     }
-
   }
-
 }
 
-</style> 
+</style>

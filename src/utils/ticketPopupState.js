@@ -1,8 +1,7 @@
 ﻿
 
 let popupShownInSession = false;
-
-
+
 export function shouldShowTicketPopup(config) {
   if (!config || !config.enabled) return false;
 

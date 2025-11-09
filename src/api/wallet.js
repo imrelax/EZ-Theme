@@ -1,15 +1,13 @@
 ﻿
 import request from './request';
-
-
+
 export function getUserConfig() {
   return request({
     url: '/user/comm/config',
     method: 'get'
   });
 }
-
-
+
 export function createOrderDeposit(amount) {
   return request({
     url: '/user/order/save',

@@ -23,12 +23,10 @@ export function handleRedirectPath(redirectPath) {
   return targetPath;
 }
 
-
 export function getRedirectFromQuery(route) {
   const redirect = route.query.redirect;
   return handleRedirectPath(redirect);
 }
-
 
 export function performRedirect(router, route) {
   const targetPath = getRedirectFromQuery(route);

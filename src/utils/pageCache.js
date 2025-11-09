@@ -9,13 +9,11 @@ let cachedRoutes = new Set(DEFAULT_CACHED_ROUTES);
 let routeAccessTimes = new Map();
 
 const MAX_CACHE_COUNT = 5;
-
-
+
 export function getCachedRoutes() {
   return Array.from(cachedRoutes);
 }
-
-
+
 export function addRouteToCache(routeName) {
   if (!routeName) return;
   
@@ -42,16 +40,14 @@ export function addRouteToCache(routeName) {
     }
   }
 }
-
-
+
 export function removeRouteFromCache(routeName) {
   if (!routeName) return;
   
   cachedRoutes.delete(routeName);
   routeAccessTimes.delete(routeName);
 }
-
-
+
 export function clearCache() {
   cachedRoutes = new Set(DEFAULT_CACHED_ROUTES);
   
@@ -60,13 +56,11 @@ export function clearCache() {
     routeAccessTimes.set(route, Date.now());
   });
 }
-
-
+
 export function resetCache() {
   clearCache();
 }
-
-
+
 export function setCachedRoutes(routes) {
   if (Array.isArray(routes)) {
     cachedRoutes = new Set(routes);
@@ -77,13 +71,11 @@ export function setCachedRoutes(routes) {
     });
   }
 }
-
-
+
 export function isRouteCached(routeName) {
   return cachedRoutes.has(routeName);
 }
-
-
+
 export function touchRoute(routeName) {
   if (cachedRoutes.has(routeName)) {
     routeAccessTimes.set(routeName, Date.now());

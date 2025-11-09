@@ -24,8 +24,6 @@
 
     </div>
 
-
-
     <button
 
       class="language-btn"
@@ -47,8 +45,6 @@
       </span>
 
     </button>
-
-
 
     <transition name="fade">
 
@@ -82,8 +78,6 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
@@ -91,7 +85,6 @@ import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { setLanguage } from '@/i18n';
-
 
 import vnFlag from '@/assets/i18N/VN.svg';
 
@@ -109,8 +102,6 @@ import ruFlag from '@/assets/i18N/RU.svg';
 
 import irFlag from '@/assets/i18N/IR.svg';
 
-
-
 export default {
 
   name: 'LanguageSelector',
@@ -122,8 +113,6 @@ export default {
     const isOpen = ref(false);
 
     const dropdown = ref(null);
-
-
 
     const languages = [
 
@@ -209,11 +198,7 @@ export default {
 
     ];
 
-
-
     const currentLanguage = computed(() => locale.value);
-
-
 
     const getCurrentLanguageFlag = () => {
 
@@ -223,13 +208,9 @@ export default {
 
     };
 
-
-
     const toggleDropdown = () => {
 
       isOpen.value = !isOpen.value;
-
-
 
       if (isOpen.value) {
 
@@ -263,23 +244,17 @@ export default {
 
     };
 
-
-
     const changeLanguage = (langCode) => {
 
       setLanguage(langCode);
 
       isOpen.value = false;
 
-
-
       const event = new CustomEvent('languageChanged', { detail: langCode });
 
       window.dispatchEvent(event);
 
     };
-
-
 
     const handleClickOutside = (event) => {
 
@@ -293,23 +268,17 @@ export default {
 
     };
 
-
-
     onMounted(() => {
 
       document.addEventListener('click', handleClickOutside);
 
     });
 
-
-
     onUnmounted(() => {
 
       document.removeEventListener('click', handleClickOutside);
 
     });
-
-
 
     return {
 
@@ -335,8 +304,6 @@ export default {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .language-selector {
@@ -346,8 +313,6 @@ export default {
   display: inline-block;
 
 }
-
-
 
 .preload-flags {
 
@@ -365,8 +330,6 @@ export default {
 
   z-index: -1000;
 
-
-
   .preload-flag {
 
     width: 1px;
@@ -376,8 +339,6 @@ export default {
   }
 
 }
-
-
 
 .language-btn {
 
@@ -409,8 +370,6 @@ export default {
 
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 
-
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -422,8 +381,6 @@ export default {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
   }
-
-
 
   .flag-icon {
 
@@ -441,8 +398,6 @@ export default {
 
     overflow: hidden;
 
-
-
     .flag-container {
 
       width: 100%;
@@ -456,8 +411,6 @@ export default {
       justify-content: center;
 
     }
-
-
 
     img {
 
@@ -475,8 +428,6 @@ export default {
 
     }
 
-
-
     svg {
 
       width: 100%;
@@ -492,8 +443,6 @@ export default {
   }
 
 }
-
-
 
 .language-dropdown {
 
@@ -523,8 +472,6 @@ export default {
 
 }
 
-
-
 .language-item {
 
   padding: 12px 16px;
@@ -542,8 +489,6 @@ export default {
   align-items: center;
 
   gap: 12px;
-
-
 
   .flag-icon {
 
@@ -565,8 +510,6 @@ export default {
 
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
-
-
     img {
 
       width: 100%;
@@ -578,8 +521,6 @@ export default {
       border-radius: 3px;
 
     }
-
-
 
     svg {
 
@@ -593,15 +534,11 @@ export default {
 
   }
 
-
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.1);
 
   }
-
-
 
   &.active {
 
@@ -615,8 +552,6 @@ export default {
 
 }
 
-
-
 .fade-enter-active,
 
 .fade-leave-active {
@@ -624,8 +559,6 @@ export default {
   transition: opacity 0.3s ease, transform 0.3s ease;
 
 }
-
-
 
 .fade-enter-from,
 
@@ -637,8 +570,6 @@ export default {
 
 }
 
-
-
 .flag-fade-enter-active,
 
 .flag-fade-leave-active {
@@ -646,8 +577,6 @@ export default {
   transition: opacity 0.3s ease, transform 0.3s ease;
 
 }
-
-
 
 .flag-fade-enter-from {
 
@@ -657,8 +586,6 @@ export default {
 
 }
 
-
-
 .flag-fade-leave-to {
 
   opacity: 0;
@@ -666,8 +593,6 @@ export default {
   transform: scale(1.2);
 
 }
-
-
 
 @media (max-width: 576px) {
 

@@ -1,14 +1,11 @@
 let _router = null;
 
-
 const getRouterInstance = async () => {
   if (_router) return _router;
   const mod = await import('@/router');
   _router = mod.default || mod.router || mod;
   return _router;
 };
-
-
 
 function shouldCheckApiAvailability() {
   if (typeof window === 'undefined' || !window.EZ_CONFIG) return false;
@@ -23,8 +20,6 @@ function shouldCheckApiAvailability() {
   const staticBaseUrls = apiConfig.staticBaseUrl;
   return Array.isArray(staticBaseUrls) && staticBaseUrls.length > 1;
 };
-
-
 
 function getAvailableApiUrl() {
   if (!shouldCheckApiAvailability()) {
@@ -42,8 +37,6 @@ function getAvailableApiUrl() {
   
   return window.EZ_CONFIG.API_CONFIG.staticBaseUrl[0];
 }
-
-
 
 async function initApiAvailabilityChecker(redirect = true) {
   if (!shouldCheckApiAvailability()) {

@@ -14,8 +14,6 @@
 
       </button>
 
-      
-
       <!-- 加载状态 -->
 
       <div v-if="loading" class="doc-loading">
@@ -25,8 +23,6 @@
         <p>{{ $t('docs.loading') }}</p>
 
       </div>
-
-
 
       <!-- 错误提示 - 美化版 -->
 
@@ -56,8 +52,6 @@
 
       </div>
 
-
-
       <!-- 文档内容 -->
 
       <div v-else class="doc-content">
@@ -78,8 +72,6 @@
 
         </div>
 
-        
-
         <!-- 文档正文 -->
 
         <div class="doc-body" v-html="renderedContent"></div>
@@ -91,8 +83,6 @@
   </div>
 
 </template>
-
-
 
 <script setup>
 
@@ -116,8 +106,6 @@ import { SITE_CONFIG } from '@/utils/baseConfig';
 
 import { useToast } from '@/composables/useToast';
 
-
-
 const { t, locale } = useI18n();
 
 const route = useRoute();
@@ -128,8 +116,6 @@ const { showToast } = useToast();
 
 const $toast = inject('$toast');
 
-
-
 const md = new MarkdownIt({
 
   html: true,           
@@ -139,15 +125,11 @@ const md = new MarkdownIt({
   xhtmlOut: false       
 });
 
-
-
 md.renderer.rules.html_block = function(tokens, idx) {
 
   return tokens[idx].content;
 
 };
-
-
 
 md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
 
@@ -157,15 +139,11 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
 
   let href = '';
 
-  
-
   if (hrefIndex >= 0) {
 
     href = token.attrs[hrefIndex][1];
 
   }
-
-  
 
   if (href.includes('#eztheme-btn') || href.includes('class=eztheme-btn') || href.includes('?eztheme-btn')) {
 
@@ -176,8 +154,6 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
       .replace('class=eztheme-btn', '')
 
       .replace('?eztheme-btn', '');
-
-    
 
     const classIndex = token.attrIndex('class');
 
@@ -199,13 +175,9 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
 
   }
 
-  
-
   return self.renderToken(tokens, idx, options);
 
 };
-
-
 
 const loading = ref(true);
 
@@ -225,8 +197,6 @@ const docData = ref({
 
 });
 
-
-
 const isComplexHtml = (content) => {
 
   if (!content) return false;
@@ -234,8 +204,6 @@ const isComplexHtml = (content) => {
   return /<(div|span|p|h[1-6]|table|tr|td|ul|ol|li|section|article|header|footer|nav|form|button|style|link)[\s>]/i.test(content);
 
 };
-
-
 
 const getUserSubscribeUrl = () => {
 
@@ -255,8 +223,6 @@ const getUserSubscribeUrl = () => {
 
     }
 
-    
-
     if (window.userPlan && window.userPlan.subscribeUrl) {
 
       return window.userPlan.subscribeUrl;
@@ -269,12 +235,8 @@ const getUserSubscribeUrl = () => {
 
   }
 
-  
-
   return ''; 
 };
-
-
 
 const safeBase64Encode = (str) => {
 
@@ -292,13 +254,9 @@ const safeBase64Encode = (str) => {
 
 };
 
-
-
 const processTemplateVariables = (content) => {
 
   if (!content) return content;
-
-  
 
   const subscribeUrl = getUserSubscribeUrl();
 
@@ -307,8 +265,6 @@ const processTemplateVariables = (content) => {
   const safeBase64SubscribeUrl = safeBase64Encode(subscribeUrl);
 
   const urlEncodeSubscribeUrl = encodeURIComponent(subscribeUrl);
-
-  
 
   return content
 
@@ -321,8 +277,6 @@ const processTemplateVariables = (content) => {
     .replace(/\{\{urlEncodeSubscribeUrl\}\}/g, urlEncodeSubscribeUrl);
 
 };
-
-
 
 const copyToClipboard = (text) => {
 
@@ -352,8 +306,6 @@ const copyToClipboard = (text) => {
 
 };
 
-
-
 const fallbackCopyToClipboard = (text) => {
 
   try {
@@ -376,13 +328,9 @@ const fallbackCopyToClipboard = (text) => {
 
     textarea.select();
 
-    
-
     const successful = window.document.execCommand('copy');
 
     window.document.body.removeChild(textarea);
-
-    
 
     if (successful) {
 
@@ -404,15 +352,11 @@ const fallbackCopyToClipboard = (text) => {
 
 };
 
-
-
 const handleDocClick = (event) => {
 
   let target = event.target;
 
   let button = null;
-
-  
 
   if (target.tagName === 'I' || target.tagName === 'SPAN' || target.tagName === 'SVG') {
 
@@ -440,8 +384,6 @@ const handleDocClick = (event) => {
 
   }
 
-  
-
   if (button) {
 
     const buttonText = button.textContent.trim().toLowerCase();
@@ -454,19 +396,14 @@ const handleDocClick = (event) => {
 
                            button.querySelector('.fa-copy');
 
-    
-
     if (button.hasAttribute('onclick')) {
 
       const onclickValue = button.getAttribute('onclick');
-
-      
 
       if (onclickValue.includes('copy(')) {
 
         event.preventDefault(); 
         event.stopPropagation(); 
-        
 
         try {
 
@@ -497,8 +434,6 @@ const handleDocClick = (event) => {
         }
 
       }
-
-      
 
       else if (onclickValue.includes('jump(')) {
 
@@ -506,8 +441,6 @@ const handleDocClick = (event) => {
 
         event.stopPropagation();
 
-        
-
         try {
 
           const match = onclickValue.match(/jump\((\d+)\)/);
@@ -530,21 +463,15 @@ const handleDocClick = (event) => {
 
       }
 
-      
-
       return;
 
     }
-
-    
 
     if (button.hasAttribute('data-original-onclick')) {
 
       const onclickValue = button.getAttribute('data-original-onclick');
 
       event.preventDefault();
-
-      
 
       if (onclickValue.includes('copy(')) {
 
@@ -578,8 +505,6 @@ const handleDocClick = (event) => {
 
       }
 
-      
-
       else if (onclickValue.includes('jump(')) {
 
         try {
@@ -605,8 +530,6 @@ const handleDocClick = (event) => {
       }
 
     }
-
-    
 
     if (isSubscribeButton) {
 
@@ -624,8 +547,6 @@ const handleDocClick = (event) => {
 
     }
 
-    
-
     if (button.hasAttribute('data-href')) {
 
       event.preventDefault();
@@ -633,8 +554,6 @@ const handleDocClick = (event) => {
       const href = button.getAttribute('data-href');
 
       const target = button.getAttribute('data-target');
-
-      
 
       if (href) {
 
@@ -661,8 +580,6 @@ const handleDocClick = (event) => {
 
   }
 
-  
-
   if (event.target.textContent && 
 
       (event.target.textContent.includes('复制') || 
@@ -686,8 +603,6 @@ const handleDocClick = (event) => {
   }
 
 };
-
-
 
 // 构建“无访问权限”卡片 HTML（仪表盘同款结构）
 const buildNoAccessCardHtml = () => {
@@ -716,8 +631,6 @@ const buildNoAccessCardHtml = () => {
   `;
 };
 
-
-
 const renderedContent = computed(() => {
   let content = docData.value.body || '';
   if (!content) return '';
@@ -725,8 +638,6 @@ const renderedContent = computed(() => {
   try {
 
     content = processTemplateVariables(content);
-
-    
 
     let renderedMd = '';
 
@@ -742,13 +653,9 @@ const renderedContent = computed(() => {
       
     }
 
-
-
     if (isComplexHtml(content) || isComplexHtml(renderedMd)) {     
 
       let processedContent = renderedMd;
-
-
 
       const styleTagRegex = /<style[\s\S]*?<\/style>/gi;
 
@@ -761,8 +668,6 @@ const renderedContent = computed(() => {
         styleMatches.push(match[0]);
 
       }
-
-      
 
       nextTick(() => {
 
@@ -801,8 +706,6 @@ const renderedContent = computed(() => {
                 console.error('获取订阅链接失败:', e);
 
               }
-
-              
 
               navigator.clipboard.writeText(subscribeUrl)
 
@@ -843,8 +746,6 @@ const renderedContent = computed(() => {
                   document.execCommand('copy');
 
                   document.body.removeChild(ta);
-
-                  
 
                   if (window.$toast && typeof window.$toast.success === 'function') {
 
@@ -906,8 +807,6 @@ const renderedContent = computed(() => {
 
                   document.body.removeChild(ta);
 
-                  
-
                   if (window.$toast && typeof window.$toast.success === 'function') {
 
                     window.$toast.success('已复制到剪贴板');
@@ -930,8 +829,6 @@ const renderedContent = computed(() => {
 
           }
 
-          
-
           function jump(docId) {
 
             window.location.href = '/#/docs/' + docId;
@@ -941,8 +838,6 @@ const renderedContent = computed(() => {
         `;
 
         document.head.appendChild(scriptElement);
-
-        
 
         document.addEventListener('eztheme-toast', function(e) {
 
@@ -970,8 +865,6 @@ const renderedContent = computed(() => {
 
         });
 
-        
-
         const docBody = document.querySelector('.doc-body');
 
         if (docBody) {
@@ -983,8 +876,6 @@ const renderedContent = computed(() => {
         }
 
       });
-
-      
 
       processedContent = DOMPurify.sanitize(processedContent, {
 
@@ -1016,8 +907,6 @@ const renderedContent = computed(() => {
 
       });
 
-      
-
       if (styleMatches.length > 0) {
 
         const tempDiv = document.createElement('div');
@@ -1034,13 +923,9 @@ const renderedContent = computed(() => {
 
       }
 
-      
-
       const tempDiv = document.createElement('div');
 
       tempDiv.innerHTML = processedContent;
-
-      
 
       const buttons = tempDiv.querySelectorAll('button');
 
@@ -1052,8 +937,6 @@ const renderedContent = computed(() => {
 
         }
 
-        
-
         const buttonText = button.textContent.trim().toLowerCase();
 
         if ((buttonText.includes('复制') || buttonText.includes('copy')) && 
@@ -1064,15 +947,11 @@ const renderedContent = computed(() => {
 
         }
 
-        
-
         if (button.hasAttribute('href')) {
 
           button.setAttribute('data-href', button.getAttribute('href'));
 
         }
-
-        
 
         const childLink = button.querySelector('a');
 
@@ -1090,8 +969,6 @@ const renderedContent = computed(() => {
 
       });
 
-      
-
       const links = tempDiv.querySelectorAll('a');
 
       links.forEach(link => {
@@ -1107,8 +984,6 @@ const renderedContent = computed(() => {
         }
 
       });
-
-      
 
       // 3) 检测并替换 v2board-no-access 块为美化卡片
       const noAccessEls = tempDiv.querySelectorAll('.v2board-no-access');
@@ -1137,8 +1012,6 @@ const renderedContent = computed(() => {
 
 });
 
-
-
 const formatDate = (timestamp) => {
 
   const date = new Date(timestamp * 1000);
@@ -1155,13 +1028,9 @@ const formatDate = (timestamp) => {
 
 };
 
-
-
 const fetchDocDetail = async () => {
 
   const docId = route.params.id;
-
-  
 
   if (!docId) {
 
@@ -1173,25 +1042,17 @@ const fetchDocDetail = async () => {
 
   }
 
-  
-
   loading.value = true;
 
   error.value = '';
-
-
 
   try {
 
     const result = await fetchKnowledgeDetail(docId, locale.value);
 
-    
-
     if (result && result.data) {
 
       docData.value = result.data;
-
-      
 
       if (!docData.value.body && docData.value.content) {
 
@@ -1211,8 +1072,6 @@ const fetchDocDetail = async () => {
 
     error.value = err && err.message ? err.message : t('docs.unknownError');
 
-    
-
     if ($toast) {
 
       $toast.error(error.value);
@@ -1227,15 +1086,11 @@ const fetchDocDetail = async () => {
 
 };
 
-
-
 onMounted(() => {
 
   fetchDocDetail();
 
 });
-
-
 
 onUnmounted(() => {
 
@@ -1251,8 +1106,6 @@ onUnmounted(() => {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .doc-detail-container {
@@ -1260,8 +1113,6 @@ onUnmounted(() => {
   padding: 1.25rem;
 
   padding-bottom: calc(1.25rem + 64px); 
-
-  
 
   @media (min-width: 768px) {
 
@@ -1273,8 +1124,6 @@ onUnmounted(() => {
 
 }
 
-
-
 .doc-detail-inner {
 
   max-width: 1200px; 
@@ -1284,8 +1133,6 @@ onUnmounted(() => {
   width: 100%;
 
 }
-
-
 
 .back-button {
 
@@ -1311,8 +1158,6 @@ onUnmounted(() => {
 
   transition: all 0.3s ease;
 
-  
-
   &:hover {
 
     background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -1321,15 +1166,11 @@ onUnmounted(() => {
 
   }
 
-  
-
   &:active {
 
     transform: translateX(0);
 
   }
-
-  
 
   span {
 
@@ -1338,8 +1179,6 @@ onUnmounted(() => {
   }
 
 }
-
-
 
 .doc-loading {
 
@@ -1355,8 +1194,6 @@ onUnmounted(() => {
 
   text-align: center;
 
-  
-
   p {
 
     margin-top: 1rem;
@@ -1368,10 +1205,6 @@ onUnmounted(() => {
   }
 
 }
-
-
-
-
 
 .doc-error {
 
@@ -1386,8 +1219,6 @@ onUnmounted(() => {
   padding: 2rem 1rem;
 
   text-align: center;
-
-  
 
   .error-card {
 
@@ -1413,8 +1244,6 @@ onUnmounted(() => {
 
     align-items: center;
 
-    
-
     @keyframes errorAppear {
 
       from {
@@ -1437,8 +1266,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   .error-icon-wrapper {
 
     display: flex;
@@ -1457,8 +1284,6 @@ onUnmounted(() => {
 
     margin-bottom: 1.5rem;
 
-    
-
     .error-icon {
 
       color: #ff4c51;
@@ -1466,8 +1291,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
 
   .error-title {
 
@@ -1480,8 +1303,6 @@ onUnmounted(() => {
     color: var(--text-color);
 
   }
-
-  
 
   .error-message {
 
@@ -1496,10 +1317,6 @@ onUnmounted(() => {
   }
 
 }
-
-
-
-
 
 .retry-button {
 
@@ -1529,15 +1346,11 @@ onUnmounted(() => {
 
   box-shadow: 0 4px 12px rgba(var(--theme-color-rgb), 0.3);
 
-  
-
   .retry-text {
 
     margin-right: 0.5rem;
 
   }
-
-  
 
   .retry-icon {
 
@@ -1545,15 +1358,11 @@ onUnmounted(() => {
 
   }
 
-  
-
   &:hover {
 
     transform: translateY(-3px);
 
     box-shadow: 0 6px 16px rgba(var(--theme-color-rgb), 0.4);
-
-    
 
     .retry-icon {
 
@@ -1562,8 +1371,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
 
   &:active {
 
@@ -1574,8 +1381,6 @@ onUnmounted(() => {
   }
 
 }
-
-
 
 .doc-content {
 
@@ -1593,15 +1398,11 @@ onUnmounted(() => {
 
   width: 100%;
 
-  
-
   @media (min-width: 768px) {
 
     padding: 2rem;
 
   }
-
-  
 
   &:hover {
 
@@ -1613,8 +1414,6 @@ onUnmounted(() => {
 
 }
 
-
-
 .doc-header {
 
   margin-bottom: 2rem;
@@ -1622,8 +1421,6 @@ onUnmounted(() => {
   padding-bottom: 1.25rem;
 
   border-bottom: 1px solid rgba(var(--theme-color-rgb), 0.1);
-
-  
 
   .doc-title {
 
@@ -1637,8 +1434,6 @@ onUnmounted(() => {
 
     line-height: 1.3;
 
-    
-
     @media (min-width: 768px) {
 
       font-size: 1.8rem;
@@ -1646,8 +1441,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
 
   .doc-meta {
 
@@ -1660,8 +1453,6 @@ onUnmounted(() => {
     font-size: 0.9rem;
 
     color: var(--text-muted);
-
-    
 
     .doc-category {
 
@@ -1677,8 +1468,6 @@ onUnmounted(() => {
 
       transition: all 0.3s ease;
 
-      
-
       &:hover {
 
         background-color: rgba(var(--theme-color-rgb), 0.2);
@@ -1686,8 +1475,6 @@ onUnmounted(() => {
       }
 
     }
-
-    
 
     .doc-date {
 
@@ -1701,8 +1488,6 @@ onUnmounted(() => {
 
 }
 
-
-
 .doc-body {
 
   color: var(--text-color);
@@ -1710,8 +1495,6 @@ onUnmounted(() => {
   font-size: 1rem;
 
   line-height: 1.8;
-
-  
 
   :deep(h1), :deep(h2), :deep(h3), :deep(h4), :deep(h5), :deep(h6) {
 
@@ -1731,8 +1514,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(h1) {
 
     font-size: 2.2rem;
@@ -1744,8 +1525,6 @@ onUnmounted(() => {
     border-bottom: 1px solid var(--border-color);
 
   }
-
-  
 
   :deep(h2) {
 
@@ -1759,8 +1538,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(h3) {
 
     font-size: 1.5rem;
@@ -1768,8 +1545,6 @@ onUnmounted(() => {
     margin-top: 1.8rem;
 
   }
-
-  
 
   :deep(h4) {
 
@@ -1779,8 +1554,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(h5) {
 
     font-size: 1.1rem;
@@ -1788,8 +1561,6 @@ onUnmounted(() => {
     color: var(--primary-text-color);
 
   }
-
-  
 
   :deep(h6) {
 
@@ -1801,8 +1572,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(p) {
 
     margin-bottom: 1.4rem;
@@ -1811,23 +1580,17 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(ul), :deep(ol) {
 
     margin-bottom: 1.4rem;
 
     padding-left: 1.8rem;
 
-    
-
     li {
 
       margin-bottom: 0.8rem;
 
       position: relative;
-
-      
 
       &:last-child {
 
@@ -1839,19 +1602,13 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(ul li) {
 
     list-style-type: disc;
 
-    
-
     & > ul > li {
 
       list-style-type: circle;
-
-      
 
       & > ul > li {
 
@@ -1863,19 +1620,13 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(ol li) {
 
     list-style-type: decimal;
 
-    
-
     & > ol > li {
 
       list-style-type: lower-alpha;
-
-      
 
       & > ol > li {
 
@@ -1886,8 +1637,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
 
   :deep(img) {
 
@@ -1905,8 +1654,6 @@ onUnmounted(() => {
 
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
-    
-
     &:hover {
 
       transform: scale(1.01);
@@ -1918,10 +1665,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
-
-  
 
   :deep(code) {
 
@@ -1945,8 +1688,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(pre) {
 
     background-color: var(--code-bg);
@@ -1967,8 +1708,6 @@ onUnmounted(() => {
 
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
-    
-
     &:hover {
 
       border-color: var(--theme-color);
@@ -1976,8 +1715,6 @@ onUnmounted(() => {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
     }
-
-    
 
     code {
 
@@ -1999,10 +1736,6 @@ onUnmounted(() => {
 
   }
 
-  
-
-  
-
   :deep(a:not(.eztheme-btn)) {
 
     color: rgba(var(--theme-color-rgb), 1);
@@ -2013,8 +1746,6 @@ onUnmounted(() => {
 
     font-weight: 500;
 
-    
-
     &:hover {
 
       color: rgba(var(--theme-color-rgb), 0.8);
@@ -2022,10 +1753,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
-
-  
 
   :deep(blockquote) {
 
@@ -2051,21 +1778,15 @@ onUnmounted(() => {
 
     transition: background-color 0.2s ease, border-left-color 0.2s ease;
 
-    
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.08);
 
     }
 
-    
-
     p {
 
       margin-bottom: 0.8rem;
-
-      
 
       &:last-child {
 
@@ -2076,10 +1797,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
-
-  
 
   :deep(table) {
 
@@ -2103,8 +1820,6 @@ onUnmounted(() => {
 
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
-    
-
     &:hover {
 
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -2113,21 +1828,15 @@ onUnmounted(() => {
 
     }
 
-    
-
     @media (min-width: 768px) {
 
       display: table;
 
     }
 
-    
-
     thead {
 
       background-color: rgba(var(--theme-color-rgb), 0.05);
-
-      
 
       tr {
 
@@ -2136,8 +1845,6 @@ onUnmounted(() => {
       }
 
     }
-
-    
 
     th, td {
 
@@ -2149,8 +1856,6 @@ onUnmounted(() => {
 
     }
 
-    
-
     th {
 
       font-weight: 600;
@@ -2159,21 +1864,15 @@ onUnmounted(() => {
 
     }
 
-    
-
     tr {
 
       transition: background-color 0.2s ease;
-
-      
 
       &:nth-child(even) {
 
         background-color: rgba(var(--hover-bg-rgb), 0.3);
 
       }
-
-      
 
       &:hover {
 
@@ -2184,10 +1883,6 @@ onUnmounted(() => {
     }
 
   }
-
-  
-
-  
 
   :deep(hr) {
 
@@ -2201,10 +1896,6 @@ onUnmounted(() => {
 
   }
 
-  
-
-  
-
   :deep(strong) {
 
     font-weight: 600;
@@ -2213,27 +1904,17 @@ onUnmounted(() => {
 
   }
 
-  
-
   :deep(em) {
 
     font-style: italic;
 
   }
 
-  
-
-  
-
   :deep(input[type="checkbox"]) {
 
     margin-right: 0.5rem;
 
   }
-
-  
-
-  
 
   :deep(.footnotes) {
 
@@ -2248,10 +1929,6 @@ onUnmounted(() => {
     color: var(--text-muted);
 
   }
-
-  
-
-  
 
   :deep(.access-content) {
 
@@ -2273,8 +1950,6 @@ onUnmounted(() => {
 
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
-    
-
     &:hover {
 
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -2282,8 +1957,6 @@ onUnmounted(() => {
       border-color: rgba(var(--theme-color-rgb), 0.3);
 
     }
-
-    
 
     &::before {
 
@@ -2315,14 +1988,10 @@ onUnmounted(() => {
 
 </style>
 
-
-
 <!-- 全局样式，不受scoped限制 -->
 
 <style lang="scss">
 @use '@/assets/styles/no-plan-card' as *;
-
-
 
 .eztheme-btn {
 
@@ -2374,10 +2043,6 @@ onUnmounted(() => {
 
   overflow: visible !important;
 
-  
-
-  
-
   i, .icon, svg {
 
     margin-right: 6px !important;
@@ -2387,8 +2052,6 @@ onUnmounted(() => {
     vertical-align: middle !important;
 
   }
-
-  
 
   &:hover, &:active, &:focus, &:visited {
 
@@ -2408,8 +2071,6 @@ onUnmounted(() => {
 
   }
 
-  
-
   &:active {
 
     transform: translateY(0) !important;
@@ -2417,8 +2078,6 @@ onUnmounted(() => {
     box-shadow: none !important;
 
   }
-
-  
 
   &:focus {
 
@@ -2429,10 +2088,6 @@ onUnmounted(() => {
   }
 
 }
-
-
-
-
 
 a.eztheme-btn {
 
@@ -2447,8 +2102,6 @@ a.eztheme-btn {
   text-decoration: none !important;
 
   border-bottom: none !important;
-
-  
 
   &::after, &::before {
 

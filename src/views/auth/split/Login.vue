@@ -2,7 +2,6 @@
   <div class="login-view-container">
     <div class="auth-split-container">
 
-
       <!-- 左侧背景区域 -->
       <div class="auth-split-left" :style="leftSideStyles">
         <div class="left-content-overlay"></div>
@@ -216,8 +215,6 @@ export default {
 
     const showPassword = ref(false);
 
-
-
     const showSiteName = computed(() => {
       return AUTH_LAYOUT_CONFIG?.splitLayout?.leftContent?.siteName?.show !== false;
     });
@@ -257,7 +254,6 @@ export default {
 
     onMounted(async () => {
 
-
       const hasToken = hasVerifyToken();
 
       if (hasToken) {
@@ -269,7 +265,6 @@ export default {
               console.log('令牌验证登录成功');
             }
           });
-
 
           if (tokenLoginResult.success) {
             return;
@@ -759,7 +754,6 @@ export default {
   margin-top: 0.3rem;
 }
 
-
 @media (max-width: 576px) {
   .auth-form-container {
     padding: 30px 20px;
@@ -788,13 +782,11 @@ export default {
   }
 }
 
-
 @media (min-width: 576px) and (max-width: 992px) {
   .auth-split-right {
     padding: 2rem;
   }
 }
-
 
 .dark-theme {
   .input-with-icon {

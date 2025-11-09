@@ -1,6 +1,5 @@
 ﻿import request from './request';
-
-
+
 export function fetchKnowledgeList(language) {
   return request({
     url: `/user/knowledge/fetch?language=${language}`,
@@ -16,8 +15,7 @@ export function fetchKnowledgeList(language) {
     throw error;
   });
 }
-
-
+
 export function fetchKnowledgeDetail(id, language) {
   return request({
     url: `/user/knowledge/fetch?id=${id}&language=${language}`,

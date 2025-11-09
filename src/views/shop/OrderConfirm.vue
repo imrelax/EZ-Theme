@@ -22,8 +22,6 @@
 
       </div>
 
-      
-
       <!-- 用户现有套餐提示 -->
 
       <div class="alert-card" v-if="showExistingPlanWarning">
@@ -43,8 +41,6 @@
         </div>
 
       </div>
-
-      
 
       <!-- 内容主体 -->
 
@@ -78,8 +74,6 @@
 
           </div>
 
-          
-
           <!-- 套餐信息卡片 - 实际内容 -->
 
           <div class="plan-card glassmorphism" v-else-if="plan">
@@ -97,8 +91,6 @@
               </div>
 
             </div>
-
-            
 
             <div class="card-body">
 
@@ -130,8 +122,6 @@
 
                 </template>
 
-                
-
                 <!-- HTML格式内容 -->
 
                 <div v-else class="html-content" v-html="plan.content"></div>
@@ -142,8 +132,6 @@
 
           </div>
 
-          
-
           <!-- 周期选择 -->
 
           <div class="section-wrapper" v-if="!loading.plan">
@@ -153,8 +141,6 @@
               <span>{{ $t('order.select_period') }}</span>
 
             </div>
-
-            
 
             <div class="period-selection">
 
@@ -198,8 +184,6 @@
 
           </div>
 
-          
-
           <!-- 周期选择骨架屏 -->
 
           <div class="section-wrapper" v-else>
@@ -209,8 +193,6 @@
               <span>{{ $t('order.select_period') }}</span>
 
             </div>
-
-            
 
             <div class="period-selection">
 
@@ -226,8 +208,6 @@
 
         </div>
 
-        
-
         <!-- 右侧内容：订单信息 -->
 
         <div class="right-column">
@@ -241,8 +221,6 @@
               <span>{{ $t('order.coupon') }}</span>
 
             </div>
-
-            
 
             <div class="coupon-input">
 
@@ -304,8 +282,6 @@
 
           </div>
 
-
-
           <!-- 订单摘要 -->
 
           <div class="section-wrapper order-summary-section">
@@ -315,8 +291,6 @@
               <span>{{ $t('order.order_summary') }}</span>
 
             </div>
-
-            
 
             <div class="order-summary glassmorphism">
 
@@ -344,8 +318,6 @@
 
               </div>
 
-              
-
               <!-- 实际内容 -->
 
               <div v-else>
@@ -357,8 +329,6 @@
                   <div class="summary-value">{{ currencySymbol }}{{ (originalPrice / 100).toFixed(2) }}</div>
 
                 </div>
-
-                
 
                 <div class="summary-row" v-if="discountAmount > 0">
 
@@ -372,11 +342,7 @@
 
                 </div>
 
-                
-
                 <div class="summary-divider"></div>
-
-                
 
                 <div class="summary-row total">
 
@@ -391,8 +357,6 @@
             </div>
 
           </div>
-
-          
 
           <!-- 操作按钮 -->
 
@@ -413,8 +377,6 @@
               <span>{{ $t('order.back_to_shop') }}</span>
 
             </button>
-
-            
 
             <button 
 
@@ -459,8 +421,6 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, reactive, onMounted, computed } from 'vue';
@@ -497,8 +457,6 @@ import {
 
 } from '@tabler/icons-vue';
 
-
-
 export default {
 
   name: 'OrderConfirm',
@@ -533,8 +491,6 @@ export default {
 
     const router = useRouter();
 
-    
-
     const loading = reactive({
 
       plan: true,
@@ -545,8 +501,6 @@ export default {
 
     });
 
-    
-
     const plan = ref(null);
 
     const userInfo = ref(null);
@@ -555,11 +509,7 @@ export default {
 
     const currencySymbol = ref('¥');
 
-    
-
     const selectedPriceType = ref('');
-
-    
 
     const couponCode = ref('');
 
@@ -571,13 +521,9 @@ export default {
 
     const discountPercent = ref(0);
 
-    
-
     // 新增：控制二次确认弹窗的变量
 
     const showConfirmDialog = ref(false);
-
-    
 
     const originalPrice = computed(() => {
 
@@ -587,13 +533,9 @@ export default {
 
     });
 
-    
-
     const discountAmount = computed(() => {
 
       if (!couponApplied.value || !couponInfo.value) return 0;
-
-      
 
       if (couponInfo.value.type === 1) {
 
@@ -605,21 +547,15 @@ export default {
 
       }
 
-      
-
       return 0;
 
     });
-
-    
 
     const finalPrice = computed(() => {
 
       return Math.max(0, originalPrice.value - discountAmount.value);
 
     });
-
-    
 
     const userHasActivePlan = computed(() => {
 
@@ -629,19 +565,13 @@ export default {
 
     });
 
-    
-
     const availablePrices = computed(() => {
 
       if (!plan.value) return {};
 
-      
-
       const prices = {};
 
       const priceTypes = ['month_price', 'quarter_price', 'half_year_price', 'year_price', 'two_year_price', 'three_year_price', 'onetime_price'];
-
-      
 
       priceTypes.forEach(type => {
 
@@ -653,19 +583,13 @@ export default {
 
       });
 
-      
-
       return prices;
 
     });
 
-    
-
     const bestValuePeriod = computed(() => {
 
       if (!plan.value) return '';
-
-      
 
       const valueWeight = {
 
@@ -684,23 +608,15 @@ export default {
         onetime_price: 12 
       };
 
-      
-
       let bestPeriod = '';
 
       let bestValue = 0;
-
-      
 
       Object.entries(availablePrices.value).forEach(([type, price]) => {
 
         if (price <= 0) return;
 
-        
-
         const monthlyValue = valueWeight[type] / price;
-
-        
 
         if (monthlyValue > bestValue) {
 
@@ -712,13 +628,9 @@ export default {
 
       });
 
-      
-
       return bestPeriod;
 
     });
-
-    
 
     const getPlanStockText = (plan) => {
 
@@ -738,8 +650,6 @@ export default {
 
     };
 
-    
-
     const getStockBadgeClass = (plan) => {
 
       if (plan.capacity_limit === 0) {
@@ -757,8 +667,6 @@ export default {
       }
 
     };
-
-    
 
     const getPriceTypeKey = (type) => {
 
@@ -784,8 +692,6 @@ export default {
 
     };
 
-    
-
     const isJsonContent = (content) => {
 
       if (!content) return false;
@@ -804,8 +710,6 @@ export default {
 
     };
 
-    
-
     const parseJsonContent = (content) => {
 
       try {
@@ -820,31 +724,21 @@ export default {
 
     };
 
-    
-
     const selectPriceType = (type) => {
 
       selectedPriceType.value = type;
 
     };
 
-    
-
     const verifyCoupon = async () => {
 
       if (!couponCode.value || verifying.value) return;
 
-      
-
       verifying.value = true;
-
-      
 
       try {
 
         const response = await checkCoupon(couponCode.value, plan.value.id);
-
-        
 
         if (response.data) {
 
@@ -852,15 +746,11 @@ export default {
 
           couponInfo.value = response.data;
 
-          
-
           if (response.message) {
 
             showToast(response.message, 'success');
 
           }
-
-          
 
           if (response.data.type === 1) {
 
@@ -883,8 +773,6 @@ export default {
 
             discountPercent.value = couponInfo.value.value;
 
-            
-
             if (isXboard()) {
 
               const calculatedDiscountAmount = Math.round(originalPrice.value * (discountPercent.value / 100));
@@ -892,8 +780,6 @@ export default {
               couponInfo.value.calculatedDiscountAmount = calculatedDiscountAmount;
 
             }
-
-            
 
             if (!response.message) {
 
@@ -949,15 +835,11 @@ export default {
 
     };
 
-   
-
     // 修改后的submitOrder方法
 
     const submitOrder = async () => {
 
       if (!selectedPriceType.value || loading.submitting) return;
-
-      
 
       // 检查是否需要二次确认
 
@@ -969,23 +851,17 @@ export default {
 
       }
 
-      
-
       // 如果不需要二次确认，直接执行订单提交
 
       await executeOrderSubmission();
 
     };
 
-    
-
     // 实际的订单提交逻辑
 
     const executeOrderSubmission = async () => {
 
       loading.submitting = true;
-
-      
 
       try {
 
@@ -997,25 +873,17 @@ export default {
 
         };
 
-        
-
         if (couponApplied.value && couponCode.value && couponInfo.value) {
 
           orderData.coupon_code = couponCode.value;
 
         }
 
-        
-
         const response = await createOrder(orderData);
-
-        
 
         if (response.data) {
 
           showToast(response.message || t('order.order_success'), 'success');
-
-          
 
           router.push({
 
@@ -1049,8 +917,6 @@ export default {
 
     };
 
-    
-
     // 处理确认弹窗的关闭事件
 
     const handleConfirmDialogClose = () => {
@@ -1058,8 +924,6 @@ export default {
       showConfirmDialog.value = false;
 
     };
-
-    
 
     // 处理确认弹窗的确认事件
 
@@ -1071,15 +935,11 @@ export default {
 
     };
 
-    
-
     const goBack = () => {
 
       router.push('/shop');
 
     };
-
-    
 
     const fetchPlanData = async () => {
 
@@ -1097,15 +957,11 @@ export default {
 
         }
 
-        
-
         const response = await fetchPlanById(route.query.id);
 
         if (response.data) {
 
           plan.value = response.data;
-
-          
 
           if (route.query.period && plan.value[route.query.period] !== null) {
 
@@ -1141,8 +997,6 @@ export default {
 
     };
 
-    
-
     const fetchUserInfo = async () => {
 
       loading.userInfo = true;
@@ -1175,8 +1029,6 @@ export default {
 
     };
 
-    
-
     const fetchConfig = async () => {
 
       try {
@@ -1205,8 +1057,6 @@ export default {
 
     };
 
-    
-
     const removeCoupon = () => {
 
       couponCode.value = '';
@@ -1221,8 +1071,6 @@ export default {
 
     };
 
-    
-
     const showExistingPlanWarning = computed(() => {
 
       if (loading.userInfo || loading.plan || !plan.value || !userInfo.value) {
@@ -1231,21 +1079,15 @@ export default {
 
       }
 
-      
-
       return userHasActivePlan.value && plan.value.id !== userInfo.value.plan_id;
 
     });
-
-    
 
     onMounted(async () => {
 
       await Promise.all([fetchPlanData(), fetchUserInfo(), fetchConfig()]);
 
     });
-
-    
 
     return {
 
@@ -1317,8 +1159,6 @@ export default {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .order-confirm-container {
@@ -1333,8 +1173,6 @@ export default {
 
   min-height: calc(100vh - 100px);
 
-  
-
   .order-confirm-inner {
 
     width: 100%;
@@ -1344,10 +1182,6 @@ export default {
     padding-bottom: 100px; 
 
   }
-
-  
-
-  
 
   .welcome-card {
 
@@ -1365,8 +1199,6 @@ export default {
 
     transition: all 0.3s ease;
 
-    
-
     &:hover {
 
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -1374,8 +1206,6 @@ export default {
       border-color: rgba(var(--theme-color-rgb), 0.3);
 
     }
-
-    
 
     .card-header {
 
@@ -1386,8 +1216,6 @@ export default {
       align-items: center;
 
       margin-bottom: 15px;
-
-      
 
       .card-title {
 
@@ -1400,8 +1228,6 @@ export default {
       }
 
     }
-
-    
 
     .card-body {
 
@@ -1420,10 +1246,6 @@ export default {
     }
 
   }
-
-  
-
-  
 
   .alert-card {
 
@@ -1451,8 +1273,6 @@ export default {
 
     transition: all 0.3s ease;
 
-    
-
     &:hover {
 
       transform: translateY(-2px);
@@ -1460,8 +1280,6 @@ export default {
       box-shadow: 0 6px 20px rgba(255, 152, 0, 0.15);
 
     }
-
-    
 
     .alert-icon {
 
@@ -1487,8 +1305,6 @@ export default {
 
       padding: 0;
 
-      
-
       svg {
 
         width: 28px;
@@ -1499,15 +1315,11 @@ export default {
 
     }
 
-    
-
     .alert-content {
 
       flex: 1;
 
       min-width: 0;
-
-      
 
       h4 {
 
@@ -1522,8 +1334,6 @@ export default {
         letter-spacing: 0.2px;
 
       }
-
-      
 
       p {
 
@@ -1541,19 +1351,11 @@ export default {
 
   }
 
-  
-
-  
-
   .content-wrapper {
 
     display: flex;
 
     gap: 30px;
-
-    
-
-    
 
     .left-column {
 
@@ -1562,10 +1364,6 @@ export default {
       min-width: 0; 
 
     }
-
-    
-
-    
 
     .right-column {
 
@@ -1577,15 +1375,9 @@ export default {
 
   }
 
-  
-
-  
-
   .section-wrapper {
 
     margin-bottom: 25px;
-
-    
 
     .section-title {
 
@@ -1600,8 +1392,6 @@ export default {
       position: relative;
 
       padding-left: 14px;
-
-      
 
       &::before {
 
@@ -1629,10 +1419,6 @@ export default {
 
   }
 
-  
-
-  
-
   .plan-card {
 
     background-color: var(--card-bg-color);
@@ -1649,8 +1435,6 @@ export default {
 
     transition: all 0.3s ease;
 
-    
-
     &.glassmorphism {
 
       background-color: rgba(var(--card-background-rgb, 255, 255, 255), 0.7);
@@ -1663,8 +1447,6 @@ export default {
 
     }
 
-    
-
     .card-header {
 
       display: flex;
@@ -1674,8 +1456,6 @@ export default {
       align-items: center;
 
       margin-bottom: 20px;
-
-      
 
       .card-title {
 
@@ -1690,8 +1470,6 @@ export default {
         color: var(--text-color);
 
       }
-
-      
 
       .card-badge {
 
@@ -1717,8 +1495,6 @@ export default {
 
         transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 
-        
-
         &.stock-plenty {
 
           background-color: rgba(76, 175, 80, 0.2);
@@ -1728,8 +1504,6 @@ export default {
           color: #4caf50;
 
         }
-
-        
 
         &.stock-warning {
 
@@ -1741,8 +1515,6 @@ export default {
 
         }
 
-        
-
         &.stock-danger {
 
           background-color: rgba(244, 67, 54, 0.2);
@@ -1752,8 +1524,6 @@ export default {
           color: #f44336;
 
         }
-
-        
 
         .badge-icon {
 
@@ -1765,15 +1535,11 @@ export default {
 
     }
 
-    
-
     .card-body {
 
       .plan-features {
 
         margin: 0;
-
-        
 
         .feature-item {
 
@@ -1783,8 +1549,6 @@ export default {
 
           margin-bottom: 14px;
 
-          
-
           .feature-icon {
 
             width: 20px;
@@ -1793,15 +1557,11 @@ export default {
 
             margin-right: 10px;
 
-            
-
             &.enabled {
 
               color: var(--theme-color);
 
             }
-
-            
 
             &.disabled {
 
@@ -1811,8 +1571,6 @@ export default {
 
           }
 
-          
-
           span {
 
             font-size: 14px;
@@ -1820,8 +1578,6 @@ export default {
             color: var(--text-color);
 
             line-height: 1.5;
-
-            
 
             &.disabled-text {
 
@@ -1832,8 +1588,6 @@ export default {
           }
 
         }
-
-        
 
         .html-content {
 
@@ -1851,17 +1605,11 @@ export default {
 
   }
 
-  
-
-  
-
   .period-selection {
 
     margin-bottom: 20px;
 
     width: 100%;
-
-    
 
     .skeleton-period-cards {
 
@@ -1874,8 +1622,6 @@ export default {
       padding-bottom: 8px;
 
       width: 100%;
-
-      
 
       .skeleton-period-card {
 
@@ -1892,10 +1638,6 @@ export default {
         position: relative;
 
         overflow: hidden;
-
-        
-
-        
 
         &::after {
 
@@ -1933,8 +1675,6 @@ export default {
 
     }
 
-    
-
     .period-cards {
 
       display: grid;
@@ -1944,8 +1684,6 @@ export default {
       gap: 15px;
 
       width: 100%;
-
-      
 
       .period-card {
 
@@ -1963,8 +1701,6 @@ export default {
 
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 
-        
-
         &.active {
 
           border-color: var(--theme-color);
@@ -1973,15 +1709,11 @@ export default {
 
           box-shadow: 0 5px 15px rgba(var(--theme-color-rgb), 0.15);
 
-          
-
           .period-card-inner {
 
             background-color: rgba(var(--theme-color-rgb), 0.1);
 
           }
-
-          
 
           .period-price {
 
@@ -1997,8 +1729,6 @@ export default {
 
         }
 
-        
-
         &:hover:not(.active) {
 
           transform: translateY(-3px);
@@ -2008,8 +1738,6 @@ export default {
           box-shadow: 0 3px 10px rgba(var(--theme-color-rgb), 0.1);
 
         }
-
-        
 
         .period-card-inner {
 
@@ -2031,8 +1759,6 @@ export default {
 
         }
 
-        
-
         .period-type {
 
           font-size: 14px !important;
@@ -2049,15 +1775,11 @@ export default {
 
         }
 
-        
-
         .period-price {
 
           margin-bottom: 8px;
 
           text-align: center;
-
-          
 
           .currency {
 
@@ -2068,8 +1790,6 @@ export default {
             color: var(--text-color);
 
           }
-
-          
 
           .amount {
 
@@ -2083,8 +1803,6 @@ export default {
 
         }
 
-        
-
         .period-badge {
 
           display: none;
@@ -2097,10 +1815,6 @@ export default {
 
   }
 
-  
-
-  
-
   .coupon-input {
 
     display: flex;
@@ -2110,8 +1824,6 @@ export default {
     margin-bottom: 20px;
 
     flex-wrap: wrap;
-
-    
 
     .coupon-field {
 
@@ -2139,8 +1851,6 @@ export default {
 
       min-width: 0; 
 
-      
-
       &.applied {
 
         border-color: #4caf50;
@@ -2148,8 +1858,6 @@ export default {
         background-color: rgba(76, 175, 80, 0.05);
 
       }
-
-      
 
       &:focus:not(.applied) {
 
@@ -2161,8 +1869,6 @@ export default {
 
       }
 
-      
-
       &::placeholder {
 
         color: var(--secondary-text-color);
@@ -2172,8 +1878,6 @@ export default {
       }
 
     }
-
-    
 
     .btn-verify {
 
@@ -2209,8 +1913,6 @@ export default {
 
       flex-shrink: 0; 
 
-      
-
       &.applied {
 
         background-color: #4caf50;
@@ -2220,8 +1922,6 @@ export default {
         cursor: default;
 
       }
-
-      
 
       &:hover:not(:disabled):not(.applied) {
 
@@ -2233,8 +1933,6 @@ export default {
 
       }
 
-      
-
       &:disabled {
 
         opacity: 0.6;
@@ -2242,8 +1940,6 @@ export default {
         cursor: not-allowed;
 
       }
-
-      
 
       .loader {
 
@@ -2262,8 +1958,6 @@ export default {
       }
 
     }
-
-    
 
     .btn-remove-coupon {
 
@@ -2299,8 +1993,6 @@ export default {
 
       flex-shrink: 0; 
 
-      
-
       &:hover {
 
         background-color: #d32f2f;
@@ -2314,10 +2006,6 @@ export default {
     }
 
   }
-
-  
-
-  
 
   .order-summary {
 
@@ -2333,8 +2021,6 @@ export default {
 
     border: 1px solid var(--border-color);
 
-    
-
     &.glassmorphism {
 
       background-color: rgba(var(--card-background-rgb, 255, 255, 255), 0.7);
@@ -2344,8 +2030,6 @@ export default {
       -webkit-backdrop-filter: blur(20px);
 
     }
-
-    
 
     .summary-row {
 
@@ -2357,15 +2041,11 @@ export default {
 
       align-items: center;
 
-      
-
       &.skeleton {
 
         margin-bottom: 16px;
 
       }
-
-      
 
       .summary-label {
 
@@ -2374,8 +2054,6 @@ export default {
         color: var(--secondary-text-color);
 
         letter-spacing: 0.2px;
-
-        
 
         .coupon-name {
 
@@ -2389,8 +2067,6 @@ export default {
 
       }
 
-      
-
       .summary-value {
 
         font-size: 14px;
@@ -2398,8 +2074,6 @@ export default {
         font-weight: 500;
 
         color: var(--text-color);
-
-        
 
         &.discount {
 
@@ -2411,15 +2085,11 @@ export default {
 
       }
 
-      
-
       &.total {
 
         margin-top: 8px;
 
         margin-bottom: 0;
-
-        
 
         .summary-label {
 
@@ -2430,8 +2100,6 @@ export default {
           color: var(--text-color);
 
         }
-
-        
 
         .summary-value {
 
@@ -2447,8 +2115,6 @@ export default {
 
     }
 
-    
-
     .summary-divider {
 
       height: 1px;
@@ -2461,17 +2127,11 @@ export default {
 
   }
 
-  
-
   .order-summary-section {
 
     margin-top: 0;
 
   }
-
-  
-
-  
 
   .action-buttons {
 
@@ -2482,8 +2142,6 @@ export default {
     margin: 30px 0 40px 0;
 
     gap: 16px;
-
-    
 
     .btn-back {
 
@@ -2515,8 +2173,6 @@ export default {
 
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
 
-      
-
       &:hover {
 
         background-color: rgba(0, 0, 0, 0.05);
@@ -2528,8 +2184,6 @@ export default {
       }
 
     }
-
-    
 
     .btn-order {
 
@@ -2563,8 +2217,6 @@ export default {
 
       will-change: transform, box-shadow;
 
-      
-
       &:hover:not(:disabled) {
 
         background-color: color-mix(in srgb, var(--theme-color) 85%, black) !important;
@@ -2575,8 +2227,6 @@ export default {
 
       }
 
-      
-
       &:active:not(:disabled) {
 
         transform: translateY(0);
@@ -2585,8 +2235,6 @@ export default {
 
       }
 
-      
-
       &:disabled {
 
         opacity: 0.6;
@@ -2594,8 +2242,6 @@ export default {
         cursor: not-allowed;
 
       }
-
-      
 
       .loader {
 
@@ -2619,10 +2265,6 @@ export default {
 
 }
 
-
-
-
-
 .skeleton-card {
 
   width: 100%;
@@ -2634,8 +2276,6 @@ export default {
   overflow: hidden; 
 
   border-radius: 10px;
-
-  
 
   .skeleton-header {
 
@@ -2654,8 +2294,6 @@ export default {
     overflow: hidden;
 
   }
-
-  
 
   .skeleton-body {
 
@@ -2677,13 +2315,9 @@ export default {
 
     }
 
-    
-
     .skeleton-features {
 
       margin-bottom: 24px;
-
-      
 
       .skeleton-feature {
 
@@ -2699,8 +2333,6 @@ export default {
 
         overflow: hidden;
 
-        
-
         &:nth-child(1) { width: 92%; }
 
         &:nth-child(2) { width: 85%; }
@@ -2714,10 +2346,6 @@ export default {
     }
 
   }
-
-  
-
-  
 
   &::after {
 
@@ -2755,10 +2383,6 @@ export default {
 
 }
 
-
-
-
-
 .skeleton-text {
 
   height: 16px;
@@ -2773,8 +2397,6 @@ export default {
 
   width: 100px;
 
-  
-
   &:first-child {
 
     width: 70%;
@@ -2782,10 +2404,6 @@ export default {
   }
 
 }
-
-
-
-
 
 @keyframes shimmer {
 
@@ -2803,17 +2421,11 @@ export default {
 
 }
 
-
-
 @keyframes spin {
 
   to { transform: rotate(360deg); }
 
 }
-
-
-
-
 
 @media (max-width: 991px) {
 
@@ -2829,29 +2441,21 @@ export default {
 
 }
 
-
-
 @media (max-width: 768px) {
 
   .order-confirm-container {
 
     margin-top: 15px;
 
-    
-
     .welcome-card {
 
       padding: 15px;
-
-      
 
       .card-header .card-title {
 
         font-size: 16px;
 
       }
-
-      
 
       .card-body p {
 
@@ -2861,8 +2465,6 @@ export default {
 
     }
 
-    
-
     .content-wrapper {
 
       flex-direction: column;
@@ -2870,8 +2472,6 @@ export default {
       gap: 20px;
 
     }
-
-    
 
     .action-buttons {
 
@@ -2892,8 +2492,6 @@ export default {
       opacity: 1;
 
       transition: none;
-
-      
 
       .btn-back, 
 
@@ -2917,15 +2515,11 @@ export default {
 
     }
 
-    
-
     .period-selection .period-cards {
 
       grid-template-columns: repeat(2, minmax(0, 1fr));
 
       gap: 12px;
-
-      
 
       .period-card {
 
@@ -2935,8 +2529,6 @@ export default {
 
           min-height: 80px !important;
 
-          
-
           .period-type {
 
             font-size: 13px !important;
@@ -2945,8 +2537,6 @@ export default {
 
           }
 
-          
-
           .period-price {
 
             .currency {
@@ -2954,8 +2544,6 @@ export default {
               font-size: 13px !important;
 
             }
-
-            
 
             .amount {
 
@@ -2975,8 +2563,6 @@ export default {
 
 }
 
-
-
 @media (max-width: 480px) {
 
   .order-confirm-container {
@@ -2989,8 +2575,6 @@ export default {
 
     }
 
-    
-
     .coupon-input {
 
       flex-direction: row; 
@@ -2999,8 +2583,6 @@ export default {
 
       gap: 8px; 
 
-      
-
       .coupon-field {
 
         flex: 1;
@@ -3008,8 +2590,6 @@ export default {
         min-width: 120px; 
 
       }
-
-      
 
       .btn-verify {
 
@@ -3023,13 +2603,9 @@ export default {
 
       }
 
-      
-
       .btn-remove-coupon {
 
         padding: 0 12px; 
-
-        
 
         span {
 
@@ -3038,10 +2614,6 @@ export default {
         }
 
       }
-
-      
-
-      
 
       &:has(.coupon-field.applied) {
 
@@ -3054,8 +2626,6 @@ export default {
           margin-bottom: 8px;
 
         }
-
-        
 
         .btn-verify, .btn-remove-coupon {
 
@@ -3071,23 +2641,17 @@ export default {
 
     }
 
-    
-
     .plan-card, .order-summary {
 
       padding: 18px;
 
     }
 
-    
-
     .period-selection .period-cards {
 
       grid-template-columns: repeat(2, minmax(0, 1fr));
 
       gap: 10px;
-
-      
 
       .period-card {
 
@@ -3104,10 +2668,6 @@ export default {
   }
 
 }
-
-
-
-
 
 @media (prefers-color-scheme: dark) {
 
@@ -3131,8 +2691,6 @@ export default {
 
   }
 
-  
-
   .skeleton-header,
 
   .skeleton-title,
@@ -3149,10 +2707,6 @@ export default {
 
 }
 
-
-
-
-
 @media screen and (max-width: 768px) {
 
   .order-confirm-container .period-selection .period-cards {
@@ -3165,8 +2719,6 @@ export default {
 
 }
 
-
-
 @media screen and (max-width: 480px) {
 
   .order-confirm-container .period-selection .period-cards {
@@ -3178,10 +2730,6 @@ export default {
   }
 
 }
-
-
-
-
 
 .order-confirm-container .period-selection .period-cards {
 
@@ -3189,10 +2737,6 @@ export default {
 
 }
 
-
-
-
-
 @media screen and (max-width: 768px) {
 
   .period-cards {
@@ -3207,8 +2751,6 @@ export default {
 
 }
 
-
-
 @media screen and (max-width: 480px) {
 
   .period-cards {
@@ -3222,10 +2764,6 @@ export default {
   }
 
 }
-
-
-
-
 
 :deep(.period-cards) {
 
@@ -3239,8 +2777,6 @@ export default {
 
 }
 
-
-
 @media screen and (max-width: 768px) {
 
   :deep(.period-cards) {
@@ -3252,8 +2788,6 @@ export default {
   }
 
 }
-
-
 
 @media screen and (max-width: 480px) {
 

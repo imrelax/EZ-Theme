@@ -319,8 +319,7 @@ export default {
   opacity: 0;
   transform: scale(0.95);
 }
-
-
+
 @media (max-width: 768px) {
   .auth-popup-overlay {
     padding: 15px;

@@ -319,8 +319,7 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-
-
+
 @media (max-width: 768px) {
   .shop-popup-overlay {
     padding: 15px;

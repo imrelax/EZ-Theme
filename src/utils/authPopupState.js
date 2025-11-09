@@ -1,8 +1,7 @@
 ﻿
 
 let popupShownInSession = false;
-
-
+
 export function shouldShowAuthPopup(config) {
   if (!config || !config.enabled) {
     return false;
@@ -28,8 +27,7 @@ export function shouldShowAuthPopup(config) {
   popupShownInSession = true;
   return true;
 }
-
-
+
 export function resetPopupSessionState() {
   popupShownInSession = false;
 } 

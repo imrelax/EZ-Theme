@@ -4,10 +4,6 @@
 
     <!-- 域名授权验证提示 - 如果不需要域名授权功能，移除此组件即可 -->
 
-
-
-    
-
     <div class="nodes-inner">
 
       <!-- 欢迎卡片 -->
@@ -28,8 +24,6 @@
 
       </div>
 
-      
-
       <!-- 节点列表状态 -->
 
       <div v-if="loading" class="nodes-loading">
@@ -39,8 +33,6 @@
         <p>{{ $t('nodes.loading') || '正在加载节点...' }}</p>
 
       </div>
-
-      
 
       <!-- 错误提示 -->
 
@@ -53,8 +45,6 @@
         <button class="retry-button" @click="fetchNodes">{{ $t('common.retry') || '重试' }}</button>
 
       </div>
-
-      
 
       <!-- 节点列表内容 -->
 
@@ -72,8 +62,6 @@
 
             </div>
 
-            
-
             <!-- 节点信息 -->
 
             <div class="node-info">
@@ -86,13 +74,9 @@
 
                 <span class="node-tag rate-tag" v-if="showNodeRate">x{{ node.rate }}</span>
 
-                
-
                 <!-- 节点类型标签 -->
 
                 <span class="node-tag type-tag">{{ node.type }}</span>
-
-                
 
                 <!-- 其他标签 -->
 
@@ -108,21 +92,15 @@
 
               </div>
 
-              
-
               <!-- 节点名称 -->
 
               <h3 class="node-name">{{ node.name }}</h3>
-
-              
 
               <!-- 节点主机信息 -->
 
               <p class="node-host" v-if="showNodeDetails">{{ node.host }}:{{ node.port }}</p>
 
             </div>
-
-            
 
             <!-- 更多按钮 - 仅当配置允许显示节点倍率和允许查看节点详情时显示 -->
 
@@ -142,8 +120,6 @@
 
       </div>
 
-      
-
       <!-- 空状态 -->
 
       <div v-else class="nodes-empty">
@@ -155,8 +131,6 @@
       </div>
 
     </div>
-
-    
 
     <!-- 节点详情模态框 -->
 
@@ -177,8 +151,6 @@
   </div>
 
 </template>
-
-
 
 <script setup>
 
@@ -202,18 +174,13 @@ import { fetchServerNodes } from '@/api/servers';
 
 import { getUserInfo } from '@/api/user';
 
-
 import { NODES_CONFIG } from '@/utils/baseConfig';
 
 import NodeDetailModal from '@/components/common/NodeDetailModal.vue';
 
-
-
 const { t } = useI18n();
 
 const $toast = inject('$toast');
-
-
 
 const loading = ref(true);
 
@@ -226,21 +193,11 @@ const showNodeRate = ref(NODES_CONFIG.showNodeRate);
 
 const allowViewNodeInfo = ref(NODES_CONFIG.allowViewNodeInfo);
 
-
-
 const userInfo = ref(null);
-
-
-
-
-
-
 
 const showDetailModal = ref(false);
 
 const selectedNode = ref(null);
-
-
 
 const openNodeDetail = (node) => {
 
@@ -249,8 +206,6 @@ const openNodeDetail = (node) => {
   showDetailModal.value = true;
 
 };
-
-
 
 const closeNodeDetail = () => {
 
@@ -263,8 +218,6 @@ const closeNodeDetail = () => {
   }, 300);
 
 };
-
-
 
 const fetchUserInfo = async () => {
 
@@ -292,21 +245,15 @@ const fetchUserInfo = async () => {
 
 };
 
-
-
 const fetchNodes = async () => {
 
   loading.value = true;
 
   error.value = '';
 
-
-
   try {
 
     const result = await fetchServerNodes();
-
-    
 
     if (result && result.data) {
 
@@ -324,8 +271,6 @@ const fetchNodes = async () => {
 
     error.value = err.response?.message || (err && err.message ? err.message : t('common.networkError') || '网络错误');
 
-    
-
     if ($toast) {
 
       $toast.error(error.value);
@@ -340,12 +285,7 @@ const fetchNodes = async () => {
 
 };
 
-
-
 onMounted(() => {
-
-
-  
 
   fetchUserInfo();
 
@@ -355,8 +295,6 @@ onMounted(() => {
 
 </script>
 
-
-
 <style lang="scss" scoped>
 
 .nodes-container {
@@ -364,8 +302,6 @@ onMounted(() => {
   padding: 1.25rem;
 
   padding-bottom: calc(1.25rem + 64px); 
-
-  
 
   @media (min-width: 768px) {
 
@@ -377,8 +313,6 @@ onMounted(() => {
 
 }
 
-
-
 .nodes-inner {
 
   max-width: 1200px;
@@ -386,10 +320,6 @@ onMounted(() => {
   margin: 0 auto;
 
 }
-
-
-
-
 
 .dashboard-card {
 
@@ -409,8 +339,6 @@ onMounted(() => {
 
   position: relative;
 
-  
-
   &:hover {
 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -418,8 +346,6 @@ onMounted(() => {
     border-color: rgba(var(--theme-color-rgb), 0.3);
 
   }
-
-  
 
   .card-header {
 
@@ -430,8 +356,6 @@ onMounted(() => {
     align-items: center;
 
     margin-bottom: 15px;
-
-    
 
     .card-title {
 
@@ -444,8 +368,6 @@ onMounted(() => {
     }
 
   }
-
-  
 
   .card-body {
 
@@ -463,17 +385,11 @@ onMounted(() => {
 
 }
 
-
-
 .welcome-card {
 
   margin-bottom: 24px;
 
 }
-
-
-
-
 
 .nodes-content {
 
@@ -491,8 +407,6 @@ onMounted(() => {
 
 }
 
-
-
 .node-items {
 
   display: flex;
@@ -502,8 +416,6 @@ onMounted(() => {
   gap: 1rem;
 
 }
-
-
 
 .node-item {
 
@@ -523,8 +435,6 @@ onMounted(() => {
 
   border: 1px solid var(--border-color);
 
-  
-
   &:hover {
 
     transform: translateY(-2px);
@@ -535,13 +445,9 @@ onMounted(() => {
 
   }
 
-  
-
   .node-status {
 
     margin-right: 1rem;
-
-    
 
     .status-indicator {
 
@@ -554,8 +460,6 @@ onMounted(() => {
       background-color: #ccc;
 
       position: relative;
-
-      
 
       &.online {
 
@@ -571,15 +475,11 @@ onMounted(() => {
 
   }
 
-  
-
   .node-info {
 
     flex: 1;
 
     overflow: hidden;
-
-    
 
     .node-tags {
 
@@ -590,8 +490,6 @@ onMounted(() => {
       gap: 0.5rem;
 
       margin-bottom: 0.5rem;
-
-      
 
       .node-tag {
 
@@ -605,8 +503,6 @@ onMounted(() => {
 
         color: var(--theme-color);
 
-        
-
         &.rate-tag {
 
           background-color: rgba(76, 175, 80, 0.1);
@@ -616,8 +512,6 @@ onMounted(() => {
           font-weight: 600;
 
         }
-
-        
 
         &.type-tag {
 
@@ -630,8 +524,6 @@ onMounted(() => {
       }
 
     }
-
-    
 
     .node-name {
 
@@ -659,8 +551,6 @@ onMounted(() => {
 
     }
 
-    
-
     .node-host {
 
       font-size: 0.8rem;
@@ -673,8 +563,6 @@ onMounted(() => {
 
   }
 
-  
-
   .node-actions {
 
     display: flex;
@@ -682,8 +570,6 @@ onMounted(() => {
     align-items: center;
 
     margin-left: 12px;
-
-    
 
     .more-btn {
 
@@ -709,8 +595,6 @@ onMounted(() => {
 
       transition: all 0.2s ease;
 
-      
-
       &:hover {
 
         background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -724,10 +608,6 @@ onMounted(() => {
   }
 
 }
-
-
-
-
 
 .nodes-loading, 
 
@@ -747,8 +627,6 @@ onMounted(() => {
 
   text-align: center;
 
-  
-
   p {
 
     margin-top: 1rem;
@@ -758,8 +636,6 @@ onMounted(() => {
     font-size: 1.1rem;
 
   }
-
-  
 
   .error-icon, 
 
@@ -772,8 +648,6 @@ onMounted(() => {
   }
 
 }
-
-
 
 .retry-button {
 
@@ -815,8 +689,6 @@ onMounted(() => {
 
   -webkit-backdrop-filter: blur(8px);
 
-  
-
   &:hover {
 
     transform: translateY(-2px);
@@ -827,8 +699,6 @@ onMounted(() => {
 
   }
 
-  
-
   &:active {
 
     transform: translateY(0);
@@ -838,10 +708,6 @@ onMounted(() => {
   }
 
 }
-
-
-
-
 
 @keyframes pulse {
 
@@ -865,10 +731,6 @@ onMounted(() => {
 
 }
 
-
-
-
-
 @media (min-width: 768px) {
 
   .node-items {
@@ -882,8 +744,6 @@ onMounted(() => {
   }
 
 }
-
-
 
 @media (min-width: 1024px) {
 

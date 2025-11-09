@@ -50,7 +50,6 @@ const pathMappings = {
   '/user/knowledge/fetch': '/knowledge/list'
 };
 
-
 export function mapApiPath(originalPath) {
   try {
     if (!window.EZ_CONFIG || !window.EZ_CONFIG.API_MIDDLEWARE_ENABLED) {
@@ -85,7 +84,6 @@ export function mapApiPath(originalPath) {
     return originalPath;
   }
 }
-
 
 export function parseQueryParams(url) {
   try {

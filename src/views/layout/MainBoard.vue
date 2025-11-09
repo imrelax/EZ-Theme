@@ -4,9 +4,6 @@
 
     <!-- 域名授权验证提示 - 如果不需要域名授权功能，移除此组件即可 -->
 
-
-    
-
     <!-- 内容区域 - 路由视图 -->
 
     <div class="content-area">
@@ -27,8 +24,6 @@
 
     </div>
 
-    
-
     <!-- 背景装饰 -->
 
     <div class="background-decoration">
@@ -45,17 +40,11 @@
 
 </template>
 
-
-
 <script>
 
 import { ref, onMounted } from 'vue';
 
-
-
 import DomainAuthAlert from '@/components/common/DomainAuthAlert.vue';
-
-
 
 export default {
 
@@ -69,25 +58,15 @@ export default {
 
   setup() {
 
-
-
-
     onMounted(() => {
 
-
     });
-
-
-
-
 
   }
 
 };
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -103,15 +82,11 @@ export default {
 
 }
 
-
-
 .content-area {
 
   padding: 2rem 1rem;
 
   padding-top: 80px; 
-
-  
 
   @media (min-width: 768px) {
 
@@ -120,8 +95,6 @@ export default {
     padding-top: 90px;
 
   }
-
-  
 
   @media (min-width: 1200px) {
 
@@ -132,8 +105,6 @@ export default {
   }
 
 }
-
-
 
 .background-decoration {
 
@@ -153,8 +124,6 @@ export default {
 
   pointer-events: none;
 
-  
-
   @supports (-webkit-touch-callout: none) {
 
     display: none;
@@ -162,8 +131,6 @@ export default {
   }
 
 }
-
-
 
 .floating-ball {
 
@@ -178,8 +145,6 @@ export default {
   mix-blend-mode: lighten;
 
 }
-
-
 
 .ball-1 {
 
@@ -205,8 +170,6 @@ export default {
 
 }
 
-
-
 .ball-2 {
 
   width: 500px;
@@ -230,8 +193,6 @@ export default {
   animation: floatingBall2 30s infinite ease-in-out;
 
 }
-
-
 
 .ball-3 {
 
@@ -257,8 +218,6 @@ export default {
 
 }
 
-
-
 .content-transition-enter-active,
 
 .content-transition-leave-active {
@@ -266,8 +225,6 @@ export default {
   transition: opacity 0.3s ease, transform 0.3s ease;
 
 }
-
-
 
 .content-transition-enter-from,
 
@@ -277,8 +234,6 @@ export default {
 
   transform: translateY(3px); 
 }
-
-
 
 @keyframes floatingBall1 {
 
@@ -292,8 +247,6 @@ export default {
 
 }
 
-
-
 @keyframes floatingBall2 {
 
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
@@ -306,8 +259,6 @@ export default {
 
 }
 
-
-
 @keyframes floatingBall3 {
 
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
@@ -319,8 +270,6 @@ export default {
   100% { transform: translate(0, 0) rotate(360deg); }
 
 }
-
-
 
 .view-wrapper {
 

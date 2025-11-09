@@ -1,14 +1,12 @@
 ﻿
 import request from './request';
 
-
 export function getInviteData() {
   return request({
     url: '/user/invite/fetch',
     method: 'get'
   });
 }
-
 
 export function getInviteDetails(current, pageSize) {
   return request({
@@ -21,7 +19,6 @@ export function getInviteDetails(current, pageSize) {
   });
 }
 
-
 export function getCommissionConfig() {
   return request({
     url: '/user/comm/config',
@@ -29,14 +26,12 @@ export function getCommissionConfig() {
   });
 }
 
-
 export function generateInviteCode() {
   return request({
     url: '/user/invite/save',
     method: 'get'
   });
 }
-
 
 export function transferCommission(amount) {
   return request({
@@ -47,7 +42,6 @@ export function transferCommission(amount) {
     }
   });
 }
-
 
 export function withdrawCommission(amount, account, method) {
   return request({

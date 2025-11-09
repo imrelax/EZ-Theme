@@ -268,11 +268,9 @@ export default {
 @use "@/assets/styles/base/animations.scss" as *;
 @use "@/assets/styles/base/scrollbar.scss" as *;
 
-
 .page-transitioning {
   overflow: hidden;
 }
-
 
 .static-layout {
   position: fixed;
@@ -281,7 +279,6 @@ export default {
   left: 0;
   z-index: 100;
 }
-
 
 .site-logo {
   position: fixed;
@@ -312,11 +309,9 @@ export default {
   }
 }
 
-
 .dark-theme .site-logo {
   background-color: rgba(30, 30, 30, 0.7);
 }
-
 
 .top-toolbar {
   position: fixed;
@@ -346,7 +341,6 @@ export default {
   }
 }
 
-
 @media (max-width: 768px) {
   .site-logo {
     top: 12px;  
@@ -361,14 +355,12 @@ export default {
     right: 20px;
     gap: 10px;
   }
-  
-  
+
   main, .main-content, .content-container {
     padding-bottom: 70px !important;
     margin-bottom: 10px !important;
   }
 }
-
 
 .page-transition-enter-active,
 .page-transition-leave-active {
@@ -383,7 +375,6 @@ export default {
   opacity: 0;
 }
 
-
 .language-transitioning .language-transition-item {
   animation: language-fade 0.3s ease-out;
 }
@@ -397,7 +388,6 @@ export default {
   }
 }
 
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -407,7 +397,6 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -434,17 +423,14 @@ export default {
   background-color: transparent;
 }
 
-
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--theme-color) var(--input-bg-color, rgba(0, 0, 0, 0.05));
 }
 
-
 html {
   scroll-behavior: smooth;
 }
-
 
 .auth-toolbar {
   position: fixed;
@@ -461,7 +447,6 @@ html {
     z-index: 110;
   }
 }
-
 
 .eztheme-btn {
   text-decoration: none !important;
@@ -482,7 +467,6 @@ html {
   }
 }
 
-
 #nprogress {
   pointer-events: none;
   
@@ -496,8 +480,7 @@ html {
     height: 2px;
     box-shadow: 0 0 10px var(--theme-color), 0 0 5px var(--theme-color);
   }
-  
-  
+
   .spinner {
     display: block;
     position: fixed;
@@ -526,7 +509,6 @@ html {
     transform: rotate(360deg);
   }
 }
-
 
 .nprogress-custom-parent {
   overflow: hidden;

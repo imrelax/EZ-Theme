@@ -8,15 +8,11 @@ import i18n from '@/i18n';
 
 import pageCache from '@/utils/pageCache';
 
-
-
 const LandingPage = () => import('@/views/landing/LandingPage.vue');
 
 const CustomLandingPage = () => import('@/views/landing/CustomLandingPage.vue');
 
 const ApiValidation = () => import('@/views/errors/ApiValidation.vue');
-
-
 
 const getAuthComponent = (componentName) => {
 
@@ -25,8 +21,6 @@ const getAuthComponent = (componentName) => {
   return () => import(`@/views/auth/${layoutType}/${componentName}.vue`);
 
 };
-
-
 
 const getThirdNavItem = () => {
 
@@ -39,8 +33,6 @@ const getFourthNavItem = () => {
   const { NAVIGATION_CONFIG } = require('@/utils/baseConfig');
   return NAVIGATION_CONFIG?.fourthNavItem || '';
 };
-
-
 
 const getActiveNavForRoute = (routeName) => {
   const thirdNavItem = getThirdNavItem();
@@ -95,8 +87,6 @@ const getActiveNavForRoute = (routeName) => {
   return 'More';
 };
 
-
-
 const Login = getAuthComponent('Login');
 
 const Register = getAuthComponent('Register');
@@ -114,8 +104,6 @@ const BrowserRestricted = () => import('@/views/errors/BrowserRestricted.vue');
 const NotFound = () => import('@/views/errors/NotFound.vue');
 
 const CustomerService = () => import('@/views/service/CustomerService.vue');
-
-
 
 const routes = [
 
@@ -625,8 +613,6 @@ const routes = [
 
 ];
 
-
-
 const router = createRouter({
 
   history: createWebHashHistory(),
@@ -641,8 +627,6 @@ const router = createRouter({
 
 });
 
-
-
 router.beforeEach(async (to, from, next) => {
 
   if (to.name !== 'BrowserRestricted' && isBrowserRestricted()) {
@@ -652,8 +636,6 @@ router.beforeEach(async (to, from, next) => {
     return;
 
   }
-
-  
 
   const { shouldCheckApiAvailability } = await import('@/utils/apiAvailabilityChecker');
 
@@ -685,8 +667,6 @@ router.beforeEach(async (to, from, next) => {
 
   }
 
-  
-
   const getTitle = () => {
 
     if (to.meta.titleKey) {
@@ -709,23 +689,15 @@ router.beforeEach(async (to, from, next) => {
 
   };
 
-  
-
   document.title = getTitle();
 
-  
-
   const token = localStorage.getItem('token');
-
-  
 
   const loginStatusChanged = 
 
     (from.meta.requiresAuth && !to.meta.requiresAuth) || 
 
     (!from.meta.requiresAuth && to.meta.requiresAuth);
-
-  
 
   if (loginStatusChanged) {
 
@@ -741,8 +713,6 @@ router.beforeEach(async (to, from, next) => {
 
   }
 
-  
-
   if (to.meta.requiresAuth && !token) {
 
     next({ name: 'Login' });
@@ -755,8 +725,6 @@ router.beforeEach(async (to, from, next) => {
 
     document.body.classList.add('page-transitioning');
 
-    
-
     if (to.meta.keepAlive && to.name) {
 
       pageCache.addRouteToCache(to.name);
@@ -767,15 +735,11 @@ router.beforeEach(async (to, from, next) => {
 
     }
 
-    
-
     next();
 
   }
 
 });
-
-
 
 router.afterEach(() => {
 
@@ -786,8 +750,6 @@ router.afterEach(() => {
   }, 400);
 
 });
-
-
 
 function getCustomOrDefaultLandingPage() {
 
@@ -800,7 +762,5 @@ function getCustomOrDefaultLandingPage() {
   return CustomLandingPage;
 
 }
-
-
 
 export default router; 

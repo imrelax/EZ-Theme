@@ -4,9 +4,6 @@
 
     <!-- 域名授权验证提示 - 如果不需要域名授权功能，移除此组件即可 -->
 
-
-    
-
     <div class="docs-inner">
 
       <!-- 欢迎卡片 -->
@@ -27,15 +24,11 @@
 
       </div>
 
-      
-
       <!-- 标题栏 -->
 
       <div class="docs-header">
 
         <h1 class="docs-title">{{ $t('docs.title') }}</h1>
-
-        
 
         <!-- 搜索框 -->
 
@@ -71,8 +64,6 @@
 
       </div>
 
-
-
       <!-- 加载状态 -->
 
       <div v-if="loading" class="docs-loading">
@@ -82,8 +73,6 @@
         <p>{{ $t('docs.loading') }}</p>
 
       </div>
-
-
 
       <!-- 错误提示 -->
 
@@ -97,8 +86,6 @@
 
       </div>
 
-
-
       <!-- 文档列表 -->
 
       <div v-else-if="hasDocuments && Object.keys(filteredDocs).length > 0" class="docs-content">
@@ -108,8 +95,6 @@
         <div v-for="(items, category) in filteredDocs" :key="category" class="doc-category">
 
           <h2 class="category-title">{{ category }}</h2>
-
-          
 
           <div class="doc-items">
 
@@ -137,21 +122,15 @@
 
       </div>
 
-
-
       <!-- 空状态 - 增强版 -->
 
       <div v-else class="docs-empty">
 
         <IconFileSearch :size="48" class="empty-icon" />
 
-        
-
         <!-- 根据搜索状态显示不同提示 -->
 
         <p v-if="searchQuery">{{ $t('docs.noSearchResults') }}</p>
-
-        
 
         <!-- 无文档时的语言切换提示 -->
 
@@ -169,8 +148,6 @@
 
         </template>
 
-        
-
         <!-- 搜索清除按钮 -->
 
         <button v-if="searchQuery" @click="clearSearch" class="retry-button">{{ $t('docs.clearSearch') }}</button>
@@ -182,8 +159,6 @@
   </div>
 
 </template>
-
-
 
 <script setup name="DocsPage">
 
@@ -213,16 +188,11 @@ import {
 
 import { fetchKnowledgeList } from '@/api/docs';
 
-
-
-
 const { t, locale } = useI18n();
 
 const router = useRouter();
 
 const $toast = inject('$toast');
-
-
 
 const loading = ref(true);
 
@@ -232,17 +202,9 @@ const documents = ref({});
 
 const searchQuery = ref('');
 
-
-
-
-
-
-
 const currentLanguage = computed(() => locale.value === 'zh-CN' ? '中文' : 'English');
 
 const alternateLanguage = computed(() => locale.value === 'zh-CN' ? 'English' : '中文');
-
-
 
 const hasDocuments = computed(() => {
 
@@ -260,8 +222,6 @@ const hasDocuments = computed(() => {
 
 });
 
-
-
 const filteredDocs = computed(() => {
 
   if (!searchQuery.value.trim()) {
@@ -270,27 +230,19 @@ const filteredDocs = computed(() => {
 
   }
 
-
-
   if (!hasDocuments.value) {
 
     return {};
 
   }
 
-
-
   const query = searchQuery.value.toLowerCase();
 
   const filtered = {};
 
-
-
   Object.entries(documents.value).forEach(([category, items]) => {
 
     if (!Array.isArray(items)) return;
-
-    
 
     const matchedItems = items.filter(item => 
 
@@ -300,8 +252,6 @@ const filteredDocs = computed(() => {
 
     );
 
-
-
     if (matchedItems.length > 0) {
 
       filtered[category] = matchedItems;
@@ -310,13 +260,9 @@ const filteredDocs = computed(() => {
 
   });
 
-
-
   return filtered;
 
 });
-
-
 
 const formatDate = (timestamp) => {
 
@@ -334,13 +280,9 @@ const formatDate = (timestamp) => {
 
 };
 
-
-
 const handleSearch = () => {
 
 };
-
-
 
 const clearSearch = () => {
 
@@ -348,15 +290,11 @@ const clearSearch = () => {
 
 };
 
-
-
 const goToDocument = (id) => {
 
   router.push(`/docs/${id}`);
 
 };
-
-
 
 const fetchKnowledge = async () => {
 
@@ -364,13 +302,9 @@ const fetchKnowledge = async () => {
 
   error.value = '';
 
-
-
   try {
 
     const result = await fetchKnowledgeList(locale.value);
-
-    
 
     if (result && result.data) {
 
@@ -388,8 +322,6 @@ const fetchKnowledge = async () => {
 
     error.value = err.response?.message || (err && err.message ? err.message : t('docs.unknownError'));
 
-    
-
     if ($toast) {
 
       $toast.error(error.value);
@@ -404,29 +336,19 @@ const fetchKnowledge = async () => {
 
 };
 
-
-
 watch(locale, () => {
 
   fetchKnowledge();
 
 });
 
-
-
 onMounted(() => {
-
-
-
-  
 
   fetchKnowledge();
 
 });
 
 </script>
-
-
 
 <style lang="scss" scoped>
 
@@ -435,8 +357,6 @@ onMounted(() => {
   padding: 1.25rem;
 
   padding-bottom: calc(1.25rem + 64px); 
-
-  
 
   @media (min-width: 768px) {
 
@@ -448,8 +368,6 @@ onMounted(() => {
 
 }
 
-
-
 .docs-inner {
 
   max-width: 1200px;
@@ -457,10 +375,6 @@ onMounted(() => {
   margin: 0 auto;
 
 }
-
-
-
-
 
 .dashboard-card {
 
@@ -480,8 +394,6 @@ onMounted(() => {
 
   position: relative;
 
-  
-
   &:hover {
 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -489,8 +401,6 @@ onMounted(() => {
     border-color: rgba(var(--theme-color-rgb), 0.3);
 
   }
-
-  
 
   .card-header {
 
@@ -501,8 +411,6 @@ onMounted(() => {
     align-items: center;
 
     margin-bottom: 15px;
-
-    
 
     .card-title {
 
@@ -515,8 +423,6 @@ onMounted(() => {
     }
 
   }
-
-  
 
   .card-body {
 
@@ -534,21 +440,15 @@ onMounted(() => {
 
 }
 
-
-
 .welcome-card {
 
   margin-bottom: 10px;
 
 }
 
-
-
 .docs-header {
 
   margin-bottom: 2rem;
-
-  
 
   .docs-title {
 
@@ -572,15 +472,11 @@ onMounted(() => {
 
 }
 
-
-
 .search-wrapper {
 
   margin-bottom: 1.5rem;
 
 }
-
-
 
 .search-input-wrapper {
 
@@ -591,8 +487,6 @@ onMounted(() => {
   align-items: center;
 
   width: 100%;
-
-  
 
   .search-icon {
 
@@ -605,8 +499,6 @@ onMounted(() => {
     transition: color 0.3s ease;
 
   }
-
-  
 
   .search-input {
 
@@ -626,8 +518,6 @@ onMounted(() => {
 
     transition: all 0.3s ease;
 
-    
-
     &:focus {
 
       outline: none;
@@ -635,8 +525,6 @@ onMounted(() => {
       border-color: var(--theme-color);
 
       box-shadow: 0 0 0 2px rgba(var(--theme-color-rgb), 0.2);
-
-      
 
       & + .search-icon {
 
@@ -646,8 +534,6 @@ onMounted(() => {
 
     }
 
-    
-
     &::placeholder {
 
       color: var(--text-muted);
@@ -655,8 +541,6 @@ onMounted(() => {
     }
 
   }
-
-  
 
   .clear-button {
 
@@ -684,8 +568,6 @@ onMounted(() => {
 
     transition: all 0.3s ease;
 
-    
-
     &:hover {
 
       background-color: rgba(var(--theme-color-rgb), 0.1);
@@ -697,8 +579,6 @@ onMounted(() => {
   }
 
 }
-
-
 
 .docs-content {
 
@@ -715,8 +595,6 @@ onMounted(() => {
   margin: 0 auto;
 
 }
-
-
 
 .doc-category {
 
@@ -738,8 +616,6 @@ onMounted(() => {
 
 }
 
-
-
 .doc-items {
 
   display: flex;
@@ -749,8 +625,6 @@ onMounted(() => {
   gap: 0.75rem;
 
 }
-
-
 
 .doc-item {
 
@@ -772,8 +646,6 @@ onMounted(() => {
 
   border: 1px solid var(--border-color);
 
-  
-
   &:hover {
 
     transform: translateY(-2px);
@@ -784,15 +656,11 @@ onMounted(() => {
 
   }
 
-  
-
   .doc-info {
 
     flex: 1;
 
     overflow: hidden;
-
-    
 
     .doc-title {
 
@@ -820,8 +688,6 @@ onMounted(() => {
 
     }
 
-    
-
     .doc-date {
 
       font-size: 0.8rem;
@@ -832,8 +698,6 @@ onMounted(() => {
 
   }
 
-  
-
   .doc-action {
 
     color: var(--text-muted);
@@ -843,8 +707,6 @@ onMounted(() => {
     transition: all 0.3s ease;
 
   }
-
-  
 
   &:hover {
 
@@ -859,8 +721,6 @@ onMounted(() => {
   }
 
 }
-
-
 
 .docs-loading, 
 
@@ -880,8 +740,6 @@ onMounted(() => {
 
   text-align: center;
 
-  
-
   p {
 
     margin-top: 1rem;
@@ -891,8 +749,6 @@ onMounted(() => {
     font-size: 1.1rem;
 
   }
-
-  
 
   .error-icon, 
 
@@ -905,8 +761,6 @@ onMounted(() => {
   }
 
 }
-
-
 
 .retry-button {
 
@@ -948,8 +802,6 @@ onMounted(() => {
 
   -webkit-backdrop-filter: blur(8px);
 
-  
-
   &:hover {
 
     transform: translateY(-2px);
@@ -960,8 +812,6 @@ onMounted(() => {
 
   }
 
-  
-
   &:active {
 
     transform: translateY(0);
@@ -971,10 +821,6 @@ onMounted(() => {
   }
 
 }
-
-
-
-
 
 @media (min-width: 768px) {
 
@@ -990,8 +836,6 @@ onMounted(() => {
 
 }
 
-
-
 @media (min-width: 1024px) {
 
   .doc-items {
@@ -1001,8 +845,6 @@ onMounted(() => {
   }
 
 }
-
-
 
 .language-hint {
 
@@ -1020,8 +862,6 @@ onMounted(() => {
 
   border-left: 3px solid var(--theme-color);
 
-  
-
   .language-icon {
 
     color: var(--theme-color);
@@ -1031,8 +871,6 @@ onMounted(() => {
     flex-shrink: 0;
 
   }
-
-  
 
   .hint-text {
 

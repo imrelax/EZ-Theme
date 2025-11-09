@@ -7,48 +7,40 @@ const preloadStatus = {
   
   startTime: null
 };
-
-
+
 const markComponentLoaded = (componentName) => {
   if (!componentName) return;
   preloadStatus.components[componentName] = true;
 };
-
-
+
 const isComponentLoaded = (componentName) => {
   return !!preloadStatus.components[componentName];
 };
-
-
+
 const markResourceLoaded = (resourceUrl) => {
   if (!resourceUrl) return;
   preloadStatus.resources[resourceUrl] = true;
 };
-
-
+
 const isResourceLoaded = (resourceUrl) => {
   return !!preloadStatus.resources[resourceUrl];
 };
-
-
+
 const startPreloadTimer = () => {
   preloadStatus.startTime = Date.now();
 };
-
-
+
 const getPreloadTime = () => {
   if (!preloadStatus.startTime) return 0;
   return Date.now() - preloadStatus.startTime;
 };
-
-
+
 const resetPreloadStatus = () => {
   preloadStatus.components = {};
   preloadStatus.resources = {};
   preloadStatus.startTime = null;
 };
-
-
+
 const getPreloadStats = () => {
   return {
     componentsCount: Object.keys(preloadStatus.components).length,
@@ -56,8 +48,7 @@ const getPreloadStats = () => {
     time: getPreloadTime()
   };
 };
-
-
+
 const createPreloadLink = (href, as, type) => {
   if (!href || isResourceLoaded(href)) return null;
   

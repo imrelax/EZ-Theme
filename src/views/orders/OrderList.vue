@@ -514,8 +514,7 @@ watch(locale, () => {
   max-width: 1200px;
   margin: 0 auto;
 }
-
-
+
 .dashboard-card {
   background-color: var(--card-bg);
   border-radius: 12px;
@@ -556,8 +555,7 @@ watch(locale, () => {
 .welcome-card {
   margin-bottom: 24px;
 }
-
-
+
 .orders-content {
   width: 100%;
   margin: 0 auto;
@@ -714,8 +712,7 @@ watch(locale, () => {
     }
   }
 }
-
-
+
 .orders-loading, 
 .orders-error, 
 .orders-empty {
@@ -772,8 +769,7 @@ watch(locale, () => {
     box-shadow: 0 5px 15px rgba(var(--theme-color-rgb), 0.3);
   }
 }
-
-
+
 .modal-fade-enter-active {
   animation: fade-in 0.2s ease-out;
 }
@@ -935,8 +931,7 @@ watch(locale, () => {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
-
+
 @media (max-width: 768px) {
   .order-table {
     th, td {
@@ -955,8 +950,7 @@ watch(locale, () => {
     }
   }
 }
-
-
+
 .pagination-container {
   margin-bottom: 1rem;
   display: flex;
@@ -1002,8 +996,7 @@ watch(locale, () => {
     color: var(--text-color);
   }
 }
-
-
+
 .page-switch-enter-active,
 .page-switch-leave-active {
   transition: all 0.3s ease;
@@ -1033,8 +1026,7 @@ watch(locale, () => {
   opacity: 0;
   transform: translateX(30px);
 }
-
-
+
 @media (max-width: 768px) {
   .order-table-container {
     overflow-x: auto;
@@ -1046,8 +1038,7 @@ watch(locale, () => {
     }
   }
 }
-
-
+
 .order-cards {
   display: flex;
   flex-direction: column;
@@ -1171,8 +1162,7 @@ watch(locale, () => {
     }
   }
 }
-
-
+
 .swipe-hint {
   display: flex;
   align-items: center;

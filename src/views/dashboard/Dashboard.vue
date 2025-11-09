@@ -677,7 +677,6 @@
         </div>
       </div>
 
-
     </div>
   </transition>
 
@@ -1270,7 +1269,6 @@ export default {
     const showRenewPlanButton = computed(() => {
       if (!DASHBOARD_CONFIG.enableRenewPlan) return false;
 
-
       switch (DASHBOARD_CONFIG.renewPlanDisplayMode) {
         case 'always':
           return true;
@@ -1282,7 +1280,6 @@ export default {
           return false;
       }
     });
-
 
     const fetchSubscribe = async () => {
       // 如果showResetTrafficButton为true，强制执行（跳过缓存逻辑）
@@ -2238,7 +2235,6 @@ export default {
     }
   }
 
-
   .download-card {
     .download-options {
       display: grid;
@@ -2315,7 +2311,6 @@ export default {
       }
     }
   }
-
 
   .notice-card {
     margin-bottom: 24px;
@@ -2437,7 +2432,6 @@ export default {
     }
   }
 
-
   .pending-items-card {
     margin-bottom: 24px;
 
@@ -2491,7 +2485,6 @@ export default {
   }
 }
 
-
 .skeleton-loading {
   overflow: hidden;
   position: relative;
@@ -2521,7 +2514,6 @@ export default {
     transform: translateX(100%);
   }
 }
-
 
 .btn-primary, .btn-outline, .btn-action {
   display: inline-flex;
@@ -2562,7 +2554,6 @@ export default {
     background-color: rgba(var(--theme-color-rgb), 0.05);
     transform: translateY(-1px);
   }
-
 
   &.btn-highlight-btnbgcolor {
     position: relative;
@@ -2624,7 +2615,6 @@ export default {
   }
 }
 
-
 .fade-slide-enter-active,
 .fade-slide-leave-active {
   transition: all 0.3s ease;
@@ -2639,7 +2629,6 @@ export default {
   opacity: 0;
   transform: translateX(-20px);
 }
-
 
 @media (max-width: 768px) {
   .dashboard-container {
@@ -2754,7 +2743,6 @@ export default {
   }
 }
 
-
 .stats-card.doc-card {
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2802,13 +2790,11 @@ export default {
   }
 }
 
-
 .btn-active {
   background-color: rgba(var(--theme-color-rgb), 0.1);
   color: var(--theme-color);
   border-color: var(--theme-color);
 }
-
 
 .import-card {
   margin-bottom: 24px;
@@ -2986,7 +2972,6 @@ export default {
   }
 }
 
-
 .qrcode-modal-overlay {
   position: fixed;
   top: 0;
@@ -3122,7 +3107,6 @@ export default {
   }
 }
 
-
 .platform-selector {
   display: flex;
   gap: 10px;
@@ -3165,7 +3149,6 @@ export default {
   }
 }
 
-
 .client-icon {
   width: 24px;
   height: 24px;
@@ -3195,7 +3178,6 @@ export default {
   }
 }
 
-
 .stats-card.warning-card {
   border-color: #ff9800;
   box-shadow: 0 4px 10px rgba(255, 152, 0, 0.15);
@@ -3224,9 +3206,6 @@ export default {
   }
 }
 
-
-
-
 .skeleton-card {
   width: 100%;
   border-radius: 16px;
@@ -3252,7 +3231,6 @@ export default {
     z-index: 1;
   }
 }
-
 
 .skeleton-header {
   height: 24px;
@@ -3282,7 +3260,6 @@ export default {
   margin-bottom: 0;
 }
 
-
 .dark-theme .skeleton-header,
 .dark-theme .skeleton-row,
 .dark-theme .skeleton-circle,
@@ -3290,7 +3267,6 @@ export default {
 .dark-theme .skeleton-row-xs {
   background-color: rgba(255, 255, 255, 0.08);
 }
-
 
 .skeleton-icon {
   width: 48px;
@@ -3323,7 +3299,6 @@ export default {
   width: 50%;
   position: relative;
 }
-
 
 .stats-card.skeleton-card {
   display: flex;
@@ -3376,7 +3351,6 @@ export default {
   margin: 0;
 }
 
-
 .platform-selector {
   display: flex;
   gap: 10px;
@@ -3419,7 +3393,6 @@ export default {
   }
 }
 
-
 @media (min-width: 1200px) {
   .stats-card.no-plan-card {
     padding: 25px 30px;
@@ -3439,7 +3412,6 @@ export default {
   }
 }
 
-
 .no-plan-actions {
   display: flex;
   align-items: center;
@@ -3457,7 +3429,6 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 
 @media screen and (min-width: 769px) {
   .no-plan-content {
@@ -3492,7 +3463,6 @@ export default {
     max-width: none;
   }
 }
-
 
 .notice-modal-overlay {
   position: fixed;
@@ -3755,7 +3725,6 @@ export default {
   transform: scale(0.95);
 }
 
-
 @media (max-width: 768px) {
   .notice-modal-overlay {
     padding: 15px;
@@ -3782,7 +3751,6 @@ export default {
     }
   }
 }
-
 
 .modal-overlay {
   position: fixed;
@@ -3919,7 +3887,6 @@ export default {
   }
 }
 
-
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity 0.3s ease;
@@ -3929,7 +3896,6 @@ export default {
 .modal-fade-leave-to {
   opacity: 0;
 }
-
 
 .loader-small {
   display: inline-block;
@@ -3941,7 +3907,6 @@ export default {
   animation: spin 1s linear infinite;
   margin-right: 8px;
 }
-
 
 .loading-container {
   display: flex;
@@ -3957,7 +3922,6 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 
 </style>
 
@@ -3992,7 +3956,6 @@ export default {
     color: #f44336 !important;
   }
 }
-
 
 .eztheme-btn {
   display: inline-flex !important;
@@ -4036,7 +3999,6 @@ export default {
   }
 }
 
-
 a.eztheme-btn {
   background-image: none !important;
   background-repeat: no-repeat !important;
@@ -4050,7 +4012,6 @@ a.eztheme-btn {
     content: none !important;
   }
 }
-
 
 .stats-card.balance-card.clickable {
   cursor: pointer;
@@ -4068,5 +4029,4 @@ a.eztheme-btn {
   color: var(--theme-color);
 }
 </style>
-
 

@@ -231,7 +231,6 @@ export default {
   color: var(--text-color);
 }
 
-
 .context-menu-enter-active,
 .context-menu-leave-active {
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -242,7 +241,6 @@ export default {
   transform: scale(0.95);
   opacity: 0;
 }
-
 
 :deep(.dark-theme) {
   .custom-context-menu {
